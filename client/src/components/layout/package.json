@@ -1,13 +1,7 @@
 {
   "name": "bkkair-visa-booking",
-  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "install-client": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "start": "cd server && npm install && npm start"
-  },
-  "engines": {
-    "node": "20.x"
+    "build": "cd client && npm install && npm run build"
   }
 }
