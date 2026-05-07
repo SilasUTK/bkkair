@@ -95,10 +95,64 @@ Hostinger Cloud Startup runs the full stack in one place:
   - Next.js frontend (root-level app)
   - Express backend (`api-server/`)
   - Hostinger MySQL
+  - PM2 process manager
 
-See the full deployment guide:
+### Quick Start (SSH)
 
-- `docs/hostinger-all-in-one-deploy.md`
+```bash
+# 1. Build locally first
+npm run build:all
+
+# 2. SSH into Hostinger and clone
+git clone https://github.com/SilasUTK/bkkair-visa-booking.git
+cd bkkair-visa-booking
+
+# 3. Install dependencies
+npm install --omit=dev
+npm --prefix api-server install --omit=dev
+
+# 4. Set environment variables
+cp api-server/.env.example api-server/.env
+# Edit api-server/.env with real MySQL credentials
+
+# 5. Start with PM2
+npm install -g pm2
+npm run pm2:start
+pm2 save
+pm2 startup
+
+# 6. Configure Nginx reverse proxy (see nginx-proxy-config.md)
+```
+
+### Deployment Guides
+
+- **[hostinger-deployment-setup.md](docs/hostinger-deployment-setup.md)** — Complete step-by-step (Option A: SSH, Option B: Auto-Import via panel)
+- **[nginx-proxy-config.md](docs/nginx-proxy-config.md)** — Nginx reverse proxy configuration (routes `/api/*` → port 5001, `/` → port 3000)
+- **[production-checklist-template.md](docs/production-checklist-template.md)** — Pre-launch verification checklist
+
+### Why Two Processes?
+
+- **Next.js frontend** (port 3000): Renders the public site + admin dashboard
+- **Express backend** (port 5001): REST API for bookings, admin auth, and database operations
+- **PM2**: Manages both processes as a single unit, automatically restarts if one fails
+- **Nginx**: Routes incoming traffic to the correct port
+
+### Troubleshooting Deployment
+
+**"Cannot find module" errors**: Ensure TypeScript is compiled before uploading:
+```bash
+npm run build:all
+```
+
+**502 Bad Gateway**: Express backend isn't running:
+```bash
+ssh user@hostinger && pm2 status && pm2 logs bkkair-api
+```
+
+**Database connection fails**: Verify `DATABASE_URL` in `api-server/.env` and test manually:
+```bash
+mysql -u user -p -h host -D dbname
+```
 
 ## MySQL Setup
 
