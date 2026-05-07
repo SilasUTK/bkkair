@@ -10,6 +10,11 @@
     "dev:backend": "npm --prefix backend run dev",
     "build:backend": "npm --prefix backend run build",
     "start:backend": "npm --prefix backend run start",
+    "build:all": "npm run build:frontend && npm run build:backend",
+    "pm2:start": "pm2 start ecosystem.config.cjs --env production",
+    "pm2:restart": "pm2 restart ecosystem.config.cjs --env production",
+    "pm2:stop": "pm2 stop ecosystem.config.cjs",
+    "pm2:logs": "pm2 logs",
     "dev": "npm run dev:frontend",
     "build": "npm run build:frontend",
     "start": "npm run start:backend"

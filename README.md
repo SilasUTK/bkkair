@@ -2,8 +2,8 @@
 
 BKK AIR is split into:
 
-- `frontend/`: Next.js 14 App Router (Hostinger deployment target)
-- `backend/`: Express + TypeScript + Prisma + MySQL (Railway/Render deployment target)
+- `frontend/`: Next.js 14 App Router
+- `backend/`: Express + TypeScript + Prisma + MySQL
 
 Customers submit a request, staff review it, and fulfillment happens manually.
 
@@ -82,14 +82,14 @@ Do not commit real credentials or LINE tokens.
 
 ## Deployment
 
-- Hostinger: deploy only `frontend/`
-- Railway/Render: deploy only `backend/`
+- Hostinger Cloud Startup can run the full stack in one place:
+  - Next.js frontend (`frontend/`)
+  - Express backend (`backend/`)
+  - Hostinger MySQL
 
-For backend deployment:
+Use the full deployment guide:
 
-- Build command: `npm run build`
-- Start command: `npm run start`
-- Ensure `DATABASE_URL` and `JWT_SECRET` are set
+- `docs/hostinger-all-in-one-deploy.md`
 
 ## MySQL Setup
 

@@ -29,7 +29,8 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next_hostinger/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
