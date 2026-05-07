@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS admins (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  passwordHash VARCHAR(255) NOT NULL,
+  role VARCHAR(50) NOT NULL DEFAULT 'admin',
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO admins (name, email, passwordHash, role)
+VALUES (
+  'BKK AIR Admin',
+  'admin@bkkair.com',
+  '$2b$12$jGM1KGrJbNMF3t8W8L4bzeGoim86Hs3Z5sFKxtHuunTik6ilg6ASW',
+  'superadmin'
+)
+ON DUPLICATE KEY UPDATE
+  name = VALUES(name),
+  role = VALUES(role),
+  updatedAt = CURRENT_TIMESTAMP;
