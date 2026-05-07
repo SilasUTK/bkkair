@@ -11,17 +11,16 @@ import {
   CalendarDays
 } from "lucide-react";
 import React, { useState } from "react";
-
-// Mockup API
-const createBooking = async (data) => {
-  return new Promise((resolve) => setTimeout(resolve, 1500));
-};
+import { createBooking } from "../../services/api.js";
 
 const initialRequest = {
   destination: "",
   serviceType: "ท่องเที่ยว / ส่วนตัว",
   name: "",
-  phone: ""
+  phone: "",
+  email: "",
+  lineId: "",
+  departureDate: ""
 };
 
 const countries = [
@@ -53,7 +52,9 @@ export default function Hero({ goToCheck }) {
 
     if (!request.destination.trim()) return setError("กรุณาเลือกประเทศที่ต้องการไป");
     if (!request.name.trim()) return setError("กรุณาระบุชื่อ-นามสกุล");
-    if (!request.phone.trim()) return setError("กรุณาระบุช่องทางติดต่อกลับ");
+    if (!request.phone.trim()) return setError("กรุณาระบุเบอร์โทรศัพท์");
+    if (!request.departureDate.trim()) return setError("กรุณาระบุวันเดินทาง");
+    if (!request.email.trim() && !request.lineId.trim()) return setError("กรุณาระบุอีเมลหรือ LINE ID อย่างน้อย 1 ช่องทาง");
 
     setLoading(true);
     setError("");
@@ -78,6 +79,13 @@ export default function Hero({ goToCheck }) {
 
   function scrollToPackages() {
     document.getElementById("packages")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function getTomorrowDate() {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() + 1);
+    return date.toISOString().slice(0, 10);
   }
 
   return (
@@ -307,15 +315,55 @@ export default function Hero({ goToCheck }) {
 
                   {/* Input: Contact */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">ช่องทางติดต่อ</label>
+                    <label className="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">เบอร์โทรศัพท์</label>
                     <input
                       name="phone"
                       type="text"
                       value={request.phone}
                       onChange={updateRequest}
-                      placeholder="เบอร์โทร / Line ID / อีเมล"
+                      placeholder="ระบุเบอร์โทรศัพท์"
                       required
                       className="block w-full px-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl text-slate-700 font-medium text-base placeholder-slate-400 focus:bg-white focus:border-blue-500 focus:ring-0 transition-colors hover:bg-slate-100/70"
+                    />
+                  </div>
+
+                  {/* Input: Email */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">อีเมล (ถ้ามี)</label>
+                    <input
+                      name="email"
+                      type="email"
+                      value={request.email}
+                      onChange={updateRequest}
+                      placeholder="name@example.com"
+                      className="block w-full px-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl text-slate-700 font-medium text-base placeholder-slate-400 focus:bg-white focus:border-blue-500 focus:ring-0 transition-colors hover:bg-slate-100/70"
+                    />
+                  </div>
+
+                  {/* Input: LINE ID */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">LINE ID (ถ้ามี)</label>
+                    <input
+                      name="lineId"
+                      type="text"
+                      value={request.lineId}
+                      onChange={updateRequest}
+                      placeholder="@yourlineid"
+                      className="block w-full px-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl text-slate-700 font-medium text-base placeholder-slate-400 focus:bg-white focus:border-blue-500 focus:ring-0 transition-colors hover:bg-slate-100/70"
+                    />
+                  </div>
+
+                  {/* Input: Departure Date */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">วันเดินทาง</label>
+                    <input
+                      name="departureDate"
+                      type="date"
+                      min={getTomorrowDate()}
+                      value={request.departureDate}
+                      onChange={updateRequest}
+                      required
+                      className="block w-full px-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl text-slate-700 font-medium text-base focus:bg-white focus:border-blue-500 focus:ring-0 transition-colors hover:bg-slate-100/70"
                     />
                   </div>
 
