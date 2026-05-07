@@ -1,74 +1,99 @@
 # BKK AIR Visa Booking Support
 
-BKK AIR is a React + Express + MySQL system for visa flight and hotel booking support. Customers submit a request, staff review it, and fulfillment happens manually.
+BKK AIR is split into:
+
+- `frontend/`: Next.js 14 App Router (Hostinger deployment target)
+- `backend/`: Express + TypeScript + Prisma + MySQL (Railway/Render deployment target)
+
+Customers submit a request, staff review it, and fulfillment happens manually.
 
 This is not an instant booking engine.
 
 ## Project Structure
 
-- `client/`: React, Vite, Tailwind public site and admin UI
-- `server/`: Express API with MySQL
+- `frontend/`: Next.js 14 App Router site and admin UI
+- `backend/`: Express REST API with TypeScript and Prisma
+- `legacy/client/`: archived Vite client (no longer active)
+- `legacy/server/`: archived JavaScript server (no longer active)
 - `AGENTS.md`: product and implementation rules
 - `ADMIN_AGENTS.md`: admin workflow
 - `SALES_FLOW.md`: Thai sales and follow-up process
 
 ## Run Locally
 
-Install dependencies:
+Install both apps:
 
 ```bash
-npm install
+npm run install:all
 ```
 
-Run client and server together:
+Run frontend (Next.js):
 
 ```bash
 npm run dev
 ```
 
-Run only the client:
+Run backend (Express TS):
 
 ```bash
-npm run dev --workspace client
+npm run dev:backend
 ```
 
-Run only the server:
+Build frontend:
 
 ```bash
-npm run dev --workspace server
+npm run build
+```
+
+Build backend:
+
+```bash
+npm run build:backend
 ```
 
 Default URLs:
 
-- Client: `http://localhost:5173` or the next available Vite port
-- Server: `http://localhost:5001`
+- Frontend: `http://localhost:3000`
+- Backend: `http://localhost:5001`
 - Health check: `http://localhost:5001/api/health`
 
 ## Environment Variables
 
-Create `server/.env`:
+Create `frontend/.env.local`:
 
 ```env
+NEXT_PUBLIC_API_URL=http://localhost:5001
+```
+
+Create `backend/.env`:
+
+```env
+DATABASE_URL=mysql://user:password@localhost:3306/bkkair
+JWT_SECRET=change-me
 PORT=5001
-CLIENT_ORIGIN=http://localhost:5173
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_password
-DB_NAME=bkkair_visa_booking
-LINE_NOTIFY_TOKEN=
+CLIENT_ORIGIN=http://localhost:3000
+LINE_CHANNEL_ACCESS_TOKEN=
+LINE_ADMIN_USER_ID=
 ```
 
-Create `client/.env` if the API is not on the default URL:
-
-```env
-VITE_API_BASE_URL=http://localhost:5001
-```
+Use `.env.example` in both `frontend/` and `backend/` as templates.
 
 Do not commit real credentials or LINE tokens.
 
+## Deployment
+
+- Hostinger: deploy only `frontend/`
+- Railway/Render: deploy only `backend/`
+
+For backend deployment:
+
+- Build command: `npm run build`
+- Start command: `npm run start`
+- Ensure `DATABASE_URL` and `JWT_SECRET` are set
+
 ## MySQL Setup
 
-The backend expects a `bookings` table with at least these fields:
+Backend expects a `bookings` table with at least these fields:
 
 ```sql
 CREATE TABLE bookings (
@@ -104,10 +129,10 @@ CREATE TABLE bookings (
 
 The API dynamically inserts only columns that exist, so optional future fields can be added without breaking quick requests.
 
-For existing databases, review and apply:
+For existing databases, review and apply SQL migrations from:
 
 ```sql
-server/migrations/001_bookings_required_columns.sql
+legacy/server/migrations/001_bookings_required_columns.sql
 ```
 
 ## API

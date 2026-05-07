@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Booking {
+  id                 Int       @id @default(autoincrement())
+  bookingCode        String    @unique @db.VarChar(6)
+  customerName       String?   @db.VarChar(191)
+  email              String?   @db.VarChar(191)
+  phone              String?   @db.VarChar(64)
+  lineId             String?   @db.VarChar(191)
+  origin             String?   @db.VarChar(191)
+  destination        String?   @db.VarChar(191)
+  visaCountry        String?   @db.VarChar(191)
+  departureDate      DateTime?
+  returnDate         DateTime?
+  serviceType        String?   @db.VarChar(191)
+  airline            String?   @db.VarChar(191)
+  preferredAirlines  String?   @db.VarChar(191)
+  cabinClass         String?   @db.VarChar(64)
+  passengerCount     Int?
+  status             String?   @db.VarChar(64)
+  adminNotes         String?   @db.Text
+  assignedStaff      String?   @db.VarChar(191)
+  quotationAmount    Float?
+  quotationCurrency  String?   @db.VarChar(16)
+  quotationDueDate   DateTime?
+  quotationSentAt    DateTime?
+  paymentStatus      String?   @db.VarChar(64)
+  documentStatus     String?   @db.VarChar(64)
+  documentValidUntil DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@map("bookings")
+}
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  name         String   @db.VarChar(191)
+  email        String   @unique @db.VarChar(191)
+  passwordHash String   @db.VarChar(255)
+  role         String   @default("admin") @db.VarChar(64)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admins")
+}
