@@ -10,7 +10,7 @@ import {
   MapPin,
   CalendarDays
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { createBooking } from "../../services/api.js";
 
 const initialRequest = {
@@ -46,6 +46,7 @@ export default function Hero({ goToCheck }) {
   const [createdBooking, setCreatedBooking] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const tomorrowDate = useMemo(() => getTomorrowDate(), []);
 
   function updateRequest(event) {
     const { name, value } = event.target;
@@ -359,7 +360,7 @@ export default function Hero({ goToCheck }) {
                     <input
                       name="departureDate"
                       type="date"
-                      min={getTomorrowDate()}
+                      min={tomorrowDate}
                       value={request.departureDate}
                       onChange={updateRequest}
                       required
