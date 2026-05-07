@@ -1,25 +1,39 @@
 {
   "name": "bkkair-visa-booking",
   "version": "1.0.0",
+  "description": "BKK AIR - Visa Flight and Hotel Booking Support System",
   "private": true,
   "scripts": {
-    "install:all": "npm --prefix frontend install && npm --prefix backend install",
-    "dev:frontend": "npm --prefix frontend run dev",
-    "build:frontend": "npm --prefix frontend run build",
-    "start:frontend": "npm --prefix frontend run start",
-    "dev:backend": "npm --prefix backend run dev",
-    "build:backend": "npm --prefix backend run build",
-    "start:backend": "npm --prefix backend run start",
-    "build:all": "npm run build:frontend && npm run build:backend",
+    "install:all": "npm install && npm --prefix api-server install",
+    "dev": "next dev",
+    "dev:api": "npm --prefix api-server run dev",
+    "build": "next build",
+    "build:api": "npm --prefix api-server run build",
+    "build:all": "npm run build && npm run build:api",
+    "start": "next start",
+    "start:api": "npm --prefix api-server run start",
     "pm2:start": "pm2 start ecosystem.config.cjs --env production",
     "pm2:restart": "pm2 restart ecosystem.config.cjs --env production",
     "pm2:stop": "pm2 stop ecosystem.config.cjs",
     "pm2:logs": "pm2 logs",
-    "dev": "npm run dev:frontend",
-    "build": "npm run build:frontend",
-    "start": "npm run start:backend"
+    "lint": "next lint"
   },
   "engines": {
     "node": "20.x"
+  },
+  "dependencies": {
+    "next": "14.2.33",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "lucide-react": "^0.468.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.17",
+    "postcss": "^8.4.49",
+    "autoprefixer": "^10.4.20"
   }
 }

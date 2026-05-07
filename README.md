@@ -1,9 +1,9 @@
 # BKK AIR Visa Booking Support
 
-BKK AIR is split into:
+BKK AIR structure:
 
-- `frontend/`: Next.js 14 App Router
-- `backend/`: Express + TypeScript + Prisma + MySQL
+- **Root-level Next.js 14 App Router** (`app/`, `components/`, etc. at root)
+- **`api-server/`**: Express + TypeScript + Prisma + MySQL REST API
 
 Customers submit a request, staff review it, and fulfillment happens manually.
 
@@ -11,32 +11,35 @@ This is not an instant booking engine.
 
 ## Project Structure
 
-- `frontend/`: Next.js 14 App Router site and admin UI
-- `backend/`: Express REST API with TypeScript and Prisma
-- `legacy/client/`: archived Vite client (no longer active)
-- `legacy/server/`: archived JavaScript server (no longer active)
+- `app/`: Next.js 14 App Router routes
+- `components/`: React components (including legacy wrapped components)
+- `public/`: Static assets
+- `styles/`: Global styles
+- `api-server/`: Express REST API with TypeScript and Prisma
+- `legacy/`: archived original Vite client and JavaScript server (no longer active)
 - `AGENTS.md`: product and implementation rules
 - `ADMIN_AGENTS.md`: admin workflow
 - `SALES_FLOW.md`: Thai sales and follow-up process
+- `docs/hostinger-all-in-one-deploy.md`: Hostinger deployment guide
 
 ## Run Locally
 
-Install both apps:
+Install all dependencies:
 
 ```bash
 npm run install:all
 ```
 
-Run frontend (Next.js):
+Run frontend (Next.js, default):
 
 ```bash
 npm run dev
 ```
 
-Run backend (Express TS):
+Or run backend separately (Express TS):
 
 ```bash
-npm run dev:backend
+npm run dev:api
 ```
 
 Build frontend:
@@ -48,24 +51,30 @@ npm run build
 Build backend:
 
 ```bash
-npm run build:backend
+npm run build:api
+```
+
+Build both:
+
+```bash
+npm run build:all
 ```
 
 Default URLs:
 
 - Frontend: `http://localhost:3000`
-- Backend: `http://localhost:5001`
+- Backend API: `http://localhost:5001`
 - Health check: `http://localhost:5001/api/health`
 
 ## Environment Variables
 
-Create `frontend/.env.local`:
+Create `.env.local` at root (optional for dev - uses relative API URLs by default):
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5001
 ```
 
-Create `backend/.env`:
+Create `api-server/.env`:
 
 ```env
 DATABASE_URL=mysql://user:password@localhost:3306/bkkair
@@ -76,18 +85,18 @@ LINE_CHANNEL_ACCESS_TOKEN=
 LINE_ADMIN_USER_ID=
 ```
 
-Use `.env.example` in both `frontend/` and `backend/` as templates.
+Use `.env.example` files as templates.
 
 Do not commit real credentials or LINE tokens.
 
 ## Deployment
 
-- Hostinger Cloud Startup can run the full stack in one place:
-  - Next.js frontend (`frontend/`)
-  - Express backend (`backend/`)
+Hostinger Cloud Startup runs the full stack in one place:
+  - Next.js frontend (root-level app)
+  - Express backend (`api-server/`)
   - Hostinger MySQL
 
-Use the full deployment guide:
+See the full deployment guide:
 
 - `docs/hostinger-all-in-one-deploy.md`
 

@@ -1,5 +1,15 @@
 node_modules
 dist
 .env
-*.log
+.env.local
+.env.production
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.next
+.next_hostinger
+out
+.DS_Store
+build_hostinger
+pm2-logs

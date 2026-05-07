@@ -1,8 +1,8 @@
 module.exports = {
   apps: [
     {
-      name: "bkkair-backend",
-      cwd: "./backend",
+      name: "bkkair-api",
+      cwd: "./api-server",
       script: "npm",
       args: "run start",
       env: {
@@ -11,8 +11,8 @@ module.exports = {
       }
     },
     {
-      name: "bkkair-frontend",
-      cwd: "./frontend",
+      name: "bkkair-web",
+      cwd: ".",
       script: "npm",
       args: "run start -- -p 3000",
       env: {

@@ -8,7 +8,7 @@ Use this checklist before go-live. Fill every value.
 - [ ] WWW redirect configured (if needed): `Yes / No`
 - [ ] SSL certificate active: `Yes / No`
 
-## B) Backend Environment (`backend/.env`)
+## B) Backend Environment (`api-server/.env`)
 
 - [ ] `DATABASE_URL="mysql://USER:PASSWORD@HOST:3306/DB_NAME"`
   - USER: `____________________`
@@ -21,12 +21,12 @@ Use this checklist before go-live. Fill every value.
 - [ ] `LINE_CHANNEL_ACCESS_TOKEN="____________________"` (optional)
 - [ ] `LINE_ADMIN_USER_ID="____________________"` (optional)
 
-## C) Frontend Environment (`frontend/.env.local`)
+## C) Frontend Environment (`.env.local` at root, optional)
 
-- [ ] `NEXT_PUBLIC_API_URL="https://____________________"`
+- [ ] `NEXT_PUBLIC_API_URL="https://____________________"` (optional - defaults to relative)
 
 Recommended for same-domain setup:
-- Use your exact production domain, e.g. `https://yourdomain.com`
+- Leave empty or omit for relative URLs (same-domain via reverse proxy)
 
 ## D) Build and Process
 
@@ -35,7 +35,7 @@ Recommended for same-domain setup:
 - [ ] `npm run pm2:start`
 - [ ] `pm2 save`
 - [ ] `pm2 startup`
-- [ ] `pm2 status` shows both `bkkair-frontend` and `bkkair-backend` online
+- [ ] `pm2 status` shows both `bkkair-web` and `bkkair-api` online
 
 ## E) Reverse Proxy
 

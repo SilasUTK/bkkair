@@ -2,8 +2,8 @@
 
 This guide deploys everything on Hostinger:
 
-- Next.js frontend from `frontend/`
-- Express backend from `backend/`
+- Next.js frontend (root-level `app/`, `components/`, etc.)
+- Express backend from `api-server/`
 - MySQL from Hostinger database service
 
 ## 1) Prepare Hostinger MySQL
@@ -40,10 +40,10 @@ npm run install:all
 Create backend environment:
 
 ```bash
-cp backend/.env.example backend/.env
+cp api-server/.env.example api-server/.env
 ```
 
-Edit `backend/.env` and set real values:
+Edit `api-server/.env` and set real values:
 
 ```env
 DATABASE_URL="mysql://USER:PASSWORD@HOST:3306/DB_NAME"
@@ -54,17 +54,19 @@ LINE_CHANNEL_ACCESS_TOKEN=""
 LINE_ADMIN_USER_ID=""
 ```
 
-Create frontend environment:
+Create frontend environment (optional - uses relative API URLs by default):
 
 ```bash
-cp frontend/.env.example frontend/.env.local
+cp .env.example .env.local
 ```
 
-Edit `frontend/.env.local`:
+Edit `.env.local` if needed:
 
 ```env
 NEXT_PUBLIC_API_URL="https://your-domain.com"
 ```
+
+(Leave empty for same-domain routing via reverse proxy)
 
 ## 5) Build Both Apps
 
