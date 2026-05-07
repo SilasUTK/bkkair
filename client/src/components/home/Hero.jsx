@@ -34,6 +34,13 @@ const visaTypes = [
   "นักเรียน", "ทำงาน", "Transit"
 ];
 
+function getTomorrowDate() {
+  const date = new Date();
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() + 1);
+  return date.toISOString().slice(0, 10);
+}
+
 export default function Hero({ goToCheck }) {
   const [request, setRequest] = useState(initialRequest);
   const [createdBooking, setCreatedBooking] = useState(false);
@@ -79,13 +86,6 @@ export default function Hero({ goToCheck }) {
 
   function scrollToPackages() {
     document.getElementById("packages")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  function getTomorrowDate() {
-    const date = new Date();
-    date.setHours(0, 0, 0, 0);
-    date.setDate(date.getDate() + 1);
-    return date.toISOString().slice(0, 10);
   }
 
   return (
