@@ -1,74 +1,162 @@
 # BKK AIR Visa Booking Support
 
-BKK AIR is a React + Express + MySQL system for visa flight and hotel booking support. Customers submit a request, staff review it, and fulfillment happens manually.
+BKK AIR structure:
+
+- **Root-level Next.js 14 App Router** (`app/`, `components/`, etc. at root)
+- **`api-server/`**: Express + TypeScript + Prisma + MySQL REST API
+
+Customers submit a request, staff review it, and fulfillment happens manually.
 
 This is not an instant booking engine.
 
 ## Project Structure
 
-- `client/`: React, Vite, Tailwind public site and admin UI
-- `server/`: Express API with MySQL
+- `app/`: Next.js 14 App Router routes
+- `components/`: React components (including legacy wrapped components)
+- `public/`: Static assets
+- `styles/`: Global styles
+- `api-server/`: Express REST API with TypeScript and Prisma
+- `legacy/`: archived original Vite client and JavaScript server (no longer active)
 - `AGENTS.md`: product and implementation rules
 - `ADMIN_AGENTS.md`: admin workflow
 - `SALES_FLOW.md`: Thai sales and follow-up process
+- `docs/hostinger-all-in-one-deploy.md`: Hostinger deployment guide
 
 ## Run Locally
 
-Install dependencies:
+Install all dependencies:
 
 ```bash
-npm install
+npm run install:all
 ```
 
-Run client and server together:
+Run frontend (Next.js, default):
 
 ```bash
 npm run dev
 ```
 
-Run only the client:
+Or run backend separately (Express TS):
 
 ```bash
-npm run dev --workspace client
+npm run dev:api
 ```
 
-Run only the server:
+Build frontend:
 
 ```bash
-npm run dev --workspace server
+npm run build
+```
+
+Build backend:
+
+```bash
+npm run build:api
+```
+
+Build both:
+
+```bash
+npm run build:all
 ```
 
 Default URLs:
 
-- Client: `http://localhost:5173` or the next available Vite port
-- Server: `http://localhost:5001`
+- Frontend: `http://localhost:3000`
+- Backend API: `http://localhost:5001`
 - Health check: `http://localhost:5001/api/health`
 
 ## Environment Variables
 
-Create `server/.env`:
+Create `.env.local` at root (optional for dev - uses relative API URLs by default):
 
 ```env
+NEXT_PUBLIC_API_URL=http://localhost:5001
+```
+
+Create `api-server/.env`:
+
+```env
+DATABASE_URL=mysql://user:password@localhost:3306/bkkair
+JWT_SECRET=change-me
 PORT=5001
-CLIENT_ORIGIN=http://localhost:5173
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_password
-DB_NAME=bkkair_visa_booking
-LINE_NOTIFY_TOKEN=
+CLIENT_ORIGIN=http://localhost:3000
+LINE_CHANNEL_ACCESS_TOKEN=
+LINE_ADMIN_USER_ID=
 ```
 
-Create `client/.env` if the API is not on the default URL:
-
-```env
-VITE_API_BASE_URL=http://localhost:5001
-```
+Use `.env.example` files as templates.
 
 Do not commit real credentials or LINE tokens.
 
+## Deployment
+
+Hostinger Cloud Startup runs the full stack in one place:
+  - Next.js frontend (root-level app)
+  - Express backend (`api-server/`)
+  - Hostinger MySQL
+  - PM2 process manager
+
+### Quick Start (SSH)
+
+```bash
+# 1. Build locally first
+npm run build:all
+
+# 2. SSH into Hostinger and clone
+git clone https://github.com/SilasUTK/bkkair-visa-booking.git
+cd bkkair-visa-booking
+
+# 3. Install dependencies
+npm install --omit=dev
+npm --prefix api-server install --omit=dev
+
+# 4. Set environment variables
+cp api-server/.env.example api-server/.env
+# Edit api-server/.env with real MySQL credentials
+
+# 5. Start with PM2
+npm install -g pm2
+npm run pm2:start
+pm2 save
+pm2 startup
+
+# 6. Configure Nginx reverse proxy (see nginx-proxy-config.md)
+```
+
+### Deployment Guides
+
+- **[hostinger-deployment-setup.md](docs/hostinger-deployment-setup.md)** — Complete step-by-step (Option A: SSH, Option B: Auto-Import via panel)
+- **[nginx-proxy-config.md](docs/nginx-proxy-config.md)** — Nginx reverse proxy configuration (routes `/api/*` → port 5001, `/` → port 3000)
+- **[production-checklist-template.md](docs/production-checklist-template.md)** — Pre-launch verification checklist
+
+### Why Two Processes?
+
+- **Next.js frontend** (port 3000): Renders the public site + admin dashboard
+- **Express backend** (port 5001): REST API for bookings, admin auth, and database operations
+- **PM2**: Manages both processes as a single unit, automatically restarts if one fails
+- **Nginx**: Routes incoming traffic to the correct port
+
+### Troubleshooting Deployment
+
+**"Cannot find module" errors**: Ensure TypeScript is compiled before uploading:
+```bash
+npm run build:all
+```
+
+**502 Bad Gateway**: Express backend isn't running:
+```bash
+ssh user@hostinger && pm2 status && pm2 logs bkkair-api
+```
+
+**Database connection fails**: Verify `DATABASE_URL` in `api-server/.env` and test manually:
+```bash
+mysql -u user -p -h host -D dbname
+```
+
 ## MySQL Setup
 
-The backend expects a `bookings` table with at least these fields:
+Backend expects a `bookings` table with at least these fields:
 
 ```sql
 CREATE TABLE bookings (
@@ -104,10 +192,10 @@ CREATE TABLE bookings (
 
 The API dynamically inserts only columns that exist, so optional future fields can be added without breaking quick requests.
 
-For existing databases, review and apply:
+For existing databases, review and apply SQL migrations from:
 
 ```sql
-server/migrations/001_bookings_required_columns.sql
+legacy/server/migrations/001_bookings_required_columns.sql
 ```
 
 ## API
