@@ -5,7 +5,7 @@
     "build": "npm --prefix frontend run build",
     "start": "npm --prefix frontend run start",
     "install": "npm --prefix frontend install",
-    "install:all": "npm --prefix frontend install && npm --prefix backend install"
+    "install:all": "npm --prefix frontend install && npm --prefix api-server install"
   },
   "engines": {
     "node": "20.x"
