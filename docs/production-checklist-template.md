@@ -26,6 +26,7 @@ Use this checklist before go-live. Fill every value.
 - [ ] `NEXT_PUBLIC_API_URL="https://____________________"` (optional - defaults to relative)
 
 Recommended for same-domain setup:
+
 - Leave empty or omit for relative URLs (same-domain via reverse proxy)
 
 ## D) Build and Process
