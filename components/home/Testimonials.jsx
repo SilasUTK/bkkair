@@ -1,13 +1,13 @@
-import { Star, Quote, MessageSquareHeart } from "lucide-react";
+import { CheckCircle2, Quote, MessageSquareHeart } from "lucide-react";
 import React from "react";
 
 // Theme สีให้แต่ละรีวิวเพื่อให้ดูเป็น Colorful Flat Design
 const testimonials = [
   {
-    name: "คุณวิภาดา ส.",
-    text: "ทำวีซ่าเชงเก้นกับที่นี่ ประทับใจมากค่ะ ทีมงานแนะนำดีมาก ช่วยตรวจเอกสารละเอียดยิบ ได้วีซ่าไวตามกำหนดเป๊ะเลย",
-    type: "วีซ่าท่องเที่ยว (ฝรั่งเศส)",
-    initials: "วส",
+    name: "ลูกค้ายื่นวีซ่าท่องเที่ยว",
+    text: "ลูกค้ามักต้องการทีมงานที่อธิบายขั้นตอนชัดเจน ตรวจรายละเอียดก่อนดำเนินการ และแจ้งกลับผ่านช่องทางที่ติดต่อได้จริง",
+    type: "Flight reservation for visa",
+    initials: "FV",
     theme: {
       border: "border-blue-100 group-hover:border-blue-300",
       shadow: "hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.15)]",
@@ -18,10 +18,10 @@ const testimonials = [
     }
   },
   {
-    name: "คุณธนพล ว.",
-    text: "ผมไม่มีเวลาจัดการเอกสารเลย ซื้อแพ็กเกจ Premium ไป คุ้มค่ามากครับ มีคนดูแลตั้งแต่ร่างจดหมายจนถึงวันไปสแกนนิ้ว",
-    type: "วีซ่าธุรกิจ (อเมริกา)",
-    initials: "ธว",
+    name: "ลูกค้าที่ต้องการใบจองโรงแรม",
+    text: "จุดที่ลูกค้าให้ความสำคัญคือข้อมูลโรงแรมและวันที่เข้าพักต้องสอดคล้องกับแผนเดินทางก่อนนำไปใช้ประกอบคำขอวีซ่า",
+    type: "Hotel booking for visa",
+    initials: "HV",
     theme: {
       border: "border-orange-100 group-hover:border-orange-300",
       shadow: "hover:shadow-[0_20px_40px_-15px_rgba(255,87,34,0.15)]",
@@ -32,10 +32,10 @@ const testimonials = [
     }
   },
   {
-    name: "คุณณัฐนันท์ ค.",
-    text: "แอดมินตอบคำถามเร็วมาก แก้ปัญหาเฉพาะหน้าเก่งมากค่ะ ใครหาเอเจนซี่ทำวีซ่าที่ไว้ใจได้ แนะนำที่นี่เลยค่ะ ไม่ผิดหวัง",
-    type: "วีซ่านักเรียน (อังกฤษ)",
-    initials: "ณค",
+    name: "ลูกค้าที่ต้องการทีมงานช่วยตรวจ",
+    text: "ระบบคำขอเหมาะกับเคสที่ต้องให้เจ้าหน้าที่ตรวจสอบรายละเอียดก่อนเสนอราคาและจัดเตรียมเอกสารหลังลูกค้ายืนยัน",
+    type: "Visa support assistance",
+    initials: "VS",
     theme: {
       border: "border-emerald-100 group-hover:border-emerald-300",
       shadow: "hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.15)]",
@@ -46,16 +46,6 @@ const testimonials = [
     }
   }
 ];
-
-function RatingStars({ className }) {
-  return (
-    <div className="flex items-center gap-1">
-      {[...Array(5)].map((_, index) => (
-        <Star key={index} className={className} aria-hidden="true" strokeWidth={1.5} />
-      ))}
-    </div>
-  );
-}
 
 export default function Testimonials() {
   return (
@@ -85,15 +75,15 @@ export default function Testimonials() {
           </div>
           
           <h2 className="text-4xl font-extrabold leading-[1.2] text-slate-900 sm:text-5xl tracking-tight">
-            เสียงตอบรับจาก <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">ลูกค้าของเรา</span>
+            สิ่งที่ลูกค้าให้ความสำคัญกับ <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">BKK AIR</span>
           </h2>
           
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <div className="flex items-center gap-2.5 rounded-2xl bg-white px-5 py-2.5 shadow-md shadow-slate-200/50 border border-slate-100">
-              <span className="text-2xl font-black text-slate-900">4.9</span>
-              <RatingStars className="h-5 w-5 fill-[#FACC15] text-[#FACC15]" />
+              <CheckCircle2 className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+              <span className="text-2xl font-black text-slate-900">Staff review</span>
             </div>
-            <p className="text-lg font-medium text-slate-600">จากผู้ใช้บริการจริงกว่าหมื่นคน</p>
+            <p className="text-lg font-medium text-slate-600">เนื้อหาเน้นขั้นตอนจริงของระบบ request review</p>
           </div>
         </div>
 
@@ -109,7 +99,7 @@ export default function Testimonials() {
 
               <div className="relative z-10 flex flex-col h-full">
                 <div className="mb-6">
-                  <RatingStars className="h-5 w-5 fill-[#FACC15] text-[#FACC15]" />
+                  <CheckCircle2 className={`h-6 w-6 ${testimonial.theme.textAccent}`} aria-hidden="true" />
                 </div>
                 
                 <p className="mb-8 text-[1.05rem] leading-relaxed text-slate-600 font-medium relative flex-grow">

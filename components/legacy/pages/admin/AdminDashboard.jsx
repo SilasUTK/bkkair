@@ -251,13 +251,15 @@ function AssigneeBadge({ booking }) {
 }
 
 function FulfillmentCalendar({ bookings, month, onMonthChange, navigate }) {
-  const monthStart = new Date(month.getFullYear(), month.getMonth(), 1);
+  const calendarYear = month.getFullYear();
+  const calendarMonthIndex = month.getMonth();
+  const monthStart = useMemo(() => new Date(calendarYear, calendarMonthIndex, 1), [calendarMonthIndex, calendarYear]);
   const monthLabel = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(monthStart);
-  const calendarDays = useMemo(() => buildCalendarDays(monthStart), [monthStart.getFullYear(), monthStart.getMonth()]);
+  const calendarDays = useMemo(() => buildCalendarDays(monthStart), [monthStart]);
   const bookingsByDate = useMemo(() => groupBookingsByDate(bookings), [bookings]);
 
   function changeMonth(offset) {
-    onMonthChange(new Date(month.getFullYear(), month.getMonth() + offset, 1));
+    onMonthChange(new Date(calendarYear, calendarMonthIndex + offset, 1));
   }
 
   return (
@@ -304,7 +306,7 @@ function FulfillmentCalendar({ bookings, month, onMonthChange, navigate }) {
         {calendarDays.map((day) => {
           const key = toDateKey(day.date);
           const dayBookings = bookingsByDate[key] || [];
-          const isCurrentMonth = day.date.getMonth() === month.getMonth();
+          const isCurrentMonth = day.date.getMonth() === calendarMonthIndex;
           const isToday = key === toDateKey(new Date());
 
           return (

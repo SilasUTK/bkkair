@@ -10,7 +10,7 @@ Please send passenger passport copy or full passport details so we can prepare a
 
 ## Template 3 - Payment
 
-Once details are confirmed, we will send payment details and proceed with your visa booking documents.
+Once details are verified by staff, we will send payment details and proceed with your visa booking documents.
 
 ## Template 4 - Delivery
 

@@ -10,10 +10,17 @@ datasource db {
 model Booking {
   id                 Int       @id @default(autoincrement())
   bookingCode        String    @unique @db.VarChar(6)
+  name               String?   @db.VarChar(191)
+  title              String?   @db.VarChar(50)
+  firstName          String?   @db.VarChar(191)
+  surname            String?   @db.VarChar(191)
   customerName       String?   @db.VarChar(191)
   email              String?   @db.VarChar(191)
   phone              String?   @db.VarChar(64)
   lineId             String?   @db.VarChar(191)
+  passportNumber     String?   @db.VarChar(100)
+  dateOfBirth        DateTime?
+  passportExpiryDate DateTime?
   origin             String?   @db.VarChar(191)
   destination        String?   @db.VarChar(191)
   visaCountry        String?   @db.VarChar(191)
@@ -24,6 +31,7 @@ model Booking {
   preferredAirlines  String?   @db.VarChar(191)
   cabinClass         String?   @db.VarChar(64)
   passengerCount     Int?
+  attachmentName     String?   @db.VarChar(191)
   status             String?   @db.VarChar(64)
   adminNotes         String?   @db.Text
   assignedStaff      String?   @db.VarChar(191)
@@ -32,8 +40,14 @@ model Booking {
   quotationDueDate   DateTime?
   quotationSentAt    DateTime?
   paymentStatus      String?   @db.VarChar(64)
+  paymentSlipUrl     String?   @db.Text
+  paymentSlipUploadedAt DateTime?
+  paymentApprovedAt  DateTime?
+  paymentRejectedAt  DateTime?
+  paymentRejectReason String?  @db.Text
   documentStatus     String?   @db.VarChar(64)
   documentValidUntil DateTime?
+  staffFollowUpDate  DateTime?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 

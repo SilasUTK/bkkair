@@ -3,7 +3,7 @@ import {
   LayoutDashboard, ClipboardList, CreditCard, FileArchive, 
   UsersRound, Settings, Menu, Bell, ChevronLeft, User, LogOut, BriefcaseBusiness
 } from "lucide-react";
-import Logo from "../../components/layout/Logo.jsx";
+import Logo from "../../../layout/Logo.jsx";
 import { getAdminBookings } from "../../services/api.js";
 import AdminDashboard from "./AdminDashboard.jsx";
 import AdminBookingList from "./AdminBookingList.jsx";

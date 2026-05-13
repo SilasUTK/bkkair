@@ -1,21 +1,21 @@
-import Hero from "../components/home/Hero";
-import TrustBadges from "../components/home/TrustBadges";
-import WhyBKKAir from "../components/home/WhyBKKAir";
-import Workflow from "../components/home/Workflow";
-import Pricing from "../components/home/Pricing";
-import Testimonials from "../components/home/Testimonials";
-import FAQ from "../components/home/FAQ";
+import Hero from "../../home/Hero";
+import SeoTrustSection from "../../home/SeoTrustSection";
+import WhyChooseUs from "../../home/WhyChooseUs";
+import WorkflowTimeline from "../../home/WorkflowTimeline";
+import ServicePackages from "../../home/ServicePackages";
+import Testimonials from "../../home/Testimonials";
+import FAQSection from "../../home/FAQSection";
 
 export default function HomePage(props) {
   return (
     <>
       <Hero goToCheck={props.goToCheck} />
-      <TrustBadges />
-      <WhyBKKAir />
-      <Workflow />
-      <Pricing />
+      <SeoTrustSection />
+      <WhyChooseUs />
+      <WorkflowTimeline />
+      <ServicePackages />
       <Testimonials />
-      <FAQ />
+      <FAQSection />
     </>
   );
 }

@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { LayoutDashboard, Plus } from "lucide-react";
 import EmptyPortalState from "../components/customer-portal/EmptyPortalState.jsx";
-import OverviewContent from "../components/customer-portal/OverviewContent.jsx";
 import PlaceholderContent from "../components/customer-portal/PlaceholderContent.jsx";
 import PortalModal from "../components/customer-portal/PortalModal.jsx";
 import PortalShell from "../components/customer-portal/PortalShell.jsx";
-import { activeRequest, navigationItems } from "../components/customer-portal/portalData.js";
+import { navigationItems } from "../components/customer-portal/portalData.js";
 
 export default function CustomerPortal({ onNavigate }) {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [modalType, setModalType] = useState(null);
-  const [hasRequests, setHasRequests] = useState(true);
 
   const activeNavItem = navigationItems.find((item) => item.id === activeTab);
   const ActiveIcon = activeNavItem?.icon ?? LayoutDashboard;
@@ -51,13 +49,6 @@ export default function CustomerPortal({ onNavigate }) {
           <div className="flex flex-col gap-3 sm:flex-row">
             <button
               type="button"
-              onClick={() => setHasRequests((current) => !current)}
-              className="inline-flex min-h-[3.25rem] items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-black text-slate-600 transition hover:border-blue-200 hover:bg-blue-50 hover:text-[#2563EB]"
-            >
-              {hasRequests ? "Preview Empty State" : "Show Active Request"}
-            </button>
-            <button
-              type="button"
               onClick={handleNewRequest}
               className="inline-flex min-h-[3.25rem] items-center justify-center gap-3 rounded-2xl bg-[#FF5722] px-6 py-4 text-sm font-black text-white shadow-[0_20px_40px_-18px_rgba(255,87,34,0.7)] transition hover:-translate-y-0.5 hover:bg-[#E64A19]"
             >
@@ -67,9 +58,7 @@ export default function CustomerPortal({ onNavigate }) {
           </div>
         </div>
 
-        {activeTab === "dashboard" && hasRequests ? (
-          <OverviewContent activeRequest={activeRequest} onOpenModal={setModalType} />
-        ) : activeTab === "dashboard" ? (
+        {activeTab === "dashboard" ? (
           <EmptyPortalState onNewRequest={handleNewRequest} onAddTraveler={() => setModalType("traveler")} />
         ) : (
           <PlaceholderContent

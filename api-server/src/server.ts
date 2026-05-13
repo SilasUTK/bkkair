@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import rateLimit from "express-rate-limit";
 import adminAuthRoutes from "./routes/adminAuth.js";
 import adminBookingRoutes from "./routes/adminBookings.js";
 import bookingRoutes from "./routes/bookings.js";
@@ -19,11 +20,28 @@ app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+const loginRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many login attempts. Please try again in 15 minutes." },
+});
+
+const bookingRateLimit = rateLimit({
+  windowMs: 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests. Please try again shortly." },
+});
+
 app.get("/api/health", (_request, response) => {
   response.json({ status: "ok" });
 });
 
-app.use("/api/bookings", bookingRoutes);
+app.use("/api/bookings", bookingRateLimit, bookingRoutes);
+app.use("/api/admin/auth/login", loginRateLimit);
 app.use("/api/admin", adminAuthRoutes);
 app.use("/api/admin", requireAdminAuth, adminBookingRoutes);
 

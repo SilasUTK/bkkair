@@ -1,22 +1,21 @@
 import {
   CheckCircle2,
   Package,
-  Sparkles,
   PlaneTakeoff,
   ShieldCheck,
-  Crown,
+  Hotel,
 } from "lucide-react";
 import React from "react";
 
 const packages = [
   {
-    id: "basic",
-    name: "เริ่มต้น (Basic)",
-    price: "490",
+    id: "flight-reservation",
+    name: "Flight Reservation for Visa",
+    price: "เริ่มต้น",
     popular: false,
     icon: PlaneTakeoff,
-    detailLink: "/packages/basic",
-    description: "ใบจองตั๋วเครื่องบินหรือโรงแรม",
+    detailLink: "#hero",
+    description: "จองตั๋วเครื่องบินยื่นวีซ่าแบบเจ้าหน้าที่ตรวจสอบก่อนดำเนินการ",
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
@@ -27,23 +26,22 @@ const packages = [
       checkIcon: "text-blue-500",
     },
     features: [
-      { text: "ใบจองตั๋วเครื่องบิน (PNR)", included: true },
-      { text: "หรือ ใบจองโรงแรม", included: true },
-      { text: "ไฟล์ PDF พร้อมใช้งาน", included: true },
-      { text: "เหมาะสำหรับยื่นเอกสารเบื้องต้น", included: true },
-      { text: "แผนการเดินทาง (Travel Plan)", included: false },
-      { text: "ชุดเอกสารวีซ่า", included: false },
+      { text: "Flight reservation for visa", included: true },
+      { text: "ตรวจสอบเส้นทางและวันที่ก่อนจัดทำ", included: true },
+      { text: "ไฟล์เอกสารส่งหลังยืนยันข้อมูล", included: true },
+      { text: "เจ้าหน้าที่ติดต่อกลับก่อนดำเนินการ", included: true },
+      { text: "ไม่ใช่ตั๋วโดยสารจริงอัตโนมัติ", included: true },
     ],
   },
 
   {
-    id: "standard",
-    name: "ยอดนิยม (Standard)",
-    price: "890",
+    id: "hotel-booking",
+    name: "Hotel Booking for Visa",
+    price: "ตามเคส",
     popular: true,
-    icon: ShieldCheck,
-    detailLink: "/packages/standard",
-    description: "ใบจองตั๋วเครื่องบิน+โรงแรมหรือแผนการเดินทาง",
+    icon: Hotel,
+    detailLink: "#hero",
+    description: "ใบจองโรงแรมขอวีซ่าตามเมืองและช่วงวันที่ลูกค้ายืนยัน",
     theme: {
       color: "text-[#FF5722]",
       bg: "bg-orange-50",
@@ -54,23 +52,22 @@ const packages = [
       checkIcon: "text-orange-500",
     },
     features: [
-      { text: "ใบจองตั๋วเครื่องบิน", included: true },
-      { text: "ใบจองโรงแรม", included: true },
-      { text: "หรือ Travel Plan แบบพื้นฐาน", included: true },
-      { text: "ไฟล์ PDF พร้อมใช้งาน", included: true },
-      { text: "เหมาะสำหรับยื่นสถานทูต", included: true },
-      { text: "ประกันเดินทาง", included: false },
+      { text: "Hotel booking for visa", included: true },
+      { text: "ตรวจสอบเมือง วันที่ และจำนวนผู้เดินทาง", included: true },
+      { text: "เหมาะสำหรับเอกสารประกอบคำขอวีซ่า", included: true },
+      { text: "ทีมงานยืนยันรายละเอียดก่อนออกเอกสาร", included: true },
+      { text: "ไม่รับประกันผลการอนุมัติวีซ่า", included: true },
     ],
   },
 
   {
-    id: "premium",
-    name: "มืออาชีพ (Premium)",
-    price: "1,290",
+    id: "full-support",
+    name: "Full Visa Support Package",
+    price: "ประเมินราคา",
     popular: false,
-    icon: Crown,
-    detailLink: "/packages/premium",
-    description: "ใบจองตั๋วเครื่องบิน+โรงแรม+แผนการเดินทาง",
+    icon: ShieldCheck,
+    detailLink: "#hero",
+    description: "ชุดสนับสนุนเอกสารเดินทางสำหรับลูกค้าที่ต้องการทั้งตั๋วและโรงแรม",
     theme: {
       color: "text-emerald-600",
       bg: "bg-emerald-50",
@@ -81,70 +78,16 @@ const packages = [
       checkIcon: "text-emerald-500",
     },
     features: [
-      { text: "ใบจองตั๋วเครื่องบิน", included: true },
-      { text: "ใบจองโรงแรม", included: true },
-      { text: "แผนการเดินทางแบบครบถ้วน", included: true },
-      { text: "เอกสารพร้อมใช้งาน", included: true },
-      { text: "เหมาะสำหรับยื่นวีซ่าทุกประเภท", included: true },
-      { text: "ตรวจสอบความถูกต้อง", included: true },
-    ],
-  },
-
-  {
-    id: "elite",
-    name: "ครบวงจร (Elite)",
-    price: "5,490",
-    popular: false,
-    icon: Sparkles,
-    detailLink: "/packages/elite",
-    description: "บริการครบชุดสำหรับการยื่นวีซ่า",
-    theme: {
-      color: "text-purple-600",
-      bg: "bg-purple-50",
-      border: "border-purple-200",
-      shadow: "shadow-purple-200/40",
-      btnClass:
-        "bg-white text-purple-600 border-2 border-purple-200 hover:bg-purple-50 hover:border-purple-500",
-      checkIcon: "text-purple-500",
-    },
-    features: [
-      { text: "ตั๋วเครื่องบิน + โรงแรม + Travel Plan", included: true },
-      { text: "เอกสารแนะนำตัว (Cover Letter)", included: true },
-      { text: "ประกันการเดินทางและสุขภาพ", included: true },
-      { text: "ชุดเอกสารยื่นวีซ่าครบชุด", included: true },
-      { text: "ให้คำแนะนำการเตรียมเอกสาร", included: true },
-      { text: "ตรวจสอบความถูกต้องก่อนใช้งาน", included: true },
-    ],
-  },
-
-  {
-    id: "ultimate",
-    name: "วีไอพี (Ultimate)",
-    price: "8,990",
-    popular: false,
-    icon: Crown,
-    detailLink: "/packages/ultimate",
-    description: "บริการครบชุดสำหรับการยื่นวีซ่ากรณีเร่งด่วน",
-    theme: {
-      color: "text-slate-900",
-      bg: "bg-slate-100",
-      border: "border-slate-300",
-      shadow: "shadow-slate-300/40",
-      btnClass: "bg-slate-900 text-white hover:bg-black",
-      checkIcon: "text-slate-900",
-    },
-    features: [
-      { text: "วางแผนการเดินทางแบบ Premium", included: true },
-      { text: "จัดเตรียมเอกสารวีซ่าแบบครบชุด", included: true },
-      { text: "ดูแลการจองทั้งหมด", included: true },
-      { text: "Priority Support", included: true },
-      { text: "ปรับแก้เอกสารตามความต้องการ", included: true },
-      { text: "เหมาะสำหรับเคสเร่งด่วนหรือซับซ้อน", included: true },
+      { text: "Flight reservation + hotel booking", included: true },
+      { text: "Visa document support assistance", included: true },
+      { text: "ตรวจสอบรายละเอียดก่อนจัดเตรียม", included: true },
+      { text: "เจ้าหน้าที่แจ้งขั้นตอนและราคาเป็นรายเคส", included: true },
+      { text: "Manual fulfillment หลังยืนยันข้อมูล", included: true },
     ],
   },
 ];
 
-export default function Pricing() {
+export default function ServicePackages() {
   function scrollToHero() {
     const hero = document.getElementById("hero");
     if (hero) hero.scrollIntoView({ behavior: "smooth" });
@@ -170,12 +113,12 @@ export default function Pricing() {
 
           <p className="mt-5 text-lg leading-relaxed text-slate-600">
             บริการจองตั๋ว โรงแรม และเอกสารสำหรับยื่นวีซ่า
-            พร้อมทีมงานช่วยดูแลอย่างมืออาชีพ
+            พร้อมทีมงานตรวจสอบรายละเอียดก่อนจัดเตรียมเอกสารทุกครั้ง
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {packages.map((pkg) => {
             const Icon = pkg.icon;
 
@@ -215,15 +158,13 @@ export default function Pricing() {
                   </p>
 
                   <div className="mt-5 flex items-baseline justify-center gap-1">
-                    <span className="text-lg font-bold text-slate-400">฿</span>
-
-                    <span className="text-5xl font-extrabold tracking-tight text-slate-900">
+                    <span className="text-3xl font-extrabold tracking-tight text-slate-900">
                       {pkg.price}
                     </span>
                   </div>
 
                   <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                    / ท่าน (รวม VAT แล้ว)
+                    เจ้าหน้าที่จะแจ้งรายละเอียดหลังตรวจสอบ
                   </p>
                 </div>
 

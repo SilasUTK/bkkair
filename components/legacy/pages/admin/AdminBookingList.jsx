@@ -1,38 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { LayoutList, Columns3, Search, Eye, Inbox } from "lucide-react";
 import { getAdminBookings, updateAdminBookingQuotation, updateAdminBookingStatus } from "../../services/api.js";
 import { 
   normalizeWorkflowStatus, getCustomerName, getDestination, 
   formatDate, workflowStatusBadgeClass, workflowStatusLabel,
-  manualWorkflowStatuses, timeAgo 
+  manualWorkflowStatuses, staffFilterOptions, timeAgo
 } from "./adminUtils.js";
 
 export default function AdminBookingList({ navigate, onBookingsChanged }) {
   const [viewMode, setViewMode] = useState("table");
   const [search, setSearch] = useState("");
   const [bookings, setBookings] = useState([]);
+  const [assignedStaffFilter, setAssignedStaffFilter] = useState("All Staff");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [savingCode, setSavingCode] = useState("");
   const [quotationBooking, setQuotationBooking] = useState(null);
 
-  async function fetchBookings() {
+  const fetchBookings = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
-      const data = await getAdminBookings({ search });
-      setBookings(data.bookings || []);
+      const data = await getAdminBookings({ search, assignedStaff: assignedStaffFilter });
+      const latestFirst = [...(data.bookings || [])].sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+      setBookings(latestFirst);
     } catch (requestError) {
       setError(requestError.message || "Unable to load bookings.");
     } finally {
       setLoading(false);
     }
-  }
+  }, [assignedStaffFilter, search]);
 
   useEffect(() => {
     const timeout = window.setTimeout(fetchBookings, 250);
     return () => window.clearTimeout(timeout);
-  }, [search]);
+  }, [fetchBookings]);
 
   async function updateStatus(bookingCode, status) {
     setSavingCode(bookingCode);
@@ -62,6 +64,18 @@ export default function AdminBookingList({ navigate, onBookingsChanged }) {
             className="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-50 border-none text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
           />
         </div>
+        <label className="flex w-full flex-col gap-1 md:w-56">
+          <span className="px-1 text-[10px] font-black uppercase tracking-widest text-slate-400">Assigned Staff</span>
+          <select
+            value={assignedStaffFilter}
+            onChange={(event) => setAssignedStaffFilter(event.target.value)}
+            className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          >
+            {staffFilterOptions.map((staff) => (
+              <option key={staff} value={staff}>{staff}</option>
+            ))}
+          </select>
+        </label>
         <div className="flex p-1.5 bg-slate-50 border border-slate-100 rounded-2xl">
           <ToggleButton active={viewMode === "table"} icon={LayoutList} onClick={() => setViewMode("table")}>Table</ToggleButton>
           <ToggleButton active={viewMode === "kanban"} icon={Columns3} onClick={() => setViewMode("kanban")}>Kanban</ToggleButton>
@@ -84,6 +98,7 @@ export default function AdminBookingList({ navigate, onBookingsChanged }) {
                     <th className="px-6 py-4">ID / Customer</th>
                     <th className="px-6 py-4">Destination</th>
                     <th className="px-6 py-4">Status</th>
+                    <th className="px-6 py-4">Staff</th>
                     <th className="px-6 py-4">Created</th>
                     <th className="px-6 py-4">Workflow</th>
                     <th className="px-6 py-4 text-right">Action</th>
@@ -104,6 +119,9 @@ export default function AdminBookingList({ navigate, onBookingsChanged }) {
                         <span className={`px-3 py-1.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${workflowStatusBadgeClass(b.status)}`}>
                           {workflowStatusLabel(b.status)}
                         </span>
+                      </td>
+                      <td className="px-6 py-5">
+                        <AssigneeBadge booking={b} />
                       </td>
                       <td className="px-6 py-5">
                         <p className="text-xs font-bold text-slate-600">{formatDate(b.createdAt)}</p>
@@ -176,6 +194,9 @@ export default function AdminBookingList({ navigate, onBookingsChanged }) {
                         </div>
                         <p className="text-sm font-black text-slate-900 truncate group-hover:text-blue-600 transition-colors">{getCustomerName(b)}</p>
                         <p className="text-xs font-bold text-slate-500 mt-1 truncate">{getDestination(b)}</p>
+                        <div className="mt-3">
+                          <AssigneeBadge booking={b} />
+                        </div>
                       </div>
                     ))
                   )}
@@ -227,6 +248,22 @@ function EmptyState() {
 
 function LoadingState() {
   return <div className="p-10 text-center text-sm font-bold text-slate-400">Loading bookings...</div>;
+}
+
+function AssigneeBadge({ booking }) {
+  if (!booking.assignedStaff) {
+    return (
+      <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-amber-700">
+        Unassigned
+      </span>
+    );
+  }
+
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-blue-700">
+      {booking.assignedStaff}
+    </span>
+  );
 }
 
 function QuotationModal({ booking, onClose, onSaved }) {

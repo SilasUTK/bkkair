@@ -2,10 +2,10 @@ import { AlertCircle, CheckCircle2, Clock3, Download, Eye, ReceiptText, UploadCl
 import { documentVault, statusSteps, summaryCards } from "./portalData.js";
 
 const defaultActiveRequest = {
-  bookingCode: "BKK-00000",
-  destination: "N/A",
+  bookingCode: "Not linked",
+  destination: "-",
   product: "No active request",
-  status: "ไม่มีสถานะ",
+  status: "ยังไม่มีคำขอที่เชื่อมต่อ",
   quotationAmount: "-",
   quotationDue: "-",
   documentValidUntil: "-"

@@ -316,35 +316,13 @@ npm run build:all
 
 ## Database Schema
 
-On first deployment, run the SQL setup:
+On first deployment, review and run the authoritative production alignment migration:
 
 ```bash
-mysql -u user -p -h host -D dbname << 'EOF'
-CREATE TABLE IF NOT EXISTS bookings (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  bookingCode VARCHAR(6) UNIQUE NOT NULL,
-  customerName VARCHAR(100) NOT NULL,
-  customerEmail VARCHAR(100),
-  customerPhone VARCHAR(20),
-  customerLineId VARCHAR(100),
-  destination VARCHAR(100),
-  departureDate DATE,
-  returnDate DATE,
-  passengerCount INT DEFAULT 1,
-  status ENUM('new', 'quoted', 'payment_pending', 'paid', 'processing', 'completed', 'cancelled') DEFAULT 'new',
-  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS admin_users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  email VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  role ENUM('admin', 'supervisor', 'staff') DEFAULT 'staff',
-  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-EOF
+mysql -u user -p -h host -D dbname < server/migrations/003_production_alignment.sql
 ```
+
+This migration creates or aligns the active `bookings` and `admins` tables used by the Express API.
 
 ---
 

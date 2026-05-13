@@ -4,9 +4,9 @@ import React from "react";
 const benefits = [
   {
     icon: Clock,
-    title: "ตอบกลับรวดเร็ว",
-    subtitle: "(Fast Response)",
-    description: "ทีมงานผู้เชี่ยวชาญพร้อมให้คำปรึกษาและประเมินเอกสารเบื้องต้นภายใน 24 ชั่วโมง เพื่อให้คุณไม่พลาดทุกการเดินทาง",
+    title: "Fast staff response",
+    subtitle: "(ทีมงานติดต่อกลับ)",
+    description: "รับคำขอแล้วส่งต่อให้เจ้าหน้าที่ตรวจสอบ เพื่อประเมินรายละเอียดการเดินทางและช่องทางติดต่อที่เหมาะสม",
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
@@ -18,9 +18,9 @@ const benefits = [
   },
   {
     icon: FileText,
-    title: "ดูแลเอกสารครบวงจร",
-    subtitle: "(Full Document Support)",
-    description: "บริการจัดเตรียม ตรวจสอบ และแปลเอกสารสำคัญสำหรับการยื่นขอวีซ่าทุกประเภทอย่างละเอียดและถูกต้องตามระเบียบสถานทูต",
+    title: "Embassy-ready documents",
+    subtitle: "(เอกสารพร้อมใช้ประกอบคำขอ)",
+    description: "จัดเตรียม flight reservation for visa และ hotel booking for visa ตามข้อมูลที่ได้รับการยืนยันจากลูกค้า",
     theme: {
       color: "text-[#FF5722]",
       bg: "bg-orange-50",
@@ -32,9 +32,9 @@ const benefits = [
   },
   {
     icon: SearchCheck,
-    title: "ติดตามสถานะง่ายดาย",
-    subtitle: "(Easy Tracking)",
-    description: "ระบบแจ้งเตือนและติดตามสถานะการยื่นวีซ่าแบบเรียลไทม์ ให้คุณอุ่นใจและรู้ความคืบหน้าในทุกขั้นตอนโดยไม่ต้องตามเรื่องเอง",
+    title: "Manual review before processing",
+    subtitle: "(ตรวจสอบก่อนดำเนินการ)",
+    description: "ทุกเคสเป็นระบบ request review ไม่ใช่การจองอัตโนมัติ เจ้าหน้าที่จะตรวจสอบข้อมูลก่อนเริ่มจัดเตรียมเอกสาร",
     theme: {
       color: "text-emerald-600",
       bg: "bg-emerald-50",
@@ -46,7 +46,7 @@ const benefits = [
   }
 ];
 
-export default function WhyBKKAir() {
+export default function WhyChooseUs() {
   return (
     <section id="benefits" className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-32 font-sans selection:bg-blue-200 selection:text-blue-900">
       
@@ -76,8 +76,8 @@ export default function WhyBKKAir() {
             ทำไมต้องเลือก <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">BKK AIR</span>?
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-slate-600 font-medium">
-            บริการจองตั๋วเพื่อยื่นวีซ่าที่เน้นความถูกต้อง ชัดเจน<br className="hidden sm:block" /> 
-            และมีเจ้าหน้าที่ผู้เชี่ยวชาญคอยดูแลเคสของคุณในทุกขั้นตอน
+            จองตั๋วเครื่องบินยื่นวีซ่าและใบจองโรงแรมขอวีซ่าแบบมีเจ้าหน้าที่ตรวจสอบ<br className="hidden sm:block" />
+            เหมาะสำหรับลูกค้าที่ต้องการเอกสารประกอบคำขอวีซ่าที่ชัดเจน
           </p>
         </div>
 

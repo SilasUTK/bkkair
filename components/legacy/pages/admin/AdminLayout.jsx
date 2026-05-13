@@ -1,5 +1,5 @@
 import { ArrowLeft, ClipboardList } from "lucide-react";
-import Logo from "../../components/layout/Logo.jsx";
+import Logo from "../../../layout/Logo.jsx";
 
 export default function AdminLayout({ children, navigate }) {
   return (

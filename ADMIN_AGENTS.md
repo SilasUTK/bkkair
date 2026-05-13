@@ -16,10 +16,13 @@ The admin dashboard is for staff operations after a customer submits a request. 
 
 Allowed statuses:
 
-- `Pending Review`: new request waiting for staff review.
-- `Processing`: staff has contacted customer or is preparing documents.
-- `Completed`: documents delivered or request fulfilled.
-- `Cancelled`: customer cancelled, invalid request, or staff closed the case.
+- `new`: new request waiting for staff review.
+- `quoted`: staff has reviewed the request and sent a quotation.
+- `payment_pending`: customer payment/slip needs staff verification.
+- `paid`: payment is approved and fulfillment can begin.
+- `processing`: staff is preparing documents manually.
+- `completed`: documents delivered or request fulfilled.
+- `cancelled`: customer cancelled, invalid request, or staff closed the case.
 
 Status changes must be deliberate staff actions. Do not auto-complete requests.
 

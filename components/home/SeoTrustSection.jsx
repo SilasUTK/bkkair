@@ -1,10 +1,10 @@
-import { Award, CheckCircle2, Shield, Star, BriefcaseBusiness } from "lucide-react";
+import { Award, CheckCircle2, Shield, BriefcaseBusiness } from "lucide-react";
 import React from "react";
 
 const features = [
   {
-    title: "อัตราการอนุมัติสูง (High Approval Rate)",
-    desc: "ประเมินและคัดกรองเอกสารอย่างเข้มงวดก่อนยื่นจริง เพื่อเพิ่มโอกาสผ่านให้มากที่สุด",
+    title: "ตรวจสอบโดยเจ้าหน้าที่ (Staff Reviewed)",
+    desc: "ทีมงานตรวจข้อมูลและความสอดคล้องของเอกสารก่อนจัดเตรียมไฟล์สำหรับใช้ประกอบการยื่นวีซ่า",
     color: {
       bg: "bg-orange-100",
       icon: "text-[#FF5722]",
@@ -34,7 +34,7 @@ const features = [
   }
 ];
 
-export default function TrustBadges() {
+export default function SeoTrustSection() {
   return (
     <section className="relative w-full overflow-hidden bg-white py-20 lg:py-32 font-sans selection:bg-blue-200 selection:text-blue-900">
       
@@ -113,15 +113,15 @@ export default function TrustBadges() {
                 </div>
               </div>
 
-              {/* Floating Card 3: High Approval */}
+              {/* Floating Card 3: Staff reviewed request */}
               <div className="absolute -right-2 bottom-8 sm:bottom-12 z-30 rounded-3xl bg-white p-5 shadow-[0_20px_60px_-15px_rgba(255,87,34,0.15)] border border-slate-100 animate-[bounce_7s_ease-in-out_infinite_1s]">
                 <div className="mb-3 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 border-2 border-orange-100 relative">
                   <Award className="h-7 w-7 text-[#FF5722]" aria-hidden="true" />
                   <div className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-yellow-400 text-white shadow-md border-2 border-white">
-                    <Star className="h-3 w-3 fill-current" />
+                    <CheckCircle2 className="h-3 w-3" />
                   </div>
                 </div>
-                <p className="font-black text-slate-900 text-lg leading-tight">High Approval <br/>Rate</p>
+                <p className="font-black text-slate-900 text-lg leading-tight">Staff Reviewed <br/>Request</p>
                 <p className="mt-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">Document Support</p>
               </div>
 
@@ -139,11 +139,11 @@ export default function TrustBadges() {
             </div>
             
             <h2 className="text-3xl font-extrabold leading-[1.2] text-slate-900 sm:text-4xl lg:text-5xl tracking-tight">
-              ทำไมเราถึงได้รับความไว้วางใจ
+              ทำไมลูกค้าถึงเลือกใช้บริการ
               <br className="hidden sm:block" />
               <span className="relative inline-block mt-2">
                 <span className="relative z-10 text-[#FF5722]">
-                  จากนักเดินทางกว่าหมื่นคน
+                  สำหรับเอกสารยื่นวีซ่า
                 </span>
                 {/* Vector Underline Accent */}
                 <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#FF5722]/20 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">

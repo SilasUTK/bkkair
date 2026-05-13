@@ -94,25 +94,25 @@ export async function createBooking(req: Request, res: Response) {
       attachmentName,
     } = req.body || {};
 
-    const bookingCode = await generateBookingCode();
-    const status = "new";
-
-    const finalCustomerName =
-      name || legacyCustomerName || [title, firstName, surname].filter(Boolean).join(" ") || "Website Quick Request";
-
+    const finalCustomerName = name || legacyCustomerName || [title, firstName, surname].filter(Boolean).join(" ");
     const finalPhone = phone || "";
     const finalDestination = destination || visaCountry || null;
     const finalAirline = airline || preferredAirlines || null;
     const finalServiceType = serviceType || "Quick Visa Request";
     const finalEmail = email || null;
-    const finalPassengerCount = Number(passengerCount || 1);
+    const finalLineId = lineId || null;
+    const finalPassengerCount = Number(passengerCount ?? 1);
 
-    if (finalPassengerCount > 8) {
-      return res.status(400).json({ error: "Passenger count must not exceed 8" });
+    if (!Number.isInteger(finalPassengerCount) || finalPassengerCount < 1 || finalPassengerCount > 8) {
+      return res.status(400).json({ error: "Passenger count must be between 1 and 8" });
     }
 
     if (!finalCustomerName.trim() || !finalPhone.trim()) {
       return res.status(400).json({ error: "Contact name and phone are required" });
+    }
+
+    if (!String(finalEmail || "").trim() && !String(finalLineId || "").trim()) {
+      return res.status(400).json({ error: "Email or LINE ID is required" });
     }
 
     if (!finalDestination || !departureDate) {
@@ -127,6 +127,9 @@ export async function createBooking(req: Request, res: Response) {
       return res.status(400).json({ error: "Return date must be after departure date" });
     }
 
+    const bookingCode = await generateBookingCode();
+    const status = "new";
+
     const bookingData = {
       bookingCode,
       title: title || null,
@@ -135,7 +138,7 @@ export async function createBooking(req: Request, res: Response) {
       customerName: finalCustomerName,
       email: finalEmail,
       phone: finalPhone,
-      lineId: lineId || null,
+      lineId: finalLineId,
       passportNumber: passportNumber || null,
       dateOfBirth: dateOfBirth || null,
       passportExpiryDate: passportExpiryDate || null,
@@ -158,7 +161,10 @@ export async function createBooking(req: Request, res: Response) {
       console.error("LINE notification dispatch error:", notificationError.message);
     });
 
-    return res.status(201).json(bookingData);
+    return res.status(201).json({
+      success: true,
+      message: "Request submitted successfully",
+    });
   } catch (error) {
     console.error("Create booking error:", error);
     return res.status(500).json({ error: "Server error" });

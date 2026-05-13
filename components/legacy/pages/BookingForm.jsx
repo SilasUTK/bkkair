@@ -118,9 +118,9 @@ export default function BookingForm() {
           </span>
 
           <div>
-            <h1 className="text-xl font-black text-[#0F172A]">
+            <h2 className="text-xl font-black text-[#0F172A]">
               Visa Request Assistant
-            </h1>
+            </h2>
             <p className="mt-1 text-base leading-7 text-slate-700">
               {dynamicMessage}
             </p>

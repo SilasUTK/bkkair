@@ -192,10 +192,10 @@ CREATE TABLE bookings (
 
 The API dynamically inserts only columns that exist, so optional future fields can be added without breaking quick requests.
 
-For existing databases, review and apply SQL migrations from:
+For existing databases, review and apply the production alignment SQL migration from:
 
 ```sql
-legacy/server/migrations/001_bookings_required_columns.sql
+server/migrations/003_production_alignment.sql
 ```
 
 ## API
@@ -215,7 +215,7 @@ Admin:
 
 ## LINE Notification
 
-If `LINE_NOTIFY_TOKEN` is configured, the server can notify staff when a new request is created or assigned. Keep LINE credentials server-side only.
+If `LINE_CHANNEL_ACCESS_TOKEN` and `LINE_ADMIN_USER_ID` are configured, the server can notify staff when a new request is created or assigned. Keep LINE credentials server-side only.
 
 ## Business Rules
 

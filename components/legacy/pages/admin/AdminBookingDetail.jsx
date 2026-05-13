@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import NextImage from "next/image";
+import React, { useCallback, useState, useEffect } from "react";
 import { ArrowLeft, Save, Banknote, FileUp, MessageSquare, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import {
   getAdminBooking,
+  assignAdminBooking,
   updateAdminBookingDocument,
   updateAdminBookingFollowUp,
   updateAdminBookingNotes,
@@ -11,7 +13,7 @@ import {
 } from "../../services/api.js";
 import { 
   normalizeWorkflowStatus, getCustomerName, getDestination, 
-  formatDate, workflowStatusBadgeClass, workflowStatusLabel 
+  formatDate, manualWorkflowStatuses, staffMembers, workflowStatusBadgeClass, workflowStatusLabel
 } from "./adminUtils.js";
 
 export default function AdminBookingDetail({ code, navigate, onBookingsChanged }) {
@@ -28,29 +30,34 @@ export default function AdminBookingDetail({ code, navigate, onBookingsChanged }
   const [paymentSlipUrl, setPaymentSlipUrl] = useState("");
   const [docExpiryDate, setDocExpiryDate] = useState("");
   const [followUpDate, setFollowUpDate] = useState("");
+  const [assignedStaff, setAssignedStaff] = useState("");
+  const [statusDraft, setStatusDraft] = useState("new");
 
-  async function fetchBooking() {
+  const fetchBooking = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
       const data = await getAdminBooking(code);
-      setBooking(data.booking || data);
-      setAdminNotes(data.booking?.adminNotes || "");
-      setQuotePrice(data.booking?.quotationAmount || data.quotationAmount || "");
-      setQuoteDate((data.booking?.quotationDueDate || data.quotationDueDate || "").slice(0, 10));
-      setPaymentSlipUrl(data.booking?.paymentSlipUrl || data.paymentSlipUrl || "");
-      setDocExpiryDate((data.booking?.documentValidUntil || data.documentValidUntil || "").slice(0, 10));
-      setFollowUpDate((data.booking?.staffFollowUpDate || data.staffFollowUpDate || "").slice(0, 16));
+      const nextBooking = data.booking || data;
+      setBooking(nextBooking);
+      setAdminNotes(nextBooking?.adminNotes || "");
+      setQuotePrice(nextBooking?.quotationAmount || data.quotationAmount || "");
+      setQuoteDate((nextBooking?.quotationDueDate || data.quotationDueDate || "").slice(0, 10));
+      setPaymentSlipUrl(nextBooking?.paymentSlipUrl || data.paymentSlipUrl || "");
+      setDocExpiryDate((nextBooking?.documentValidUntil || data.documentValidUntil || "").slice(0, 10));
+      setFollowUpDate((nextBooking?.staffFollowUpDate || data.staffFollowUpDate || "").slice(0, 16));
+      setAssignedStaff(nextBooking?.assignedStaff || "");
+      setStatusDraft(normalizeWorkflowStatus(nextBooking?.status));
     } catch (requestError) {
       setError(requestError.message || "Unable to load booking.");
     } finally {
       setLoading(false);
     }
-  }
+  }, [code]);
 
   useEffect(() => {
     fetchBooking();
-  }, [code]);
+  }, [fetchBooking]);
 
   useEffect(() => {
     if (loading) return;
@@ -87,6 +94,13 @@ export default function AdminBookingDetail({ code, navigate, onBookingsChanged }
   const saveStatus = async (newStatus) => runAction(
     () => updateAdminBookingStatus(code, newStatus),
     "Status updated."
+  );
+
+  const saveStatusDraft = async () => saveStatus(statusDraft);
+
+  const saveAssignment = async () => runAction(
+    () => assignAdminBooking(code, assignedStaff),
+    "Assigned staff saved."
   );
 
   const sendQuotation = async () => runAction(
@@ -252,7 +266,16 @@ export default function AdminBookingDetail({ code, navigate, onBookingsChanged }
                 <h3 className="text-xl font-black text-slate-900">Payment Verification</h3>
                 <div className="mx-auto max-w-sm rounded-2xl overflow-hidden border-4 border-slate-50 shadow-md">
                    {booking.paymentSlipUrl ? (
-                     <img src={booking.paymentSlipUrl} alt="Slip" className="w-full h-auto object-cover" />
+                     <div className="relative min-h-[320px]">
+                       <NextImage
+                         src={booking.paymentSlipUrl}
+                         alt="Payment slip submitted by customer"
+                         fill
+                         unoptimized
+                         sizes="(max-width: 640px) 100vw, 384px"
+                         className="object-contain"
+                       />
+                     </div>
                    ) : (
                      <div className="flex min-h-[320px] items-center justify-center bg-slate-50 p-6 text-sm font-bold text-slate-400">
                        No slip attached yet
@@ -297,7 +320,7 @@ export default function AdminBookingDetail({ code, navigate, onBookingsChanged }
               <div className="py-12 text-center space-y-4 animate-in zoom-in-95 relative z-10">
                  <div className="h-20 w-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner"><CheckCircle size={40} /></div>
                  <h3 className="text-xl font-black text-slate-900">Case Completed</h3>
-                 <p className="text-sm font-bold text-slate-500 max-w-xs mx-auto leading-relaxed">พนักงานส่งมอบเอกสารเรียบร้อยแล้ว ลูกค้าสามารถดาวน์โหลดได้ทันทีจากหน้า Portal</p>
+                 <p className="text-sm font-bold text-slate-500 max-w-xs mx-auto leading-relaxed">พนักงานบันทึกสถานะส่งมอบเอกสารเรียบร้อยแล้ว โปรดตรวจสอบช่องทางส่งไฟล์ที่ตกลงกับลูกค้า</p>
               </div>
             )}
           </div>
@@ -322,6 +345,47 @@ export default function AdminBookingDetail({ code, navigate, onBookingsChanged }
         {/* Notes Column */}
         <div className="space-y-6">
            <div id="admin-notes-workspace" className="bg-white rounded-[2rem] border border-slate-200 p-6 shadow-sm sticky top-28 scroll-mt-28">
+              <div className="mb-5 rounded-2xl border border-blue-100 bg-blue-50/50 p-4">
+                <label className="text-[10px] font-black uppercase tracking-widest text-blue-500">Assigned Staff</label>
+                <select
+                  value={assignedStaff}
+                  onChange={(event) => setAssignedStaff(event.target.value)}
+                  className="mt-2 w-full rounded-xl border border-blue-100 bg-white p-3 text-sm font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Unassigned</option>
+                  {staffMembers.map((staff) => (
+                    <option key={staff} value={staff}>{staff}</option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  onClick={saveAssignment}
+                  disabled={saving}
+                  className="mt-3 w-full rounded-xl border border-blue-200 bg-white py-2.5 text-xs font-black text-blue-700 hover:bg-blue-50 disabled:opacity-60"
+                >
+                  Save Assignment
+                </button>
+              </div>
+              <div className="mb-5 rounded-2xl border border-slate-100 bg-slate-50 p-4">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Status Update</label>
+                <select
+                  value={statusDraft}
+                  onChange={(event) => setStatusDraft(event.target.value)}
+                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {manualWorkflowStatuses.map((status) => (
+                    <option key={status.key} value={status.key}>{status.label}</option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  onClick={saveStatusDraft}
+                  disabled={saving || statusDraft === currentStep}
+                  className="mt-3 w-full rounded-xl border border-slate-200 bg-white py-2.5 text-xs font-black text-slate-700 hover:bg-slate-100 disabled:opacity-60"
+                >
+                  Save Status
+                </button>
+              </div>
               <div className="mb-5 rounded-2xl border border-slate-100 bg-slate-50 p-4">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Follow-up Date</label>
                 <input
@@ -341,7 +405,7 @@ export default function AdminBookingDetail({ code, navigate, onBookingsChanged }
               </div>
               <div className="flex items-center gap-2 mb-4 text-slate-400">
                  <MessageSquare size={18} />
-                 <h3 className="text-[11px] font-black uppercase tracking-widest">Internal Notes</h3>
+                 <h3 className="text-[11px] font-black uppercase tracking-widest">Internal Notes (not visible to customer)</h3>
               </div>
               <textarea 
                 value={adminNotes}

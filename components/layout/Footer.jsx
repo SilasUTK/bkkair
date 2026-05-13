@@ -100,7 +100,7 @@ export default function Footer({ onNavigate }) {
           <section aria-label="BKK AIR" className="lg:col-span-4 lg:pr-8">
             <Logo onClick={handleLogoClick} variant="footer" />
             <p className="mt-4 text-sm leading-relaxed text-slate-400 font-medium">
-              บริการจองตั๋วเครื่องบินและโรงแรมสำหรับยื่นวีซ่า โดยเจ้าหน้าที่ตรวจสอบและติดต่อกลับก่อนดำเนินการ ปลอดภัย มั่นใจได้ 100%
+              บริการจองตั๋วเครื่องบินและโรงแรมสำหรับยื่นวีซ่า โดยเจ้าหน้าที่ตรวจสอบและติดต่อกลับก่อนดำเนินการทุกเคส
             </p>
             
             {/* Social or Badge Placeholder */}

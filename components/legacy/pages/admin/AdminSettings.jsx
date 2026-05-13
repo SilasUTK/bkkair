@@ -10,7 +10,7 @@ const tabs = [
 
 export default function AdminSettings() {
   const [activeTab, setActiveTab] = useState("general");
-  const [autoSendQuotation, setAutoSendQuotation] = useState(true);
+  const [staffReviewedQuotation, setStaffReviewedQuotation] = useState(true);
   const [portalAlerts, setPortalAlerts] = useState(true);
 
   return (
@@ -40,8 +40,8 @@ export default function AdminSettings() {
       <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
         {activeTab === "general" ? (
           <GeneralSettings
-            autoSendQuotation={autoSendQuotation}
-            setAutoSendQuotation={setAutoSendQuotation}
+            staffReviewedQuotation={staffReviewedQuotation}
+            setStaffReviewedQuotation={setStaffReviewedQuotation}
             portalAlerts={portalAlerts}
             setPortalAlerts={setPortalAlerts}
           />
@@ -53,7 +53,7 @@ export default function AdminSettings() {
   );
 }
 
-function GeneralSettings({ autoSendQuotation, setAutoSendQuotation, portalAlerts, setPortalAlerts }) {
+function GeneralSettings({ staffReviewedQuotation, setStaffReviewedQuotation, portalAlerts, setPortalAlerts }) {
   return (
     <div className="grid gap-6">
       <div>
@@ -68,10 +68,10 @@ function GeneralSettings({ autoSendQuotation, setAutoSendQuotation, portalAlerts
 
       <div className="grid gap-3">
         <ToggleRow
-          title="Auto-send Quotation Emails"
-          description="Send quotation email after staff manually confirms pricing."
-          checked={autoSendQuotation}
-          onChange={setAutoSendQuotation}
+          title="Staff-reviewed Quotation Emails"
+          description="Prepare quotation email after staff manually confirms pricing."
+          checked={staffReviewedQuotation}
+          onChange={setStaffReviewedQuotation}
         />
         <ToggleRow
           title="Portal Status Alerts"

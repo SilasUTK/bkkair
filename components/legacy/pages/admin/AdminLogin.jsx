@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LockKeyhole, Mail, ShieldCheck } from "lucide-react";
-import Logo from "../../components/layout/Logo.jsx";
+import Logo from "../../../layout/Logo.jsx";
 import { useAdminAuth } from "./AdminAuthContext.jsx";
 
 export default function AdminLogin({ navigate }) {

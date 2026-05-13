@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Footer from "./components/layout/Footer.jsx";
-import Navbar from "./components/layout/Navbar.jsx";
+import Footer from "../layout/Footer.jsx";
+import Navbar from "../layout/Navbar.jsx";
 import { AdminAuthProvider } from "./pages/admin/AdminAuthContext.jsx";
 import AdminLogin from "./pages/admin/AdminLogin.jsx";
 import AdminPortal from "./pages/admin/AdminPortal.jsx";

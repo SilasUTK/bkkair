@@ -26,25 +26,29 @@ Core flow:
 
 ## Client
 
-Tech stack: React, Vite, Tailwind, lucide-react.
+Tech stack: Next.js App Router, React, Tailwind, lucide-react.
 
 Important paths:
 
-- `client/src/components/layout/Navbar.jsx`
-- `client/src/components/layout/Footer.jsx`
-- `client/src/components/home/HeroQuickRequest.jsx`
-- `client/src/components/home/KeyBenefits.jsx`
-- `client/src/components/home/Timeline.jsx`
-- `client/src/components/home/ServicePackages.jsx`
-- `client/src/components/home/SeoTrustContent.jsx`
-- `client/src/components/home/Testimonials.jsx`
-- `client/src/components/home/FAQ.jsx`
-- `client/src/pages/Home.jsx`
-- `client/src/pages/CheckBooking.jsx`
-- `client/src/pages/admin/AdminDashboard.jsx`
-- `client/src/pages/admin/AdminBookings.jsx`
-- `client/src/pages/admin/AdminBookingDetail.jsx`
-- `client/src/services/api.js`
+- `app/page.tsx`
+- `app/[...slug]/page.tsx`
+- `components/AppShell.jsx`
+- `components/layout/Navbar.jsx`
+- `components/layout/Footer.jsx`
+- `components/layout/Logo.jsx`
+- `components/home/Hero.jsx`
+- `components/home/WhyChooseUs.jsx`
+- `components/home/WorkflowTimeline.jsx`
+- `components/home/ServicePackages.jsx`
+- `components/home/SeoTrustSection.jsx`
+- `components/home/Testimonials.jsx`
+- `components/home/FAQSection.jsx`
+- `components/legacy/pages/Home.jsx`
+- `components/legacy/pages/CheckBooking.jsx`
+- `components/legacy/pages/admin/AdminDashboard.jsx`
+- `components/legacy/pages/admin/AdminBookingList.jsx`
+- `components/legacy/pages/admin/AdminBookingDetail.jsx`
+- `components/legacy/services/api.js`
 
 Quick Request required fields:
 
@@ -93,4 +97,4 @@ Home must have one H1 only. Use H2 headings for major sections and include Thai/
 - flight reservation for visa
 - hotel booking for visa
 
-Keep `client/index.html` metadata and JSON-LD aligned with a service request business, not an instant booking service.
+Keep `app/layout.tsx` metadata and JSON-LD aligned with a service request business, not an instant booking service.

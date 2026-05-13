@@ -1,4 +1,5 @@
-import { CheckCircle2, FileText, FileUp, Image, Trash2, UploadCloud, UserPlus, X } from "lucide-react";
+import NextImage from "next/image";
+import { CheckCircle2, FileText, FileUp, Image as ImageIcon, Trash2, UploadCloud, UserPlus, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export default function PortalModal({ type, onClose }) {
@@ -119,11 +120,12 @@ function PaymentSlipForm() {
 
   return (
     <div className="space-y-5">
-      {/* Summary Amount Box */}
-      <div className="rounded-2xl bg-orange-50 p-4 border border-orange-100 flex items-center justify-between">
+      <div className="rounded-2xl bg-orange-50 p-4 border border-orange-100">
         <div>
-          <p className="text-sm font-bold text-orange-800">ยอดที่ต้องชำระ (Ref: BKK-20264)</p>
-          <p className="text-2xl font-black text-slate-900 mt-1">THB 2,850</p>
+          <p className="text-sm font-bold text-orange-800">Payment details</p>
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">
+            เจ้าหน้าที่จะยืนยันยอดและรายละเอียดการชำระเงินก่อนเริ่มจัดเตรียมเอกสาร
+          </p>
         </div>
       </div>
 
@@ -147,14 +149,17 @@ function PaymentSlipForm() {
       {selectedFile ? (
         <div className="overflow-hidden rounded-[2rem] border-2 border-[#2563EB] bg-white shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)]">
           {isImageFile && previewUrl ? (
-            <div className="relative bg-slate-100">
-              <img
+            <div className="relative h-64 bg-slate-100">
+              <NextImage
                 src={previewUrl}
-                alt="Payment slip preview"
-                className="h-64 w-full object-contain"
+                alt="Payment slip preview uploaded for staff verification"
+                fill
+                unoptimized
+                sizes="(max-width: 640px) 100vw, 576px"
+                className="object-contain"
               />
               <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-black text-[#2563EB] shadow-sm">
-                <Image className="h-4 w-4" aria-hidden="true" />
+                <ImageIcon className="h-4 w-4" aria-hidden="true" />
                 Image Preview
               </div>
             </div>
@@ -227,7 +232,7 @@ function TravelerForm() {
         <span className="text-sm font-black text-slate-700">เลขพาสปอร์ต (Passport No.)</span>
         <input
           type="text"
-          placeholder="AA1234567"
+          placeholder="Passport number"
           className="mt-2 h-12 w-full rounded-2xl border border-slate-200 bg-[#F8FAFC] px-4 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-blue-500/10"
         />
       </label>

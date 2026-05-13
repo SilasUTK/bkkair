@@ -68,6 +68,14 @@ NEXT_PUBLIC_API_URL="https://your-domain.com"
 
 (Leave empty for same-domain routing via reverse proxy)
 
+## 4.1) Align Database Schema
+
+Review and run the production alignment migration before launch:
+
+```bash
+mysql -u USER -p -h HOST -D DB_NAME < server/migrations/003_production_alignment.sql
+```
+
 ## 5) Build Both Apps
 
 ```bash

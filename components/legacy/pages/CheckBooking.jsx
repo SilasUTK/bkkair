@@ -91,7 +91,7 @@ export default function CheckBooking() {
                 {booking.bookingCode}
               </p>
               <p className="text-sm font-bold text-[#2563EB]">
-                Status: {booking.status || "Pending Review"}
+                Status: {customerStatusLabel(booking.status)}
               </p>
             </div>
 
@@ -141,4 +141,20 @@ function formatDate(value) {
     month: "short",
     year: "numeric",
   }).format(new Date(value));
+}
+
+function customerStatusLabel(status) {
+  const normalized = String(status || "").trim().toLowerCase().replace(/\s+/g, "_").replace(/-/g, "_");
+  const labels = {
+    new: "Request received. Staff review pending.",
+    pending_review: "Request received. Staff review pending.",
+    quoted: "Staff reviewed. Waiting for customer confirmation.",
+    payment_pending: "Payment information received. Staff verification pending.",
+    paid: "Payment verified. Documents pending preparation.",
+    processing: "Documents are being prepared by staff.",
+    completed: "Documents completed. Staff will confirm delivery details.",
+    cancelled: "Request cancelled.",
+  };
+
+  return labels[normalized] || "Request received. Staff will contact you.";
 }

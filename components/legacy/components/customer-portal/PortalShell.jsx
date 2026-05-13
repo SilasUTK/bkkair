@@ -1,5 +1,5 @@
 import { Bell, ChevronRight, LogOut, Menu, ShieldCheck, UserRound, X } from "lucide-react";
-import Logo from "../layout/Logo.jsx";
+import Logo from "../../../layout/Logo.jsx";
 import { navigationItems } from "./portalData.js";
 
 export default function PortalShell({
@@ -111,8 +111,8 @@ function SidebarProfile() {
             <UserRound className="h-6 w-6" aria-hidden="true" />
           </div>
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-black text-slate-950">สมชาย ใจดี</p>
-            <p className="mt-0.5 text-xs font-bold text-slate-400">ID: BKK-8890</p>
+            <p className="truncate text-sm font-black text-slate-950">Customer Portal</p>
+            <p className="mt-0.5 text-xs font-bold text-slate-400">No active request linked</p>
           </div>
           <button
             type="button"

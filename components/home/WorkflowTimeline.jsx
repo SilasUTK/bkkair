@@ -1,11 +1,11 @@
-import { Clock, FileSignature, Landmark, Plane, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Clock, FileSignature, MessageCircle, Plane, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 // กำหนด Theme สีเฉพาะสำหรับแต่ละขั้นตอนเพื่อให้ดูมีสีสัน (Colorful Flat Design)
 const steps = [
   {
     icon: ShieldCheck,
-    title: "ตรวจสอบเอกสาร",
-    desc: "วิเคราะห์และประเมินโอกาสผ่าน",
+    title: "Submit request",
+    desc: "ลูกค้ากรอกข้อมูลเดินทางและช่องทางติดต่อ",
     color: {
       light: "bg-blue-100",
       base: "bg-blue-500",
@@ -15,9 +15,9 @@ const steps = [
     }
   },
   {
-    icon: Plane,
-    title: "จองเที่ยวบิน & ที่พัก",
-    desc: "เตรียมเอกสารประกอบการเดินทาง",
+    icon: FileSignature,
+    title: "Staff reviews details",
+    desc: "เจ้าหน้าที่ตรวจสอบเส้นทาง วันที่ และประเภทบริการ",
     color: {
       light: "bg-orange-100",
       base: "bg-[#FF5722]",
@@ -27,9 +27,9 @@ const steps = [
     }
   },
   {
-    icon: FileSignature,
-    title: "กรอกฟอร์ม & แปล",
-    desc: "จัดการเอกสารตามฟอร์แมตสถานทูต",
+    icon: MessageCircle,
+    title: "Staff contacts customer",
+    desc: "ติดต่อกลับเพื่อยืนยันข้อมูล ราคา และขั้นตอนถัดไป",
     color: {
       light: "bg-emerald-100",
       base: "bg-emerald-500",
@@ -39,9 +39,9 @@ const steps = [
     }
   },
   {
-    icon: Landmark,
-    title: "ยื่นสถานทูต",
-    desc: "พายื่นหรือยื่นแทน (ตามเงื่อนไข)",
+    icon: Plane,
+    title: "Documents prepared",
+    desc: "จัดเตรียมเอกสารหลังลูกค้ายืนยันให้ดำเนินการ",
     color: {
       light: "bg-purple-100",
       base: "bg-purple-500",
@@ -52,7 +52,7 @@ const steps = [
   }
 ];
 
-export default function Workflow() {
+export default function WorkflowTimeline() {
   return (
     <section id="timeline" className="relative overflow-hidden bg-white py-14 sm:py-16 font-sans">
       
@@ -91,11 +91,11 @@ export default function Workflow() {
             </div>
 
             <h2 className="text-[2.5rem] font-black leading-[1.2] text-slate-900 sm:text-5xl">
-              ขั้นตอนการดำเนินงาน
+              Request-based workflow
               <br />
               <span className="relative inline-block mt-2">
                 <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#FF5722]">
-                  ที่โปร่งใสในทุกสเตป
+                  สำหรับเอกสารยื่นวีซ่า
                 </span>
                 {/* SVG Underline Accent */}
                 <svg className="absolute -bottom-2 left-0 w-full h-3 text-yellow-300 -z-10 opacity-80" viewBox="0 0 100 10" preserveAspectRatio="none">
@@ -108,7 +108,7 @@ export default function Workflow() {
               ลูกค้าส่งข้อมูลเบื้องต้น ทีมงานตรวจสอบและติดต่อกลับ จากนั้นจึงจัดเตรียม 
               <strong className="text-slate-800"> flight reservation </strong> และ 
               <strong className="text-slate-800"> hotel booking </strong> 
-              ตามข้อมูลที่เหมาะสมที่สุด เพื่อเพิ่มโอกาสในการอนุมัติวีซ่าของคุณ
+              ตามข้อมูลที่ตรวจสอบแล้วสำหรับใช้ประกอบการยื่นวีซ่าของคุณ
             </p>
           </div>
 

@@ -11,7 +11,7 @@ import {
   CalendarDays
 } from "lucide-react";
 import React, { useMemo, useState } from "react";
-import { createBooking } from "../../services/api.js";
+import { createBooking } from "../legacy/services/api.js";
 
 const initialRequest = {
   destination: "",
@@ -117,8 +117,8 @@ export default function Hero({ goToCheck }) {
             
             {/* Main Headline */}
             <h1 className="text-4xl font-extrabold leading-[1.15] text-slate-900 sm:text-5xl lg:text-6xl tracking-tight">
-              จัดการเอกสารการเดินทาง<br className="hidden sm:block" />
-              เพื่อยื่น
+              Premium visa flight support<br className="hidden sm:block" />
+              สำหรับยื่น
               <span className="relative inline-block mx-2 text-[#FF5722]">
                 วีซ่า
                 {/* Vector Underline */}
@@ -126,20 +126,20 @@ export default function Hero({ goToCheck }) {
                   <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round"/>
                 </svg>
               </span><br className="hidden sm:block" />
-              ให้ทีมงานดูแล ครบ จบไว
+              โดยทีมงานตรวจสอบก่อนดำเนินการ
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-slate-600 max-w-lg">
-              ขอวีซ่าได้ง่ายขึ้นโดยทีมงานผู้เชี่ยวชาญ ตรวจสอบความถูกต้องก่อนจัดทำเอกสาร <strong className="text-slate-800 font-semibold">ไม่มีการออกตั๋วจริงทันที</strong> ปลอดภัย ประหยัด และเพิ่มโอกาสผ่าน
+              ส่งคำขอให้ทีมงานตรวจสอบข้อมูลก่อนจัดเตรียมเอกสารสำหรับยื่นวีซ่า <strong className="text-slate-800 font-semibold">ไม่มีการออกตั๋วจริงอัตโนมัติ</strong> ทุกเคสดำเนินการโดยเจ้าหน้าที่
             </p>
 
             {/* Features (Flat 2.0 Style - clean, icon focused) */}
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8 max-w-2xl">
               {[
-                { icon: FileCheck, color: "text-blue-600", bg: "bg-blue-100", title: "เอกสารถูกต้อง 100%", desc: "ตามรูปแบบสถานทูตกำหนด" },
-                { icon: ShieldCheck, color: "text-[#FF5722]", bg: "bg-orange-100", title: "ไม่ต้องจ่ายตั๋วเต็ม", desc: "ออกใบจองสำหรับยื่นวีซ่า" },
-                { icon: Clock, color: "text-emerald-600", bg: "bg-emerald-100", title: "รวดเร็ว ทันใจ", desc: "จัดส่งเอกสารให้พร้อมใช้งาน" },
-                { icon: Users, color: "text-purple-600", bg: "bg-purple-100", title: "ให้คำปรึกษาฟรี", desc: "โดยทีมงานผู้เชี่ยวชาญ" },
+                { icon: FileCheck, color: "text-blue-600", bg: "bg-blue-100", title: "Staff review", desc: "ตรวจรายละเอียดก่อนจัดเตรียมเอกสาร" },
+                { icon: ShieldCheck, color: "text-[#FF5722]", bg: "bg-orange-100", title: "Visa support assistance", desc: "ใบจองตั๋วและโรงแรมเพื่อประกอบคำขอวีซ่า" },
+                { icon: Clock, color: "text-emerald-600", bg: "bg-emerald-100", title: "Fast staff response", desc: "ทีมงานติดต่อกลับหลังรับคำขอ" },
+                { icon: Users, color: "text-purple-600", bg: "bg-purple-100", title: "Manual fulfillment", desc: "ดำเนินการหลังตรวจสอบและยืนยันข้อมูล" },
               ].map((feat, idx) => (
                 <div key={idx} className="flex items-start gap-4 group cursor-default">
                   <div className={`flex shrink-0 h-12 w-12 items-center justify-center rounded-2xl ${feat.bg} ${feat.color} transition-transform group-hover:scale-110 group-hover:rotate-3`}>
@@ -175,12 +175,14 @@ export default function Hero({ goToCheck }) {
             {/* Trust Indicator */}
             <div className="mt-8 flex items-center gap-3 text-sm font-medium text-slate-500">
               <div className="flex -space-x-2.5">
-                {[1, 2, 3].map((i) => (
-                  <img key={i} className="inline-block h-8 w-8 rounded-full border-2 border-[#F8FAFC] bg-slate-200 object-cover" src={`https://i.pravatar.cc/100?img=${i + 15}`} alt="User" />
+                {["B", "V", "S"].map((label) => (
+                  <span key={label} className="inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#F8FAFC] bg-blue-100 text-[10px] font-black text-blue-700">
+                    {label}
+                  </span>
                 ))}
                 <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#F8FAFC] bg-slate-100 text-[10px] font-bold text-slate-600">+</div>
               </div>
-              <p>ผู้ใช้บริการกว่า <span className="font-bold text-slate-800">5,000+</span> คนที่ไว้วางใจ</p>
+              <p>ทุกคำขอจะได้รับการตรวจสอบโดยเจ้าหน้าที่ก่อนดำเนินการ</p>
             </div>
 
           </div>
@@ -216,7 +218,7 @@ export default function Hero({ goToCheck }) {
                   <div className="h-2 w-12 bg-slate-100 rounded-full mb-1.5"></div>
                   <div className="h-2 w-8 bg-slate-100 rounded-full"></div>
                 </div>
-                <div className="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-[10px] font-bold">Confirmed</div>
+                <div className="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-[10px] font-bold">Staff Review</div>
               </div>
             </div>
 

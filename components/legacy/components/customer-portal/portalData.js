@@ -6,7 +6,6 @@ import {
   FileCheck2,
   FileText,
   Headphones,
-  Home,
   LayoutDashboard,
   Plane,
   ReceiptText,
@@ -23,17 +22,7 @@ export const navigationItems = [
   { id: "support", label: "Support", icon: Headphones },
 ];
 
-export const activeRequest = {
-  bookingCode: "BKK-20264",
-  destination: "France",
-  product: "Flight reservation + hotel booking for visa",
-  traveler: "Siam Customer",
-  departureDate: "18 May 2026",
-  status: "รอชำระเงิน",
-  quotationAmount: "THB 2,850",
-  quotationDue: "06/05/2026",
-  documentValidUntil: "20/05/2026",
-};
+export const activeRequest = null;
 
 export const statusSteps = [
   { id: "review", label: "รอตรวจสอบ", description: "เจ้าหน้าที่ตรวจคำขอ", icon: ShieldCheck, state: "done" },
@@ -42,20 +31,15 @@ export const statusSteps = [
   { id: "download", label: "ดาวน์โหลดเอกสาร", description: "พร้อมใช้ยื่นวีซ่า", icon: Download, state: "upcoming" },
 ];
 
-export const documentVault = [
-  { id: "flight", name: "Flight Reservation", fileName: "BKK-20264-flight-reservation.pdf", icon: Plane, ready: true },
-  { id: "hotel", name: "Hotel Booking", fileName: "BKK-20264-hotel-booking.pdf", icon: Home, ready: true },
-];
+export const documentVault = [];
 
 export const summaryCards = [
-  { label: "Active requests", value: "1", icon: Plane, tone: "bg-blue-50 text-blue-600" },
-  { label: "Payment pending", value: "1", icon: ReceiptText, tone: "bg-orange-50 text-[#FF5722]" },
-  { label: "Ready documents", value: "2", icon: FileCheck2, tone: "bg-emerald-50 text-[#22C55E]" },
+  { label: "Active requests", value: "0", icon: Plane, tone: "bg-blue-50 text-blue-600" },
+  { label: "Payment pending", value: "0", icon: ReceiptText, tone: "bg-orange-50 text-[#FF5722]" },
+  { label: "Ready documents", value: "0", icon: FileCheck2, tone: "bg-emerald-50 text-[#22C55E]" },
 ];
 
-export const travelerProfiles = [
-  { id: "traveler-1", name: "สมชาย ใจดี", passport: "AA1234567", type: "Primary traveler" }
-];
+export const travelerProfiles = [];
 
 export const tabHeaders = {
   dashboard: { title: "Dashboard Overview", desc: "ติดตามคำขอเอกสารยื่นวีซ่า ชำระเงิน และดาวน์โหลดไฟล์ที่ทีม BKK AIR จัดเตรียมไว้ให้" },
