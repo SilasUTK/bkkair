@@ -180,11 +180,11 @@ export default function HowItWorksPage() {
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="mx-auto max-w-4xl text-center">
             <nav className="text-sm font-bold text-slate-500" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-[#2563EB]">หน้าแรก</Link>
+              <Link href="/" className="hover:text-[#003d82]">หน้าแรก</Link>
               <span className="mx-2">›</span>
               <span className="text-slate-800">วิธีสั่งซื้อ</span>
             </nav>
-            <p className="mt-6 text-sm font-black uppercase tracking-widest text-[#2563EB]">
+            <p className="mt-6 text-sm font-black uppercase tracking-widest text-[#003d82]">
               วิธีสั่งเอกสารยื่นวีซ่า
             </p>
             <h1 className="mt-4 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
@@ -208,7 +208,7 @@ export default function HowItWorksPage() {
           </div>
 
           <div className="mx-auto mt-10 max-w-5xl rounded-3xl border border-orange-200 bg-white/90 px-6 py-5 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-            <ShieldCheck className="mx-auto h-6 w-6 text-[#FF5722]" aria-hidden="true" />
+            <ShieldCheck className="mx-auto h-6 w-6 text-[#f59e0b]" aria-hidden="true" />
             <p className="mt-3 text-sm font-semibold leading-relaxed text-slate-700">{complianceDisclaimer}</p>
           </div>
         </div>
@@ -217,7 +217,7 @@ export default function HowItWorksPage() {
       <section className="bg-white px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-black uppercase tracking-widest text-[#2563EB]">ก่อนเริ่มสั่ง</p>
+            <p className="text-sm font-black uppercase tracking-widest text-[#003d82]">ก่อนเริ่มสั่ง</p>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               เตรียมแค่นี้ก็พอ
             </h2>
@@ -244,7 +244,7 @@ export default function HowItWorksPage() {
               <ul className="mt-5 space-y-3">
                 {notRequired.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-relaxed text-slate-700">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#FF5722]" aria-hidden="true" />
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#f59e0b]" aria-hidden="true" />
                     {item}
                   </li>
                 ))}
@@ -260,7 +260,7 @@ export default function HowItWorksPage() {
       <section className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-black uppercase tracking-widest text-[#2563EB]">ขั้นตอนการสั่งซื้อ</p>
+            <p className="text-sm font-black uppercase tracking-widest text-[#003d82]">ขั้นตอนการสั่งซื้อ</p>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               4 ขั้นตอน ตั้งแต่เริ่มจนรับเอกสาร
             </h2>
@@ -269,7 +269,7 @@ export default function HowItWorksPage() {
           <div className="mt-12 grid gap-6">
             {steps.map((step) => (
               <article key={step.number} className="grid gap-6 rounded-[2rem] border border-blue-100 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] lg:grid-cols-[120px_1fr] lg:p-8">
-                <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-blue-100 text-4xl font-black text-[#2563EB] lg:h-24 lg:w-24">
+                <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-blue-900/10 text-4xl font-black text-[#003d82] lg:h-24 lg:w-24">
                   {step.number}
                 </div>
                 <div>

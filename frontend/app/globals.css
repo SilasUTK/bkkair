@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --brand-blue: #2563eb;
-  --brand-sky: #38bdf8;
-  --brand-orange: #f97316;
-  --brand-yellow: #facc15;
+  --brand-blue: #003d82;
+  --brand-sky: #1e5a96;
+  --brand-orange: #f59e0b;
+  --brand-yellow: #d97706;
   --brand-navy: #0f172a;
   --brand-light: #f8fafc;
   color-scheme: light;

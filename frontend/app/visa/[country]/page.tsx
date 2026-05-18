@@ -36,7 +36,7 @@ export default function VisaCountryPage({ params }: { params: { country: string 
       <section className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-4xl">
-            <p className="text-sm font-black uppercase tracking-widest text-[#2563EB]">{country.name} Visa</p>
+            <p className="text-sm font-black uppercase tracking-widest text-[#003d82]">{country.name} Visa</p>
             <h1 className="mt-4 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">{country.h1}</h1>
             <p className="mt-5 text-lg leading-relaxed text-slate-600">
               {country.keywords} เป็นกลุ่มเอกสารที่ควรจัดเตรียมให้สอดคล้องกันก่อนยื่นคำขอวีซ่า ทีมงาน BKK AIR ช่วยตรวจสอบข้อมูลและจัดเตรียมเอกสารสนับสนุนตาม flow แบบ manual review
@@ -75,7 +75,7 @@ export default function VisaCountryPage({ params }: { params: { country: string 
               <p className="mt-3 leading-relaxed text-slate-600">
                 แนะนำ Standard สำหรับผู้ที่ต้องการใบจองตั๋ว + ใบจองโรงแรม + Travel Plan หรือ Ultimate สำหรับเคสที่ต้องการเอกสารสนับสนุนครบชุด
               </p>
-              <Link href={`/order?country=${country.slug}`} className="mt-5 inline-flex rounded-2xl bg-[#FF5722] px-6 py-3 text-sm font-black text-white">
+              <Link href={`/order?country=${country.slug}`} className="mt-5 inline-flex rounded-2xl bg-[#f59e0b] px-6 py-3 text-sm font-black text-white">
                 ส่งคำขอสำหรับ{country.thaiName}
               </Link>
             </section>

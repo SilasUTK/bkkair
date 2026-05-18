@@ -35,7 +35,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
       <JsonLd data={articleSchema} />
       <article className="bg-white px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-3xl">
-          <p className="text-sm font-black uppercase tracking-widest text-[#FF5722]">{post.category}</p>
+          <p className="text-sm font-black uppercase tracking-widest text-[#f59e0b]">{post.category}</p>
           <h1 className="mt-4 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">{post.title}</h1>
           <p className="mt-5 text-lg leading-relaxed text-slate-600">{post.intro}</p>
 
