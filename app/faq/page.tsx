@@ -26,7 +26,7 @@ export default function FaqPage() {
   return (
     <MarketingShell>
       <JsonLd data={faqSchema} />
-      <section className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-[#F8FAFC] px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <MessageCircleQuestion className="mx-auto h-10 w-10 text-[#2563EB]" />
@@ -36,13 +36,13 @@ export default function FaqPage() {
             </p>
           </div>
 
-          <div className="mt-12 space-y-8">
+          <div className="mt-14 space-y-8 md:space-y-10">
             {faqGroups.map((group) => (
-              <section key={group.title} className="rounded-[2rem] bg-white p-6 shadow-lg shadow-slate-200/50">
+              <section key={group.title} className="rounded-[2rem] bg-white p-6 md:p-8 shadow-lg shadow-slate-200/50">
                 <h2 className="text-2xl font-black text-slate-900">{group.title}</h2>
-                <div className="mt-5 space-y-3">
+                <div className="mt-6 space-y-3 md:space-y-4">
                   {group.items.map(([q, a]) => (
-                    <details key={q} className="group rounded-2xl border border-slate-100 bg-slate-50 p-5 open:bg-blue-50">
+                    <details key={q} className="group rounded-2xl border border-slate-100 bg-slate-50 p-5 md:p-6 open:bg-blue-50">
                       <summary className="cursor-pointer list-none font-bold text-slate-900">{q}</summary>
                       <p className="mt-3 leading-relaxed text-slate-600">{a}</p>
                     </details>

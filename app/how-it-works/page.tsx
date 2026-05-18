@@ -170,7 +170,7 @@ export default function HowItWorksPage() {
     <MarketingShell>
       <JsonLd data={faqSchema} />
 
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] px-6 py-16 md:py-24 lg:px-8">
         <div className="pointer-events-none absolute inset-0 opacity-70">
           <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-blue-200/60 blur-3xl" />
           <div className="absolute right-0 top-1/3 h-80 w-80 rounded-full bg-orange-200/60 blur-3xl" />
@@ -214,7 +214,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-white px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-black uppercase tracking-widest text-[#003d82]">ก่อนเริ่มสั่ง</p>
@@ -226,7 +226,7 @@ export default function HowItWorksPage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <div className="mt-12 grid gap-6 md:gap-8 lg:grid-cols-2">
             <div className="rounded-[2rem] border border-blue-100 bg-[#F8FAFC] p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
               <h3 className="text-xl font-black text-slate-900">📋 ข้อมูลที่ต้องใช้ในการสั่ง</h3>
               <ul className="mt-5 space-y-3">
@@ -257,7 +257,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-[#F8FAFC] px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-black uppercase tracking-widest text-[#003d82]">ขั้นตอนการสั่งซื้อ</p>
@@ -266,7 +266,7 @@ export default function HowItWorksPage() {
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-6">
+          <div className="mt-14 grid gap-6 md:gap-8">
             {steps.map((step) => (
               <article key={step.number} className="grid gap-6 rounded-[2rem] border border-blue-100 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] lg:grid-cols-[120px_1fr] lg:p-8">
                 <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-blue-900/10 text-4xl font-black text-[#003d82] lg:h-24 lg:w-24">
@@ -325,7 +325,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-white px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="text-sm font-black uppercase tracking-widest text-[#2563EB]">Timeline</p>
@@ -334,7 +334,7 @@ export default function HowItWorksPage() {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-4">
+          <div className="mt-10 grid gap-5 md:gap-6">
             {timeline.map(([time, event]) => (
               <div key={time} className="flex gap-4 rounded-3xl border border-blue-100 bg-[#F8FAFC] p-5 shadow-sm">
                 <div className="flex min-w-28 items-center justify-center rounded-2xl bg-blue-100 px-4 py-3 text-sm font-black text-[#2563EB]">
@@ -351,7 +351,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-[#F8FAFC] px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <p className="text-sm font-black uppercase tracking-widest text-[#2563EB]">คำถามที่พบบ่อย</p>
@@ -360,7 +360,7 @@ export default function HowItWorksPage() {
             </h2>
           </div>
 
-          <div className="mt-10 space-y-4">
+          <div className="mt-12 space-y-4 md:space-y-5">
             {faqs.map(([question, answer]) => (
               <details key={question} className="group rounded-3xl border border-blue-100 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-lg font-black text-slate-900">
@@ -376,7 +376,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-white px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-black uppercase tracking-widest text-[#2563EB]">แนวทางตามประเทศ</p>
@@ -388,7 +388,7 @@ export default function HowItWorksPage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="mt-12 grid gap-6 md:gap-8 md:grid-cols-2">
             {countryGuides.map(([flag, country, note, docs, recommendation]) => (
               <article key={country} className="rounded-[2rem] border border-blue-100 bg-[#F8FAFC] p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                 <div className="flex items-start gap-4">
@@ -414,8 +414,8 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+      <section className="bg-[#F8FAFC] px-6 py-16 md:py-24 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:gap-16 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>
             <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               ไม่แน่ใจ ถามได้เลย ไม่มีข้อผูกมัด
@@ -448,7 +448,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <FileText className="mx-auto h-10 w-10 text-[#2563EB]" aria-hidden="true" />
           <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">

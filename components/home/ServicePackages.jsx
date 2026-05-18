@@ -119,7 +119,7 @@ export default function ServicePackages() {
   return (
     <section
       id="packages"
-      className="relative w-full overflow-hidden bg-bg-light py-16 lg:py-24"
+      className="relative w-full overflow-hidden bg-bg-light py-20 md:py-28"
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute -right-40 top-0 h-[400px] w-[400px] rounded-full bg-blue-50 blur-[80px]" />
@@ -128,7 +128,7 @@ export default function ServicePackages() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         
         {/* Header */}
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-2 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <Package className="h-4 w-4 text-emerald-500" />
             แพ็กเกจบริการ
@@ -144,7 +144,7 @@ export default function ServicePackages() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 xl:grid-cols-4 lg:gap-6">
+          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-4">
           {packages.map((pkg) => {
             const Icon = pkg.icon;
 
@@ -165,7 +165,7 @@ export default function ServicePackages() {
 
                 {/* Gradient header for popular, clean header for others */}
                 {pkg.popular ? (
-                  <div className="rounded-t-3xl bg-gradient-to-r from-accent-orange to-orange-500 p-6 text-center">
+                  <div className="rounded-t-3xl bg-gradient-to-r from-accent-orange to-orange-500 p-6 md:p-8 text-center">
                     <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20">
                       <Icon className="h-7 w-7 text-white" strokeWidth={2} />
                     </div>
@@ -177,7 +177,7 @@ export default function ServicePackages() {
                     </p>
                   </div>
                 ) : (
-                  <div className="border-b border-slate-100 p-6 text-center">
+                  <div className="border-b border-slate-100 p-6 md:p-8 text-center">
                     <div className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl ${pkg.theme.bg}`}>
                       <Icon className={`h-7 w-7 ${pkg.theme.color}`} strokeWidth={2} />
                     </div>
@@ -191,7 +191,7 @@ export default function ServicePackages() {
                 )}
 
                 {/* Features */}
-                <div className="flex flex-1 flex-col p-6">
+                <div className="flex flex-1 flex-col p-6 md:p-8">
                   <ul className="space-y-3">
                     {pkg.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">

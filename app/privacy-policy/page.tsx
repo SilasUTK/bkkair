@@ -36,7 +36,7 @@ const tableOfContents = [
 export default function PrivacyPolicyPage() {
   return (
     <MarketingShell>
-      <article className="bg-white px-6 py-14 lg:px-8 lg:py-20">
+      <article className="bg-white px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-6xl scroll-smooth">
           <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
             <ol className="flex flex-wrap items-center gap-2">

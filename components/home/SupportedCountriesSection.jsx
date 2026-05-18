@@ -61,7 +61,7 @@ const supportedCountries = [
 
 export default function SupportedCountriesSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-white py-16 font-sans lg:py-24" aria-labelledby="supported-countries-heading">
+    <section className="relative w-full overflow-hidden bg-white py-20 md:py-24 font-sans" aria-labelledby="supported-countries-heading">
       <div className="pointer-events-none absolute inset-0 opacity-60">
         <div className="absolute -left-24 top-10 h-56 w-56 rounded-full bg-blue-100/60 blur-3xl" />
         <div className="absolute right-0 top-1/3 h-64 w-64 rounded-full bg-orange-100/50 blur-3xl" />
@@ -80,9 +80,9 @@ export default function SupportedCountriesSection() {
           </p>
         </div>
 
-        <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-label="รายการประเทศที่รองรับ">
+          <ul className="mt-12 grid grid-cols-1 gap-5 md:gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-label="รายการประเทศที่รองรับ">
           {supportedCountries.map((country) => (
-            <li key={country.slug} className="flex h-full flex-col rounded-2xl border border-blue-100/80 bg-white/80 p-5 shadow-[0_10px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-shadow duration-300 md:hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+            <li key={country.slug} className="flex h-full flex-col rounded-2xl border border-blue-100/80 bg-white/80 p-6 shadow-[0_10px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-shadow duration-300 md:hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
               <div className="flex items-start gap-3">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-2xl">
                   <span aria-hidden="true">{country.flag}</span>
@@ -100,7 +100,7 @@ export default function SupportedCountriesSection() {
           ))}
         </ul>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 rounded-3xl border border-blue-100/80 bg-white/85 px-6 py-6 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur sm:flex-row sm:text-left">
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 rounded-3xl border border-blue-100/80 bg-white/85 px-6 py-6 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur sm:flex-row sm:text-left">
           <p className="text-base font-bold text-slate-800">
             ไม่แน่ใจว่าต้องใช้เอกสารอะไร?
           </p>

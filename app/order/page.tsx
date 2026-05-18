@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function OrderPage({ searchParams }: { searchParams: { package?: string; country?: string } }) {
   return (
     <MarketingShell>
-      <section className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <section className="bg-[#F8FAFC] px-6 py-16 md:py-24 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <p className="text-sm font-black uppercase tracking-widest text-[#003d82]">Request Form</p>
             <h1 className="mt-4 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">Order Form</h1>

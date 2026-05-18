@@ -272,7 +272,7 @@ export default function PackagesPage() {
       <JsonLd data={serviceSchema} />
       <JsonLd data={faqSchema} />
 
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] px-6 py-16 md:py-24 lg:px-8">
         <div className="pointer-events-none absolute inset-0 opacity-70">
           <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-blue-200/60 blur-3xl" />
           <div className="absolute right-0 top-1/3 h-80 w-80 rounded-full bg-orange-200/60 blur-3xl" />
@@ -319,7 +319,7 @@ export default function PackagesPage() {
         </div>
       </section>
 
-      <section id="package-cards" className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
+      <section id="package-cards" className="bg-[#F8FAFC] px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-black uppercase tracking-widest text-[#2563EB]">กรองตามประเภทเอกสาร</p>
@@ -328,14 +328,14 @@ export default function PackagesPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-14 grid gap-6 md:gap-8 lg:grid-cols-2 xl:grid-cols-4">
             {packages.map((pkg) => {
               const styles = accentClasses(pkg.accent, pkg.highlighted);
 
               return (
                 <article
                   key={pkg.slug}
-                  className={`relative flex h-full flex-col rounded-[2rem] bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] transition-all duration-300 md:hover:-translate-y-1 ${styles.card}`}
+                  className={`relative flex h-full flex-col rounded-[2rem] bg-white p-6 md:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] transition-all duration-300 md:hover:-translate-y-1 ${styles.card}`}
                 >
                   {pkg.badge ? (
                     <span className={`mb-4 w-fit rounded-full px-4 py-1 text-xs font-black uppercase tracking-wider ${styles.badge}`}>
@@ -415,7 +415,7 @@ export default function PackagesPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-white px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
@@ -460,7 +460,7 @@ export default function PackagesPage() {
         </div>
       </section>
 
-      <section className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-[#F8FAFC] px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-black uppercase tracking-widest text-[#2563EB]">เพิ่มเติมได้ตามต้องการ</p>
@@ -469,7 +469,7 @@ export default function PackagesPage() {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:gap-8 md:grid-cols-3">
             {addOns.map((addon) => (
               <article key={addon.title} className="rounded-[2rem] border border-blue-100 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                 <div className="text-3xl" aria-hidden="true">{addon.icon}</div>
@@ -486,8 +486,8 @@ export default function PackagesPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 lg:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="bg-white px-6 py-16 md:py-24 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               ยังไม่แน่ใจว่าต้องใช้เอกสารอะไร?
@@ -517,7 +517,7 @@ export default function PackagesPage() {
         </div>
       </section>
 
-      <section className="bg-[#F8FAFC] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-[#F8FAFC] px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
@@ -525,7 +525,7 @@ export default function PackagesPage() {
             </h2>
           </div>
 
-          <div className="mt-10 space-y-4">
+          <div className="mt-12 space-y-4 md:space-y-5">
             {faqs.map(([question, answer]) => (
               <details key={question} className="group rounded-3xl border border-blue-100 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-lg font-black text-slate-900">
@@ -541,7 +541,7 @@ export default function PackagesPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] px-6 py-16 md:py-24 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
             พร้อมเริ่มได้เลย

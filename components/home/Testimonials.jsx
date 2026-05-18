@@ -48,7 +48,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="relative w-full overflow-hidden bg-[#F8FAFF] py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section id="testimonials" className="relative w-full overflow-hidden bg-[#F8FAFF] py-20 md:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
       
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute -left-20 top-20 h-[380px] w-[380px] rounded-full bg-blue-100/50 blur-[80px]" />
@@ -56,7 +56,7 @@ export default function Testimonials() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
           <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <MessageSquareHeart className="h-4 w-4 text-yellow-500" aria-hidden="true" />
             <span className="uppercase tracking-widest text-slate-500 text-xs">เสียงจากลูกค้า</span>
@@ -71,11 +71,11 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-3 lg:gap-6">
+          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3 md:gap-8">
           {testimonials.map((testimonial) => (
             <article
               key={testimonial.name}
-              className={`group relative overflow-hidden rounded-3xl bg-white p-6 transition-all duration-300 border shadow-[0_4px_20px_rgba(15,23,42,0.06)] hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)] ${testimonial.theme.border}`}
+              className={`group relative overflow-hidden rounded-3xl bg-white p-6 md:p-8 transition-all duration-300 border shadow-[0_4px_20px_rgba(15,23,42,0.06)] hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)] ${testimonial.theme.border}`}
             >
               {/* Star rating */}
               <div className="mb-4 flex gap-0.5">

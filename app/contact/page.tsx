@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <MarketingShell>
-      <section className="bg-white px-6 py-16 lg:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
+      <section className="bg-white px-6 py-16 md:py-24 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:gap-16 lg:grid-cols-2">
           <div>
             <p className="text-sm font-black uppercase tracking-widest text-[#003d82]">Contact</p>
             <h1 className="mt-4 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">ติดต่อเรา</h1>
@@ -20,10 +20,10 @@ export default function ContactPage() {
               สอบถามเรื่องแพ็กเกจ เอกสารยื่นวีซ่า หรือสถานะคำขอ ทีมงานจะติดต่อกลับตามช่องทางที่สะดวกที่สุด
             </p>
             <div className="mt-8 grid gap-4">
-              <a href="https://line.me/R/ti/p/@823lateh" className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 font-bold text-slate-700"><MessageCircle className="h-5 w-5 text-[#00B900]" /> LINE OA: @823lateh</a>
-              <a href="mailto:info@bkkair.com" className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 font-bold text-slate-700"><Mail className="h-5 w-5 text-[#003d82]" /> info@bkkair.com</a>
-              <div className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 font-bold text-slate-700"><Facebook className="h-5 w-5 text-blue-600" /> Facebook: BKK AIR</div>
-              <div className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 font-bold text-slate-700"><Clock className="h-5 w-5 text-[#f59e0b]" /> เวลาทำการ: จันทร์-เสาร์ 09:00-18:00</div>
+              <a href="https://line.me/R/ti/p/@823lateh" className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 md:p-6 font-bold text-slate-700"><MessageCircle className="h-5 w-5 text-[#00B900]" /> LINE OA: @823lateh</a>
+              <a href="mailto:info@bkkair.com" className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 md:p-6 font-bold text-slate-700"><Mail className="h-5 w-5 text-[#003d82]" /> info@bkkair.com</a>
+              <div className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 md:p-6 font-bold text-slate-700"><Facebook className="h-5 w-5 text-blue-600" /> Facebook: BKK AIR</div>
+              <div className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 md:p-6 font-bold text-slate-700"><Clock className="h-5 w-5 text-[#f59e0b]" /> เวลาทำการ: จันทร์-เสาร์ 09:00-18:00</div>
             </div>
           </div>
 

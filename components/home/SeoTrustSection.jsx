@@ -50,7 +50,7 @@ const features = [
 
 export default function SeoTrustSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-slate-50 py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section className="relative w-full overflow-hidden bg-slate-50 py-20 md:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute -left-40 top-20 h-[400px] w-[400px] rounded-full bg-blue-50 blur-[80px]" />
         <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-orange-50 blur-[80px]" />
@@ -83,11 +83,11 @@ export default function SeoTrustSection() {
           </p>
         </div>
 
-        <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-5 md:gap-6 md:grid-cols-2">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="group flex h-full items-start gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-[0_4px_20px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)] sm:p-6"
+              className="group flex h-full items-start gap-4 rounded-2xl border border-slate-100 bg-white p-6 shadow-[0_4px_20px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)] md:p-8"
             >
               <div className={`mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${feature.color.bg} transition-transform duration-300 group-hover:scale-110`}>
                 <span className="text-2xl" aria-hidden="true">{feature.icon}</span>
@@ -105,7 +105,7 @@ export default function SeoTrustSection() {
           ))}
         </div>
 
-        <div className="mx-auto mt-10 max-w-5xl rounded-2xl border border-orange-100 bg-white p-6 shadow-[0_4px_20px_rgba(15,23,42,0.06)]">
+          <div className="mx-auto mt-12 max-w-5xl rounded-2xl border border-orange-100 bg-white p-6 md:p-8 shadow-[0_4px_20px_rgba(15,23,42,0.06)]">
           <p className="text-base font-semibold leading-relaxed text-slate-700">
             เราไม่ใช่ตัวแทนวีซ่า ไม่ได้มีความสัมพันธ์พิเศษกับสถานทูตใด ๆ และไม่รับประกันผลการยื่นวีซ่า
           </p>

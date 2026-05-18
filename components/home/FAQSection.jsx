@@ -49,7 +49,7 @@ export default function FAQSection() {
   const [openIdx, setOpenIdx] = useState(4);
 
   return (
-    <section id="faq" className="relative w-full overflow-hidden bg-white py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-primary-navy">
+    <section id="faq" className="relative w-full overflow-hidden bg-white py-20 md:py-28 font-sans selection:bg-blue-200 selection:text-primary-navy">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -61,7 +61,7 @@ export default function FAQSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 lg:px-8">
-        <div className="mx-auto mb-12 text-center">
+          <div className="mx-auto mb-12 text-center md:mb-16">
           <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <MessageCircleQuestion className="h-4 w-4 text-blue-600" aria-hidden="true" />
             <span className="uppercase tracking-widest text-slate-500 text-xs">คำถามที่พบบ่อย</span>
@@ -75,7 +75,7 @@ export default function FAQSection() {
           </p>
         </div>
 
-        <div className="space-y-4 sm:space-y-5">
+          <div className="space-y-4 md:space-y-5">
           {faqs.map((faq, index) => {
             const importantDisclaimer = index === 4;
             const open = importantDisclaimer || openIdx === index;

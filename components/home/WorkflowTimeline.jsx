@@ -58,16 +58,16 @@ const steps = [
 
 export default function WorkflowTimeline() {
   return (
-    <section id="timeline" className="relative overflow-hidden bg-bg-light py-16 font-sans lg:py-24">
+    <section id="timeline" className="relative overflow-hidden bg-bg-light py-20 md:py-24 font-sans">
       {/* Subtle background */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute -left-32 top-10 h-80 w-80 rounded-full bg-blue-100/60 blur-[80px]" />
         <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-orange-100/50 blur-[80px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header Area */}
-        <div className="mx-auto mb-12 max-w-3xl text-center lg:mb-14">
+          <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-2 text-sm font-extrabold text-primary-dark shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <Clock className="h-4 w-4" aria-hidden="true" />
             ขั้นตอนการใช้บริการ
@@ -87,11 +87,11 @@ export default function WorkflowTimeline() {
           {/* Gradient Connecting Line (Desktop) */}
           <div className="absolute left-1/2 top-10 z-0 hidden h-0.5 w-3/4 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-200 via-orange-200 to-purple-200 lg:block"></div>
 
-          <ol className="relative z-10 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="relative z-10 grid items-stretch gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(({ number, icon: Icon, title, desc, color }) => (
               <li
                 key={title}
-                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-5 text-center shadow-[0_4px_20px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)] sm:p-6 ${color.border}`}
+                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-6 text-center shadow-[0_4px_20px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)] md:p-8 ${color.border}`}
               >
                 <div className={`mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-black text-white shadow-md ${color.base} transition-transform duration-300 group-hover:scale-110`}>
                   <Icon className="h-7 w-7" />

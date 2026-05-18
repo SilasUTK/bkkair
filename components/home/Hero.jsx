@@ -4,9 +4,9 @@ import {
   Send, 
   Plane, 
   ShieldCheck, 
-  FileCheck, 
+  FileText,
   Clock,
-  DollarSign,
+  Globe,
   MapPin,
   CalendarDays
 } from "lucide-react";
@@ -32,11 +32,11 @@ const visaTypes = [
   "นักเรียน", "ทำงาน", "Transit"
 ];
 
-const trustFeatures = [
-  { icon: ShieldCheck, color: "text-blue-600",    bg: "bg-blue-100",    title: "ตรวจสอบโดยทีมงานจริง",  desc: "ทุกคำขอผ่านการตรวจสอบก่อนส่ง" },
-  { icon: FileCheck,   color: "text-accent-orange",  bg: "bg-orange-100", title: "PDF พร้อมยื่นสถานทูต",    desc: "เอกสารจัดรูปแบบตามมาตรฐาน" },
-  { icon: Clock,       color: "text-emerald-600", bg: "bg-emerald-100", title: "ส่งภายใน 24 ชั่วโมง",       desc: "มีบริการเร่งด่วน Express" },
-  { icon: DollarSign,  color: "text-purple-600",  bg: "bg-purple-100", title: "ราคาโปร่งใส",               desc: "ไม่มีค่าใช้จ่ายแอบแฝง" },
+const benefits = [
+  { icon: Clock,       bg: "bg-blue-50",    color: "text-blue-600",   label: "ส่งงานรวดเร็ว",                sub: "ส่ง PDF ภายใน 24 ชั่วโมง · มีบริการ Express" },
+  { icon: FileText,    bg: "bg-orange-50",  color: "text-orange-500", label: "PDF พร้อมปริ้นยื่นสถานทูต",    sub: "จัดรูปแบบตามมาตรฐาน Embassy-ready" },
+  { icon: Globe,       bg: "bg-indigo-50",  color: "text-indigo-600", label: "รองรับกว่า 50 ประเทศทั่วโลก",   sub: "Schengen, UK, USA, ออสเตรเลีย และอื่นๆ" },
+  { icon: ShieldCheck, bg: "bg-emerald-50", color: "text-emerald-600",label: "ทีมงานตรวจสอบก่อนส่งทุกครั้ง", sub: "ไม่ใช่ระบบออโต้ — ตรวจสอบโดยคนจริง" },
 ];
 
 function getTomorrowDate() {
@@ -99,9 +99,9 @@ export default function Hero({ goToCheck }) {
   }
 
   return (
-    <section id="hero" className="relative w-full overflow-hidden bg-bg-light pb-16 pt-28 sm:pt-32 lg:pb-24 lg:pt-36 font-sans selection:bg-blue-200 selection:text-blue-900">
-      
-      {/* ── Premium Hero Background ── */}
+    <section id="hero" className="relative w-full overflow-hidden bg-bg-light pb-20 pt-28 sm:pt-32 md:pb-24 lg:pt-36 lg:pb-28 font-sans selection:bg-blue-200 selection:text-blue-900">
+
+      {/* ── Background ── */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[680px] w-[680px] rounded-full bg-blue-200/50 blur-[96px]" />
         <div className="absolute -left-16 top-1/2 h-[400px] w-[400px] rounded-full bg-blue-300/20 blur-[72px]" />
@@ -110,53 +110,68 @@ export default function Hero({ goToCheck }) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(37,99,235,0.06)_1px,transparent_0)] bg-[length:28px_28px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-12 xl:gap-16">
-          
-          {/* ================= LEFT COLUMN: Text & Value Prop ================= */}
-          <div className="flex flex-col justify-center lg:col-span-6 xl:col-span-6">
-            
-            {/* Pill Badge */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid min-h-[720px] grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+
+          {/* ═══════════════ LEFT COLUMN ═══════════════ */}
+          <div className="flex flex-col justify-center">
+
+            {/* Trust Badge */}
             <div className="mb-6 inline-flex w-fit items-center gap-2.5 rounded-full border border-blue-200/60 bg-white/90 p-1 pr-4 text-sm font-semibold text-slate-600 shadow-[0_6px_24px_rgba(37,99,235,0.12)] backdrop-blur-sm">
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-sm">
                 <Plane className="h-3.5 w-3.5" />
               </span>
               <span>Visa Document Service Thailand</span>
             </div>
-            
-            {/* Main Headline */}
-            <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl xl:text-6xl">
+
+            {/* Headline */}
+            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-[3.25rem] xl:text-6xl">
               เอกสารสนับสนุนวีซ่า
-              <span className="block mt-2 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
+              <span className="mt-2 block bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
                 พร้อมยื่นสถานทูต
               </span>
-              <span className="block mt-2 text-slate-800">ครบ จบ ใน 24 ชั่วโมง</span>
+              <span className="mt-2 block text-slate-800">ครบ จบ ใน 24 ชั่วโมง</span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
-              BKK AIR จัดเตรียมเอกสารสนับสนุนวีซ่าให้คุณ — ทั้งใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง <strong className="text-slate-800 font-semibold">ในรูปแบบ PDF มาตรฐานสถานทูต</strong> พร้อมให้คุณยื่นได้เลย
+            {/* Supporting text */}
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
+              BKK AIR จัดเตรียมเอกสารสนับสนุนวีซ่าครบชุด ทั้งใบจองตั๋วเครื่องบิน ใบจองโรงแรม และแผนการเดินทาง{" "}
+              <strong className="font-semibold text-slate-800">ในรูปแบบ PDF มาตรฐานสถานทูต</strong>{" "}
+              พร้อมให้คุณยื่นได้ทันที
             </p>
 
-            {/* Trust Feature Cards */}
-            <ul className="mt-7 grid grid-cols-2 gap-2.5" aria-label="จุดเด่น BKK AIR">
-              {trustFeatures.map((feat, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-[0_4px_20px_rgba(15,23,42,0.06)] transition-shadow hover:shadow-[0_8px_30px_rgba(15,23,42,0.09)]"
-                >
-                  <div className={`flex shrink-0 h-8 w-8 items-center justify-center rounded-xl ${feat.bg}`}>
-                    <feat.icon className={`h-4 w-4 ${feat.color}`} aria-hidden="true" />
+            {/* Benefits list */}
+            <ul className="mt-8 space-y-3.5" aria-label="จุดเด่น BKK AIR">
+              {benefits.map((b, i) => (
+                <li key={i} className="flex items-center gap-4">
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${b.bg}`}>
+                    <b.icon className={`h-5 w-5 ${b.color}`} aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[12.5px] font-bold leading-snug text-slate-800">{feat.title}</p>
-                    <p className="mt-0.5 text-[11px] leading-snug text-slate-400">{feat.desc}</p>
+                    <span className="text-sm font-bold text-slate-800">{b.label}</span>
+                    <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                    <span className="text-sm text-slate-500">{b.sub}</span>
                   </div>
                 </li>
               ))}
             </ul>
 
+            {/* Social proof stats */}
+            <div className="mt-8 flex flex-wrap items-center gap-2">
+              {[
+                { value: "3,000+", label: "เอกสาร" },
+                { value: "50+",    label: "ประเทศ" },
+                { value: "4.9 ★",  label: "รีวิว" },
+              ].map((stat, i) => (
+                <div key={i} className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm shadow-sm">
+                  <span className="font-extrabold text-slate-900">{stat.value}</span>
+                  <span className="text-slate-500">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+
             {/* CTA Buttons */}
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3.5 sm:flex-row">
               <button
                 type="button"
                 onClick={scrollToPackages}
@@ -174,58 +189,28 @@ export default function Hero({ goToCheck }) {
               </button>
             </div>
 
-            {/* Disclaimer Caption */}
-            <p className="mt-4 text-[11px] text-slate-400 italic">
+            {/* Disclaimer */}
+            <p className="mt-4 text-[11px] italic text-slate-400">
               การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุล BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น
             </p>
 
           </div>
 
-          {/* ================= RIGHT COLUMN: Form & Flat Illustration Scene ================= */}
-          <div className="relative flex min-h-[520px] w-full items-center justify-center lg:col-span-6 lg:min-h-[620px] xl:col-span-6">
-            
-            {/* --- Flat Illustration Background Objects --- */}
-            {/* Background glow behind the card */}
-            <div className="absolute inset-6 -m-2 rounded-[2.5rem] bg-gradient-to-br from-blue-200/50 via-indigo-100/30 to-orange-100/30 blur-2xl animate-glow-pulse" />
+          {/* ═══════════════ RIGHT COLUMN: Form Card ═══════════════ */}
+          <div className="relative flex items-center justify-center">
 
-            {/* ── Floating decorative card: Flight ── */}
-            <div className="absolute right-0 top-4 z-20 hidden animate-float flex-col rounded-2xl border border-slate-100 bg-white p-4 shadow-[0_16px_48px_rgba(15,23,42,0.10)] md:flex lg:-right-5 xl:-right-9">
-              <div className="flex items-center gap-3 border-b border-dashed border-slate-100 pb-3">
-                <div className="bg-blue-50 p-2 rounded-xl text-blue-600"><Plane className="h-4 w-4" /></div>
-                <div>
-                  <p className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Travel Document</p>
-                  <p className="text-sm font-extrabold text-slate-800">BKK → CDG Paris</p>
-                </div>
-              </div>
-              <div className="pt-2.5 flex justify-between items-center gap-5">
-                <div className="space-y-1.5">
-                  <div className="h-1.5 w-14 bg-slate-100 rounded-full"></div>
-                  <div className="h-1.5 w-9 bg-slate-100 rounded-full"></div>
-                </div>
-                <div className="bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg text-[10px] font-bold">✓ Ready</div>
-              </div>
-            </div>
+            {/* Glow behind card */}
+            <div className="absolute inset-0 -m-6 rounded-[3.5rem] bg-gradient-to-br from-blue-200/50 via-indigo-100/30 to-orange-100/25 blur-2xl" />
 
-            {/* ── Floating decorative card: Status ── */}
-            <div className="absolute bottom-6 left-0 z-20 hidden animate-float-delayed items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-[0_16px_48px_rgba(15,23,42,0.10)] md:flex lg:-left-5 xl:-left-9">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-accent-orange">
-                <FileCheck className="h-5 w-5" />
-              </div>
-              <div className="pr-1">
-                <p className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Document Status</p>
-                <p className="text-sm font-extrabold text-slate-800">Embassy Ready</p>
-              </div>
-            </div>
+            {/* Form Card */}
+            <div className="relative z-10 w-full max-w-[460px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
 
-            {/* ── Main Form Card ── */}
-            <div className="relative z-10 w-full max-w-[460px] lg:max-w-[480px]">
-
-              {/* Premium card header */}
-              <div className="w-full rounded-t-3xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 pt-5 pb-5">
+              {/* Card Header */}
+              <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-5">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-lg font-extrabold text-white">ส่งคำขอฟรี</p>
-                    <p className="text-[12px] text-blue-100/80 mt-0.5 font-medium">ไม่ต้องชำระเงินก่อน ทีมงานติดต่อกลับ</p>
+                    <p className="mt-0.5 text-xs font-medium text-blue-100/80">ไม่ต้องชำระเงินก่อน · ทีมงานติดต่อกลับ</p>
                   </div>
                   <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/15">
                     <ShieldCheck className="h-5 w-5 text-white" />
@@ -233,59 +218,56 @@ export default function Hero({ goToCheck }) {
                 </div>
               </div>
 
-              {/* Form body */}
-              <div className="rounded-b-3xl border-x border-b border-slate-100 bg-white px-6 py-6 shadow-[0_32px_80px_rgba(15,23,42,0.11)] sm:px-7">
+              {/* Form Body */}
+              <div className="p-6 md:p-8">
+                <form onSubmit={submitRequest} className="space-y-5">
 
-                <form onSubmit={submitRequest} className="space-y-4">
-                  
-                  {/* Select: Country */}
-                  <div className="relative">
-                    <label className="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-widest">ประเทศปลายทาง</label>
+                  {/* Destination */}
+                  <div>
+                    <label className="mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                      ประเทศปลายทาง
+                    </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                        <MapPin className="h-4 w-4 text-slate-400" />
-                      </div>
+                      <MapPin className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                       <select
                         name="destination"
                         value={request.destination}
                         onChange={updateRequest}
                         required
-                        className="block w-full pl-10 pr-9 py-3 bg-slate-50/80 border border-slate-200 rounded-xl text-slate-700 font-medium text-sm focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all appearance-none cursor-pointer hover:border-slate-300"
+                        className="h-12 w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50/80 pl-10 pr-9 text-sm font-medium text-slate-700 transition-all hover:border-slate-300 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
                       >
                         <option value="" disabled>เลือกประเทศที่ต้องการไป...</option>
                         {countries.map(c => <option key={c} value={c}>{c}</option>)}
                       </select>
-                      <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                        <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                      </div>
+                      <svg className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                     </div>
                   </div>
 
-                  {/* Select: Visa Type */}
-                  <div className="relative">
-                    <label className="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-widest">ประเภทวีซ่า</label>
+                  {/* Visa Type */}
+                  <div>
+                    <label className="mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                      ประเภทวีซ่า
+                    </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                        <CalendarDays className="h-4 w-4 text-slate-400" />
-                      </div>
+                      <CalendarDays className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                       <select
                         name="serviceType"
                         value={request.serviceType}
                         onChange={updateRequest}
                         required
-                        className="block w-full pl-10 pr-9 py-3 bg-slate-50/80 border border-slate-200 rounded-xl text-slate-700 font-medium text-sm focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all appearance-none cursor-pointer hover:border-slate-300"
+                        className="h-12 w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50/80 pl-10 pr-9 text-sm font-medium text-slate-700 transition-all hover:border-slate-300 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
                       >
                         {visaTypes.map(type => <option key={type} value={type}>{type}</option>)}
                       </select>
-                      <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                        <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                      </div>
+                      <svg className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                     </div>
                   </div>
 
-                  {/* Input: Name */}
+                  {/* Name */}
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-widest">ชื่อ-นามสกุล</label>
+                    <label className="mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                      ชื่อ-นามสกุล
+                    </label>
                     <input
                       name="name"
                       type="text"
@@ -293,13 +275,15 @@ export default function Hero({ goToCheck }) {
                       onChange={updateRequest}
                       placeholder="ระบุชื่อของคุณ"
                       required
-                      className="block w-full px-3.5 py-3 bg-slate-50/80 border border-slate-200 rounded-xl text-slate-700 font-medium text-sm placeholder-slate-400 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all hover:border-slate-300"
+                      className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-700 placeholder-slate-400 transition-all hover:border-slate-300 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
                     />
                   </div>
 
-                  {/* Input: Contact */}
+                  {/* Contact */}
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-widest">ช่องทางติดต่อ</label>
+                    <label className="mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                      ช่องทางติดต่อ
+                    </label>
                     <input
                       name="contact"
                       type="text"
@@ -307,14 +291,16 @@ export default function Hero({ goToCheck }) {
                       onChange={updateRequest}
                       placeholder="เบอร์โทร / อีเมล / LINE ID"
                       required
-                      className="block w-full px-3.5 py-3 bg-slate-50/80 border border-slate-200 rounded-xl text-slate-700 font-medium text-sm placeholder-slate-400 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all hover:border-slate-300"
+                      className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-700 placeholder-slate-400 transition-all hover:border-slate-300 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
                     />
                     <p className="mt-1.5 text-[11px] text-slate-400">กรอกช่องทางที่สะดวกให้ทีมงานติดต่อกลับ</p>
                   </div>
 
-                  {/* Input: Departure Date */}
+                  {/* Departure Date */}
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-widest">วันเดินทาง</label>
+                    <label className="mb-1.5 block text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                      วันเดินทาง
+                    </label>
                     <input
                       name="departureDate"
                       type="date"
@@ -322,51 +308,60 @@ export default function Hero({ goToCheck }) {
                       value={request.departureDate}
                       onChange={updateRequest}
                       required
-                      className="block w-full px-3.5 py-3 bg-slate-50/80 border border-slate-200 rounded-xl text-slate-700 font-medium text-sm focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all hover:border-slate-300"
+                      className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-700 transition-all hover:border-slate-300 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
                     />
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Submit */}
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full mt-2 flex items-center justify-center gap-2 py-3.5 px-6 bg-gradient-to-r from-accent-orange to-orange-500 hover:from-accent-hover hover:to-orange-600 text-white rounded-xl font-bold text-sm transition-all shadow-[0_8px_24px_rgba(249,115,22,0.32)] hover:shadow-[0_12px_32px_rgba(249,115,22,0.42)] hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none active:scale-[0.98]"
+                    className="mt-1 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-orange-500/30 disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none active:scale-[0.98]"
                   >
                     {loading ? (
-                      <span className="flex items-center gap-2">
-                        <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                      <>
+                        <svg className="h-5 w-5 animate-spin text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
                         กำลังส่งข้อมูล...
-                      </span>
+                      </>
                     ) : (
                       <>
                         ส่งคำขอให้ทีมงานตรวจสอบ
-                        <Send className="h-4 w-4 ml-1" />
+                        <Send className="h-4 w-4" />
                       </>
                     )}
                   </button>
+
                 </form>
 
-                {/* Status Messages */}
+                {/* Error */}
                 {error && (
-                  <div className="mt-4 p-3.5 bg-red-50 border border-red-100 rounded-xl flex items-start gap-3 text-red-700">
-                    <ShieldCheck className="h-4 w-4 text-red-400 mt-0.5 shrink-0" />
+                  <div className="mt-4 flex items-start gap-3 rounded-xl border border-red-100 bg-red-50 p-3.5 text-red-700">
+                    <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-red-400" />
                     <p className="text-sm font-medium">{error}</p>
                   </div>
                 )}
-                
+
+                {/* Success */}
                 {createdBooking && (
-                  <div className="mt-4 p-3.5 bg-emerald-50 border border-emerald-100 rounded-xl flex items-start gap-3 text-emerald-800">
-                    <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+                  <div className="mt-4 flex items-start gap-3 rounded-xl border border-emerald-100 bg-emerald-50 p-3.5 text-emerald-800">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
                     <div>
                       <p className="text-sm font-bold">ได้รับคำขอเรียบร้อยแล้ว!</p>
-                      <p className="text-xs mt-0.5 text-emerald-600">ทีมงานจะตรวจสอบและติดต่อกลับ</p>
+                      <p className="mt-0.5 text-xs text-emerald-600">ทีมงานจะตรวจสอบและติดต่อกลับ</p>
                     </div>
                   </div>
                 )}
 
-                {/* Bottom Link */}
-                <div className="mt-5 pt-4 border-t border-slate-100 text-center">
-                  <button type="button" onClick={goToCheck} className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-slate-400 hover:text-blue-600 transition-colors">
+                {/* Bottom link */}
+                <div className="mt-5 border-t border-slate-100 pt-4 text-center">
+                  <button
+                    type="button"
+                    onClick={goToCheck}
+                    className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-slate-400 transition-colors hover:text-blue-600"
+                  >
                     มีรหัสอ้างอิงอยู่แล้ว?{" "}
                     <span className="text-blue-600 underline decoration-2 underline-offset-4">ตรวจสอบสถานะ</span>
                     <ArrowRight className="h-3.5 w-3.5" />

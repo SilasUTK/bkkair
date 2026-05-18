@@ -45,7 +45,7 @@ export default function Footer({ onNavigate }) {
   return (
     <footer
       id="contact"
-      className="relative mt-14 overflow-hidden rounded-t-[3rem] bg-primary-navy pb-8 pt-12 font-sans text-slate-300 shadow-2xl sm:rounded-t-[4rem] lg:pt-14"
+      className="relative mt-16 overflow-hidden rounded-t-[3rem] bg-primary-navy pb-10 pt-14 font-sans text-slate-300 shadow-2xl sm:rounded-t-[4rem] md:pb-12 md:pt-16"
     >
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -56,7 +56,7 @@ export default function Footer({ onNavigate }) {
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         {/* Main Grid */}
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           <section aria-label="BKK AIR">
             <Logo onClick={handleLogoClick} variant="footer" />
             <p className="mt-4 text-sm font-medium leading-relaxed text-slate-400">

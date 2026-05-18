@@ -90,7 +90,7 @@ const benefits = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="benefits" className="relative w-full overflow-hidden bg-bg-light py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-primary-navy">
+    <section id="benefits" className="relative w-full overflow-hidden bg-bg-light py-20 md:py-28 font-sans selection:bg-blue-200 selection:text-primary-navy">
       
       {/* Subtle background accents */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -101,7 +101,7 @@ export default function WhyChooseUs() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         
         {/* === Header Section === */}
-        <div className="mx-auto mb-12 max-w-3xl text-center lg:mb-14">
+          <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
           <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <Sparkles className="h-4 w-4 text-orange-500" />
             <span className="uppercase tracking-widest text-slate-500 text-xs">ทำไมต้องเลือก BKK AIR</span>
@@ -116,23 +116,23 @@ export default function WhyChooseUs() {
         </div>
 
         {/* === Cards Grid Section === */}
-        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 items-stretch gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit) => {
             const Icon = benefit.icon;
             return (
               <article
                 key={benefit.title}
-                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-6 transition-all duration-300 hover:-translate-y-1 ${benefit.theme.border} ${benefit.theme.hoverShadow} shadow-[0_4px_20px_rgba(15,23,42,0.06)]`}
+                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 ${benefit.theme.border} ${benefit.theme.hoverShadow} shadow-[0_4px_20px_rgba(15,23,42,0.06)]`}
               >
                 {/* Gradient top accent line */}
                 <div className={`absolute inset-x-0 top-0 h-[3px] rounded-t-3xl bg-gradient-to-r ${benefit.theme.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
 
                 {/* Icon */}
-                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${benefit.theme.gradient} shadow-md`}>
+                <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${benefit.theme.gradient} shadow-md`}>
                   <Icon className="h-5.5 w-5.5 text-white" aria-hidden="true" />
                 </div>
 
-                <h3 className="mb-2.5 text-[1rem] font-bold leading-snug text-slate-900">{benefit.title}</h3>
+                <h3 className="mb-3 text-[1rem] font-bold leading-snug text-slate-900">{benefit.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-500">{benefit.description}</p>
               </article>
             );
