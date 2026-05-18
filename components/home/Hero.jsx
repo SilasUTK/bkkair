@@ -4,9 +4,9 @@ import {
   Send, 
   Plane, 
   ShieldCheck, 
-  Clock, 
   FileCheck, 
-  Users,
+  Clock,
+  DollarSign,
   MapPin,
   CalendarDays
 } from "lucide-react";
@@ -30,6 +30,13 @@ const countries = [
 const visaTypes = [
   "ท่องเที่ยว / ส่วนตัว", "ธุรกิจ", "เยี่ยมครอบครัว", 
   "นักเรียน", "ทำงาน", "Transit"
+];
+
+const trustFeatures = [
+  { icon: ShieldCheck, color: "text-blue-600",    bg: "bg-blue-100",    title: "ตรวจสอบโดยทีมงานจริง",  desc: "ทุกคำขอผ่านการตรวจสอบก่อนส่ง" },
+  { icon: FileCheck,   color: "text-[#FF5722]",  bg: "bg-orange-100", title: "PDF พร้อมยื่นสถานทูต",    desc: "เอกสารจัดรูปแบบตามมาตรฐาน" },
+  { icon: Clock,       color: "text-emerald-600", bg: "bg-emerald-100", title: "ส่งภายใน 24 ชั่วโมง",       desc: "มีบริการเร่งด่วน Express" },
+  { icon: DollarSign,  color: "text-purple-600",  bg: "bg-purple-100", title: "ราคาโปร่งใส",               desc: "ไม่มีค่าใช้จ่ายแอบแฝง" },
 ];
 
 function getTomorrowDate() {
@@ -84,7 +91,7 @@ export default function Hero({ goToCheck }) {
   }
 
   function focusContactName() {
-    window.location.href = "/order";
+    window.location.href = "/contact";
   }
 
   function scrollToPackages() {
@@ -136,25 +143,26 @@ export default function Hero({ goToCheck }) {
               BKK AIR จัดเตรียมเอกสารสนับสนุนวีซ่าให้คุณ — ทั้งใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง <strong className="text-slate-800 font-semibold">ในรูปแบบ PDF มาตรฐานสถานทูต</strong> พร้อมให้คุณยื่นได้เลย
             </p>
 
-            {/* Features (Flat 2.0 Style - clean, icon focused) */}
-            <div className="mt-8 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-5">
-              {[
-                { icon: FileCheck, color: "text-blue-600", bg: "bg-blue-100", title: "PDF มาตรฐานสถานทูต", desc: "เอกสารทุกชิ้นตรงตามรูปแบบที่สถานทูตคาดหวัง" },
-                { icon: ShieldCheck, color: "text-[#FF5722]", bg: "bg-orange-100", title: "ตรวจสอบโดยทีมงานจริง", desc: "ไม่ใช่ระบบอัตโนมัติ ทุก order ผ่านทีมงานก่อนส่ง" },
-                { icon: Clock, color: "text-emerald-600", bg: "bg-emerald-100", title: "ส่งภายใน 24 ชั่วโมง", desc: "เหมาะทั้งผู้วางแผนล่วงหน้าและผู้ที่ต้องการเร่งด่วน" },
-                { icon: Users, color: "text-purple-600", bg: "bg-purple-100", title: "ราคาโปร่งใส ไม่มีแอบแฝง", desc: "ดูราคาชัดเจนก่อนสั่ง ไม่มี surprise charges ทีหลัง" },
-              ].map((feat, idx) => (
-                <div key={idx} className="group flex min-h-[92px] cursor-default items-start gap-4 rounded-3xl border border-blue-100/70 bg-white/70 p-4 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-                  <div className={`flex shrink-0 h-12 w-12 items-center justify-center rounded-2xl ${feat.bg} ${feat.color} transition-transform group-hover:scale-110 group-hover:rotate-3`}>
-                    <feat.icon className="h-6 w-6" strokeWidth={2.5} />
+            {/* Trust Feature Cards */}
+            <ul
+              className="mt-6 grid grid-cols-2 gap-3"
+              aria-label="จุดเด่น BKK AIR"
+            >
+              {trustFeatures.map((feat, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-start gap-3 rounded-2xl border border-blue-100 bg-white/80 p-3.5 shadow-[0_10px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm"
+                >
+                  <div className={`flex shrink-0 h-9 w-9 items-center justify-center rounded-xl ${feat.bg}`}>
+                    <feat.icon className={`h-5 w-5 ${feat.color}`} aria-hidden="true" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900">{feat.title}</h3>
-                    <p className="mt-0.5 text-sm text-slate-500">{feat.desc}</p>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold leading-tight text-slate-900">{feat.title}</p>
+                    <p className="mt-0.5 text-xs text-slate-500">{feat.desc}</p>
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
 
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -169,18 +177,13 @@ export default function Hero({ goToCheck }) {
               <button
                 type="button"
                 onClick={focusContactName}
+                aria-label="พูดคุยกับทีมงาน BKK AIR"
                 className="inline-flex min-h-[54px] items-center justify-center rounded-2xl border-2 border-blue-100/80 bg-white/65 px-7 text-base font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.06)] backdrop-blur transition-all hover:-translate-y-1 hover:border-blue-200 hover:bg-white"
               >
-                ส่งคำขอให้ทีมงานตรวจสอบ →
+                มีคำถาม? พูดคุยกับทีมงานเรา →
               </button>
             </div>
 
-            {/* Trust Badges */}
-            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-600">
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> ตรวจสอบโดยทีมงานจริง</span>
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> PDF พร้อมยื่นสถานทูต</span>
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> ส่งภายใน 24 ชั่วโมง</span>
-            </div>
             {/* Disclaimer Caption */}
             <p className="mt-4 text-xs text-slate-400 italic">
               การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุล BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น

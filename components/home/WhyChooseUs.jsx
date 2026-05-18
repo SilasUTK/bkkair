@@ -1,12 +1,12 @@
-import { Clock, FileText, SearchCheck, Sparkles } from "lucide-react";
+import { Clock, FileText, Globe2, LockKeyhole, MessageCircle, SearchCheck, Sparkles } from "lucide-react";
 import React from "react";
 
 const benefits = [
   {
-    icon: Clock,
-    title: "ตรวจสอบทุกขั้นตอนโดยทีมงานจริง",
-    subtitle: "(Staff-reviewed every request)",
-    description: "ไม่มีระบบอัตโนมัติ ทีมงานตรวจสอบข้อมูลและเอกสารทุกฉบับก่อนส่งถึงมือคุณ เพื่อความถูกต้องที่ไว้ใจได้",
+    icon: FileText,
+    title: "เอกสาร PDF มาตรฐานสถานทูต",
+    iconAlt: "visa document service Thailand",
+    description: "ทุกเอกสารผ่านการออกแบบตามรูปแบบที่สถานทูตคาดหวัง — ไม่ใช่แค่ template สำเร็จรูปที่ print ออกมา เป็น embassy-ready documents สำหรับเอกสารยื่นวีซ่า",
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
@@ -17,10 +17,10 @@ const benefits = [
     }
   },
   {
-    icon: FileText,
-    title: "ฟอร์แมตพร้อมใช้ประกอบคำขอวีซ่า",
-    subtitle: "(Embassy-ready format)",
-    description: "จัดเตรียม flight reservation for visa และ hotel booking for visa ในรูปแบบที่เหมาะกับเอกสารยื่นวีซ่า",
+    icon: SearchCheck,
+    title: "ตรวจสอบโดยทีมงานจริง ไม่ใช่ระบบอัตโนมัติ",
+    iconAlt: "visa document service Thailand",
+    description: "ทุก order ผ่านการตรวจสอบจากทีมงานที่มีประสบการณ์ด้านเอกสารวีซ่าโดยตรง ก่อนส่งให้คุณ",
     theme: {
       color: "text-[#FF5722]",
       bg: "bg-orange-50",
@@ -31,10 +31,10 @@ const benefits = [
     }
   },
   {
-    icon: SearchCheck,
-    title: "ทีมงานจริง พร้อมตอบทุกคำถาม",
-    subtitle: "(Human support via LINE & Email)",
-    description: "ไม่ใช่บอทและไม่ใช่ระบบตอบอัตโนมัติ ทีมงานพร้อมให้คำแนะนำและยืนยันรายละเอียดก่อนดำเนินการ",
+    icon: Clock,
+    title: "ส่งภายใน 24 ชั่วโมง (มีแบบ Express)",
+    iconAlt: "flight reservation for visa application",
+    description: "ไม่ต้องรอนาน เหมาะทั้งผู้ที่วางแผนล่วงหน้าและผู้ที่ต้องการเร่งด่วน",
     theme: {
       color: "text-emerald-600",
       bg: "bg-emerald-50",
@@ -42,6 +42,48 @@ const benefits = [
       hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.2)]",
       gradient: "from-emerald-500 to-teal-400",
       watermark: "text-emerald-50/60"
+    }
+  },
+  {
+    icon: LockKeyhole,
+    title: "ข้อมูลของคุณปลอดภัย",
+    iconAlt: "visa document service Thailand",
+    description: "เราไม่จัดเก็บข้อมูลส่วนตัวของคุณเกินความจำเป็น และไม่เปิดเผยข้อมูลให้บุคคลภายนอก",
+    theme: {
+      color: "text-purple-600",
+      bg: "bg-purple-50",
+      border: "border-purple-100",
+      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(147,51,234,0.18)]",
+      gradient: "from-purple-500 to-fuchsia-400",
+      watermark: "text-purple-50/60"
+    }
+  },
+  {
+    icon: MessageCircle,
+    title: "ราคาโปร่งใส ไม่มีค่าใช้จ่ายแอบแฝง",
+    iconAlt: "visa document service Thailand",
+    description: "ดูราคาได้ชัดเจนก่อนสั่ง ไม่มี surprise charges ทีหลัง",
+    theme: {
+      color: "text-sky-600",
+      bg: "bg-sky-50",
+      border: "border-sky-100",
+      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(2,132,199,0.18)]",
+      gradient: "from-sky-500 to-cyan-400",
+      watermark: "text-sky-50/60"
+    }
+  },
+  {
+    icon: Globe2,
+    title: "ครอบคลุมหลายประเทศปลายทาง",
+    iconAlt: "flight reservation for visa application",
+    description: "รองรับ visa support Thailand สำหรับวีซ่า Schengen, UK, US, Canada, Australia, Japan, South Korea และอีกหลายประเทศ",
+    theme: {
+      color: "text-rose-600",
+      bg: "bg-rose-50",
+      border: "border-rose-100",
+      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(225,29,72,0.16)]",
+      gradient: "from-rose-500 to-orange-400",
+      watermark: "text-rose-50/60"
     }
   }
 ];
@@ -70,19 +112,19 @@ export default function WhyChooseUs() {
         <div className="mx-auto mb-12 max-w-3xl text-center lg:mb-14">
           <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <Sparkles className="h-4 w-4 text-orange-500" />
-            <span className="uppercase tracking-widest text-slate-500 text-xs">Why Choose Us</span>
+            <span className="uppercase tracking-widest text-slate-500 text-xs">ทำไมต้องเลือก BKK AIR</span>
           </div>
           
           <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-5xl">
             เราไม่ได้แค่ส่งเอกสาร — <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">เราดูแลให้คุณพร้อมยื่น</span>
           </h2>
           <p className="mt-5 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
-            หลายคนเสียเวลาหาข้อมูล จ้างคนผิด หรือได้เอกสารที่ไม่ตรงมาตรฐานสถานทูต BKK AIR ออกแบบบริการนี้มาเพื่อแก้ปัญหาเหล่านั้นโดยตรง
+            หลายคนเสียเวลาหาข้อมูล จ้างคนผิด หรือได้เอกสารที่ไม่ตรงมาตรฐานสถานทูต BKK AIR ออกแบบบริการนี้มาเพื่อแก้ปัญหาเหล่านั้นโดยตรง พร้อมดูแลเอกสารยื่นวีซ่าแบบ visa support Thailand
           </p>
         </div>
 
         {/* === Cards Grid Section === */}
-        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-3 lg:gap-6">
+        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
             const displayNumber = `0${index + 1}`;
@@ -102,7 +144,7 @@ export default function WhyChooseUs() {
 
                 {/* Icon Container */}
                 <div className="relative z-10 mb-8 flex items-center justify-between">
-                  <div className={`flex h-16 w-16 items-center justify-center rounded-2xl ${benefit.theme.bg} border-2 ${benefit.theme.border} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                  <div role="img" aria-label={benefit.iconAlt} className={`flex h-16 w-16 items-center justify-center rounded-2xl ${benefit.theme.bg} border-2 ${benefit.theme.border} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
                     <Icon className={`h-8 w-8 ${benefit.theme.color}`} strokeWidth={2} aria-hidden="true" />
                   </div>
                 </div>
@@ -112,10 +154,7 @@ export default function WhyChooseUs() {
                   <h3 className="text-xl font-bold text-slate-900 leading-tight">
                     {benefit.title}
                   </h3>
-                  <p className={`text-sm font-bold tracking-wide mt-1 mb-4 ${benefit.theme.color}`}>
-                    {benefit.subtitle}
-                  </p>
-                  <p className="leading-relaxed text-slate-500 font-medium text-base">
+                  <p className="mt-4 leading-relaxed text-slate-500 font-medium text-base">
                     {benefit.description}
                   </p>
                 </div>
