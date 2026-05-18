@@ -55,16 +55,14 @@ export default function Footer({ onNavigate }) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-
-        {/* ── Main Grid: 1 col → 2 col → 4 col ── */}
+        {/* Main Grid */}
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-
-          {/* Column 1 — Brand */}
           <section aria-label="BKK AIR">
             <Logo onClick={handleLogoClick} variant="footer" />
             <p className="mt-4 text-sm font-medium leading-relaxed text-slate-400">
-              บริการจัดเตรียมเอกสารสนับสนุนวีซ่า สำหรับนักเดินทางชาวไทย
-              {" "}ส่ง <strong className="font-semibold text-slate-300">PDF พร้อมยื่นสถานทูต</strong> ภายใน 24 ชั่วโมง
+              บริการจัดเตรียมเอกสารสนับสนุนวีซ่า สําหรับนักเดินทางชาวไทย ส่ง{" "}
+              <strong className="font-semibold text-slate-300">PDF พร้อมยื่นสถานทูต</strong>{" "}
+              ภายใน 24 ชั่วโมง
             </p>
             <div className="mt-6 flex items-center gap-3">
               <a
@@ -97,7 +95,6 @@ export default function Footer({ onNavigate }) {
             </div>
           </section>
 
-          {/* Column 2 — บริการ */}
           <nav aria-label="บริการของเรา">
             <h2 className="text-base font-black uppercase tracking-wider text-white">บริการ</h2>
             <div className="mt-4 h-1 w-10 rounded-full bg-accent-orange"></div>
@@ -110,7 +107,6 @@ export default function Footer({ onNavigate }) {
             </ul>
           </nav>
 
-          {/* Column 3 — ข้อมูล */}
           <nav aria-label="ข้อมูลบริษัท">
             <h2 className="text-base font-black uppercase tracking-wider text-white">ข้อมูล</h2>
             <div className="mt-4 h-1 w-10 rounded-full bg-primary-dark"></div>
@@ -123,66 +119,12 @@ export default function Footer({ onNavigate }) {
             </ul>
           </nav>
 
-          {/* Column 4 — ช่องทางติดต่อ */}
-          <address className="not-italic">
-            <h2 className="text-base font-black uppercase tracking-wider text-white">ช่องทางติดต่อ</h2>
-            <div className="mt-4 h-1 w-10 rounded-full bg-emerald-500"></div>
-            <div className="mt-5 space-y-4 text-sm font-medium">
-              <div className="flex items-start gap-3">
-                <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#00B900]" />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-blue-600"
-              >
-                <span className="font-bold">fb</span>
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-pink-600"
-              >
-                <span className="font-bold">ig</span>
-              </a>
-            </div>
-          </section>
-
-          {/* Column 2 — บริการ */}
-          <section aria-label="Services">
-            <h3 className="mb-4 text-sm font-semibold text-white">บริการ</h3>
-            <ul className="space-y-2.5">
-              {servicesLinks.map((link) => (
-                <li key={link.label}>
-                  <FooterAnchor href={link.href}>{link.label}</FooterAnchor>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 h-1 w-10 rounded-full bg-primary-dark"></div>
-          </section>
-
-          {/* Column 3 — เกี่ยวกับ */}
-          <section aria-label="Information">
-            <h3 className="mb-4 text-sm font-semibold text-white">ข้อมูล</h3>
-            <ul className="space-y-2.5">
-              {infoLinks.map((link) => (
-                <li key={link.label}>
-                  <FooterAnchor href={link.href}>{link.label}</FooterAnchor>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {/* Column 4 — ติดต่อ */}
           <section aria-label="Contact">
-            <h3 className="mb-4 text-sm font-semibold text-white">ติดต่อ</h3>
-            <ul className="space-y-3.5">
-              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
-                <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#00B900]" />
+            <h2 className="text-base font-black uppercase tracking-wider text-white">ติดต่อ</h2>
+            <div className="mt-4 h-1 w-10 rounded-full bg-emerald-500"></div>
+            <ul className="mt-5 space-y-4 text-sm font-medium">
+              <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
+                <MessageCircle className="h-5 w-5 shrink-0 text-[#00B900]" />
                 <a
                   href="https://line.me/R/ti/p/@823lateh"
                   target="_blank"
@@ -192,21 +134,20 @@ export default function Footer({ onNavigate }) {
                   LINE: <span className="font-semibold text-white">@823lateh</span>
                 </a>
               </li>
-              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
-                <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary-dark" />
+              <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
+                <Mail className="h-5 w-5 shrink-0 text-primary-dark" />
                 <a href="mailto:info@bkkair.com" className="transition-colors hover:text-white">
                   info@bkkair.com
                 </a>
               </li>
-              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
-                <Clock className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
-                <p className="leading-relaxed">
-                  จันทร์–เสาร์{" "}
-                  <span className="font-semibold text-white">09:00–18:00 น.</span>
+              <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
+                <Clock className="h-5 w-5 shrink-0 text-amber-400" />
+                <p>
+                  จันทร์-เสาร์ <span className="font-semibold text-white">09:00-18:00 น.</span>
                 </p>
               </li>
-              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
-                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent-orange" />
+              <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
+                <MapPin className="h-5 w-5 shrink-0 text-accent-orange" />
                 <p>กรุงเทพมหานคร, ประเทศไทย</p>
               </li>
             </ul>
