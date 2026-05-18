@@ -7,6 +7,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        /* Premium Navy + Trust Color System */
+        primary: {
+          navy: "#0F172A",      /* Main brand navy - trust & authority */
+          dark: "#1E3A8A",      /* Deep blue - secondary */
+          light: "#DBEAFE",     /* Soft blue - light accents */
+        },
+        accent: {
+          orange: "#F97316",    /* Primary CTA orange */
+          gold: "#F59E0B",      /* Secondary accent gold */
+          hover: "#EA580C",     /* CTA hover state */
+        },
+        bg: {
+          light: "#F8FAFC",     /* Primary background */
+          card: "#FFFFFF",      /* Card background */
+        },
+        text: {
+          primary: "#111827",   /* Main text */
+          secondary: "#475569", /* Secondary text */
+        },
+        border: {
+          light: "#E5E7EB",     /* Border color */
+        },
+        /* Legacy brand colors kept for compatibility */
         brand: {
           blue: "#003d82",
           cyan: "#f59e0b",

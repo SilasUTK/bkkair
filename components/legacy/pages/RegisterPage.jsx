@@ -106,7 +106,7 @@ export default function RegisterPage({ onNavigate }) {
           
           {/* Subtle light flares */}
           <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-blue-400/40 blur-3xl" />
-          <div className="absolute -right-20 bottom-20 h-80 w-80 rounded-full bg-[#FF5722]/15 blur-3xl" />
+          <div className="absolute -right-20 bottom-20 h-80 w-80 rounded-full bg-accent-orange/15 blur-3xl" />
 
           <div className="relative z-10 flex flex-col h-full justify-between">
             
@@ -130,7 +130,7 @@ export default function RegisterPage({ onNavigate }) {
               <div className="absolute z-10 w-36 h-48 bg-[#F8FAFC] rounded-2xl shadow-xl flex flex-col items-center pt-6 pb-4 animate-[bounce_6s_ease-in-out_infinite]">
                  {/* Avatar Circle */}
                  <div className="w-16 h-16 bg-[#DBEAFE] rounded-full flex items-center justify-center mb-4 border-[3px] border-white shadow-sm">
-                    <User className="w-8 h-8 text-[#2563EB]" strokeWidth={2.5} />
+                    <User className="w-8 h-8 text-primary-dark" strokeWidth={2.5} />
                  </div>
                  {/* Text Mockups */}
                  <div className="w-20 h-2 bg-slate-200 rounded-full mb-3"></div>
@@ -139,7 +139,7 @@ export default function RegisterPage({ onNavigate }) {
               </div>
 
               {/* Orange Flight Ticket (Right Overlap) */}
-              <div className="absolute z-20 right-6 sm:right-10 top-12 w-32 h-16 bg-[#FF5722] rounded-xl shadow-lg shadow-orange-500/40 transform rotate-[15deg] flex items-center p-3 animate-[bounce_5s_ease-in-out_infinite_0.5s]">
+              <div className="absolute z-20 right-6 sm:right-10 top-12 w-32 h-16 bg-accent-orange rounded-xl shadow-lg shadow-orange-500/40 transform rotate-[15deg] flex items-center p-3 animate-[bounce_5s_ease-in-out_infinite_0.5s]">
                  <div className="bg-white/20 p-1.5 rounded-lg mr-2 shrink-0"><Plane className="w-5 h-5 text-white" /></div>
                  <div className="flex-1 border-l-2 border-dashed border-white/40 pl-2">
                     <div className="w-10 h-2 bg-white/90 rounded-full mb-1.5"></div>
@@ -204,7 +204,7 @@ export default function RegisterPage({ onNavigate }) {
               <button
                 type="button"
                 onClick={() => onNavigate?.("request")}
-                className="mt-10 inline-flex h-14 items-center justify-center rounded-2xl bg-[#FF5722] px-8 text-base font-bold text-white shadow-lg shadow-orange-200/50 transition-all hover:-translate-y-1 hover:bg-[#E64A19] hover:shadow-orange-300/50"
+                className="mt-10 inline-flex h-14 items-center justify-center rounded-2xl bg-accent-orange px-8 text-base font-bold text-white shadow-lg shadow-orange-200/50 transition-all hover:-translate-y-1 hover:bg-accent-hover hover:shadow-orange-300/50"
               >
                 เข้าสู่ระบบใช้งาน
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -267,7 +267,7 @@ export default function RegisterPage({ onNavigate }) {
 
               {/* Checkbox Accept Terms and Privacy Policy */}
               <label className="sm:col-span-2 group flex items-start gap-3 cursor-pointer mt-2">
-                <div className="relative flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 border-slate-300 bg-white transition-colors group-hover:border-[#2563EB] overflow-hidden mt-0.5">
+                <div className="relative flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 border-slate-300 bg-white transition-colors group-hover:border-primary-dark overflow-hidden mt-0.5">
                   <input
                     type="checkbox"
                     className="peer absolute h-full w-full cursor-pointer opacity-0"
@@ -277,7 +277,7 @@ export default function RegisterPage({ onNavigate }) {
                       setError("");
                     }}
                   />
-                  <div className="absolute inset-0 bg-[#2563EB] opacity-0 transition-opacity peer-checked:opacity-100 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-primary-dark opacity-0 transition-opacity peer-checked:opacity-100 flex items-center justify-center">
                     <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
@@ -285,9 +285,9 @@ export default function RegisterPage({ onNavigate }) {
                 </div>
                 <p className="text-[13px] sm:text-[14px] font-medium text-slate-600 leading-relaxed">
                   ฉันได้อ่านและยอมรับ{' '}
-                  <a href="#terms" className="text-[#2563EB] font-bold hover:underline underline-offset-2">ข้อตกลงการใช้งาน</a>
+                  <a href="#terms" className="text-primary-dark font-bold hover:underline underline-offset-2">ข้อตกลงการใช้งาน</a>
                   {' '}และ{' '}
-                  <a href="#privacy" className="text-[#2563EB] font-bold hover:underline underline-offset-2">นโยบายความเป็นส่วนตัว</a>
+                  <a href="#privacy" className="text-primary-dark font-bold hover:underline underline-offset-2">นโยบายความเป็นส่วนตัว</a>
                 </p>
               </label>
 
@@ -304,7 +304,7 @@ export default function RegisterPage({ onNavigate }) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group relative flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-[#FF5722] px-6 text-base font-bold text-white shadow-lg shadow-orange-200/50 transition-all hover:-translate-y-0.5 hover:bg-[#E64A19] hover:shadow-orange-300/50 disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none"
+                  className="group relative flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-accent-orange px-6 text-base font-bold text-white shadow-lg shadow-orange-200/50 transition-all hover:-translate-y-0.5 hover:bg-accent-hover hover:shadow-orange-300/50 disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none"
                 >
                   <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
                   {loading ? (
@@ -327,7 +327,7 @@ export default function RegisterPage({ onNavigate }) {
                 <button
                   type="button"
                   onClick={() => onNavigate?.("login")}
-                  className="font-bold text-[#2563EB] underline underline-offset-4 decoration-blue-200 hover:decoration-[#2563EB] transition-colors"
+                  className="font-bold text-primary-dark underline underline-offset-4 decoration-blue-200 hover:decoration-primary-dark transition-colors"
                 >
                   เข้าสู่ระบบ
                 </button>
@@ -350,12 +350,12 @@ function InputField({ label, name, type = "text", value, onChange, placeholder, 
 
   return (
     <label className="group relative block w-full">
-      <span className="mb-2 block text-[13px] font-bold text-slate-600 transition-colors group-focus-within:text-[#2563EB]">
+      <span className="mb-2 block text-[13px] font-bold text-slate-600 transition-colors group-focus-within:text-primary-dark">
         {label}
       </span>
       <span className="relative block">
         {Icon && (
-          <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400 transition-colors group-focus-within:text-[#2563EB]">
+          <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400 transition-colors group-focus-within:text-primary-dark">
             <Icon className="h-5 w-5" aria-hidden="true" />
           </span>
         )}
@@ -365,7 +365,7 @@ function InputField({ label, name, type = "text", value, onChange, placeholder, 
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className={`h-14 w-full rounded-2xl border-2 border-slate-100 bg-slate-50/50 text-[15px] font-medium text-slate-900 outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/70 focus:border-[#2563EB] focus:bg-white focus:shadow-[0_4px_20px_-4px_rgba(37,99,235,0.12)] focus:hover:bg-white ${
+          className={`h-14 w-full rounded-2xl border-2 border-slate-100 bg-slate-50/50 text-[15px] font-medium text-slate-900 outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/70 focus:border-primary-dark focus:bg-white focus:shadow-[0_4px_20px_-4px_rgba(30,58,138,0.12)] focus:hover:bg-white ${
             Icon ? "pl-12" : "pl-4"
           } ${isPasswordField ? "pr-12" : "pr-4"}`}
         />
@@ -376,7 +376,7 @@ function InputField({ label, name, type = "text", value, onChange, placeholder, 
               e.preventDefault();
               setShowPassword(!showPassword);
             }}
-            className="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-[#2563EB] focus:outline-none transition-colors"
+            className="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-primary-dark focus:outline-none transition-colors"
             title={showPassword ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน"}
           >
             {showPassword ? (

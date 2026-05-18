@@ -116,7 +116,7 @@ export default function LoginPage({ onNavigate }) {
                  <div className="w-20 h-2 bg-slate-200 rounded-full mb-3"></div>
                  <div className="w-16 h-1.5 bg-slate-200 rounded-full mb-4"></div>
                  {/* Fake Login Button inside graphic */}
-                 <div className="w-24 h-6 bg-[#2563EB] rounded-lg mt-auto opacity-90"></div>
+                 <div className="w-24 h-6 bg-primary-dark rounded-lg mt-auto opacity-90"></div>
               </div>
 
               {/* Verified Badge (Right Overlap) */}
@@ -125,7 +125,7 @@ export default function LoginPage({ onNavigate }) {
               </div>
 
               {/* Document/File Card (Left Bottom Overlap) */}
-              <div className="absolute z-30 left-6 sm:left-10 bottom-8 w-24 h-16 bg-[#2563EB] rounded-xl shadow-lg shadow-blue-500/30 transform -rotate-12 flex items-center p-2.5 animate-[bounce_7s_ease-in-out_infinite_1s]">
+              <div className="absolute z-30 left-6 sm:left-10 bottom-8 w-24 h-16 bg-primary-dark rounded-xl shadow-lg shadow-blue-500/30 transform -rotate-12 flex items-center p-2.5 animate-[bounce_7s_ease-in-out_infinite_1s]">
                  <div className="bg-white/20 p-1.5 rounded-lg mr-2 shrink-0"><FileText className="w-4 h-4 text-white" /></div>
                  <div className="flex-1 space-y-1.5">
                     <div className="w-full h-1.5 bg-white/90 rounded-full"></div>
@@ -197,9 +197,9 @@ export default function LoginPage({ onNavigate }) {
             {/* Remember Me & Forgot Password */}
             <div className="flex items-center justify-between gap-4 text-[13px] sm:text-sm font-medium mt-2">
               <label className="inline-flex items-center gap-2 text-slate-500 cursor-pointer group">
-                <div className="relative flex h-4 w-4 sm:h-5 sm:w-5 shrink-0 items-center justify-center rounded border-2 border-slate-300 bg-white transition-colors group-hover:border-[#2563EB] overflow-hidden">
+                <div className="relative flex h-4 w-4 sm:h-5 sm:w-5 shrink-0 items-center justify-center rounded border-2 border-slate-300 bg-white transition-colors group-hover:border-primary-dark overflow-hidden">
                   <input type="checkbox" className="peer absolute h-full w-full cursor-pointer opacity-0" />
-                  <div className="absolute inset-0 bg-[#2563EB] opacity-0 transition-opacity peer-checked:opacity-100 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-primary-dark opacity-0 transition-opacity peer-checked:opacity-100 flex items-center justify-center">
                     <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
@@ -207,7 +207,7 @@ export default function LoginPage({ onNavigate }) {
                 </div>
                 <span>จดจำฉันไว้</span>
               </label>
-              <button type="button" className="font-bold text-[#2563EB] underline-offset-4 hover:underline transition-all">
+              <button type="button" className="font-bold text-primary-dark underline-offset-4 hover:underline transition-all">
                 ลืมรหัสผ่าน?
               </button>
             </div>
@@ -225,7 +225,7 @@ export default function LoginPage({ onNavigate }) {
               <button
                 type="submit"
                 disabled={loading}
-                className="group relative flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-[#2563EB] px-6 text-base font-bold text-white shadow-lg shadow-blue-200/50 transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-300/50 disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none"
+                className="group relative flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-primary-dark px-6 text-base font-bold text-white shadow-lg shadow-blue-200/50 transition-all hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-blue-300/50 disabled:cursor-not-allowed disabled:opacity-70 disabled:transform-none"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
                 {loading ? (
@@ -248,7 +248,7 @@ export default function LoginPage({ onNavigate }) {
               <button
                 type="button"
                 onClick={() => onNavigate?.("register")}
-                className="font-bold text-[#FF5722] underline underline-offset-4 decoration-orange-200 hover:decoration-[#FF5722] transition-colors"
+                className="font-bold text-accent-orange underline underline-offset-4 decoration-orange-200 hover:decoration-accent-orange transition-colors"
               >
                 สมัครสมาชิก
               </button>
@@ -271,12 +271,12 @@ function InputField({ label, name, type = "text", value, onChange, placeholder, 
 
   return (
     <label className="group relative block w-full">
-      <span className="mb-2 block text-[13px] font-bold text-slate-600 transition-colors group-focus-within:text-[#2563EB]">
+      <span className="mb-2 block text-[13px] font-bold text-slate-600 transition-colors group-focus-within:text-primary-dark">
         {label}
       </span>
       <span className="relative block">
         {Icon && (
-          <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400 transition-colors group-focus-within:text-[#2563EB]">
+          <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400 transition-colors group-focus-within:text-primary-dark">
             <Icon className="h-5 w-5" aria-hidden="true" />
           </span>
         )}
@@ -286,7 +286,7 @@ function InputField({ label, name, type = "text", value, onChange, placeholder, 
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className={`h-14 w-full rounded-2xl border-2 border-slate-100 bg-slate-50/50 text-[15px] font-medium text-slate-900 outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/70 focus:border-[#2563EB] focus:bg-white focus:shadow-[0_4px_20px_-4px_rgba(37,99,235,0.12)] focus:hover:bg-white ${
+          className={`h-14 w-full rounded-2xl border-2 border-slate-100 bg-slate-50/50 text-[15px] font-medium text-slate-900 outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/70 focus:border-primary-dark focus:bg-white focus:shadow-[0_4px_20px_-4px_rgba(30,58,138,0.12)] focus:hover:bg-white ${
             Icon ? "pl-12" : "pl-4"
           } ${isPasswordField ? "pr-12" : "pr-4"}`}
         />
@@ -297,7 +297,7 @@ function InputField({ label, name, type = "text", value, onChange, placeholder, 
               e.preventDefault();
               setShowPassword(!showPassword);
             }}
-            className="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-[#2563EB] focus:outline-none transition-colors"
+            className="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-primary-dark focus:outline-none transition-colors"
             title={showPassword ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน"}
           >
             {showPassword ? (

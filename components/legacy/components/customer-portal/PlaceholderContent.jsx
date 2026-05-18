@@ -50,7 +50,7 @@ function TravelerProfiles({ onAddTraveler }) {
               <div className="absolute right-4 top-4 flex gap-2 opacity-100 transition sm:opacity-0 sm:group-hover:opacity-100">
                 <button
                   type="button"
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-[#2563EB] transition hover:-translate-y-0.5 hover:border-[#2563EB] hover:bg-white hover:shadow-sm"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-primary-dark transition hover:-translate-y-0.5 hover:border-primary-dark hover:bg-white hover:shadow-sm"
                   aria-label={`Edit ${name}`}
                 >
                   <Edit2 className="h-4 w-4" aria-hidden="true" />
@@ -65,7 +65,7 @@ function TravelerProfiles({ onAddTraveler }) {
               </div>
 
               <div className="mb-5 flex items-start justify-between gap-4 pr-20">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-lg font-black text-[#2563EB]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-lg font-black text-primary-dark">
                   {name.charAt(0)}
                 </div>
                 <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-slate-500">
@@ -78,7 +78,7 @@ function TravelerProfiles({ onAddTraveler }) {
               <div className="mt-5 grid gap-3">
                 <div className="rounded-2xl border border-slate-100 bg-[#F8FAFC] p-4">
                   <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-slate-400">
-                    <ShieldCheck className="h-4 w-4 text-[#2563EB]" aria-hidden="true" />
+                    <ShieldCheck className="h-4 w-4 text-primary-dark" aria-hidden="true" />
                     Passport
                   </div>
                   <p className="mt-2 text-sm font-black text-slate-800">{passport}</p>
@@ -99,7 +99,7 @@ function TravelerProfiles({ onAddTraveler }) {
         <button
           type="button"
           onClick={onAddTraveler}
-          className="flex min-h-[160px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 text-slate-500 transition-all hover:border-[#2563EB] hover:bg-blue-50 hover:text-[#2563EB]"
+          className="flex min-h-[160px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 text-slate-500 transition-all hover:border-primary-dark hover:bg-blue-50 hover:text-primary-dark"
         >
           <UserPlus className="h-8 w-8" aria-hidden="true" />
           <span className="text-sm font-black">เพิ่มข้อมูลผู้เดินทาง</span>
@@ -112,7 +112,7 @@ function TravelerProfiles({ onAddTraveler }) {
 function RequestsPreview({ onNewRequest }) {
   return (
     <section className="mt-8 rounded-[2rem] border border-slate-100 bg-white p-10 text-center shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]">
-      <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-[1.5rem] bg-orange-50 text-[#FF5722]">
+      <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-[1.5rem] bg-orange-50 text-accent-orange">
         <FileSearch className="h-10 w-10" aria-hidden="true" />
       </div>
       <h2 className="mt-5 text-2xl font-black text-slate-950">คุณยังไม่มีประวัติคำขออื่นๆ</h2>
@@ -122,7 +122,7 @@ function RequestsPreview({ onNewRequest }) {
       <button
         type="button"
         onClick={onNewRequest}
-        className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-sm font-black text-white shadow-lg shadow-blue-200/50 transition hover:-translate-y-0.5 hover:bg-blue-700"
+        className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-primary-dark px-8 py-4 text-sm font-black text-white shadow-lg shadow-blue-200/50 transition hover:-translate-y-0.5 hover:bg-blue-800"
       >
         <Plus className="h-5 w-5" aria-hidden="true" />
         สร้างคำขอใหม่

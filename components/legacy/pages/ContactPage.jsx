@@ -37,20 +37,20 @@ export default function ContactPage() {
         <div className="absolute -right-20 bottom-0 h-[500px] w-[500px] rounded-full bg-orange-100/30 blur-3xl" />
         <div
           className="absolute left-1/3 top-1/2 h-32 w-32 opacity-20"
-          style={{ backgroundImage: "radial-gradient(#2563EB 2.5px, transparent 2.5px)", backgroundSize: "20px 20px" }}
+          style={{ backgroundImage: "radial-gradient(#1E3A8A 2.5px, transparent 2.5px)", backgroundSize: "20px 20px" }}
         ></div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* ================= Header Section ================= */}
         <div className="mb-12 text-center lg:text-left">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border-2 border-orange-100 bg-orange-50 px-4 py-1.5 text-sm font-extrabold uppercase tracking-wide text-[#FF5722] shadow-sm">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border-2 border-orange-100 bg-orange-50 px-4 py-1.5 text-sm font-extrabold uppercase tracking-wide text-accent-orange shadow-sm">
             <MessageSquare className="h-4 w-4" aria-hidden="true" />
             Get in touch
           </div>
           <h1 className="text-4xl font-black leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
             ติดต่อสอบถาม<br className="sm:hidden" />
-            <span className="text-[#2563EB]">ทีมงาน BKK AIR</span>
+            <span className="text-primary-dark">ทีมงาน BKK AIR</span>
           </h1>
           <p className="mt-4 max-w-2xl text-lg font-medium text-slate-600">
             หากคุณมีข้อสงสัยเกี่ยวกับบริการวีซ่าหรือต้องการความช่วยเหลือ <br className="hidden sm:block" />
@@ -94,12 +94,12 @@ export default function ContactPage() {
 
             <div className="relative mt-4 hidden overflow-visible lg:block">
               <svg viewBox="0 0 400 300" className="h-auto w-full drop-shadow-2xl" aria-hidden="true">
-                <circle cx="200" cy="150" r="100" fill="#2563EB" opacity="0.05" />
+                <circle cx="200" cy="150" r="100" fill="#1E3A8A" opacity="0.05" />
                 <rect x="50" y="240" width="300" height="10" rx="5" fill="#E2E8F0" />
                 <path d="M70 240 L330 240 L340 260 L60 260 Z" fill="#CBD5E1" />
 
                 <g transform="translate(140, 60)">
-                  <path d="M20 180 C20 120 40 80 60 80 C80 80 100 120 100 180" fill="#2563EB" />
+                  <path d="M20 180 C20 120 40 80 60 80 C80 80 100 120 100 180" fill="#1E3A8A" />
                   <circle cx="60" cy="50" r="35" fill="#FCD34D" />
                   <path d="M25 50 C25 10 95 10 95 50 C95 20 25 20 25 50" fill="#1E293B" />
                   <path d="M30 50 Q30 10 60 10 Q90 10 90 50" fill="none" stroke="#1E293B" strokeWidth="8" />
@@ -115,13 +115,13 @@ export default function ContactPage() {
                   <rect x="250" y="80" width="80" height="40" rx="15" fill="white" />
                   <path d="M265 95 H315" stroke="#E2E8F0" strokeLinecap="round" strokeWidth="4" />
                   <path d="M265 105 H295" stroke="#E2E8F0" strokeLinecap="round" strokeWidth="4" />
-                  <circle cx="330" cy="80" r="10" fill="#FF5722" />
+                  <circle cx="330" cy="80" r="10" fill="#F97316" />
                   <path d="M327 80 L333 80 M330 77 L330 83" stroke="white" strokeWidth="2" />
                 </g>
 
                 <g className="animate-bounce" style={{ animationDuration: "4s", animationDelay: "1s" }}>
                   <rect x="40" y="120" width="100" height="50" rx="15" fill="white" />
-                  <circle cx="65" cy="145" r="12" fill="#2563EB" />
+                  <circle cx="65" cy="145" r="12" fill="#1E3A8A" />
                   <path d="M62 145 L68 145" stroke="white" strokeWidth="2" />
                   <rect x="85" y="140" width="40" height="4" rx="2" fill="#CBD5E1" />
                   <rect x="85" y="148" width="30" height="4" rx="2" fill="#CBD5E1" />
@@ -146,7 +146,7 @@ export default function ContactPage() {
                     <p className="mx-auto max-w-sm font-medium text-slate-600">
                       ขอบคุณสำหรับการติดต่อ ทีมงาน BKK AIR จะตรวจสอบข้อความและติดต่อกลับคุณโดยเร็วที่สุดครับ
                     </p>
-                    <button type="button" onClick={() => setSuccess(false)} className="mt-8 font-bold text-[#2563EB] hover:underline">
+                    <button type="button" onClick={() => setSuccess(false)} className="mt-8 font-bold text-primary-dark hover:underline">
                       ส่งข้อความใหม่
                     </button>
                   </div>
@@ -178,7 +178,7 @@ export default function ContactPage() {
                           หัวข้อที่ต้องการติดต่อ
                         </span>
                         <select
-                          className="h-12 w-full cursor-pointer appearance-none rounded-2xl border-2 border-transparent bg-slate-50 px-4 text-sm font-bold text-slate-900 outline-none transition-all hover:bg-slate-100/50 focus:border-[#2563EB] focus:bg-white"
+                          className="h-12 w-full cursor-pointer appearance-none rounded-2xl border-2 border-transparent bg-slate-50 px-4 text-sm font-bold text-slate-900 outline-none transition-all hover:bg-slate-100/50 focus:border-primary-dark focus:bg-white"
                           value={formData.subject}
                           onChange={(event) => setFormData({ ...formData, subject: event.target.value })}
                         >
@@ -198,7 +198,7 @@ export default function ContactPage() {
                         <textarea
                           rows="5"
                           placeholder="พิมพ์ข้อความที่ต้องการสอบถาม..."
-                          className="w-full resize-none rounded-2xl border-2 border-transparent bg-slate-50 p-4 text-sm font-bold text-slate-900 outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/50 focus:border-[#2563EB] focus:bg-white"
+                          className="w-full resize-none rounded-2xl border-2 border-transparent bg-slate-50 p-4 text-sm font-bold text-slate-900 outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/50 focus:border-primary-dark focus:bg-white"
                           required
                           value={formData.message}
                           onChange={(event) => setFormData({ ...formData, message: event.target.value })}
@@ -209,7 +209,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="group relative inline-flex min-h-[56px] w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#FF5722] px-8 text-base font-black text-white shadow-xl shadow-orange-200/50 transition-all hover:-translate-y-1 hover:bg-[#E64A19] hover:shadow-orange-300/50 disabled:opacity-70"
+                      className="group relative inline-flex min-h-[56px] w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-accent-orange px-8 text-base font-black text-white shadow-xl shadow-orange-200/50 transition-all hover:-translate-y-1 hover:bg-accent-hover hover:shadow-orange-300/50 disabled:opacity-70"
                     >
                       {loading ? (
                         <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
@@ -249,7 +249,7 @@ function ContactInfoCard({ icon: Icon, title, content, subContent, color }) {
       </div>
       <div>
         <h3 className="text-xs font-black uppercase tracking-wider opacity-60">{title}</h3>
-        <p className="mt-1 text-base font-black leading-tight text-slate-900 transition-colors group-hover:text-[#2563EB]">{content}</p>
+        <p className="mt-1 text-base font-black leading-tight text-slate-900 transition-colors group-hover:text-primary-dark">{content}</p>
         <p className="mt-1 text-xs font-bold opacity-60">{subContent}</p>
       </div>
     </div>
@@ -259,7 +259,7 @@ function ContactInfoCard({ icon: Icon, title, content, subContent, color }) {
 function InputField({ label, name, type = "text", placeholder, required, value, onChange }) {
   return (
     <label className="group block w-full">
-      <span className="mb-2 block text-xs font-black uppercase tracking-wider text-slate-700 transition-colors group-focus-within:text-[#2563EB]">{label}</span>
+      <span className="mb-2 block text-xs font-black uppercase tracking-wider text-slate-700 transition-colors group-focus-within:text-primary-dark">{label}</span>
       <input
         name={name}
         type={type}
@@ -267,7 +267,7 @@ function InputField({ label, name, type = "text", placeholder, required, value, 
         required={required}
         value={value}
         onChange={onChange}
-        className="h-12 w-full rounded-2xl border-2 border-transparent bg-slate-50 px-4 text-sm font-bold text-slate-900 outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/50 focus:border-[#2563EB] focus:bg-white"
+        className="h-12 w-full rounded-2xl border-2 border-transparent bg-slate-50 px-4 text-sm font-bold text-slate-900 outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/50 focus:border-primary-dark focus:bg-white"
       />
     </label>
   );
@@ -275,7 +275,7 @@ function InputField({ label, name, type = "text", placeholder, required, value, 
 
 function SocialIcon({ name }) {
   return (
-    <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-100 bg-white text-xs font-black text-slate-500 shadow-sm transition-all hover:border-[#2563EB] hover:bg-[#2563EB] hover:text-white">
+    <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-100 bg-white text-xs font-black text-slate-500 shadow-sm transition-all hover:border-primary-dark hover:bg-primary-dark hover:text-white">
       {name}
     </div>
   );

@@ -18,7 +18,7 @@ export default function MarketingShell({ children }) {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900">
+    <div className="min-h-screen bg-bg-light text-slate-900">
       <Navbar onNavigate={navigate} />
       <main className="pt-24">{children}</main>
       <Footer onNavigate={navigate} />

@@ -35,7 +35,7 @@ export const documentVault = [];
 
 export const summaryCards = [
   { label: "Active requests", value: "0", icon: Plane, tone: "bg-blue-50 text-blue-600" },
-  { label: "Payment pending", value: "0", icon: ReceiptText, tone: "bg-orange-50 text-[#FF5722]" },
+  { label: "Payment pending", value: "0", icon: ReceiptText, tone: "bg-orange-50 text-accent-orange" },
   { label: "Ready documents", value: "0", icon: FileCheck2, tone: "bg-emerald-50 text-[#22C55E]" },
 ];
 

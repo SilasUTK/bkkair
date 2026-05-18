@@ -101,7 +101,7 @@ const termsSections = [
     body: (
       <p>
         การใช้บริการอยู่ภายใต้นโยบายความเป็นส่วนตัว (Privacy Policy):{" "}
-        <a href="/privacy-policy" className="text-[#2563EB] font-bold hover:underline underline-offset-4 decoration-blue-200">
+        <a href="/privacy-policy" className="text-primary-dark font-bold hover:underline underline-offset-4 decoration-blue-200">
           /privacy-policy
         </a>
       </p>
@@ -122,7 +122,7 @@ const termsSections = [
             <span className="text-blue-500 mt-1">•</span>
             <span>
               พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA){" "}
-              <a href="https://www.pdpc.or.th/th/laws/pdpa" target="_blank" rel="noreferrer" className="text-[#2563EB] font-bold hover:underline underline-offset-4 decoration-blue-200 break-all">
+              <a href="https://www.pdpc.or.th/th/laws/pdpa" target="_blank" rel="noreferrer" className="text-primary-dark font-bold hover:underline underline-offset-4 decoration-blue-200 break-all">
                 https://www.pdpc.or.th/th/laws/pdpa
               </a>
             </span>
@@ -141,7 +141,7 @@ const termsSections = [
       <div className="space-y-3 bg-orange-50/50 p-5 rounded-2xl border border-orange-100/50">
         <p className="flex items-center gap-2">
           <span className="font-bold text-slate-900">Email:</span>{" "}
-          <a href="mailto:info@bkkair.com" className="text-[#FF5722] font-medium hover:text-orange-800 underline decoration-orange-200 underline-offset-4">
+          <a href="mailto:info@bkkair.com" className="text-accent-orange font-medium hover:text-orange-800 underline decoration-orange-200 underline-offset-4">
             info@bkkair.com
           </a>
         </p>
@@ -183,7 +183,7 @@ export default function TermsOfService() {
             
             <div className="relative z-10 w-full md:w-3/5">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white border border-slate-200/60 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-sm">
-                <FileSignature className="h-4 w-4 text-[#FF5722]" aria-hidden="true" />
+                <FileSignature className="h-4 w-4 text-accent-orange" aria-hidden="true" />
                 <span className="uppercase tracking-widest text-slate-500 text-[11px] sm:text-xs">BKK AIR (บีเคเค แอร์)</span>
               </div>
               
@@ -229,7 +229,7 @@ export default function TermsOfService() {
               </div>
 
               {/* Floating Badge (Scale/Justice Icon) */}
-              <div className="absolute -bottom-2 -left-4 w-16 h-16 bg-gradient-to-br from-[#FF5722] to-orange-400 rounded-2xl flex items-center justify-center border-4 border-white shadow-xl z-20 animate-[bounce_5s_ease-in-out_infinite_0.5s] transform -rotate-6">
+              <div className="absolute -bottom-2 -left-4 w-16 h-16 bg-gradient-to-br from-accent-orange to-orange-400 rounded-2xl flex items-center justify-center border-4 border-white shadow-xl z-20 animate-[bounce_5s_ease-in-out_infinite_0.5s] transform -rotate-6">
                  <Scale className="w-7 h-7 text-white" />
               </div>
             </div>
@@ -243,7 +243,7 @@ export default function TermsOfService() {
                 
                 {/* Section Title */}
                 <div className="flex items-start gap-4 mb-5">
-                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-orange-50 text-[#FF5722] font-bold text-sm border border-orange-100">
+                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-orange-50 text-accent-orange font-bold text-sm border border-orange-100">
                     {index + 1}
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-slate-900 leading-snug pt-1">
@@ -294,7 +294,7 @@ export default function TermsOfService() {
           </div>
 
           {/* ================= Footer Area / CTA ================= */}
-          <div className="bg-gradient-to-r from-[#FF5722] to-orange-500 px-6 py-8 sm:px-12 text-center relative overflow-hidden">
+          <div className="bg-gradient-to-r from-accent-orange to-orange-500 px-6 py-8 sm:px-12 text-center relative overflow-hidden">
              {/* Decorative Background Elements in Footer */}
              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2"></div>
              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-xl transform -translate-x-1/2 translate-y-1/2"></div>

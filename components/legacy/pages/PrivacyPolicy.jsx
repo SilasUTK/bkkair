@@ -299,7 +299,7 @@ export default function PrivacyPolicy() {
           </div>
 
           {/* Footer Area / CTA */}
-          <div className="bg-gradient-to-r from-[#2563EB] to-indigo-600 px-6 py-8 sm:px-12 text-center">
+          <div className="bg-gradient-to-r from-primary-dark to-primary-navy px-6 py-8 sm:px-12 text-center">
             <p className="flex flex-col sm:flex-row items-center justify-center gap-3 text-base sm:text-lg font-bold text-white">
               <ShieldCheck className="h-6 w-6 text-blue-200" />
               BKK AIR (บีเคเค แอร์) มุ่งมั่นในการดูแลข้อมูลของผู้ใช้อย่างปลอดภัย โปร่งใส และเป็นมืออาชีพ

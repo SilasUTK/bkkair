@@ -8,7 +8,7 @@ const features = [
     desc: "เราเก็บรวบรวมข้อมูลเท่าที่จำเป็นสำหรับการจัดทำเอกสารเท่านั้น ไม่มีการขายหรือแชร์ข้อมูลให้บุคคลภายนอก",
     color: {
       bg: "bg-orange-100",
-      icon: "text-[#FF5722]",
+      icon: "text-accent-orange",
       ring: "ring-orange-50",
       border: "border-orange-200"
     }
@@ -19,7 +19,7 @@ const features = [
     desc: "การชำระเงินผ่านช่องทางที่เข้ารหัส — เราไม่จัดเก็บข้อมูลบัตรเครดิตหรือบัญชีธนาคารของคุณ",
     color: {
       bg: "bg-blue-100",
-      icon: "text-[#2563EB]",
+      icon: "text-primary-dark",
       ring: "ring-blue-50",
       border: "border-blue-200"
     }
@@ -69,10 +69,10 @@ export default function SeoTrustSection() {
             คุณฝากข้อมูลไว้กับเรา
             <br className="hidden sm:block" />
             <span className="relative inline-block mt-2">
-              <span className="relative z-10 text-[#FF5722]">
+              <span className="relative z-10 text-accent-orange">
                 เราจริงจังกับเรื่องนี้
               </span>
-              <svg className="absolute -bottom-3 left-0 -z-10 h-3 w-full text-[#FF5722]/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+              <svg className="absolute -bottom-3 left-0 -z-10 h-3 w-full text-accent-orange/20" viewBox="0 0 100 10" preserveAspectRatio="none">
                 <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round"/>
               </svg>
             </span>

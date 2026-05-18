@@ -56,13 +56,13 @@ export default function OverviewContent({ activeRequest, onOpenModal }) {
         <section className="rounded-[2rem] border border-slate-100 bg-white p-5 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] sm:p-7">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <p className="text-sm font-black uppercase tracking-normal text-[#2563EB]">Active Request</p>
+              <p className="text-sm font-black uppercase tracking-normal text-primary-dark">Active Request</p>
               <h2 className="mt-2 text-2xl font-black text-slate-950">
                 {requestCode} · {destination}
               </h2>
               <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">{product}</p>
             </div>
-            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-orange-50 px-4 py-2 text-xs font-black text-[#FF5722] ring-4 ring-orange-50/50">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-orange-50 px-4 py-2 text-xs font-black text-accent-orange ring-4 ring-orange-50/50">
               <Clock3 className="h-4 w-4" aria-hidden="true" />
               {status}
             </span>
@@ -79,7 +79,7 @@ export default function OverviewContent({ activeRequest, onOpenModal }) {
               const badgeClass = isDone
                 ? "bg-emerald-50 text-[#22C55E]"
                 : isActive
-                  ? "bg-orange-50 text-[#FF5722] ring-4 ring-orange-100"
+                  ? "bg-orange-50 text-accent-orange ring-4 ring-orange-100"
                   : "bg-slate-100 text-slate-400";
               const connectorClass = isDone ? "bg-[#22C55E]" : "bg-slate-200";
 
@@ -122,11 +122,11 @@ export default function OverviewContent({ activeRequest, onOpenModal }) {
           <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-orange-50 blur-3xl pointer-events-none"></div>
           <div className="relative z-10">
             <div className="flex items-start gap-4">
-              <div className="flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-2xl bg-orange-50 text-[#FF5722]">
+              <div className="flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-2xl bg-orange-50 text-accent-orange">
                 <ReceiptText className="h-6 w-6" aria-hidden="true" />
               </div>
               <div>
-                <p className="text-sm font-black text-[#FF5722] tracking-wide uppercase">Pending Action</p>
+                <p className="text-sm font-black text-accent-orange tracking-wide uppercase">Pending Action</p>
                 <h2 className="mt-1 text-2xl font-black text-slate-950 tracking-tight">Quotation ready</h2>
                 <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
                   กรุณาชำระเงินและอัปโหลดสลิปเพื่อให้ทีมงานเริ่มจัดเตรียมเอกสาร
@@ -148,7 +148,7 @@ export default function OverviewContent({ activeRequest, onOpenModal }) {
             <button
               type="button"
               onClick={() => onOpenModal?.("payment")}
-              className="mt-6 inline-flex min-h-[3.5rem] w-full items-center justify-center gap-3 rounded-2xl bg-[#FF5722] px-5 py-4 text-sm font-black text-white shadow-[0_20px_40px_-20px_rgba(255,87,34,0.75)] transition-all hover:-translate-y-0.5 hover:bg-[#E64A19] hover:shadow-[0_25px_45px_-20px_rgba(255,87,34,0.8)]"
+              className="mt-6 inline-flex min-h-[3.5rem] w-full items-center justify-center gap-3 rounded-2xl bg-accent-orange px-5 py-4 text-sm font-black text-white shadow-[0_20px_40px_-20px_rgba(249,115,22,0.75)] transition-all hover:-translate-y-0.5 hover:bg-accent-hover hover:shadow-[0_25px_45px_-20px_rgba(249,115,22,0.8)]"
             >
               <UploadCloud className="h-5 w-5" aria-hidden="true" />
               อัปโหลดสลิปชำระเงิน
@@ -183,11 +183,11 @@ export default function OverviewContent({ activeRequest, onOpenModal }) {
               <article key={id} className="group rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 transition-all hover:bg-white hover:shadow-md hover:border-blue-100">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex min-w-0 items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-[#2563EB] transition-transform group-hover:scale-105 group-hover:rotate-3">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-primary-dark transition-transform group-hover:scale-105 group-hover:rotate-3">
                       {Icon && <Icon className="h-6 w-6" aria-hidden="true" />}
                     </div>
                     <div className="min-w-0">
-                      <h3 className="truncate text-base font-black text-slate-950 group-hover:text-[#2563EB] transition-colors">{name}</h3>
+                      <h3 className="truncate text-base font-black text-slate-950 group-hover:text-primary-dark transition-colors">{name}</h3>
                       <p className="mt-1 truncate text-sm font-semibold text-slate-500">{fileName}</p>
                       <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-[#22C55E]">
                         <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
@@ -198,14 +198,14 @@ export default function OverviewContent({ activeRequest, onOpenModal }) {
                   <div className="flex shrink-0 items-center gap-2">
                     <button
                       type="button"
-                      className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-[#2563EB]"
+                      className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-primary-dark"
                       aria-label={`Preview ${name}`}
                     >
                       <Eye className="h-5 w-5" aria-hidden="true" />
                     </button>
                     <button
                       type="button"
-                      className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#2563EB] bg-[#2563EB] text-white shadow-[0_16px_30px_-18px_rgba(37,99,235,0.8)] transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-[0_20px_34px_-18px_rgba(37,99,235,0.9)]"
+                      className="flex h-11 w-11 items-center justify-center rounded-2xl border border-primary-dark bg-primary-dark text-white shadow-[0_16px_30px_-18px_rgba(30,58,138,0.8)] transition hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-[0_20px_34px_-18px_rgba(30,58,138,0.9)]"
                       aria-label={`Download ${name}`}
                     >
                       <Download className="h-5 w-5" aria-hidden="true" />

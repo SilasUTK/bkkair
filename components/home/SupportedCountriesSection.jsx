@@ -69,7 +69,7 @@ export default function SupportedCountriesSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-black uppercase tracking-[0.25em] text-[#2563EB]">
+          <p className="text-sm font-black uppercase tracking-[0.25em] text-primary-dark">
             ประเทศที่ให้บริการ
           </p>
           <h2 id="supported-countries-heading" className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
@@ -106,7 +106,7 @@ export default function SupportedCountriesSection() {
           </p>
           <a
             href="/contact"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FF5722] px-5 py-3 text-sm font-black text-white shadow-lg shadow-orange-200 transition-all duration-300 hover:bg-orange-600 sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-accent-orange px-5 py-3 text-sm font-black text-white shadow-lg shadow-orange-200 transition-all duration-300 hover:bg-accent-hover sm:w-auto"
           >
             ปรึกษาทีมงานฟรี
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

@@ -22,11 +22,11 @@ const benefits = [
     iconAlt: "visa document service Thailand",
     description: "ทุก order ผ่านการตรวจสอบจากทีมงานที่มีประสบการณ์ด้านเอกสารวีซ่าโดยตรง ก่อนส่งให้คุณ",
     theme: {
-      color: "text-[#FF5722]",
+      color: "text-accent-orange",
       bg: "bg-orange-50",
       border: "border-orange-100",
       hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(255,87,34,0.2)]",
-      gradient: "from-[#FF5722] to-orange-400",
+      gradient: "from-accent-orange to-orange-400",
       watermark: "text-orange-50/60"
     }
   },
@@ -90,7 +90,7 @@ const benefits = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="benefits" className="relative w-full overflow-hidden bg-white py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section id="benefits" className="relative w-full overflow-hidden bg-bg-light py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-primary-navy">
       
       {/* Subtle background accents */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

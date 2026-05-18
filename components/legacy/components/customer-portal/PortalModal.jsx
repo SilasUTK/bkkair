@@ -19,7 +19,7 @@ export default function PortalModal({ type, onClose }) {
         {/* Header */}
         <div className="flex items-start justify-between gap-4 border-b border-slate-100 p-6">
           <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-[#2563EB]">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-primary-dark">
               <Icon className="h-6 w-6" aria-hidden="true" />
             </div>
             <div>
@@ -55,8 +55,8 @@ export default function PortalModal({ type, onClose }) {
               onClick={onClose}
               className={`inline-flex min-h-[3rem] items-center justify-center gap-2 rounded-2xl px-6 text-sm font-black text-white transition hover:-translate-y-0.5 ${
                 isSlipUpload 
-                  ? "bg-[#FF5722] hover:bg-[#E64A19] shadow-[0_18px_38px_-22px_rgba(255,87,34,0.8)]" 
-                  : "bg-[#2563EB] hover:bg-blue-700 shadow-[0_18px_38px_-22px_rgba(37,99,235,0.8)]"
+                  ? "bg-accent-orange hover:bg-accent-hover shadow-[0_18px_38px_-22px_rgba(249,115,22,0.8)]" 
+                  : "bg-primary-dark hover:bg-blue-800 shadow-[0_18px_38px_-22px_rgba(30,58,138,0.8)]"
               }`}
             >
               {isSlipUpload ? (
@@ -134,7 +134,7 @@ function PaymentSlipForm() {
         <input
           type="text"
           placeholder="เช่น 06/05/2026 14:30"
-          className="mt-2 h-12 w-full rounded-2xl border border-slate-200 bg-[#F8FAFC] px-4 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+          className="mt-2 h-12 w-full rounded-2xl border border-slate-200 bg-bg-light px-4 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-primary-dark focus:bg-white focus:ring-4 focus:ring-blue-500/10"
         />
       </label>
 
@@ -147,7 +147,7 @@ function PaymentSlipForm() {
       />
 
       {selectedFile ? (
-        <div className="overflow-hidden rounded-[2rem] border-2 border-[#2563EB] bg-white shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)]">
+        <div className="overflow-hidden rounded-[2rem] border-2 border-primary-dark bg-white shadow-[0_20px_60px_-20px_rgba(30,58,138,0.35)]">
           {isImageFile && previewUrl ? (
             <div className="relative h-64 bg-slate-100">
               <NextImage
@@ -158,14 +158,14 @@ function PaymentSlipForm() {
                 sizes="(max-width: 640px) 100vw, 576px"
                 className="object-contain"
               />
-              <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-black text-[#2563EB] shadow-sm">
+              <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-black text-primary-dark shadow-sm">
                 <ImageIcon className="h-4 w-4" aria-hidden="true" />
                 Image Preview
               </div>
             </div>
           ) : (
             <div className="flex items-center gap-4 bg-blue-50/60 p-5">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-[#2563EB] shadow-sm">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-primary-dark shadow-sm">
                 <FileText className="h-7 w-7" aria-hidden="true" />
               </div>
               <div className="min-w-0">
@@ -188,7 +188,7 @@ function PaymentSlipForm() {
               <button
                 type="button"
                 onClick={handleChangeFile}
-                className="inline-flex h-11 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 px-4 text-xs font-black text-[#2563EB] transition hover:border-[#2563EB] hover:bg-white"
+                className="inline-flex h-11 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 px-4 text-xs font-black text-primary-dark transition hover:border-primary-dark hover:bg-white"
               >
                 เปลี่ยนไฟล์
               </button>
@@ -204,8 +204,8 @@ function PaymentSlipForm() {
           </div>
         </div>
       ) : (
-        <label className="block cursor-pointer rounded-[2rem] border-2 border-dashed border-blue-200 bg-blue-50/40 p-8 text-center transition-all hover:border-[#2563EB] hover:bg-blue-50 group">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-[#2563EB] transition-transform group-hover:scale-110">
+        <label className="block cursor-pointer rounded-[2rem] border-2 border-dashed border-blue-200 bg-blue-50/40 p-8 text-center transition-all hover:border-primary-dark hover:bg-blue-50 group">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-primary-dark transition-transform group-hover:scale-110">
             <UploadCloud className="h-6 w-6" aria-hidden="true" />
           </div>
           <span className="mt-4 block text-sm font-black text-slate-900">คลิกเพื่อเลือกไฟล์ หรือลากไฟล์มาวางที่นี่</span>
@@ -225,7 +225,7 @@ function TravelerForm() {
         <input
           type="text"
           placeholder="e.g. Somchai Jaidee"
-          className="mt-2 h-12 w-full rounded-2xl border border-slate-200 bg-[#F8FAFC] px-4 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+          className="mt-2 h-12 w-full rounded-2xl border border-slate-200 bg-bg-light px-4 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-primary-dark focus:bg-white focus:ring-4 focus:ring-blue-500/10"
         />
       </label>
       <label className="block sm:col-span-2">
@@ -233,7 +233,7 @@ function TravelerForm() {
         <input
           type="text"
           placeholder="Passport number"
-          className="mt-2 h-12 w-full rounded-2xl border border-slate-200 bg-[#F8FAFC] px-4 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+          className="mt-2 h-12 w-full rounded-2xl border border-slate-200 bg-bg-light px-4 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-primary-dark focus:bg-white focus:ring-4 focus:ring-blue-500/10"
         />
       </label>
       <label className="block">

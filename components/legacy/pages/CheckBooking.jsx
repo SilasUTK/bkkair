@@ -46,8 +46,8 @@ export default function CheckBooking() {
       <div aria-hidden="true" className="absolute -left-16 top-10 h-36 w-36 rounded-[45%_55%_60%_40%] bg-sky-100" />
       <div className="relative rounded-[2rem] border border-blue-100 bg-white p-6 shadow-xl shadow-blue-100">
         <div className="mb-6">
-          <p className="text-sm font-extrabold uppercase tracking-wide text-[#F97316]">Status Tracking</p>
-          <h1 className="mt-2 text-3xl font-black text-[#0F172A]">
+          <p className="text-sm font-extrabold uppercase tracking-wide text-accent-orange">Status Tracking</p>
+          <h1 className="mt-2 text-3xl font-black text-primary-navy">
             Check Booking Status
           </h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -62,13 +62,13 @@ export default function CheckBooking() {
             placeholder="A7K9X2"
             required
             maxLength={6}
-            className="min-h-12 flex-1 rounded-2xl border border-blue-100 bg-slate-50 px-4 font-mono uppercase text-slate-950 placeholder:text-slate-400 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-100"
+            className="min-h-12 flex-1 rounded-2xl border border-blue-100 bg-slate-50 px-4 font-mono uppercase text-slate-950 placeholder:text-slate-400 outline-none transition focus:border-primary-dark focus:bg-white focus:ring-2 focus:ring-blue-100"
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#2563EB] px-5 text-sm font-extrabold text-white shadow-lg shadow-blue-100 transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary-dark px-5 text-sm font-extrabold text-white shadow-lg shadow-blue-100 transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Search size={17} aria-hidden="true" />
             {loading ? "Checking..." : "Check Status"}
@@ -82,7 +82,7 @@ export default function CheckBooking() {
         )}
 
         {booking && (
-          <div className="mt-6 rounded-[1.5rem] border border-blue-100 bg-[#F8FAFC] p-5">
+          <div className="mt-6 rounded-[1.5rem] border border-blue-100 bg-bg-light p-5">
             <div className="mb-4 flex flex-col gap-1 border-b border-blue-100 pb-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                 Booking Code
@@ -90,7 +90,7 @@ export default function CheckBooking() {
               <p className="font-mono text-2xl font-semibold text-slate-950">
                 {booking.bookingCode}
               </p>
-              <p className="text-sm font-bold text-[#2563EB]">
+              <p className="text-sm font-bold text-primary-dark">
                 Status: {customerStatusLabel(booking.status)}
               </p>
             </div>

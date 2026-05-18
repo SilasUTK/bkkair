@@ -12,8 +12,8 @@ export default function FinalCtaSection() {
       className="relative w-full overflow-hidden py-20 font-sans lg:py-28"
       aria-labelledby="final-cta-heading"
     >
-      {/* Deep blue gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700" />
+      {/* Premium navy gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-navy via-primary-dark to-primary-navy" />
       {/* Radial glow at left-center */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.10)_0%,transparent_60%)]" />
       {/* Dot grid overlay */}
@@ -44,7 +44,7 @@ export default function FinalCtaSection() {
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="/packages"
-            className="inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-2xl bg-white px-8 text-base font-black text-blue-700 shadow-[0_8px_32px_rgba(0,0,0,0.20)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] focus:outline-none focus:ring-4 focus:ring-white/40 sm:w-auto"
+            className="inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-2xl bg-white px-8 text-base font-black text-primary-navy shadow-[0_8px_32px_rgba(0,0,0,0.20)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] focus:outline-none focus:ring-4 focus:ring-white/40 sm:w-auto"
           >
             📄 เลือกแพ็กเกจและสั่งเลย
             <ArrowRight className="h-5 w-5" aria-hidden="true" />

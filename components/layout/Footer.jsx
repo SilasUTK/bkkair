@@ -27,7 +27,7 @@ function FooterAnchor({ href, children }) {
       href={href}
       className="group flex items-center text-slate-400 transition-all duration-300 hover:text-white"
     >
-      <span className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-[#FF5722] opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100"></span>
+      <span className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-accent-orange opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100"></span>
       <span className="transition-transform duration-300 group-hover:translate-x-1">{children}</span>
     </a>
   );
@@ -45,12 +45,12 @@ export default function Footer({ onNavigate }) {
   return (
     <footer
       id="contact"
-      className="relative mt-14 overflow-hidden rounded-t-[3rem] bg-[#0F172A] pb-8 pt-12 font-sans text-slate-300 shadow-2xl sm:rounded-t-[4rem] lg:pt-14"
+      className="relative mt-14 overflow-hidden rounded-t-[3rem] bg-primary-navy pb-8 pt-12 font-sans text-slate-300 shadow-2xl sm:rounded-t-[4rem] lg:pt-14"
     >
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#2563EB] opacity-20 blur-[100px]" />
-        <div className="absolute -right-20 bottom-0 h-[400px] w-[400px] rounded-full bg-[#FF5722] opacity-10 blur-[80px]" />
+        <div className="absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-primary-dark opacity-20 blur-[100px]" />
+        <div className="absolute -right-20 bottom-0 h-[400px] w-[400px] rounded-full bg-accent-orange opacity-10 blur-[80px]" />
         <div className="absolute right-10 top-20 h-40 w-40 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.45)_2px,transparent_0)] bg-[length:20px_20px] opacity-10"></div>
       </div>
 
@@ -100,7 +100,7 @@ export default function Footer({ onNavigate }) {
           {/* Column 2 — บริการ */}
           <nav aria-label="บริการของเรา">
             <h2 className="text-base font-black uppercase tracking-wider text-white">บริการ</h2>
-            <div className="mt-4 h-1 w-10 rounded-full bg-[#FF5722]"></div>
+            <div className="mt-4 h-1 w-10 rounded-full bg-accent-orange"></div>
             <ul className="mt-5 space-y-3 text-sm font-medium">
               {servicesLinks.map((link) => (
                 <li key={link.label}>
@@ -113,7 +113,7 @@ export default function Footer({ onNavigate }) {
           {/* Column 3 — ข้อมูล */}
           <nav aria-label="ข้อมูลบริษัท">
             <h2 className="text-base font-black uppercase tracking-wider text-white">ข้อมูล</h2>
-            <div className="mt-4 h-1 w-10 rounded-full bg-[#2563EB]"></div>
+            <div className="mt-4 h-1 w-10 rounded-full bg-primary-dark"></div>
             <ul className="mt-5 space-y-3 text-sm font-medium">
               {infoLinks.map((link) => (
                 <li key={link.label}>
@@ -130,6 +130,59 @@ export default function Footer({ onNavigate }) {
             <div className="mt-5 space-y-4 text-sm font-medium">
               <div className="flex items-start gap-3">
                 <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#00B900]" />
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-blue-600"
+              >
+                <span className="font-bold">fb</span>
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-pink-600"
+              >
+                <span className="font-bold">ig</span>
+              </a>
+            </div>
+          </section>
+
+          {/* Column 2 — บริการ */}
+          <section aria-label="Services">
+            <h3 className="mb-4 text-sm font-semibold text-white">บริการ</h3>
+            <ul className="space-y-2.5">
+              {servicesLinks.map((link) => (
+                <li key={link.label}>
+                  <FooterAnchor href={link.href}>{link.label}</FooterAnchor>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 h-1 w-10 rounded-full bg-primary-dark"></div>
+          </section>
+
+          {/* Column 3 — เกี่ยวกับ */}
+          <section aria-label="Information">
+            <h3 className="mb-4 text-sm font-semibold text-white">ข้อมูล</h3>
+            <ul className="space-y-2.5">
+              {infoLinks.map((link) => (
+                <li key={link.label}>
+                  <FooterAnchor href={link.href}>{link.label}</FooterAnchor>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {/* Column 4 — ติดต่อ */}
+          <section aria-label="Contact">
+            <h3 className="mb-4 text-sm font-semibold text-white">ติดต่อ</h3>
+            <ul className="space-y-3.5">
+              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
+                <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#00B900]" />
                 <a
                   href="https://line.me/R/ti/p/@823lateh"
                   target="_blank"
@@ -138,26 +191,26 @@ export default function Footer({ onNavigate }) {
                 >
                   LINE: <span className="font-semibold text-white">@823lateh</span>
                 </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <Mail className="mt-0.5 h-5 w-5 shrink-0 text-[#2563EB]" />
+              </li>
+              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
+                <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary-dark" />
                 <a href="mailto:info@bkkair.com" className="transition-colors hover:text-white">
                   info@bkkair.com
                 </a>
-              </div>
-              <div className="flex items-start gap-3">
+              </li>
+              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
                 <Clock className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
                 <p className="leading-relaxed">
                   จันทร์–เสาร์{" "}
                   <span className="font-semibold text-white">09:00–18:00 น.</span>
                 </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#FF5722]" />
+              </li>
+              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
+                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent-orange" />
                 <p>กรุงเทพมหานคร, ประเทศไทย</p>
-              </div>
-            </div>
-          </address>
+              </li>
+            </ul>
+          </section>
         </div>
 
         {/* ── Legal Disclaimer ── */}
@@ -194,3 +247,4 @@ export default function Footer({ onNavigate }) {
     </footer>
   );
 }
+

@@ -34,7 +34,7 @@ const visaTypes = [
 
 const trustFeatures = [
   { icon: ShieldCheck, color: "text-blue-600",    bg: "bg-blue-100",    title: "ตรวจสอบโดยทีมงานจริง",  desc: "ทุกคำขอผ่านการตรวจสอบก่อนส่ง" },
-  { icon: FileCheck,   color: "text-[#FF5722]",  bg: "bg-orange-100", title: "PDF พร้อมยื่นสถานทูต",    desc: "เอกสารจัดรูปแบบตามมาตรฐาน" },
+  { icon: FileCheck,   color: "text-accent-orange",  bg: "bg-orange-100", title: "PDF พร้อมยื่นสถานทูต",    desc: "เอกสารจัดรูปแบบตามมาตรฐาน" },
   { icon: Clock,       color: "text-emerald-600", bg: "bg-emerald-100", title: "ส่งภายใน 24 ชั่วโมง",       desc: "มีบริการเร่งด่วน Express" },
   { icon: DollarSign,  color: "text-purple-600",  bg: "bg-purple-100", title: "ราคาโปร่งใส",               desc: "ไม่มีค่าใช้จ่ายแอบแฝง" },
 ];
@@ -99,7 +99,7 @@ export default function Hero({ goToCheck }) {
   }
 
   return (
-    <section id="hero" className="relative w-full overflow-hidden bg-[#EEF5FF] pb-16 pt-28 sm:pt-32 lg:pb-24 lg:pt-36 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section id="hero" className="relative w-full overflow-hidden bg-bg-light pb-16 pt-28 sm:pt-32 lg:pb-24 lg:pt-36 font-sans selection:bg-blue-200 selection:text-blue-900">
       
       {/* ── Premium Hero Background ── */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -160,7 +160,7 @@ export default function Hero({ goToCheck }) {
               <button
                 type="button"
                 onClick={scrollToPackages}
-                className="group inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 px-7 text-[15px] font-bold text-white shadow-[0_8px_28px_rgba(37,99,235,0.35)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(37,99,235,0.45)] active:scale-[0.98]"
+                className="group inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-accent-orange to-accent-hover px-7 text-[15px] font-bold text-white shadow-[0_8px_28px_rgba(249,115,22,0.35)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(249,115,22,0.45)] active:scale-[0.98]"
               >
                 📄 ดูแพ็กเกจและราคา
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -208,7 +208,7 @@ export default function Hero({ goToCheck }) {
 
             {/* ── Floating decorative card: Status ── */}
             <div className="absolute bottom-6 left-0 z-20 hidden animate-float-delayed items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-[0_16px_48px_rgba(15,23,42,0.10)] md:flex lg:-left-5 xl:-left-9">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-[#FF5722]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-accent-orange">
                 <FileCheck className="h-5 w-5" />
               </div>
               <div className="pr-1">
@@ -330,7 +330,7 @@ export default function Hero({ goToCheck }) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full mt-2 flex items-center justify-center gap-2 py-3.5 px-6 bg-gradient-to-r from-[#FF5722] to-orange-500 hover:from-[#E64A19] hover:to-orange-600 text-white rounded-xl font-bold text-sm transition-all shadow-[0_8px_24px_rgba(255,87,34,0.32)] hover:shadow-[0_12px_32px_rgba(255,87,34,0.42)] hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none active:scale-[0.98]"
+                    className="w-full mt-2 flex items-center justify-center gap-2 py-3.5 px-6 bg-gradient-to-r from-accent-orange to-orange-500 hover:from-accent-hover hover:to-orange-600 text-white rounded-xl font-bold text-sm transition-all shadow-[0_8px_24px_rgba(249,115,22,0.32)] hover:shadow-[0_12px_32px_rgba(249,115,22,0.42)] hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none active:scale-[0.98]"
                   >
                     {loading ? (
                       <span className="flex items-center gap-2">

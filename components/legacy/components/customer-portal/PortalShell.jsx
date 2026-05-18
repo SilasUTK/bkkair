@@ -74,7 +74,7 @@ function SidebarNav({ activeTab, onTabChange }) {
             onClick={() => onTabChange(item.id)}
             className={`flex h-12 w-full items-center gap-3 rounded-2xl px-4 text-left text-sm font-extrabold transition ${
               isActive
-                ? "bg-blue-50 text-[#2563EB] shadow-[0_12px_28px_-18px_rgba(37,99,235,0.6)]"
+                ? "bg-blue-50 text-primary-dark shadow-[0_12px_28px_-18px_rgba(30,58,138,0.6)]"
                 : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
             }`}
           >
@@ -107,7 +107,7 @@ function SidebarProfile() {
     <div className="mt-auto space-y-3 pt-6">
       <div className="rounded-[2rem] border border-slate-100 bg-white p-4 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.08)]">
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-[#2563EB]">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-primary-dark">
             <UserRound className="h-6 w-6" aria-hidden="true" />
           </div>
           <div className="min-w-0 flex-1">
@@ -116,18 +116,18 @@ function SidebarProfile() {
           </div>
           <button
             type="button"
-            className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#F8FAFC] text-[#2563EB] transition hover:bg-blue-50"
+            className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-bg-light text-primary-dark transition hover:bg-blue-50"
             aria-label="Notifications"
           >
             <Bell className="h-5 w-5" aria-hidden="true" />
-            <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full border-2 border-white bg-[#FF5722]" />
+            <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full border-2 border-white bg-accent-orange" />
           </button>
         </div>
       </div>
 
       <button
         type="button"
-        className="flex h-12 w-full items-center justify-center gap-3 rounded-2xl border border-slate-100 bg-[#F8FAFC] text-sm font-black text-slate-500 transition hover:border-orange-100 hover:bg-orange-50 hover:text-[#FF5722]"
+        className="flex h-12 w-full items-center justify-center gap-3 rounded-2xl border border-slate-100 bg-bg-light text-sm font-black text-slate-500 transition hover:border-orange-100 hover:bg-orange-50 hover:text-accent-orange"
       >
         <LogOut className="h-5 w-5" aria-hidden="true" />
         Log Out
@@ -151,7 +151,7 @@ function MobileHeader({ onOpenSidebar }) {
         <Logo className="[&_.bkk-logo-wordmark]:text-base [&_.bkk-logo-wordmark]:sm:text-base" />
         <button
           type="button"
-          className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-[#2563EB]"
+          className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-primary-dark"
           aria-label="Notifications"
         >
           <Bell className="h-5 w-5" aria-hidden="true" />
@@ -176,7 +176,7 @@ function MobileBottomNav({ activeTab, onTabChange }) {
               type="button"
               onClick={() => onTabChange(item.id)}
               className={`flex h-14 flex-col items-center justify-center gap-1 rounded-2xl text-[10px] font-black transition ${
-                isActive ? "bg-blue-50 text-[#2563EB]" : "text-slate-400"
+                isActive ? "bg-blue-50 text-primary-dark" : "text-slate-400"
               }`}
             >
               <Icon className="h-5 w-5" aria-hidden="true" />

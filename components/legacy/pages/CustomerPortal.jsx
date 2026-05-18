@@ -34,7 +34,7 @@ export default function CustomerPortal({ onNavigate }) {
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-black text-[#2563EB] shadow-[0_16px_40px_-28px_rgba(37,99,235,0.8)]">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-black text-primary-dark shadow-[0_16px_40px_-28px_rgba(30,58,138,0.8)]">
               <ActiveIcon className="h-4 w-4" aria-hidden="true" />
               {activeNavItem?.label}
             </div>
@@ -50,7 +50,7 @@ export default function CustomerPortal({ onNavigate }) {
             <button
               type="button"
               onClick={handleNewRequest}
-              className="inline-flex min-h-[3.25rem] items-center justify-center gap-3 rounded-2xl bg-[#FF5722] px-6 py-4 text-sm font-black text-white shadow-[0_20px_40px_-18px_rgba(255,87,34,0.7)] transition hover:-translate-y-0.5 hover:bg-[#E64A19]"
+              className="inline-flex min-h-[3.25rem] items-center justify-center gap-3 rounded-2xl bg-accent-orange px-6 py-4 text-sm font-black text-white shadow-[0_20px_40px_-18px_rgba(249,115,22,0.7)] transition hover:-translate-y-0.5 hover:bg-accent-hover"
             >
               <Plus className="h-5 w-5" aria-hidden="true" />
               สร้างคำขอใหม่

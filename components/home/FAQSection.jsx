@@ -49,7 +49,7 @@ export default function FAQSection() {
   const [openIdx, setOpenIdx] = useState(4);
 
   return (
-    <section id="faq" className="relative w-full overflow-hidden bg-white py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section id="faq" className="relative w-full overflow-hidden bg-white py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-primary-navy">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -68,7 +68,7 @@ export default function FAQSection() {
           </div>
           
           <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
-            มีคำถาม? <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF5722] to-orange-400">เราตอบได้เลย</span>
+            มีคำถาม? <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-orange to-orange-400">เราตอบได้เลย</span>
           </h2>
           <p className="mt-6 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
             คำตอบเกี่ยวกับเอกสารยื่นวีซ่า ใบจองตั๋วยื่นวีซ่า flight reservation for visa และ visa document service Thailand
@@ -102,7 +102,7 @@ export default function FAQSection() {
                   <div className="flex items-center gap-4 sm:gap-6">
                     <div className={`flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl font-black text-xl sm:text-2xl transition-all duration-300 ${
                       importantDisclaimer
-                        ? "bg-gradient-to-br from-[#FF5722] to-orange-500 text-white shadow-md shadow-orange-200"
+                        ? "bg-gradient-to-br from-accent-orange to-orange-500 text-white shadow-md shadow-orange-200"
                         : open
                         ? "bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-md shadow-blue-300" 
                         : "bg-blue-50 text-blue-600 group-hover:scale-110 group-hover:rotate-[-5deg]"

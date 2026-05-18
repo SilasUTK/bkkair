@@ -7,7 +7,7 @@ export default function Logo({ className = "", onClick, variant = "default" }) {
       {/* Flat Design Logo Icon */}
       <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-[#2563EB] shadow-lg shadow-blue-500/30 overflow-hidden sm:h-11 sm:w-11">
         {/* Colorful Accent Blob inside Logo */}
-        <div className="absolute -right-1.5 -top-1.5 h-5 w-5 rounded-full bg-[#FF5722] transition-transform duration-300 group-hover:scale-150"></div>
+        <div className="absolute -right-1.5 -top-1.5 h-5 w-5 rounded-full bg-accent-orange transition-transform duration-300 group-hover:scale-150"></div>
         {/* Soft highlight */}
         <div className="absolute -bottom-2 -left-2 h-6 w-6 rounded-full bg-blue-400/40 blur-sm"></div>
         
@@ -19,11 +19,11 @@ export default function Logo({ className = "", onClick, variant = "default" }) {
       {/* Typography */}
       <span className={`bkk-logo-wordmark text-xl font-black tracking-tight sm:text-2xl ${isFooter ? "text-white" : "text-slate-900"}`}>
         BKK
-        <span className="text-[#2563EB] transition-colors duration-300 group-hover:text-[#FF5722]">
+        <span className="text-primary-navy transition-colors duration-300 group-hover:text-accent-orange">
           AIR
         </span>
         {/* Tiny decorative dot */}
-        <span className="ml-0.5 text-[#FF5722]">.</span>
+        <span className="ml-0.5 text-accent-orange">.</span>
       </span>
     </div>
   );

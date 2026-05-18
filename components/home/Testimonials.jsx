@@ -11,7 +11,7 @@ const testimonials = [
       border: "border-blue-100 group-hover:border-blue-300",
       shadow: "hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.15)]",
       bgLight: "bg-blue-50",
-      textAccent: "text-[#2563EB]",
+      textAccent: "text-primary-dark",
       ring: "ring-blue-100",
       quoteMarker: "text-blue-500/10"
     }
@@ -25,7 +25,7 @@ const testimonials = [
       border: "border-orange-100 group-hover:border-orange-300",
       shadow: "hover:shadow-[0_20px_40px_-15px_rgba(255,87,34,0.15)]",
       bgLight: "bg-orange-50",
-      textAccent: "text-[#FF5722]",
+      textAccent: "text-accent-orange",
       ring: "ring-orange-100",
       quoteMarker: "text-orange-500/10"
     }

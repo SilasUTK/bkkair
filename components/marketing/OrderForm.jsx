@@ -137,7 +137,7 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
         </label>
       </div>
 
-      <button type="submit" disabled={loading} className="mt-7 inline-flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-[#FF5722] px-6 py-4 text-base font-black text-white shadow-lg shadow-orange-200/60 transition hover:bg-[#E64A19] disabled:opacity-70">
+      <button type="submit" disabled={loading} className="mt-7 inline-flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-accent-orange px-6 py-4 text-base font-black text-white shadow-lg shadow-orange-200/60 transition hover:bg-accent-hover disabled:opacity-70">
         {loading ? "กำลังส่งคำขอ..." : "ส่งคำขอให้ทีมงานตรวจสอบ"}
         <Send className="h-4 w-4" />
       </button>

@@ -48,7 +48,7 @@ const packages = [
       border: "border-orange-200",
       shadow: "shadow-orange-200/40",
       btnClass:
-        "bg-white text-[#FF5722] border-2 border-orange-200 hover:bg-orange-50 hover:border-orange-500",
+        "bg-white text-accent-orange border-2 border-orange-200 hover:bg-orange-50 hover:border-orange-500",
       checkIcon: "text-orange-500",
     },
     features: [
@@ -73,7 +73,7 @@ const packages = [
       border: "border-orange-500",
       shadow: "shadow-orange-500/30",
       btnClass:
-        "bg-gradient-to-r from-[#FF5722] to-orange-500 text-white shadow-lg shadow-orange-500/40 hover:-translate-y-1 hover:shadow-orange-500/50",
+        "bg-gradient-to-r from-accent-orange to-orange-500 text-white shadow-lg shadow-orange-500/40 hover:-translate-y-1 hover:shadow-orange-500/50",
       checkIcon: "text-orange-500",
     },
     features: [
@@ -119,7 +119,7 @@ export default function ServicePackages() {
   return (
     <section
       id="packages"
-      className="relative w-full overflow-hidden bg-white py-16 lg:py-24"
+      className="relative w-full overflow-hidden bg-bg-light py-16 lg:py-24"
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute -right-40 top-0 h-[400px] w-[400px] rounded-full bg-blue-50 blur-[80px]" />
@@ -158,14 +158,14 @@ export default function ServicePackages() {
                 }`}
               >
                 {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#FF5722] to-orange-500 px-5 py-1.5 text-[11px] font-black uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(255,87,34,0.40)]">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-accent-orange to-orange-500 px-5 py-1.5 text-[11px] font-black uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(249,115,22,0.40)]">
                     ★ Most Popular · แนะนำ
                   </div>
                 )}
 
                 {/* Gradient header for popular, clean header for others */}
                 {pkg.popular ? (
-                  <div className="rounded-t-3xl bg-gradient-to-r from-[#FF5722] to-orange-500 p-6 text-center">
+                  <div className="rounded-t-3xl bg-gradient-to-r from-accent-orange to-orange-500 p-6 text-center">
                     <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20">
                       <Icon className="h-7 w-7 text-white" strokeWidth={2} />
                     </div>

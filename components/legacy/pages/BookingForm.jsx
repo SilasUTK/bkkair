@@ -113,12 +113,12 @@ export default function BookingForm() {
       <div aria-hidden="true" className="absolute -right-20 top-10 h-40 w-40 rounded-[55%_45%_60%_40%] bg-orange-100" />
       <div className="relative rounded-[2rem] border border-blue-100 bg-white p-5 shadow-lg shadow-blue-100">
         <div className="flex items-start gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-50 text-[#2563EB]">
+          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-50 text-primary-dark">
             <HelpCircle size={20} aria-hidden="true" />
           </span>
 
           <div>
-            <h2 className="text-xl font-black text-[#0F172A]">
+            <h2 className="text-xl font-black text-primary-navy">
               Visa Request Assistant
             </h2>
             <p className="mt-1 text-base leading-7 text-slate-700">
@@ -130,8 +130,8 @@ export default function BookingForm() {
 
       <div className="relative rounded-[2rem] border border-blue-100 bg-white p-6 shadow-xl shadow-blue-100">
         <div className="mb-6">
-          <p className="text-sm font-extrabold uppercase tracking-wide text-[#F97316]">Manual Staff Review</p>
-          <h1 className="mt-2 text-3xl font-black text-[#0F172A]">
+          <p className="text-sm font-extrabold uppercase tracking-wide text-accent-orange">Manual Staff Review</p>
+          <h1 className="mt-2 text-3xl font-black text-primary-navy">
             Quick Request Form
           </h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -296,7 +296,7 @@ export default function BookingForm() {
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#2563EB] px-4 text-sm font-extrabold text-white shadow-lg shadow-blue-100 transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary-dark px-4 text-sm font-extrabold text-white shadow-lg shadow-blue-100 transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Send size={17} aria-hidden="true" />
             {loading ? "Sending..." : "Send Request"}
@@ -332,11 +332,11 @@ export default function BookingForm() {
 }
 
 const fieldClass =
-  "min-h-12 rounded-2xl border border-blue-100 bg-slate-50 px-4 text-slate-950 placeholder:text-slate-400 outline-none transition focus:border-[#2563EB] focus:bg-white focus:ring-2 focus:ring-blue-100";
+  "min-h-12 rounded-2xl border border-blue-100 bg-bg-light px-4 text-slate-950 placeholder:text-slate-400 outline-none transition focus:border-primary-dark focus:bg-white focus:ring-2 focus:ring-blue-100";
 
 function SectionTitle({ children }) {
   return (
-    <h2 className="border-t border-blue-100 pt-5 text-base font-black text-[#0F172A] first:border-t-0 first:pt-0">
+    <h2 className="border-t border-blue-100 pt-5 text-base font-black text-primary-navy first:border-t-0 first:pt-0">
       {children}
     </h2>
   );
