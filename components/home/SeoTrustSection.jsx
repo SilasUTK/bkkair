@@ -50,15 +50,10 @@ const features = [
 
 export default function SeoTrustSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section className="relative w-full overflow-hidden bg-slate-50 py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-white/25"></div>
-        <div className="absolute -left-40 top-20 h-[520px] w-[520px] rounded-full bg-blue-300/25 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 h-[460px] w-[460px] rounded-full bg-orange-200/35 blur-3xl"></div>
-        <div className="absolute right-1/3 top-10 h-[300px] w-[300px] rounded-full bg-cyan-200/25 blur-3xl"></div>
-        <div className="absolute left-8 top-16 h-32 w-32 bg-[radial-gradient(circle_at_2px_2px,rgba(148,163,184,0.5)_2px,transparent_0)] bg-[length:20px_20px] opacity-30"></div>
-        <div className="absolute right-12 bottom-24 h-16 w-16 rounded-full border-[8px] border-emerald-100 opacity-80"></div>
-        <div className="absolute right-1/4 top-20 h-10 w-10 rounded-xl bg-yellow-200 opacity-60 rotate-[15deg]"></div>
+        <div className="absolute -left-40 top-20 h-[400px] w-[400px] rounded-full bg-blue-50 blur-[80px]" />
+        <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-orange-50 blur-[80px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
@@ -92,9 +87,9 @@ export default function SeoTrustSection() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="group flex h-full items-start gap-5 rounded-3xl border border-blue-100/70 bg-white/80 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur transition-all duration-300 hover:bg-white sm:p-6"
+              className="group flex h-full items-start gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-[0_4px_20px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)] sm:p-6"
             >
-              <div className={`mt-1 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${feature.color.bg} border-2 ${feature.color.border} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}>
+              <div className={`mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${feature.color.bg} transition-transform duration-300 group-hover:scale-110`}>
                 <span className="text-2xl" aria-hidden="true">{feature.icon}</span>
               </div>
 
@@ -110,7 +105,7 @@ export default function SeoTrustSection() {
           ))}
         </div>
 
-        <div className="mx-auto mt-10 max-w-5xl rounded-3xl border border-orange-200 bg-white/90 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
+        <div className="mx-auto mt-10 max-w-5xl rounded-2xl border border-orange-100 bg-white p-6 shadow-[0_4px_20px_rgba(15,23,42,0.06)]">
           <p className="text-base font-semibold leading-relaxed text-slate-700">
             เราไม่ใช่ตัวแทนวีซ่า ไม่ได้มีความสัมพันธ์พิเศษกับสถานทูตใด ๆ และไม่รับประกันผลการยื่นวีซ่า
           </p>

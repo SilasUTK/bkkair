@@ -119,8 +119,12 @@ export default function ServicePackages() {
   return (
     <section
       id="packages"
-      className="relative w-full overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 lg:py-24"
+      className="relative w-full overflow-hidden bg-white py-16 lg:py-24"
     >
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute -right-40 top-0 h-[400px] w-[400px] rounded-full bg-blue-50 blur-[80px]" />
+        <div className="absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-orange-50 blur-[80px]" />
+      </div>
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         
         {/* Header */}
@@ -130,7 +134,7 @@ export default function ServicePackages() {
             แพ็กเกจบริการ
           </div>
 
-          <h2 className="text-3xl font-black leading-[1.18] tracking-tight text-slate-900 sm:text-5xl">
+          <h2 className="text-3xl font-black leading-[1.18] tracking-tight text-slate-900 sm:text-[2.75rem]">
             เลือกเอกสารที่คุณต้องการ ราคาชัดเจน ไม่มีค่าใช้จ่ายซ่อนเร้น
           </h2>
 
@@ -147,46 +151,44 @@ export default function ServicePackages() {
             return (
               <article
                 key={pkg.id}
-                className={`relative flex h-full flex-col rounded-3xl bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)] transition-all duration-300 ${
+                className={`relative flex h-full flex-col rounded-3xl bg-white transition-all duration-300 ${
                   pkg.popular
-                    ? `border-4 ${pkg.theme.border} ${pkg.theme.shadow} md:scale-[1.02] xl:-translate-y-2`
-                    : "border border-blue-100/70 md:hover:-translate-y-1"
+                    ? `border-2 ${pkg.theme.border} shadow-[0_16px_60px_rgba(255,87,34,0.15)] md:scale-[1.02] xl:-translate-y-2`
+                    : "border border-slate-100 shadow-[0_4px_20px_rgba(15,23,42,0.06)] hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)]"
                 }`}
               >
-                {/* Badge */}
                 {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 max-w-[calc(100%-2rem)] -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#FF5722] to-orange-500 px-4 py-1 text-xs font-black uppercase tracking-wider text-white shadow-lg">
-                    Most Popular · ⭐ แนะนำ
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#FF5722] to-orange-500 px-5 py-1.5 text-[11px] font-black uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(255,87,34,0.40)]">
+                    ★ Most Popular · แนะนำ
                   </div>
                 )}
 
-                {/* Header */}
-                <div className="border-b border-slate-100 p-6 text-center">
-                  <div
-                    className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl ${pkg.theme.bg}`}
-                  >
-                    <Icon
-                      className={`h-7 w-7 ${pkg.theme.color}`}
-                      strokeWidth={2}
-                    />
+                {/* Gradient header for popular, clean header for others */}
+                {pkg.popular ? (
+                  <div className="rounded-t-3xl bg-gradient-to-r from-[#FF5722] to-orange-500 p-6 text-center">
+                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20">
+                      <Icon className="h-7 w-7 text-white" strokeWidth={2} />
+                    </div>
+                    <h3 className="text-2xl font-black text-white">{pkg.name}</h3>
+                    <p className="mt-1 text-xs font-black uppercase tracking-widest text-orange-100">{pkg.label}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-orange-50/90">{pkg.description}</p>
+                    <p className="mt-4 text-[11px] font-bold uppercase tracking-wider text-orange-100/80">
+                      ราคาชัดเจนก่อนชำระ · ไม่มีค่าใช้จ่ายซ่อนเร้น
+                    </p>
                   </div>
-
-                  <h3 className="text-2xl font-black text-slate-900">
-                    {pkg.name}
-                  </h3>
-
-                  <p className={`mt-1 text-xs font-black uppercase tracking-widest ${pkg.theme.color}`}>
-                    {pkg.label}
-                  </p>
-
-                  <p className="mt-2 min-h-[48px] text-sm leading-relaxed text-slate-500">
-                    {pkg.description}
-                  </p>
-
-                  <p className="mt-5 text-xs font-bold uppercase tracking-wider text-slate-400">
-                    ราคาชัดเจนก่อนชำระ · ไม่มีค่าใช้จ่ายซ่อนเร้น
-                  </p>
-                </div>
+                ) : (
+                  <div className="border-b border-slate-100 p-6 text-center">
+                    <div className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl ${pkg.theme.bg}`}>
+                      <Icon className={`h-7 w-7 ${pkg.theme.color}`} strokeWidth={2} />
+                    </div>
+                    <h3 className="text-2xl font-black text-slate-900">{pkg.name}</h3>
+                    <p className={`mt-1 text-xs font-black uppercase tracking-widest ${pkg.theme.color}`}>{pkg.label}</p>
+                    <p className="mt-2 min-h-[48px] text-sm leading-relaxed text-slate-500">{pkg.description}</p>
+                    <p className="mt-5 text-xs font-bold uppercase tracking-wider text-slate-400">
+                      ราคาชัดเจนก่อนชำระ · ไม่มีค่าใช้จ่ายซ่อนเร้น
+                    </p>
+                  </div>
+                )}
 
                 {/* Features */}
                 <div className="flex flex-1 flex-col p-6">

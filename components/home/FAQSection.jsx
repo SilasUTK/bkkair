@@ -49,20 +49,15 @@ export default function FAQSection() {
   const [openIdx, setOpenIdx] = useState(4);
 
   return (
-    <section id="faq" className="relative w-full overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section id="faq" className="relative w-full overflow-hidden bg-white py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -left-32 top-1/4 h-[460px] w-[460px] rounded-full bg-blue-300/25 blur-3xl" />
-        <div className="absolute -right-20 bottom-10 h-[540px] w-[540px] rounded-full bg-orange-200/35 blur-3xl" />
-        <div className="absolute left-1/2 top-10 h-[280px] w-[280px] rounded-full bg-cyan-200/25 blur-3xl" />
-        <div className="absolute left-10 top-20 h-32 w-32 bg-[radial-gradient(circle_at_2px_2px,rgba(148,163,184,0.5)_2px,transparent_0)] bg-[length:20px_20px] opacity-30"></div>
-        <div className="absolute bottom-40 right-20 h-24 w-24 bg-[radial-gradient(circle_at_2px_2px,rgba(147,197,253,0.55)_2px,transparent_0)] bg-[length:16px_16px] opacity-30"></div>
-        <div className="absolute right-1/4 top-20 h-10 w-10 rounded-full bg-yellow-300 opacity-50" />
-        <div className="absolute left-10 bottom-32 h-16 w-16 rounded-3xl border-[6px] border-emerald-200/60 opacity-60 -rotate-12" />
+        <div className="absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-blue-50 blur-[80px]" />
+        <div className="absolute -right-20 bottom-10 h-[400px] w-[400px] rounded-full bg-orange-50 blur-[80px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 lg:px-8">

@@ -8,24 +8,43 @@ const reassuranceItems = [
 
 export default function FinalCtaSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 font-sans lg:py-24" aria-labelledby="final-cta-heading">
-      <div className="pointer-events-none absolute inset-0 opacity-60">
-        <div className="absolute -top-20 left-1/4 h-48 w-48 rounded-full bg-blue-200/60 blur-3xl" />
-        <div className="absolute -bottom-16 right-1/4 h-56 w-56 rounded-full bg-orange-200/60 blur-3xl" />
-      </div>
+    <section
+      className="relative w-full overflow-hidden py-20 font-sans lg:py-28"
+      aria-labelledby="final-cta-heading"
+    >
+      {/* Deep blue gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700" />
+      {/* Radial glow at left-center */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.10)_0%,transparent_60%)]" />
+      {/* Dot grid overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.07)_1px,transparent_0)] bg-[length:28px_28px]" />
+      {/* Soft glow blobs */}
+      <div className="pointer-events-none absolute -top-24 left-1/4 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-20 right-1/4 h-72 w-72 rounded-full bg-indigo-300/20 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center lg:px-8">
-        <h2 id="final-cta-heading" className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+
+        {/* Badge */}
+        <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-blue-100 backdrop-blur-sm">
+          <span className="text-amber-300" aria-hidden="true">✦</span>
+          บริการจัดเตรียมเอกสารยื่นวีซ่า
+        </div>
+
+        <h2
+          id="final-cta-heading"
+          className="text-3xl font-black leading-[1.18] tracking-tight text-white sm:text-[2.75rem]"
+        >
           พร้อมเตรียมเอกสารยื่นวีซ่าแล้วหรือยัง?
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-          อย่าให้เอกสารกลายเป็นอุปสรรคของการเดินทาง BKK AIR จัดเตรียมให้คุณพร้อมยื่น ภายใน 24 ชั่วโมง สำหรับคนที่ต้องการสั่งเอกสารยื่นวีซ่า เอกสารยื่นวีซ่า และ visa support Thailand
+
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-blue-100 sm:text-lg">
+          อย่าให้เอกสารกลายเป็นอุปสรรคของการเดินทาง BKK AIR จัดเตรียมให้คุณพร้อมยื่น ภายใน 24 ชั่วโมง สำหรับคนที่ต้องการ visa support Thailand
         </p>
 
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="/packages"
-            className="inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 px-7 text-base font-bold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-blue-600/35 focus:outline-none focus:ring-4 focus:ring-blue-200 sm:w-auto"
+            className="inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-2xl bg-white px-8 text-base font-black text-blue-700 shadow-[0_8px_32px_rgba(0,0,0,0.20)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] focus:outline-none focus:ring-4 focus:ring-white/40 sm:w-auto"
           >
             📄 เลือกแพ็กเกจและสั่งเลย
             <ArrowRight className="h-5 w-5" aria-hidden="true" />
@@ -34,28 +53,30 @@ export default function FinalCtaSection() {
 
           <a
             href="/contact"
-            className="inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-2xl border border-blue-200/80 bg-white/80 px-7 text-base font-bold text-slate-700 shadow-[0_10px_40px_rgba(15,23,42,0.06)] transition-all hover:-translate-y-0.5 hover:bg-white focus:outline-none focus:ring-4 focus:ring-blue-100 sm:w-auto"
+            className="inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-2xl border border-white/25 bg-white/10 px-8 text-base font-bold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/25 sm:w-auto"
           >
-            <span className="hidden sm:inline">ยังไม่แน่ใจว่าต้องใช้เอกสารอะไร?</span>
-            <span>ปรึกษาทีมงานฟรี ไม่มีข้อผูกมัด</span>
+            ปรึกษาทีมงานฟรี ไม่มีข้อผูกมัด
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
 
-        <ul className="mt-8 flex flex-wrap items-center justify-center gap-3" aria-label="จุดเด่นของบริการ">
+        <ul
+          className="mt-8 flex flex-wrap items-center justify-center gap-3"
+          aria-label="จุดเด่นของบริการ"
+        >
           {reassuranceItems.map((item) => (
             <li
               key={item}
-              className="inline-flex items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-2 text-sm font-bold text-slate-700 shadow-[0_10px_40px_rgba(15,23,42,0.06)] backdrop-blur"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur-sm"
             >
-              <span className="text-emerald-600" aria-hidden="true">✓</span>
+              <span className="text-emerald-300" aria-hidden="true">✓</span>
               {item}
             </li>
           ))}
         </ul>
 
-        <p className="mx-auto mt-7 max-w-2xl rounded-3xl border border-orange-200 bg-white/90 px-5 py-4 text-sm font-semibold leading-relaxed text-slate-700 shadow-[0_10px_40px_rgba(15,23,42,0.06)]">
-          BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุน — การอนุมัติวีซ่าขึ้นอยู่กับสถานทูต
+        <p className="mx-auto mt-8 max-w-2xl rounded-2xl border border-white/15 bg-white/10 px-5 py-4 text-sm font-medium leading-relaxed text-blue-100/80 backdrop-blur-sm">
+          BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุน — การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูต
         </p>
       </div>
     </section>

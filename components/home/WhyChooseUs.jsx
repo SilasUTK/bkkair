@@ -90,20 +90,12 @@ const benefits = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="benefits" className="relative w-full overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section id="benefits" className="relative w-full overflow-hidden bg-white py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
       
-      {/* ================= Flat Design Background Elements ================= */}
+      {/* Subtle background accents */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Soft Blobs */}
-        <div className="absolute -right-40 top-0 h-[520px] w-[520px] rounded-full bg-blue-300/25 blur-3xl" />
-        <div className="absolute -left-40 bottom-0 h-[460px] w-[460px] rounded-full bg-orange-200/35 blur-3xl" />
-        <div className="absolute left-1/3 top-12 h-[300px] w-[300px] rounded-full bg-cyan-200/25 blur-3xl" />
-        
-        {/* Geometric Shapes & Patterns */}
-        <div className="absolute right-10 top-32 h-32 w-32 bg-[radial-gradient(circle_at_2px_2px,rgba(148,163,184,0.5)_2px,transparent_0)] bg-[length:20px_20px] opacity-30"></div>
-        <div className="absolute left-1/4 bottom-20 h-24 w-24 bg-[radial-gradient(circle_at_2px_2px,rgba(147,197,253,0.55)_2px,transparent_0)] bg-[length:16px_16px] opacity-35"></div>
-        <div className="absolute left-10 top-1/4 h-12 w-12 rounded-full border-[6px] border-orange-200/60"></div>
-        <div className="absolute right-1/4 bottom-1/4 h-8 w-8 rounded-lg bg-emerald-200/50 rotate-45"></div>
+        <div className="absolute -right-40 -top-10 h-[440px] w-[440px] rounded-full bg-blue-50 blur-[80px]" />
+        <div className="absolute -left-40 bottom-0 h-[380px] w-[380px] rounded-full bg-orange-50 blur-[80px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
@@ -115,8 +107,8 @@ export default function WhyChooseUs() {
             <span className="uppercase tracking-widest text-slate-500 text-xs">ทำไมต้องเลือก BKK AIR</span>
           </div>
           
-          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-5xl">
-            เราไม่ได้แค่ส่งเอกสาร — <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">เราดูแลให้คุณพร้อมยื่น</span>
+          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-[2.75rem]">
+            เราไม่ได้แค่ส่งเอกสาร — <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เราดูแลให้คุณพร้อมยื่น</span>
           </h2>
           <p className="mt-5 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
             หลายคนเสียเวลาหาข้อมูล จ้างคนผิด หรือได้เอกสารที่ไม่ตรงมาตรฐานสถานทูต BKK AIR ออกแบบบริการนี้มาเพื่อแก้ปัญหาเหล่านั้นโดยตรง พร้อมดูแลเอกสารยื่นวีซ่าแบบ visa support Thailand
@@ -124,41 +116,24 @@ export default function WhyChooseUs() {
         </div>
 
         {/* === Cards Grid Section === */}
-        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {benefits.map((benefit, index) => {
+        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((benefit) => {
             const Icon = benefit.icon;
-            const displayNumber = `0${index + 1}`;
-
             return (
               <article
                 key={benefit.title}
-                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-blue-100/70 bg-white p-7 shadow-[0_20px_60px_rgba(15,23,42,0.08)] transition-all duration-300 md:hover:-translate-y-1 ${benefit.theme.hoverShadow}`}
+                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-6 transition-all duration-300 hover:-translate-y-1 ${benefit.theme.border} ${benefit.theme.hoverShadow} shadow-[0_4px_20px_rgba(15,23,42,0.06)]`}
               >
-                {/* Accent Top Line */}
-                <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${benefit.theme.gradient} opacity-80 transition-opacity duration-300 group-hover:opacity-100`}></div>
+                {/* Gradient top accent line */}
+                <div className={`absolute inset-x-0 top-0 h-[3px] rounded-t-3xl bg-gradient-to-r ${benefit.theme.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
 
-                {/* Background Watermark Number */}
-                <div className={`absolute -right-6 -top-6 text-[8rem] font-black leading-none ${benefit.theme.watermark} pointer-events-none transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6`}>
-                  {displayNumber}
+                {/* Icon */}
+                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${benefit.theme.gradient} shadow-md`}>
+                  <Icon className="h-5.5 w-5.5 text-white" aria-hidden="true" />
                 </div>
 
-                {/* Icon Container */}
-                <div className="relative z-10 mb-8 flex items-center justify-between">
-                  <div role="img" aria-label={benefit.iconAlt} className={`flex h-16 w-16 items-center justify-center rounded-2xl ${benefit.theme.bg} border-2 ${benefit.theme.border} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                    <Icon className={`h-8 w-8 ${benefit.theme.color}`} strokeWidth={2} aria-hidden="true" />
-                  </div>
-                </div>
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  <h3 className="text-xl font-bold text-slate-900 leading-tight">
-                    {benefit.title}
-                  </h3>
-                  <p className="mt-4 leading-relaxed text-slate-500 font-medium text-base">
-                    {benefit.description}
-                  </p>
-                </div>
-                
+                <h3 className="mb-2.5 text-[1rem] font-bold leading-snug text-slate-900">{benefit.title}</h3>
+                <p className="text-sm leading-relaxed text-slate-500">{benefit.description}</p>
               </article>
             );
           })}

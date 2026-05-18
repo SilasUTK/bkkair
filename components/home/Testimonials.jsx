@@ -48,15 +48,11 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="relative w-full overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section id="testimonials" className="relative w-full overflow-hidden bg-[#F8FAFF] py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
       
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -left-20 top-20 h-[460px] w-[460px] rounded-full bg-orange-200/30 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[540px] w-[540px] rounded-full bg-blue-300/25 blur-3xl" />
-        <div className="absolute left-1/3 top-0 h-[300px] w-[300px] rounded-full bg-cyan-200/25 blur-3xl" />
-        <div className="absolute bottom-20 left-10 h-32 w-32 bg-[radial-gradient(circle_at_2px_2px,rgba(148,163,184,0.5)_2px,transparent_0)] bg-[length:20px_20px] opacity-30"></div>
-        <div className="absolute right-20 top-32 h-16 w-16 rounded-3xl border-[6px] border-orange-200/60 opacity-60 rotate-12" />
-        <div className="absolute left-1/4 top-10 h-8 w-8 rounded-full bg-purple-200 opacity-60" />
+        <div className="absolute -left-20 top-20 h-[380px] w-[380px] rounded-full bg-blue-100/50 blur-[80px]" />
+        <div className="absolute bottom-0 right-0 h-[380px] w-[380px] rounded-full bg-indigo-100/40 blur-[80px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
@@ -66,8 +62,8 @@ export default function Testimonials() {
             <span className="uppercase tracking-widest text-slate-500 text-xs">เสียงจากลูกค้า</span>
           </div>
           
-          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-5xl">
-            ลูกค้าที่ใช้บริการ <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">พูดว่าอะไร</span>
+          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-[2.75rem]">
+            ลูกค้าที่ใช้บริการ <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">พูดว่าอะไร</span>
           </h2>
           
           <p className="mt-6 text-lg font-medium leading-relaxed text-slate-600">
@@ -79,32 +75,29 @@ export default function Testimonials() {
           {testimonials.map((testimonial) => (
             <article
               key={testimonial.name}
-              className={`group relative overflow-hidden rounded-3xl bg-white p-7 transition-all duration-300 border border-blue-100/70 shadow-[0_20px_60px_rgba(15,23,42,0.08)] md:hover:-translate-y-1 ${testimonial.theme.shadow} ${testimonial.theme.border}`}
+              className={`group relative overflow-hidden rounded-3xl bg-white p-6 transition-all duration-300 border shadow-[0_4px_20px_rgba(15,23,42,0.06)] hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)] ${testimonial.theme.border}`}
             >
-              <Quote className={`absolute -right-4 -top-4 h-32 w-32 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12 ${testimonial.theme.quoteMarker}`} />
+              {/* Star rating */}
+              <div className="mb-4 flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                ))}
+              </div>
 
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="mb-6">
-                  <CheckCircle2 className={`h-6 w-6 ${testimonial.theme.textAccent}`} aria-hidden="true" />
+              <p className="mb-6 text-[0.95rem] leading-relaxed text-slate-600">
+                &ldquo;{testimonial.text}&rdquo;
+              </p>
+              
+              <div className="flex items-center gap-3.5 pt-4 border-t border-slate-100">
+                <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl font-black text-lg border border-white ring-2 ${testimonial.theme.bgLight} ${testimonial.theme.textAccent} ${testimonial.theme.ring}`}>
+                  {testimonial.initials}
                 </div>
                 
-                <p className="mb-8 text-[1.05rem] leading-relaxed text-slate-600 font-medium relative flex-grow">
-                  <span className={`absolute -left-4 -top-3 text-4xl font-serif leading-none ${testimonial.theme.textAccent} opacity-30`}>&ldquo;</span>
-                  {testimonial.text}
-                  <span className={`absolute ml-1 text-4xl font-serif leading-none ${testimonial.theme.textAccent} opacity-30`}>&rdquo;</span>
-                </p>
-                
-                <div className="mt-auto flex items-center gap-4 pt-5 border-t border-slate-100/80">
-                  <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl font-black text-xl border-2 border-white ring-2 ${testimonial.theme.bgLight} ${testimonial.theme.textAccent} ${testimonial.theme.ring}`}>
-                    {testimonial.initials}
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-lg font-black text-slate-900 leading-tight">{testimonial.name}</h3>
-                    <p className={`text-sm font-bold mt-1 tracking-wide ${testimonial.theme.textAccent}`}>
-                      {testimonial.type}
-                    </p>
-                  </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 leading-tight">{testimonial.name}</h3>
+                  <p className={`text-xs font-semibold mt-0.5 ${testimonial.theme.textAccent}`}>
+                    {testimonial.type}
+                  </p>
                 </div>
               </div>
             </article>
