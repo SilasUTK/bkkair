@@ -107,10 +107,10 @@ export default function WhyChooseUs() {
             <span className="uppercase tracking-widest text-slate-500 text-xs">ทำไมต้องเลือก BKK AIR</span>
           </div>
           
-          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-[2.75rem]">
-            เราไม่ได้แค่ส่งเอกสาร — <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เราดูแลให้คุณพร้อมยื่น</span>
+          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
+            เราไม่ได้แค่ส่งเอกสาร — <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เราดูแลคใหม่ให้คุณพร้อมยื่น</span>
           </h2>
-          <p className="mt-5 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-6 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
             หลายคนเสียเวลาหาข้อมูล จ้างคนผิด หรือได้เอกสารที่ไม่ตรงมาตรฐานสถานทูต BKK AIR ออกแบบบริการนี้มาเพื่อแก้ปัญหาเหล่านั้นโดยตรง พร้อมดูแลเอกสารยื่นวีซ่าแบบ visa support Thailand
           </p>
         </div>

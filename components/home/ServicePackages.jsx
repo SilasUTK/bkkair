@@ -134,11 +134,11 @@ export default function ServicePackages() {
             แพ็กเกจบริการ
           </div>
 
-          <h2 className="text-3xl font-black leading-[1.18] tracking-tight text-slate-900 sm:text-[2.75rem]">
+          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
             เลือกเอกสารที่คุณต้องการ ราคาชัดเจน ไม่มีค่าใช้จ่ายซ่อนเร้น
           </h2>
 
-          <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
             บริการทุกแพ็กเกจตรวจสอบโดยทีมงานจริง และส่งเป็น PDF พร้อมยื่นสถานทูต ทั้งใบจองตั๋วเครื่องบินยื่นวีซ่า ใบจองโรงแรมยื่นวีซ่า flight reservation for visa application, hotel booking for visa, travel itinerary for visa และ travel insurance for Schengen visa
           </p>
         </div>

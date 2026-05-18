@@ -75,7 +75,7 @@ export default function WorkflowTimeline() {
             ขั้นตอนการใช้บริการ
           </div>
 
-          <h2 className="text-3xl font-black leading-[1.18] text-slate-900 sm:text-[2.75rem]">
+          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
             สั่ง รับ ยื่น — ง่ายกว่าที่คิด
           </h2>
 

@@ -32,12 +32,12 @@ export default function FinalCtaSection() {
 
         <h2
           id="final-cta-heading"
-          className="text-3xl font-black leading-[1.18] tracking-tight text-white sm:text-[2.75rem]"
+          className="text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl"
         >
           พร้อมเตรียมเอกสารยื่นวีซ่าแล้วหรือยัง?
         </h2>
 
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-blue-100 sm:text-lg">
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-blue-100 sm:text-lg">
           อย่าให้เอกสารกลายเป็นอุปสรรคของการเดินทาง BKK AIR จัดเตรียมให้คุณพร้อมยื่น ภายใน 24 ชั่วโมง สำหรับคนที่ต้องการ visa support Thailand
         </p>
 

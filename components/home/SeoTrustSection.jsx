@@ -65,7 +65,7 @@ export default function SeoTrustSection() {
             <span>ความปลอดภัยและความโปร่งใส</span>
           </div>
 
-          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl lg:text-5xl">
             คุณฝากข้อมูลไว้กับเรา
             <br className="hidden sm:block" />
             <span className="relative inline-block mt-2">

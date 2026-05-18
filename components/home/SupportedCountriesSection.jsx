@@ -72,7 +72,7 @@ export default function SupportedCountriesSection() {
           <p className="text-sm font-black uppercase tracking-[0.25em] text-[#2563EB]">
             ประเทศที่ให้บริการ
           </p>
-          <h2 id="supported-countries-heading" className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 id="supported-countries-heading" className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
             ครอบคลุมวีซ่าหลายประเทศปลายทาง
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">

@@ -1,5 +1,13 @@
+import { Prompt } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
+
+const prompt = Prompt({
+  subsets: ["thai", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-prompt",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "BKK AIR | ใบจองตั๋วยื่นวีซ่า & เอกสารสนับสนุนสถานทูต",
@@ -72,8 +80,8 @@ const faqJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="th">
-      <body>
+    <html lang="th" className={prompt.variable}>
+      <body className="font-prompt">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}

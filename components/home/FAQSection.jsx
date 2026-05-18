@@ -67,10 +67,10 @@ export default function FAQSection() {
             <span className="uppercase tracking-widest text-slate-500 text-xs">คำถามที่พบบ่อย</span>
           </div>
           
-          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-5xl">
+          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
             มีคำถาม? <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF5722] to-orange-400">เราตอบได้เลย</span>
           </h2>
-          <p className="mt-5 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-6 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
             คำตอบเกี่ยวกับเอกสารยื่นวีซ่า ใบจองตั๋วยื่นวีซ่า flight reservation for visa และ visa document service Thailand
           </p>
         </div>

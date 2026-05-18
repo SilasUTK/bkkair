@@ -125,15 +125,15 @@ export default function Hero({ goToCheck }) {
             </div>
             
             {/* Main Headline */}
-            <h1 className="text-[2.6rem] font-extrabold leading-[1.12] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.1rem] xl:text-[3.5rem]">
+            <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl xl:text-6xl">
               เอกสารสนับสนุนวีซ่า
-              <span className="block mt-1 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
                 พร้อมยื่นสถานทูต
               </span>
-              <span className="block mt-1 text-slate-800">ครบ จบ ใน 24 ชั่วโมง</span>
+              <span className="block mt-2 text-slate-800">ครบ จบ ใน 24 ชั่วโมง</span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
               BKK AIR จัดเตรียมเอกสารสนับสนุนวีซ่าให้คุณ — ทั้งใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง <strong className="text-slate-800 font-semibold">ในรูปแบบ PDF มาตรฐานสถานทูต</strong> พร้อมให้คุณยื่นได้เลย
             </p>
 

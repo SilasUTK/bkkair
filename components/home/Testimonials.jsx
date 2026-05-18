@@ -62,7 +62,7 @@ export default function Testimonials() {
             <span className="uppercase tracking-widest text-slate-500 text-xs">เสียงจากลูกค้า</span>
           </div>
           
-          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-[2.75rem]">
+          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
             ลูกค้าที่ใช้บริการ <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">พูดว่าอะไร</span>
           </h2>
           
