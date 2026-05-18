@@ -4,8 +4,8 @@ import { Clock, FileSignature, MessageCircle, Plane, ShieldCheck, CheckCircle2 }
 const steps = [
   {
     icon: ShieldCheck,
-    title: "Submit request",
-    desc: "ลูกค้ากรอกข้อมูลเดินทางและช่องทางติดต่อ",
+    title: "เลือกแพ็กเกจที่ต้องการ",
+    desc: "เลือกเอกสารที่คุณต้องการ — ใบจองตั๋ว ใบจองโรงแรม แผนการเดินทาง หรือชุดครบเซ็ต พร้อมระบุประเทศที่จะยื่นวีซ่า",
     color: {
       light: "bg-blue-100",
       base: "bg-blue-500",
@@ -16,8 +16,8 @@ const steps = [
   },
   {
     icon: FileSignature,
-    title: "Staff reviews details",
-    desc: "เจ้าหน้าที่ตรวจสอบเส้นทาง วันที่ และประเภทบริการ",
+    title: "กรอกข้อมูลและชำระเงิน",
+    desc: "กรอกข้อมูลการเดินทางของคุณผ่านฟอร์มที่ปลอดภัย — ชื่อ-นามสกุล (ตามหนังสือเดินทาง) วันเดินทาง ปลายทาง และข้อมูลที่จำเป็น",
     color: {
       light: "bg-orange-100",
       base: "bg-[#FF5722]",
@@ -28,8 +28,8 @@ const steps = [
   },
   {
     icon: MessageCircle,
-    title: "Staff contacts customer",
-    desc: "ติดต่อกลับเพื่อยืนยันข้อมูล ราคา และขั้นตอนถัดไป",
+    title: "ทีมงานตรวจสอบและจัดเตรียมเอกสาร",
+    desc: "ทีมงานของเราตรวจสอบข้อมูลและจัดเตรียมเอกสาร PDF ตามมาตรฐานสถานทูต ภายใน 24 ชั่วโมง (หรือเร็วกว่านั้นสำหรับแพ็กเกจ Express)",
     color: {
       light: "bg-emerald-100",
       base: "bg-emerald-500",
@@ -40,8 +40,8 @@ const steps = [
   },
   {
     icon: Plane,
-    title: "Documents prepared",
-    desc: "จัดเตรียมเอกสารหลังลูกค้ายืนยันให้ดำเนินการ",
+    title: "รับ PDF และยื่นสถานทูตได้เลย",
+    desc: "คุณจะได้รับไฟล์ PDF ทางอีเมล พร้อมสำหรับการ print หรือแนบในระบบออนไลน์ของสถานทูต",
     color: {
       light: "bg-purple-100",
       base: "bg-purple-500",
@@ -54,14 +54,14 @@ const steps = [
 
 export default function WorkflowTimeline() {
   return (
-    <section id="timeline" className="relative overflow-hidden bg-white py-14 sm:py-16 font-sans">
+    <section id="timeline" className="relative overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 font-sans lg:py-24">
       
       {/* ================= Colorful Background Elements ================= */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Large colorful blobs */}
-        <div className="absolute -left-32 top-10 h-80 w-80 rounded-full bg-blue-400 opacity-10 blur-3xl" />
-        <div className="absolute right-0 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-orange-400 opacity-10 blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 h-64 w-64 rounded-full bg-emerald-400 opacity-10 blur-3xl" />
+        <div className="absolute -left-32 top-10 h-80 w-80 rounded-full bg-blue-300/25 blur-3xl" />
+        <div className="absolute right-0 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-orange-200/35 blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 h-64 w-64 rounded-full bg-cyan-200/25 blur-3xl" />
 
         {/* Flat Design Graphic Shapes (Crisp, solid colors) */}
         <div className="absolute left-10 top-32 h-16 w-16 rounded-full border-[6px] border-purple-200 opacity-60" />
@@ -81,34 +81,31 @@ export default function WorkflowTimeline() {
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         
         {/* ================= Header & Mockup Area ================= */}
-        <div className="mb-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div className="mb-12 grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
           
           {/* Left: Text Content */}
           <div className="lg:pr-10">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-purple-100 bg-purple-50 px-4 py-2 text-sm font-extrabold text-purple-600 shadow-sm">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-2 text-sm font-extrabold text-purple-600 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
               <Clock className="h-4 w-4" aria-hidden="true" />
               Workflow & Tracking
             </div>
 
-            <h2 className="text-[2.5rem] font-black leading-[1.2] text-slate-900 sm:text-5xl">
-              Request-based workflow
+            <h2 className="text-3xl font-black leading-[1.18] text-slate-900 sm:text-5xl">
+              สั่ง รับ ยื่น — ง่ายกว่าที่คิด
               <br />
               <span className="relative inline-block mt-2">
                 <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#FF5722]">
-                  สำหรับเอกสารยื่นวีซ่า
+                  ไม่ต้องมีความรู้ด้านวีซ่า
                 </span>
                 {/* SVG Underline Accent */}
-                <svg className="absolute -bottom-2 left-0 w-full h-3 text-yellow-300 -z-10 opacity-80" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <svg className="absolute -bottom-3 left-0 -z-10 h-3 w-full text-yellow-300 opacity-70" viewBox="0 0 100 10" preserveAspectRatio="none">
                   <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round"/>
                 </svg>
               </span>
             </h2>
 
-            <p className="mt-6 text-lg leading-relaxed text-slate-600">
-              ลูกค้าส่งข้อมูลเบื้องต้น ทีมงานตรวจสอบและติดต่อกลับ จากนั้นจึงจัดเตรียม 
-              <strong className="text-slate-800"> flight reservation </strong> และ 
-              <strong className="text-slate-800"> hotel booking </strong> 
-              ตามข้อมูลที่ตรวจสอบแล้วสำหรับใช้ประกอบการยื่นวีซ่าของคุณ
+            <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+              ไม่ต้องมีความรู้ด้านวีซ่า ไม่ต้องเตรียมอะไรมาก แค่บอกเราว่าคุณจะเดินทางที่ไหน เมื่อไหร่ และต้องการเอกสารอะไร — เราจัดการให้
             </p>
           </div>
 
@@ -116,10 +113,10 @@ export default function WorkflowTimeline() {
           <div className="relative flex w-full justify-center lg:justify-end">
             
             {/* Wrapper to constrain the size of the mockup and blob */}
-            <div className="relative w-full max-w-md">
+            <div className="relative w-full max-w-sm lg:max-w-md">
               
               {/* SVG Organic Blob Background (Replaces the blocky CSS shape) */}
-              <div className="absolute -inset-6 md:-inset-10 z-0 opacity-90 drop-shadow-2xl pointer-events-none">
+              <div className="pointer-events-none absolute -inset-4 z-0 opacity-75 drop-shadow-2xl md:-inset-8">
                 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="h-full w-full transform rotate-3">
                   <path 
                     fill="#FF5722" 
@@ -130,7 +127,7 @@ export default function WorkflowTimeline() {
               </div>
               
               {/* Main Card */}
-              <div className="relative z-10 rounded-[2.5rem] bg-white p-5 shadow-xl sm:p-6 transform transition-transform hover:-translate-y-2 duration-500 border border-slate-50">
+              <div className="relative z-10 rounded-3xl border border-blue-100/70 bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)] transition-transform duration-500 md:hover:-translate-y-1 sm:p-6">
                 
                 <div className="mb-5 flex items-center justify-between">
                   <div>
@@ -153,7 +150,7 @@ export default function WorkflowTimeline() {
                     </span>
                     <div className="pt-1">
                       <p className="font-bold text-slate-900">Request received</p>
-                      <p className="text-sm font-medium text-slate-500">ข้อมูลครบถ้วน</p>
+                      <p className="text-sm font-medium text-slate-500">ไม่ต้องชำระเงินก่อน</p>
                     </div>
                   </div>
 
@@ -165,7 +162,7 @@ export default function WorkflowTimeline() {
                     </span>
                     <div className="pt-1">
                       <p className="font-bold text-[#2563EB]">Staff reviewing</p>
-                      <p className="text-sm font-medium text-blue-600/70">กำลังตรวจสอบและประเมิน</p>
+                      <p className="text-sm font-medium text-blue-600/70">ติดต่อผ่าน LINE OA และ Email</p>
                     </div>
                   </div>
 
@@ -176,7 +173,7 @@ export default function WorkflowTimeline() {
                     </span>
                     <div className="pt-1 opacity-60">
                       <p className="font-bold text-slate-600">Documents prepared</p>
-                      <p className="text-sm font-medium text-slate-500">รอการดำเนินการ</p>
+                      <p className="text-sm font-medium text-slate-500">ภายใน 24-48 ชั่วโมงหลังยืนยัน</p>
                     </div>
                   </div>
                 </div>
@@ -197,16 +194,16 @@ export default function WorkflowTimeline() {
         </div>
 
         {/* ================= 4 Steps Horizontal Area ================= */}
-        <div className="relative mt-10 lg:mt-16">
+        <div className="relative mt-8 lg:mt-12">
           
           {/* Colorful Connecting Line (Desktop) */}
           <div className="absolute left-1/2 top-12 z-0 hidden h-1.5 w-3/4 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-100 via-orange-100 to-purple-100 lg:block"></div>
           
-          <div className="relative z-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="relative z-10 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(({ icon: Icon, title, desc, color }, index) => (
               <article 
                 key={title} 
-                className={`group relative overflow-hidden rounded-[2rem] border-2 bg-white p-5 sm:p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${color.border} ${color.shadow} hover:bg-slate-50/50`}
+                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-5 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] transition-all duration-300 md:hover:-translate-y-1 sm:p-6 ${color.border} hover:bg-slate-50/50`}
               >
                 {/* Number Badge overlay */}
                 <div className={`absolute -right-4 -top-4 flex h-20 w-20 items-end justify-start rounded-full p-5 text-2xl font-black opacity-10 transition-transform group-hover:scale-110 ${color.text} ${color.base}`}>
@@ -226,6 +223,11 @@ export default function WorkflowTimeline() {
               </article>
             ))}
           </div>
+        </div>
+
+        {/* Reassurance Line */}
+        <div className="mt-10 text-center text-base font-medium text-slate-600">
+          💬 มีข้อสงสัยระหว่างทาง? ทีมงานพร้อมตอบคำถามทุกขั้นตอน
         </div>
 
       </div>

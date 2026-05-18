@@ -3,24 +3,32 @@ import React, { useState } from "react";
 
 const faqs = [
   {
-    q: "Flight reservation for visa คืออะไร?",
-    a: "เป็นเอกสารใบจองตั๋วเครื่องบินสำหรับใช้ประกอบคำขอวีซ่า ทีมงานจะตรวจสอบเส้นทาง วันที่เดินทาง และข้อมูลผู้เดินทางก่อนจัดเตรียมเอกสาร"
+    q: "BKK AIR คืออะไร ให้บริการอะไร?",
+    a: "BKK AIR คือบริการจัดเตรียมเอกสารสนับสนุนวีซ่าสำหรับนักเดินทางชาวไทย ได้แก่ ใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง ในรูปแบบ PDF มาตรฐานสถานทูต — เราไม่ใช่ตัวแทนวีซ่าและไม่ใช่บริษัทขายตั๋ว"
   },
   {
-    q: "Hotel booking for visa ใช้สำหรับอะไร?",
-    a: "ใช้เป็นเอกสารประกอบแผนการเข้าพักตามเมืองและวันที่เดินทางที่ลูกค้ายืนยัน เหมาะกับผู้ที่ต้องการใบจองโรงแรมขอวีซ่า"
+    q: "เอกสารที่ได้รับสามารถใช้ยื่นสถานทูตได้จริงไหม?",
+    a: "ได้ครับ/ค่ะ เอกสารทุกชุดจัดทำในรูปแบบที่ใช้ประกอบคำขอวีซ่าได้ ทว่าการพิจารณาอนุมัติเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลแต่เพียงผู้เดียว BKK AIR ไม่รับประกันผลการอนุมัติวีซ่า"
   },
   {
-    q: "ส่งคำขอแล้วจะได้รับเอกสารทันทีหรือไม่?",
-    a: "ไม่ใช่ระบบออกเอกสารอัตโนมัติ หลังส่งคำขอ เจ้าหน้าที่จะตรวจสอบรายละเอียดและติดต่อกลับเพื่อยืนยันข้อมูลก่อนดำเนินการ"
+    q: "จะได้รับเอกสารภายในกี่ชั่วโมง?",
+    a: "แพ็กเกจมาตรฐานส่งเอกสารภายใน 24 ชั่วโมงหลังยืนยันข้อมูล หากต้องการเร็วกว่านั้น มีแบบ Express ที่ส่งภายใน 4-6 ชั่วโมง สามารถแจ้งทีมงานเพื่อสอบถามรายละเอียดได้เลย"
   },
   {
-    q: "BKK AIR รับประกันผลวีซ่าหรือไม่?",
-    a: "ไม่รับประกันผลการอนุมัติวีซ่า เพราะการพิจารณาเป็นอำนาจของสถานทูตหรือศูนย์รับคำร้อง บริการของเราคือการช่วยจัดเตรียมเอกสารเดินทางประกอบคำขอ"
+    q: "ต้องส่งเอกสารอะไรให้ BKK AIR บ้าง?",
+    a: "ทีมงานจะขอข้อมูลเบื้องต้นเท่านั้น เช่น ชื่อ-สกุล (ตามพาสปอร์ต) ประเทศปลายทาง วันเดินทาง และจำนวนผู้เดินทาง ไม่ต้องส่งสำเนาพาสปอร์ตหรือข้อมูลส่วนตัวเพิ่มเติมก่อนยืนยันคำสั่ง"
   },
   {
-    q: "หลังส่งคำขอแล้วทีมงานจะติดต่ออย่างไร?",
-    a: "ทีมงานจะติดต่อผ่านเบอร์โทร อีเมล หรือ LINE ID ที่ลูกค้าระบุไว้ เพื่อยืนยันรายละเอียด ราคา และขั้นตอน manual fulfillment ถัดไป"
+    q: "BKK AIR รับประกันการอนุมัติวีซ่าไหม?",
+    a: "ไม่รับประกันครับ/ค่ะ BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนเท่านั้น การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลในทุกกรณี เราไม่มีความสัมพันธ์ใด ๆ กับสถานทูต"
+  },
+  {
+    q: "ชำระเงินได้ทางไหนบ้าง?",
+    a: "รับชำระผ่านโอนเงินธนาคาร พร้อมเพย์ และช่องทางออนไลน์ที่ทีมงานแจ้งให้ทราบหลังยืนยันคำสั่ง ราคาชัดเจนก่อนชำระ ไม่มีค่าใช้จ่ายซ่อนเร้น"
+  },
+  {
+    q: "ถ้ามีปัญหาหรืออยากแก้ไขข้อมูล ติดต่อได้ที่ไหน?",
+    a: "ติดต่อทีมงานได้ผ่าน LINE OA: @bkkair หรืออีเมล info@bkkair.com ทีมงานพร้อมตอบคำถามและช่วยเหลือทุกขั้นตอน"
   }
 ];
 
@@ -28,17 +36,18 @@ export default function FAQSection() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section id="faq" className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-32 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section id="faq" className="relative w-full overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
       
       {/* ================= Flat Design 2.0 Background Elements ================= */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Soft Background Blobs */}
-        <div className="absolute -left-32 top-1/4 h-[500px] w-[500px] rounded-full bg-blue-100/40 blur-3xl" />
-        <div className="absolute -right-20 bottom-10 h-[600px] w-[600px] rounded-full bg-orange-100/30 blur-3xl" />
+        <div className="absolute -left-32 top-1/4 h-[460px] w-[460px] rounded-full bg-blue-300/25 blur-3xl" />
+        <div className="absolute -right-20 bottom-10 h-[540px] w-[540px] rounded-full bg-orange-200/35 blur-3xl" />
+        <div className="absolute left-1/2 top-10 h-[280px] w-[280px] rounded-full bg-cyan-200/25 blur-3xl" />
         
         {/* Dotted Grid Pattern */}
-        <div className="absolute left-10 top-20 h-32 w-32 opacity-40" style={{ backgroundImage: 'radial-gradient(#94A3B8 2px, transparent 2px)', backgroundSize: '20px 20px' }}></div>
-        <div className="absolute right-20 bottom-40 h-24 w-24 opacity-30" style={{ backgroundImage: 'radial-gradient(#93C5FD 2px, transparent 2px)', backgroundSize: '16px 16px' }}></div>
+        <div className="absolute left-10 top-20 h-32 w-32 bg-[radial-gradient(circle_at_2px_2px,rgba(148,163,184,0.5)_2px,transparent_0)] bg-[length:20px_20px] opacity-30"></div>
+        <div className="absolute bottom-40 right-20 h-24 w-24 bg-[radial-gradient(circle_at_2px_2px,rgba(147,197,253,0.55)_2px,transparent_0)] bg-[length:16px_16px] opacity-30"></div>
         
         {/* Floating Geometric Shapes */}
         <div className="absolute right-1/4 top-20 h-10 w-10 rounded-full bg-yellow-300 opacity-50" />
@@ -48,17 +57,17 @@ export default function FAQSection() {
       <div className="relative z-10 mx-auto max-w-4xl px-6 lg:px-8">
         
         {/* ================= Header Section ================= */}
-        <div className="mx-auto mb-12 sm:mb-16 text-center">
-          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full bg-white border border-slate-200/60 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-sm">
+        <div className="mx-auto mb-12 text-center">
+          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <MessageCircleQuestion className="h-4 w-4 text-blue-600" aria-hidden="true" />
             <span className="uppercase tracking-widest text-slate-500 text-xs">Support & FAQ</span>
           </div>
           
-          <h2 className="text-4xl font-extrabold leading-[1.2] text-slate-900 sm:text-5xl tracking-tight">
-            คำถามที่พบบ่อย <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF5722] to-orange-400">(FAQ)</span>
+          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-5xl">
+            มีคำถาม? <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF5722] to-orange-400">เราตอบได้เลย</span>
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-slate-600 font-medium">
-            คำตอบเกี่ยวกับจองตั๋วเครื่องบินยื่นวีซ่า ใบจองโรงแรมขอวีซ่า และขั้นตอน staff review
+          <p className="mt-5 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+            คำตอบเกี่ยวกับเอกสารสนับสนุนวีซ่า กระบวนการ และราคา
           </p>
         </div>
 
@@ -70,10 +79,10 @@ export default function FAQSection() {
             return (
               <article
                 key={faq.q}
-                className={`group relative overflow-hidden rounded-[1.5rem] bg-white transition-all duration-300 border-2 ${
+                className={`group relative overflow-hidden rounded-3xl bg-white transition-all duration-300 ${
                   open 
-                    ? "border-blue-500 shadow-lg shadow-blue-200/50" 
-                    : "border-slate-100 hover:border-blue-200 hover:shadow-md hover:shadow-slate-200/50"
+                    ? "border border-blue-300 shadow-[0_20px_60px_rgba(15,23,42,0.08)]"
+                    : "border border-blue-100/70 shadow-[0_20px_60px_rgba(15,23,42,0.08)] hover:border-blue-200"
                 }`}
               >
                 <button

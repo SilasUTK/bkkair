@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BKK AIR | จองตั๋วเครื่องบินยื่นวีซ่า และใบจองโรงแรมขอวีซ่า",
+  title: "BKK AIR | ใบจองตั๋วยื่นวีซ่า & เอกสารสนับสนุนสถานทูต",
   description:
-    "BKK AIR provides staff-reviewed flight reservation for visa and hotel booking for visa support. Submit a request and our team manually verifies the details before fulfillment.",
+    "จัดเตรียมเอกสารยื่นวีซ่าครบชุด — ใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง ส่ง PDF ภายใน 24 ชั่วโมง โดย BKK AIR",
   openGraph: {
-    title: "BKK AIR - Flight Reservation and Hotel Booking for Visa",
+    title: "BKK AIR | ใบจองตั๋วยื่นวีซ่า & เอกสารสนับสนุนสถานทูต",
     description:
-      "Request-based visa travel document support for flight reservation for visa and hotel booking for visa.",
+      "จัดเตรียมเอกสารยื่นวีซ่าครบชุด — ใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง ส่ง PDF ภายใน 24 ชั่วโมง โดย BKK AIR",
     type: "website",
     siteName: "BKK AIR"
   }
@@ -37,18 +37,34 @@ const faqJsonLd = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "BKK AIR เป็นระบบจองตั๋วอัตโนมัติหรือไม่?",
+      name: "BKK AIR คืออะไร ให้บริการอะไร?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ไม่ใช่ ลูกค้าส่งคำขอให้เจ้าหน้าที่ตรวจสอบรายละเอียดก่อนดำเนินการจัดเตรียมเอกสารด้วยตนเอง"
+        text: "BKK AIR คือบริการจัดเตรียมเอกสารสนับสนุนวีซ่า — เช่น ใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง ในรูปแบบ PDF พร้อมยื่นสถานทูต เราไม่ใช่ตัวแทนวีซ่าและไม่รับประกันผลการอนุมัติวีซ่า"
       }
     },
     {
       "@type": "Question",
-      name: "บริการนี้ใช้สำหรับอะไร?",
+      name: "เอกสารที่ได้รับสามารถใช้ยื่นสถานทูตได้จริงไหม?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "บริการนี้ช่วยจัดเตรียม flight reservation for visa และ hotel booking for visa สำหรับประกอบการยื่นวีซ่า"
+        text: "เอกสารทุกชิ้นจัดทำในรูปแบบที่สถานทูตส่วนใหญ่คาดหวัง และผ่านการตรวจสอบจากทีมงานจริงก่อนส่ง อย่างไรก็ตาม การยอมรับเอกสารและการอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุลในแต่ละกรณี"
+      }
+    },
+    {
+      "@type": "Question",
+      name: "BKK AIR รับประกันการอนุมัติวีซ่าไหม?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "ไม่ครับ/ค่ะ BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลในทุกกรณี เราไม่รับประกันและไม่มีความสัมพันธ์พิเศษกับสถานทูตใด ๆ"
+      }
+    },
+    {
+      "@type": "Question",
+      name: "จะได้รับเอกสารภายในกี่ชั่วโมง?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "แพ็กเกจมาตรฐานส่งภายใน 24 ชั่วโมงหลังชำระเงิน สำหรับแพ็กเกจ Express จะได้รับเร็วกว่านั้น"
       }
     }
   ]

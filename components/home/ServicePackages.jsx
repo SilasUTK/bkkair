@@ -9,13 +9,13 @@ import React from "react";
 
 const packages = [
   {
-    id: "flight-reservation",
-    name: "Flight Reservation for Visa",
-    price: "เริ่มต้น",
+    id: "basic",
+    name: "Basic",
+    price: "฿490",
     popular: false,
     icon: PlaneTakeoff,
     detailLink: "#hero",
-    description: "จองตั๋วเครื่องบินยื่นวีซ่าแบบเจ้าหน้าที่ตรวจสอบก่อนดำเนินการ",
+    description: "สำหรับคนที่ต้องการใบจองตั๋วหรือโรงแรมอย่างใดอย่างหนึ่ง",
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
@@ -26,22 +26,22 @@ const packages = [
       checkIcon: "text-blue-500",
     },
     features: [
-      { text: "Flight reservation for visa", included: true },
-      { text: "ตรวจสอบเส้นทางและวันที่ก่อนจัดทำ", included: true },
-      { text: "ไฟล์เอกสารส่งหลังยืนยันข้อมูล", included: true },
-      { text: "เจ้าหน้าที่ติดต่อกลับก่อนดำเนินการ", included: true },
-      { text: "ไม่ใช่ตั๋วโดยสารจริงอัตโนมัติ", included: true },
+      { text: "ใบจองตั๋วเครื่องบิน หรือ ใบจองโรงแรม (เลือก 1 รายการ)", included: true },
+      { text: "ไฟล์ PDF embassy-ready format", included: true },
+      { text: "ตรวจสอบโดยทีมงานก่อนส่ง", included: true },
+      { text: "ส่งทางอีเมลภายใน 48 ชั่วโมงหลังยืนยัน", included: true },
+      { text: "Travel Plan และประกันการเดินทาง", included: false },
     ],
   },
 
   {
-    id: "hotel-booking",
-    name: "Hotel Booking for Visa",
-    price: "ตามเคส",
+    id: "standard",
+    name: "Standard",
+    price: "฿890",
     popular: true,
     icon: Hotel,
     detailLink: "#hero",
-    description: "ใบจองโรงแรมขอวีซ่าตามเมืองและช่วงวันที่ลูกค้ายืนยัน",
+    description: "ครบถ้วน คุ้มค่า เหมาะกับการยื่นวีซ่าท่องเที่ยวส่วนใหญ่",
     theme: {
       color: "text-[#FF5722]",
       bg: "bg-orange-50",
@@ -52,22 +52,22 @@ const packages = [
       checkIcon: "text-orange-500",
     },
     features: [
-      { text: "Hotel booking for visa", included: true },
-      { text: "ตรวจสอบเมือง วันที่ และจำนวนผู้เดินทาง", included: true },
-      { text: "เหมาะสำหรับเอกสารประกอบคำขอวีซ่า", included: true },
-      { text: "ทีมงานยืนยันรายละเอียดก่อนออกเอกสาร", included: true },
-      { text: "ไม่รับประกันผลการอนุมัติวีซ่า", included: true },
+      { text: "ใบจองตั๋วเครื่องบิน + ใบจองโรงแรม", included: true },
+      { text: "Travel Plan (แผนการเดินทาง)", included: true },
+      { text: "ไฟล์ PDF embassy-ready format", included: true },
+      { text: "ตรวจสอบโดยทีมงานก่อนส่ง", included: true },
+      { text: "ส่งทางอีเมลภายใน 24-48 ชั่วโมงหลังยืนยัน", included: true },
     ],
   },
 
   {
-    id: "full-support",
-    name: "Full Visa Support Package",
-    price: "ประเมินราคา",
+    id: "ultimate",
+    name: "Ultimate",
+    price: "฿8,990",
     popular: false,
     icon: ShieldCheck,
     detailLink: "#hero",
-    description: "ชุดสนับสนุนเอกสารเดินทางสำหรับลูกค้าที่ต้องการทั้งตั๋วและโรงแรม",
+    description: "ครบทุกอย่างสำหรับเคสซับซ้อนหรือผู้ที่มีเวลาจำกัด",
     theme: {
       color: "text-emerald-600",
       bg: "bg-emerald-50",
@@ -78,63 +78,61 @@ const packages = [
       checkIcon: "text-emerald-500",
     },
     features: [
-      { text: "Flight reservation + hotel booking", included: true },
-      { text: "Visa document support assistance", included: true },
-      { text: "ตรวจสอบรายละเอียดก่อนจัดเตรียม", included: true },
-      { text: "เจ้าหน้าที่แจ้งขั้นตอนและราคาเป็นรายเคส", included: true },
-      { text: "Manual fulfillment หลังยืนยันข้อมูล", included: true },
+      { text: "ใบจองตั๋วเครื่องบิน + ใบจองโรงแรม", included: true },
+      { text: "Travel Plan ละเอียดครบถ้วน", included: true },
+      { text: "Cover Letter เฉพาะบุคคล", included: true },
+      { text: "ชุดเอกสารยื่นวีซ่าครบวงจร", included: true },
+      { text: "Priority Support และรองรับเคสเร่งด่วน", included: true },
     ],
   },
 ];
 
 export default function ServicePackages() {
-  function scrollToHero() {
-    const hero = document.getElementById("hero");
-    if (hero) hero.scrollIntoView({ behavior: "smooth" });
+  function goToOrder(packageSlug) {
+    window.location.href = `/order?package=${packageSlug}`;
   }
 
   return (
     <section
       id="packages"
-      className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28"
+      className="relative w-full overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 lg:py-24"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         
         {/* Header */}
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 shadow-sm">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-2 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <Package className="h-4 w-4 text-emerald-500" />
             แพ็กเกจบริการ
           </div>
 
-          <h2 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">
-            เลือกแพ็กเกจที่เหมาะกับคุณ
+          <h2 className="text-3xl font-black leading-[1.18] tracking-tight text-slate-900 sm:text-5xl">
+            เลือกเอกสารที่คุณต้องการ ราคาชัดเจน ไม่มีค่าใช้จ่ายซ่อนเร้น
           </h2>
 
-          <p className="mt-5 text-lg leading-relaxed text-slate-600">
-            บริการจองตั๋ว โรงแรม และเอกสารสำหรับยื่นวีซ่า
-            พร้อมทีมงานตรวจสอบรายละเอียดก่อนจัดเตรียมเอกสารทุกครั้ง
+          <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+            บริการทุกแพ็กเกจตรวจสอบโดยทีมงานจริง และส่งเป็น PDF พร้อมยื่นสถานทูต
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-3 lg:gap-6">
           {packages.map((pkg) => {
             const Icon = pkg.icon;
 
             return (
               <article
                 key={pkg.id}
-                className={`relative flex flex-col h-full rounded-[2rem] bg-white transition-all duration-300 ${
+                className={`relative flex h-full flex-col rounded-3xl bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)] transition-all duration-300 ${
                   pkg.popular
-                    ? `border-4 ${pkg.theme.border} shadow-2xl ${pkg.theme.shadow} xl:-translate-y-3`
-                    : "border border-slate-200 shadow-lg hover:-translate-y-2"
+                    ? `border-4 ${pkg.theme.border} ${pkg.theme.shadow} md:-translate-y-2`
+                    : "border border-blue-100/70 md:hover:-translate-y-1"
                 }`}
               >
                 {/* Badge */}
                 {pkg.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#FF5722] to-orange-500 px-4 py-1 text-xs font-black uppercase tracking-wider text-white shadow-lg">
-                    คุ้มค่าที่สุด
+                    ⭐ แนะนำ
                   </div>
                 )}
 
@@ -158,13 +156,13 @@ export default function ServicePackages() {
                   </p>
 
                   <div className="mt-5 flex items-baseline justify-center gap-1">
-                    <span className="text-3xl font-extrabold tracking-tight text-slate-900">
-                      {pkg.price}
+                    <span className="text-base font-bold text-slate-500">
+                      สอบถามราคากับทีมงาน
                     </span>
                   </div>
 
                   <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                    เจ้าหน้าที่จะแจ้งรายละเอียดหลังตรวจสอบ
+                    ราคาชัดเจนก่อนชำระ · ไม่มีค่าใช้จ่ายซ่อนเร้น
                   </p>
                 </div>
 
@@ -204,7 +202,7 @@ export default function ServicePackages() {
                   {/* Buttons */}
                   <div className="mt-auto">
                     <button
-                      onClick={scrollToHero}
+                      onClick={() => goToOrder(pkg.id)}
                       className={`w-full rounded-2xl py-3.5 text-sm font-bold transition-all duration-300 ${pkg.theme.btnClass}`}
                     >
                       เลือกแพ็กเกจนี้
@@ -224,10 +222,15 @@ export default function ServicePackages() {
         </div>
 
         {/* Footer */}
-        <div className="mt-14 text-center">
+        <div className="mt-14 text-center space-y-3">
           <p className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-500 shadow-sm">
             <ShieldCheck className="h-4 w-4 text-emerald-500" />
-            ทีมงานพร้อมช่วยดูแลและให้คำแนะนำตลอดการใช้งาน
+            ยังไม่แน่ใจว่าต้องใช้เอกสารอะไร? → ปรึกษาทีมงานฟรี ไม่มีข้อผูกมัด
+          </p>
+          <p className="text-xs text-slate-400 italic">
+            *ราคาและรายละเอียดแพ็กเกจอาจมีการเปลี่ยนแปลง กรุณาตรวจสอบราคาล่าสุดในหน้า checkout*
+            <br/>
+            *BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูต*
           </p>
         </div>
       </div>

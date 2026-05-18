@@ -4,9 +4,9 @@ import React from "react";
 const benefits = [
   {
     icon: Clock,
-    title: "Fast staff response",
-    subtitle: "(ทีมงานติดต่อกลับ)",
-    description: "รับคำขอแล้วส่งต่อให้เจ้าหน้าที่ตรวจสอบ เพื่อประเมินรายละเอียดการเดินทางและช่องทางติดต่อที่เหมาะสม",
+    title: "ตรวจสอบทุกขั้นตอนโดยทีมงานจริง",
+    subtitle: "(Staff-reviewed every request)",
+    description: "ไม่มีระบบอัตโนมัติ ทีมงานตรวจสอบข้อมูลและเอกสารทุกฉบับก่อนส่งถึงมือคุณ เพื่อความถูกต้องที่ไว้ใจได้",
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
@@ -18,9 +18,9 @@ const benefits = [
   },
   {
     icon: FileText,
-    title: "Embassy-ready documents",
-    subtitle: "(เอกสารพร้อมใช้ประกอบคำขอ)",
-    description: "จัดเตรียม flight reservation for visa และ hotel booking for visa ตามข้อมูลที่ได้รับการยืนยันจากลูกค้า",
+    title: "ฟอร์แมตพร้อมใช้ประกอบคำขอวีซ่า",
+    subtitle: "(Embassy-ready format)",
+    description: "จัดเตรียม flight reservation for visa และ hotel booking for visa ในรูปแบบที่เหมาะกับเอกสารยื่นวีซ่า",
     theme: {
       color: "text-[#FF5722]",
       bg: "bg-orange-50",
@@ -32,9 +32,9 @@ const benefits = [
   },
   {
     icon: SearchCheck,
-    title: "Manual review before processing",
-    subtitle: "(ตรวจสอบก่อนดำเนินการ)",
-    description: "ทุกเคสเป็นระบบ request review ไม่ใช่การจองอัตโนมัติ เจ้าหน้าที่จะตรวจสอบข้อมูลก่อนเริ่มจัดเตรียมเอกสาร",
+    title: "ทีมงานจริง พร้อมตอบทุกคำถาม",
+    subtitle: "(Human support via LINE & Email)",
+    description: "ไม่ใช่บอทและไม่ใช่ระบบตอบอัตโนมัติ ทีมงานพร้อมให้คำแนะนำและยืนยันรายละเอียดก่อนดำเนินการ",
     theme: {
       color: "text-emerald-600",
       bg: "bg-emerald-50",
@@ -48,17 +48,18 @@ const benefits = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="benefits" className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-32 font-sans selection:bg-blue-200 selection:text-blue-900">
+    <section id="benefits" className="relative w-full overflow-hidden bg-gradient-to-br from-[#F7FBFF] via-[#EEF6FF] to-[#FFF7F0] py-16 lg:py-24 font-sans selection:bg-blue-200 selection:text-blue-900">
       
       {/* ================= Flat Design Background Elements ================= */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Soft Blobs */}
-        <div className="absolute -right-40 top-0 h-[600px] w-[600px] rounded-full bg-blue-100/40 blur-3xl" />
-        <div className="absolute -left-40 bottom-0 h-[500px] w-[500px] rounded-full bg-orange-100/30 blur-3xl" />
+        <div className="absolute -right-40 top-0 h-[520px] w-[520px] rounded-full bg-blue-300/25 blur-3xl" />
+        <div className="absolute -left-40 bottom-0 h-[460px] w-[460px] rounded-full bg-orange-200/35 blur-3xl" />
+        <div className="absolute left-1/3 top-12 h-[300px] w-[300px] rounded-full bg-cyan-200/25 blur-3xl" />
         
         {/* Geometric Shapes & Patterns */}
-        <div className="absolute right-10 top-32 h-32 w-32 opacity-40" style={{ backgroundImage: 'radial-gradient(#94A3B8 2px, transparent 2px)', backgroundSize: '20px 20px' }}></div>
-        <div className="absolute left-1/4 bottom-20 h-24 w-24 opacity-40" style={{ backgroundImage: 'radial-gradient(#93C5FD 2px, transparent 2px)', backgroundSize: '16px 16px' }}></div>
+        <div className="absolute right-10 top-32 h-32 w-32 bg-[radial-gradient(circle_at_2px_2px,rgba(148,163,184,0.5)_2px,transparent_0)] bg-[length:20px_20px] opacity-30"></div>
+        <div className="absolute left-1/4 bottom-20 h-24 w-24 bg-[radial-gradient(circle_at_2px_2px,rgba(147,197,253,0.55)_2px,transparent_0)] bg-[length:16px_16px] opacity-35"></div>
         <div className="absolute left-10 top-1/4 h-12 w-12 rounded-full border-[6px] border-orange-200/60"></div>
         <div className="absolute right-1/4 bottom-1/4 h-8 w-8 rounded-lg bg-emerald-200/50 rotate-45"></div>
       </div>
@@ -66,23 +67,22 @@ export default function WhyChooseUs() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         
         {/* === Header Section === */}
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full bg-white border border-slate-200/60 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-sm">
+        <div className="mx-auto mb-12 max-w-3xl text-center lg:mb-14">
+          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <Sparkles className="h-4 w-4 text-orange-500" />
-            <span className="uppercase tracking-widest text-slate-500 text-xs">Why BKK AIR</span>
+            <span className="uppercase tracking-widest text-slate-500 text-xs">Why Choose Us</span>
           </div>
           
-          <h2 className="text-4xl font-extrabold leading-[1.2] text-slate-900 sm:text-5xl lg:text-5xl tracking-tight">
-            ทำไมต้องเลือก <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">BKK AIR</span>?
+          <h2 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-slate-900 sm:text-5xl">
+            เราไม่ได้แค่ส่งเอกสาร — <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">เราดูแลให้คุณพร้อมยื่น</span>
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-slate-600 font-medium">
-            จองตั๋วเครื่องบินยื่นวีซ่าและใบจองโรงแรมขอวีซ่าแบบมีเจ้าหน้าที่ตรวจสอบ<br className="hidden sm:block" />
-            เหมาะสำหรับลูกค้าที่ต้องการเอกสารประกอบคำขอวีซ่าที่ชัดเจน
+          <p className="mt-5 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+            หลายคนเสียเวลาหาข้อมูล จ้างคนผิด หรือได้เอกสารที่ไม่ตรงมาตรฐานสถานทูต BKK AIR ออกแบบบริการนี้มาเพื่อแก้ปัญหาเหล่านั้นโดยตรง
           </p>
         </div>
 
         {/* === Cards Grid Section === */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
+        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-3 lg:gap-6">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
             const displayNumber = `0${index + 1}`;
@@ -90,7 +90,7 @@ export default function WhyChooseUs() {
             return (
               <article
                 key={benefit.title}
-                className={`group relative overflow-hidden rounded-[2rem] bg-white p-8 border border-slate-100 shadow-lg shadow-slate-200/50 transition-all duration-300 hover:-translate-y-2 ${benefit.theme.hoverShadow}`}
+                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-blue-100/70 bg-white p-7 shadow-[0_20px_60px_rgba(15,23,42,0.08)] transition-all duration-300 md:hover:-translate-y-1 ${benefit.theme.hoverShadow}`}
               >
                 {/* Accent Top Line */}
                 <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${benefit.theme.gradient} opacity-80 transition-opacity duration-300 group-hover:opacity-100`}></div>
