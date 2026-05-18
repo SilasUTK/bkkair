@@ -1,41 +1,62 @@
-import { ArrowRight, Globe2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const supportedCountries = [
   {
-    name: "Schengen",
+    flag: "🇪🇺",
+    name: "กลุ่มประเทศ Schengen",
     slug: "schengen",
-    description: "รองรับเอกสารสนับสนุนวีซ่ากลุ่มเชงเก้น พร้อมตรวจสอบก่อนส่ง"
+    description: "ฝรั่งเศส เยอรมนี อิตาลี สเปน และอีก 22 ประเทศ",
+    requirements: "ต้องการ: ใบจองตั๋ว ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง",
   },
   {
-    name: "UK",
+    flag: "🇬🇧",
+    name: "สหราชอาณาจักร (UK)",
     slug: "uk",
-    description: "เตรียมเอกสารยื่นวีซ่าอังกฤษในรูปแบบ PDF พร้อมยื่น"
+    description: "เอกสารสนับสนุนสำหรับวีซ่า UK เอกสารที่ต้องสอดคล้องกับแผนเดินทาง",
+    requirements: "ต้องการ: ใบจองตั๋ว ใบจองโรงแรม และแผนการเดินทาง",
   },
   {
-    name: "USA",
+    flag: "🇺🇸",
+    name: "สหรัฐอเมริกา (USA)",
     slug: "usa",
-    description: "บริการเอกสารสนับสนุนวีซ่าอเมริกา พร้อมทีมงานช่วยตรวจความครบถ้วน"
+    description: "เอกสารประกอบวีซ่าอเมริกาเอกสารสำหรับอธิบายแผนเดินทางเบื้องต้น",
+    requirements: "ต้องการ: หลักฐานแผนการเดินทางและที่พัก",
   },
   {
-    name: "Canada",
+    flag: "🇨🇦",
+    name: "แคนาดา",
     slug: "canada",
-    description: "เอกสารสำรองสำหรับยื่นวีซ่าแคนาดา จัดทำตามมาตรฐานที่ใช้งานจริง"
+    description: "เอกสารประกอบคำขอวีซ่าแคนาดาที่แสดงแผนเดินทางและที่พักชัดเจน",
+    requirements: "ต้องการ: ใบจองตั๋วและหลักฐานที่พัก",
   },
   {
-    name: "Australia",
+    flag: "🇦🇺",
+    name: "ออสเตรเลีย",
     slug: "australia",
-    description: "รองรับคำขอวีซ่าออสเตรเลีย พร้อมส่งเอกสารภายในเวลาที่กำหนด"
+    description: "เอกสารสนับสนุนสำหรับแสดงกำหนดการเดินทางไปออสเตรเลีย",
+    requirements: "ต้องการ: ใบจองตั๋วและแผนการเดินทาง",
   },
   {
-    name: "Japan",
+    flag: "🇯🇵",
+    name: "ญี่ปุ่น",
     slug: "japan",
-    description: "จัดเตรียมเอกสารสำหรับยื่นวีซ่าญี่ปุ่นโดยทีมงานตรวจสอบทุกคำขอ"
+    description: "เอกสารสำหรับแสดงแผนเที่ยวญี่ปุ่นและกำหนดการเดินทางแบบเป็นลำดับ",
+    requirements: "ต้องการ: ใบจองตั๋วและแผนการเดินทางโดยละเอียด",
   },
   {
-    name: "South Korea",
+    flag: "🇰🇷",
+    name: "เกาหลีใต้",
     slug: "korea",
-    description: "บริการเอกสารสนับสนุนวีซ่าเกาหลีใต้ พร้อมคู่มือใช้งานเบื้องต้น"
-  }
+    description: "เอกสารสนับสนุนสำหรับยื่นวีซ่าเกาหลีใต้ พร้อมข้อมูลตั๋วและที่พัก",
+    requirements: "ต้องการ: ใบจองตั๋วและที่พัก",
+  },
+  {
+    flag: "🌏",
+    name: "และอีกหลายประเทศ",
+    slug: "other",
+    description: "ติดต่อทีมงานเพื่อสอบถามประเทศที่ต้องการ",
+    requirements: "ทีมงานจะช่วยประเมินเอกสารที่เหมาะสมกับปลายทางของคุณ",
+  },
 ];
 
 export default function SupportedCountriesSection() {
@@ -48,36 +69,49 @@ export default function SupportedCountriesSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-black uppercase tracking-[0.25em] text-[#2563EB]">
+            ประเทศที่ให้บริการ
+          </p>
           <h2 id="supported-countries-heading" className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-            ประเทศที่รองรับบริการเอกสารยื่นวีซ่า
+            ครอบคลุมวีซ่าหลายประเทศปลายทาง
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-            เลือกประเทศปลายทางเพื่อเริ่มคำขอ ทีมงานจะช่วยจัดเตรียมเอกสารสนับสนุนวีซ่าให้เหมาะกับแผนเดินทางของคุณ
+            ไม่ว่าคุณจะยื่นวีซ่าที่ไหน BKK AIR จัดเตรียมเอกสารสนับสนุนให้ตรงตามรูปแบบที่สถานทูตแต่ละประเทศคาดหวัง ทั้งวีซ่า Schengen เอกสาร, วีซ่า UK เอกสาร, วีซ่าอเมริกาเอกสาร, flight reservation for Schengen visa, hotel booking for UK visa และ embassy-ready documents Thailand
           </p>
         </div>
 
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-label="รายการประเทศที่รองรับ">
           {supportedCountries.map((country) => (
-            <li key={country.slug} className="flex h-full flex-col rounded-2xl border border-blue-100/80 bg-white/80 p-5 shadow-[0_10px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
-                  <Globe2 className="h-5 w-5" aria-hidden="true" />
+            <li key={country.slug} className="flex h-full flex-col rounded-2xl border border-blue-100/80 bg-white/80 p-5 shadow-[0_10px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-shadow duration-300 md:hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+              <div className="flex items-start gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-2xl">
+                  <span aria-hidden="true">{country.flag}</span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">{country.name}</h3>
+                <div>
+                  <h3 className="text-lg font-bold leading-snug text-slate-900">{country.name}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">{country.description}</p>
+                </div>
               </div>
 
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{country.description}</p>
-
-              <a
-                href={`/order?country=${country.slug}`}
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-blue-700 transition-colors hover:text-blue-800"
-              >
-                เริ่มคำขอสำหรับ {country.name}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
+              <p className="mt-4 flex-1 rounded-2xl border border-blue-100/70 bg-blue-50/60 px-4 py-3 text-sm font-semibold leading-relaxed text-slate-700">
+                {country.requirements}
+              </p>
             </li>
           ))}
         </ul>
+
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 rounded-3xl border border-blue-100/80 bg-white/85 px-6 py-6 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur sm:flex-row sm:text-left">
+          <p className="text-base font-bold text-slate-800">
+            ไม่แน่ใจว่าต้องใช้เอกสารอะไร?
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FF5722] px-5 py-3 text-sm font-black text-white shadow-lg shadow-orange-200 transition-all duration-300 hover:bg-orange-600 sm:w-auto"
+          >
+            ปรึกษาทีมงานฟรี
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </section>
   );
