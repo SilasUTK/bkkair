@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "bkkair-api",
-      cwd: "./api-server",
+      cwd: "./backend",
       script: "npm",
       args: "run start",
       env: {

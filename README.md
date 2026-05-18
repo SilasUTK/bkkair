@@ -1,52 +1,246 @@
 # BKK AIR Visa Booking Support
 
-BKK AIR structure:
-
-- **Root-level Next.js 14 App Router** (`app/`, `components/`, etc. at root)
-- **`api-server/`**: Express + TypeScript + Prisma + MySQL REST API
-
-Customers submit a request, staff review it, and fulfillment happens manually.
-
-This is not an instant booking engine.
+BKK AIR is a visa flight and hotel booking support system. It's a **lead request → staff review → manual fulfillment** product, not an instant booking engine.
 
 ## Project Structure
 
-- `app/`: Next.js 14 App Router routes
-- `components/`: React components (including legacy wrapped components)
-- `public/`: Static assets
-- `styles/`: Global styles
-- `api-server/`: Express REST API with TypeScript and Prisma
-- `legacy/`: archived original Vite client and JavaScript server (no longer active)
-- `AGENTS.md`: product and implementation rules
-- `ADMIN_AGENTS.md`: admin workflow
-- `SALES_FLOW.md`: Thai sales and follow-up process
-- `docs/hostinger-all-in-one-deploy.md`: Hostinger deployment guide
+```
+bkkair-visa-booking/
+├── frontend/
+│   ├── app/                    # Next.js 14 App Router
+│   ├── components/             # React components
+│   │   ├── home/              # Premium homepage sections
+│   │   ├── legacy/            # Legacy SPA pages & services
+│   │   ├── layout/            # Navbar, Footer, Logo
+│   │   └── marketing/         # Marketing shell
+│   ├── public/                # Static assets (images, manifest)
+│   ├── package.json
+│   ├── next.config.js         # API proxy to backend
+│   ├── tailwind.config.js
+│   └── tsconfig.json
+│
+├── backend/                    # Express.js REST API
+│   ├── src/
+│   │   ├── server.ts          # Express app
+│   │   ├── controllers/       # Route handlers
+│   │   ├── routes/            # API routes
+│   │   ├── services/          # Business logic
+│   │   └── middleware/        # Auth, validation
+│   ├── prisma/
+│   │   └── schema.prisma      # Database schema (MySQL)
+│   ├── scripts/               # Seed scripts
+│   ├── dist/                  # Compiled TypeScript
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── shared/                    # Shared constants/types (reserved)
+│
+├── docs/                      # Documentation
+│   ├── hostinger-all-in-one-deploy.md
+│   ├── hostinger-deployment-setup.md
+│   └── production-checklist-template.md
+│
+├── AGENTS.md                  # Product & implementation rules
+├── ADMIN_AGENTS.md            # Admin workflow
+├── SALES_FLOW.md              # Thai sales process
+├── ecosystem.config.cjs       # PM2 production config
+├── .env.example               # Environment variables template
+└── .env.local                 # Local environment (git-ignored)
+```
 
-## Run Locally
+## Technology Stack
 
-Install all dependencies:
+- **Frontend**: Next.js 14, React 18, Tailwind CSS, TypeScript
+- **Backend**: Express.js, TypeScript, Prisma ORM, MySQL
+- **Deployment**: PM2, Hostinger VPS, nginx
+- **Authentication**: JWT (admin)
+- **Database**: MySQL 5.7+
+
+## Key Features
+
+- **Customer Portal**: Quick booking request, status tracking
+- **Admin Portal**: Booking management, document preparation, staff assignment
+- **API**: REST endpoints for booking lifecycle
+- **Database**: Persistent booking state with Prisma migrations
+
+## Local Development
+
+### Prerequisites
+- Node.js 20.x
+- npm 10+
+- MySQL 5.7+ (for backend)
+
+### Install Dependencies
 
 ```bash
 npm run install:all
 ```
 
-Run frontend (Next.js, default):
+This installs:
+- Root dependencies (Next.js frontend)
+- `backend/` dependencies (Express API)
 
+### Run Development Servers
+
+Frontend (Next.js on port 3000):
 ```bash
 npm run dev
 ```
 
-Or run backend separately (Express TS):
-
+Backend (Express on port 5001):
 ```bash
 npm run dev:api
 ```
 
-Build frontend:
+Run both with PM2 (production-like):
+```bash
+npm run pm2:start
+npm run pm2:logs
+npm run pm2:stop
+```
 
+### Build
+
+Frontend:
 ```bash
 npm run build
 ```
+
+Backend:
+```bash
+npm run build:api
+```
+
+Both:
+```bash
+npm run build:all
+```
+
+### Start Production
+
+```bash
+npm start              # Start frontend
+npm run start:api      # Start backend
+```
+
+Or with PM2:
+```bash
+npm run pm2:start
+```
+
+## API Endpoints
+
+The frontend proxies `/api/*` to backend via `next.config.js`:
+
+```
+POST   /api/bookings                           # Create booking
+GET    /api/bookings/:code                     # Check booking status
+
+GET    /api/admin/bookings                     # List bookings (auth required)
+GET    /api/admin/bookings/:code              # Get booking detail (auth required)
+PATCH  /api/admin/bookings/:code/status       # Update status (auth required)
+PATCH  /api/admin/bookings/:code/notes        # Update notes (auth required)
+PATCH  /api/admin/bookings/:code/assign       # Assign staff (auth required)
+```
+
+See `backend/src/routes/` for full routing details.
+
+## Environment Variables
+
+Create `.env.local` from `.env.example`:
+
+```env
+# Frontend
+API_PROXY_TARGET=http://localhost:5001
+
+# Backend
+DATABASE_URL=mysql://user:password@localhost:3306/bkkair_db
+JWT_SECRET=your_secret_key_here
+JWT_EXPIRY=7d
+NODE_ENV=development
+```
+
+## Deployment
+
+### Hostinger VPS
+
+See `docs/hostinger-all-in-one-deploy.md` and `docs/hostinger-deployment-setup.md`.
+
+**Quick Start**:
+```bash
+npm run build:all
+npm run pm2:start
+```
+
+### Manual Deployment
+
+1. Build frontend and backend
+2. Copy to production server
+3. Install dependencies: `npm run install:all`
+4. Configure `.env` for production
+5. Run migrations: `npm --prefix backend run prisma:migrate`
+6. Start with PM2: `npm run pm2:start`
+
+## File Organization Changes (Cleanup)
+
+This project was recently reorganized for better maintainability:
+
+**Removed**:
+- `client/` - Empty folder
+- `frontend/` - Old build artifacts
+- `server/` - Abandoned source
+- `styles/` - Empty folder
+- `.next_hostinger/` - Old Hostinger build
+- `components/legacy/assets/` - Old assets
+- `components/legacy/main.jsx` - Old Vite entry
+- Dev log files
+
+**Reorganized**:
+- `api-server/` → `backend/`
+- Root config files updated to reference new paths
+- All imports and API paths remain compatible
+
+## Admin Rules
+
+See `ADMIN_AGENTS.md` for:
+- Admin workflow
+- Booking lifecycle
+- Document management
+- Staff assignment
+
+See `AGENTS.md` for:
+- Product design rules
+- Form validation rules
+- Business logic rules
+- Data protection rules
+
+See `SALES_FLOW.md` for:
+- Thai customer outreach
+- Follow-up timing
+- Messaging templates
+
+## Troubleshooting
+
+**Frontend won't connect to backend?**
+- Check `API_PROXY_TARGET` in `.env.local`
+- Ensure backend is running on port 5001
+- Check `next.config.js` rewrites
+
+**Backend won't start?**
+- Check `DATABASE_URL` env variable
+- Ensure MySQL is running
+- Run `npm --prefix backend run prisma:migrate`
+
+**Build errors?**
+- Clear `.next/` and `backend/dist/`
+- Reinstall: `npm run install:all`
+- Check Node.js version: `node -v` (must be 20.x)
+
+## Contributing
+
+Follow the patterns in `AGENTS.md` and `ADMIN_AGENTS.md`.
+
+All business logic changes should be coordinated with the admin workflow.
 
 Build backend:
 
