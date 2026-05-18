@@ -12,7 +12,7 @@ module.exports = {
     },
     {
       name: "bkkair-web",
-      cwd: ".",
+      cwd: "./frontend",
       script: "npm",
       args: "run start -- -p 3000",
       env: {

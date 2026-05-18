@@ -29,13 +29,10 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    ".next/types/**/*.ts",
-    ".next_hostinger/types/**/*.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "api-server",
-    ".next",
-    ".next_hostinger"
+    ".next"
   ]
 }
