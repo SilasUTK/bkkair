@@ -47,7 +47,7 @@ export default function PortalShell({
 function SidebarHeader({ onCloseSidebar }) {
   return (
     <div className="flex items-center justify-between">
-      <Logo className="[&_.bkk-logo-wordmark]:text-lg [&_.bkk-logo-wordmark]:sm:text-xl" />
+      <Logo className="h-10 w-[148px] sm:w-[164px]" />
       <button
         type="button"
         onClick={onCloseSidebar}
@@ -148,7 +148,7 @@ function MobileHeader({ onOpenSidebar }) {
         >
           <Menu className="h-5 w-5" aria-hidden="true" />
         </button>
-        <Logo className="[&_.bkk-logo-wordmark]:text-base [&_.bkk-logo-wordmark]:sm:text-base" />
+        <Logo className="h-9 w-[132px]" />
         <button
           type="button"
           className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-primary-dark"

@@ -1,31 +1,24 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Logo({ className = "", onClick, variant = "default" }) {
   const isFooter = variant === "footer";
+  const logoSrc = isFooter ? "/assets/logo/logo-white.png" : "/assets/logo/logo.png";
+  const sizeClass = isFooter
+    ? "h-10 w-[148px] sm:h-11 sm:w-[164px] md:w-[176px]"
+    : "h-9 w-[132px] sm:h-10 sm:w-[148px] md:h-11 md:w-[164px]";
 
   const content = (
-    <div className="group flex items-center gap-2.5 transition-transform duration-300 hover:scale-[1.02]">
-      
-      {/* Flat Design Logo Icon */}
-      <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-[#2563EB] shadow-lg shadow-blue-500/30 overflow-hidden sm:h-11 sm:w-11">
-        {/* Colorful Accent Blob inside Logo */}
-        <div className="absolute -right-1.5 -top-1.5 h-5 w-5 rounded-full bg-accent-orange transition-transform duration-300 group-hover:scale-150"></div>
-        {/* Soft highlight */}
-        <div className="absolute -bottom-2 -left-2 h-6 w-6 rounded-full bg-blue-400/40 blur-sm"></div>
-        
-        <span className="relative z-10 mt-0.5 text-2xl font-black leading-none text-white drop-shadow-sm sm:text-[26px]">
-          B
-        </span>
-      </div>
-
-      {/* Typography */}
-      <span className={`bkk-logo-wordmark text-xl font-black tracking-tight sm:text-2xl ${isFooter ? "text-white" : "text-slate-900"}`}>
-        BKK
-        <span className="text-primary-navy transition-colors duration-300 group-hover:text-accent-orange">
-          AIR
-        </span>
-        {/* Tiny decorative dot */}
-        <span className="ml-0.5 text-accent-orange">.</span>
-      </span>
-    </div>
+    <span className={`relative block shrink-0 ${sizeClass}`}>
+      <Image
+        src={logoSrc}
+        alt="BKK AIR"
+        fill
+        sizes="(max-width: 640px) 132px, (max-width: 768px) 148px, 176px"
+        className="object-contain"
+        priority={!isFooter}
+      />
+    </span>
   );
 
   if (onClick) {
@@ -33,7 +26,7 @@ export default function Logo({ className = "", onClick, variant = "default" }) {
       <button
         type="button"
         onClick={onClick}
-        className={`flex min-h-11 items-center text-left focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2 rounded-xl ${className}`}
+        className={`inline-flex items-center rounded-xl text-left focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2 ${className}`}
         aria-label="BKK AIR home"
       >
         {content}
@@ -42,12 +35,12 @@ export default function Logo({ className = "", onClick, variant = "default" }) {
   }
 
   return (
-    <a
+    <Link
       href="/"
-      className={`flex min-h-11 items-center text-left focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2 rounded-xl ${className}`}
+      className={`inline-flex items-center rounded-xl text-left focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2 ${className}`}
       aria-label="BKK AIR home"
     >
       {content}
-    </a>
+    </Link>
   );
 }
