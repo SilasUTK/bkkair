@@ -71,7 +71,7 @@ export default function FAQSection() {
             มีคำถาม? <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-orange to-orange-400">เราตอบได้เลย</span>
           </h2>
           <p className="mt-6 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
-            คำตอบเกี่ยวกับเอกสารยื่นวีซ่า ใบจองตั๋วยื่นวีซ่า flight reservation for visa และ visa document service Thailand
+            รวมคำตอบเกี่ยวกับการเตรียมเอกสารยื่นวีซ่า เช่น flight reservation และ hotel reservation พร้อมข้อจำกัดสำคัญของบริการ
           </p>
         </div>
 

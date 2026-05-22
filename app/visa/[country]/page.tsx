@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { country: string } }): M
   if (!country) return {};
   return {
     title: `${country.thaiName} | เอกสารยื่นวีซ่า | BKK AIR`,
-    description: `${country.h1} พร้อมบริการ flight reservation for visa และ hotel booking for visa โดยทีมงานตรวจสอบก่อนดำเนินการ`,
+    description: `${country.h1} พร้อมบริการ flight reservation และ hotel reservation โดยทีมงานตรวจสอบก่อนดำเนินการ`,
   };
 }
 
@@ -26,8 +26,8 @@ export default function VisaCountryPage({ params }: { params: { country: string 
     "แบบฟอร์มหรือข้อมูลคำขอวีซ่าตามประเภทที่สมัคร",
     "หนังสือเดินทางและข้อมูลผู้เดินทาง",
     "หลักฐานการเงินและหลักฐานการทำงานตามข้อกำหนด",
-    "flight reservation for visa หรือใบจองตั๋วเครื่องบิน",
-    "hotel booking for visa หรือใบจองโรงแรม",
+    "flight reservation หรือใบจองตั๋วเครื่องบิน",
+    "hotel reservation หรือใบจองโรงแรม",
     "แผนการเดินทางที่สอดคล้องกับวันที่และเมืองปลายทาง",
   ];
 
@@ -66,14 +66,14 @@ export default function VisaCountryPage({ params }: { params: { country: string 
             <section className="rounded-[2rem] bg-white p-7 shadow-lg shadow-slate-200/50">
               <h2 className="text-2xl font-black text-slate-900">BKK AIR ช่วยอะไรได้บ้าง</h2>
               <p className="mt-3 leading-relaxed text-slate-600">
-                เราช่วยจัดเตรียมใบจองตั๋วเครื่องบิน ใบจองโรงแรม และ Travel Plan ตามข้อมูลที่ลูกค้ายืนยัน ทีมงานตรวจสอบก่อนดำเนินการ และส่งไฟล์ PDF ให้ลูกค้าเมื่อเสร็จ
+                เราช่วยจัดเตรียมใบจองตั๋วเครื่องบิน ใบจองโรงแรม และ travel itinerary ตามข้อมูลที่ลูกค้ายืนยัน ทีมงานตรวจสอบก่อนดำเนินการ และส่งไฟล์ PDF ให้ลูกค้าเมื่อเสร็จ
               </p>
             </section>
 
             <section className="rounded-[2rem] bg-white p-7 shadow-lg shadow-slate-200/50">
               <h2 className="text-2xl font-black text-slate-900">แพ็กเกจที่แนะนำ</h2>
               <p className="mt-3 leading-relaxed text-slate-600">
-                แนะนำ Standard สำหรับผู้ที่ต้องการใบจองตั๋ว + ใบจองโรงแรม + Travel Plan หรือ Ultimate สำหรับเคสที่ต้องการเอกสารสนับสนุนครบชุด
+                แนะนำ Standard สำหรับผู้ที่ต้องการใบจองตั๋ว + ใบจองโรงแรม + travel itinerary หรือ Ultimate สำหรับเคสที่ต้องการเอกสารสนับสนุนครบชุด
               </p>
               <Link href={`/order?country=${country.slug}`} className="mt-5 inline-flex rounded-2xl bg-[#f59e0b] px-6 py-3 text-sm font-black text-white">
                 ส่งคำขอสำหรับ{country.thaiName}

@@ -16,7 +16,7 @@ const packages = [
     popular: false,
     icon: PlaneTakeoff,
     orderLink: "/order?package=flight-reservation",
-    description: "เหมาะสำหรับผู้ที่ต้องการแค่ flight itinerary สำหรับยื่นวีซ่า",
+    description: "เหมาะสำหรับผู้ที่ต้องการ flight reservation เพื่อยื่นวีซ่า",
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
@@ -29,7 +29,7 @@ const packages = [
     features: [
       { text: "ใบจองตั๋วเครื่องบินไป-กลับ", included: true },
       { text: "แสดงชื่อผู้โดยสาร วันเดินทาง และหมายเลขเที่ยวบิน", included: true },
-      { text: "ไฟล์ PDF มาตรฐานสถานทูต", included: true },
+      { text: "ไฟล์ PDF รูปแบบ embassy-ready", included: true },
       { text: "ส่งภายใน 24 ชั่วโมง", included: true },
     ],
   },
@@ -54,14 +54,14 @@ const packages = [
     features: [
       { text: "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง", included: true },
       { text: "ระบุชื่อผู้เข้าพัก ชื่อโรงแรม และวันที่", included: true },
-      { text: "ไฟล์ PDF มาตรฐานสถานทูต", included: true },
+      { text: "ไฟล์ PDF รูปแบบ embassy-ready", included: true },
       { text: "ส่งภายใน 24 ชั่วโมง", included: true },
     ],
   },
 
   {
     id: "full-set",
-    label: "Popular",
+    label: "Recommended",
     name: "ชุดเอกสารครบเซ็ต",
     popular: true,
     icon: FileText,
@@ -79,7 +79,7 @@ const packages = [
     features: [
       { text: "ใบจองตั๋วเครื่องบินไป-กลับ", included: true },
       { text: "ใบจองโรงแรมตลอดการเดินทาง", included: true },
-      { text: "แผนการเดินทาง (Travel Itinerary)", included: true },
+      { text: "แผนการเดินทาง (travel itinerary)", included: true },
       { text: "เอกสารทุกอย่างในชุดเดียว PDF พร้อมยื่น", included: true },
       { text: "ส่งภายใน 24 ชั่วโมง", included: true },
     ],
@@ -139,7 +139,7 @@ export default function ServicePackages() {
           </h2>
 
           <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
-            บริการทุกแพ็กเกจตรวจสอบโดยทีมงานจริง และส่งเป็น PDF พร้อมยื่นสถานทูต ทั้งใบจองตั๋วเครื่องบินยื่นวีซ่า ใบจองโรงแรมยื่นวีซ่า flight reservation for visa application, hotel booking for visa, travel itinerary for visa และ travel insurance for Schengen visa
+            บริการทุกแพ็กเกจตรวจสอบโดยทีมงานจริง และส่งเป็น PDF พร้อมยื่นสถานทูต ครอบคลุม flight reservation, hotel reservation, travel itinerary และ travel insurance ตามแพ็กเกจที่เลือก
           </p>
         </div>
 
@@ -151,15 +151,19 @@ export default function ServicePackages() {
             return (
               <article
                 key={pkg.id}
-                className={`relative flex h-full flex-col rounded-3xl bg-white transition-all duration-300 ${
+                className={`relative isolate flex h-full flex-col rounded-3xl bg-white transition-all duration-300 ${
                   pkg.popular
-                    ? `border-2 ${pkg.theme.border} shadow-[0_16px_60px_rgba(255,87,34,0.15)] md:scale-[1.02] xl:-translate-y-2`
+                    ? `border-2 ${pkg.theme.border} shadow-[0_24px_70px_rgba(255,87,34,0.20)] md:scale-[1.03] xl:-translate-y-3`
                     : "border border-slate-100 shadow-[0_4px_20px_rgba(15,23,42,0.06)] hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)]"
                 }`}
               >
                 {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-accent-orange to-orange-500 px-5 py-1.5 text-[11px] font-black uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(249,115,22,0.40)]">
-                    ★ Most Popular · แนะนำ
+                  <div className="pointer-events-none absolute inset-0 -z-10 rounded-[1.7rem] bg-orange-300/25 blur-2xl" />
+                )}
+
+                {pkg.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-orange-200 bg-white px-5 py-1.5 text-[11px] font-black uppercase tracking-wider text-orange-700 shadow-[0_8px_20px_rgba(249,115,22,0.22)]">
+                    ★ Recommended Package
                   </div>
                 )}
 

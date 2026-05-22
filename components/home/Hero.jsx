@@ -34,8 +34,8 @@ const visaTypes = [
 
 const benefits = [
   { icon: Clock,       bg: "bg-blue-50",    color: "text-blue-600",   label: "ส่งงานรวดเร็ว",                sub: "ส่ง PDF ภายใน 24 ชั่วโมง · มีบริการ Express" },
-  { icon: FileText,    bg: "bg-orange-50",  color: "text-orange-500", label: "PDF พร้อมปริ้นยื่นสถานทูต",    sub: "จัดรูปแบบตามมาตรฐาน Embassy-ready" },
-  { icon: Globe,       bg: "bg-indigo-50",  color: "text-indigo-600", label: "รองรับกว่า 50 ประเทศทั่วโลก",   sub: "Schengen, UK, USA, ออสเตรเลีย และอื่นๆ" },
+  { icon: FileText,    bg: "bg-orange-50",  color: "text-orange-500", label: "PDF พร้อมปริ้นยื่นสถานทูต",    sub: "จัดรูปแบบตามมาตรฐาน embassy-ready" },
+  { icon: Globe,       bg: "bg-indigo-50",  color: "text-indigo-600", label: "ครอบคลุมหลายประเทศปลายทาง",   sub: "รองรับ Schengen, UK, USA, ออสเตรเลีย และอื่นๆ" },
   { icon: ShieldCheck, bg: "bg-emerald-50", color: "text-emerald-600",label: "ทีมงานตรวจสอบก่อนส่งทุกครั้ง", sub: "ไม่ใช่ระบบออโต้ — ตรวจสอบโดยคนจริง" },
 ];
 
@@ -111,13 +111,13 @@ export default function Hero({ goToCheck }) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid min-h-[720px] grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid min-h-[720px] grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
 
           {/* ═══════════════ LEFT COLUMN ═══════════════ */}
-          <div className="flex flex-col justify-center">
+          <div className="flex max-w-[620px] flex-col justify-center">
 
             {/* Trust Badge */}
-            <div className="mb-6 inline-flex w-fit items-center gap-2.5 rounded-full border border-blue-200/60 bg-white/90 p-1 pr-4 text-sm font-semibold text-slate-600 shadow-[0_6px_24px_rgba(37,99,235,0.12)] backdrop-blur-sm">
+            <div className="mb-7 inline-flex w-fit items-center gap-2.5 rounded-full border border-blue-200/60 bg-white/90 p-1 pr-4 text-sm font-semibold text-slate-600 shadow-[0_6px_24px_rgba(37,99,235,0.12)] backdrop-blur-sm">
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-sm">
                 <Plane className="h-3.5 w-3.5" />
               </span>
@@ -125,7 +125,7 @@ export default function Hero({ goToCheck }) {
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-[3.25rem] xl:text-6xl">
+            <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-slate-900 md:text-5xl lg:text-[3.2rem] xl:text-[3.8rem]">
               เอกสารสนับสนุนวีซ่า
               <span className="mt-2 block bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
                 พร้อมยื่นสถานทูต
@@ -134,34 +134,34 @@ export default function Hero({ goToCheck }) {
             </h1>
 
             {/* Supporting text */}
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-600">
               BKK AIR จัดเตรียมเอกสารสนับสนุนวีซ่าครบชุด ทั้งใบจองตั๋วเครื่องบิน ใบจองโรงแรม และแผนการเดินทาง{" "}
               <strong className="font-semibold text-slate-800">ในรูปแบบ PDF มาตรฐานสถานทูต</strong>{" "}
               พร้อมให้คุณยื่นได้ทันที
             </p>
 
             {/* Benefits list */}
-            <ul className="mt-8 space-y-3.5" aria-label="จุดเด่น BKK AIR">
+            <ul className="mt-9 space-y-4" aria-label="จุดเด่น BKK AIR">
               {benefits.map((b, i) => (
-                <li key={i} className="flex items-center gap-4">
+                <li key={i} className="flex items-start gap-4">
                   <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${b.bg}`}>
                     <b.icon className={`h-5 w-5 ${b.color}`} aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
-                    <span className="text-sm font-bold text-slate-800">{b.label}</span>
-                    <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                    <span className="text-sm text-slate-500">{b.sub}</span>
+                    <p className="text-sm font-bold text-slate-800">{b.label}</p>
+                    <p className="text-sm text-slate-500">{b.sub}</p>
                   </div>
                 </li>
               ))}
             </ul>
 
             {/* Social proof stats */}
-            <div className="mt-8 flex flex-wrap items-center gap-2">
+            <div className="mt-9 flex flex-wrap items-center gap-2.5">
               {[
-                { value: "3,000+", label: "เอกสาร" },
-                { value: "50+",    label: "ประเทศ" },
-                { value: "4.9 ★",  label: "รีวิว" },
+                { value: "embassy-ready", label: "PDF" },
+                { value: "Human-reviewed", label: "ทุกคำขอ" },
+                { value: "Transparent", label: "pricing" },
+                { value: "24 ชั่วโมง", label: "เป้าหมายการส่ง" },
               ].map((stat, i) => (
                 <div key={i} className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm shadow-sm">
                   <span className="font-extrabold text-slate-900">{stat.value}</span>
@@ -171,7 +171,7 @@ export default function Hero({ goToCheck }) {
             </div>
 
             {/* CTA Buttons */}
-            <div className="mt-8 flex flex-col gap-3.5 sm:flex-row">
+            <div className="mt-10 flex flex-col gap-3.5 sm:flex-row">
               <button
                 type="button"
                 onClick={scrollToPackages}
@@ -190,7 +190,7 @@ export default function Hero({ goToCheck }) {
             </div>
 
             {/* Disclaimer */}
-            <p className="mt-4 text-[11px] italic text-slate-400">
+            <p className="mt-5 text-[11px] italic text-slate-400">
               การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุล BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น
             </p>
 
@@ -200,10 +200,10 @@ export default function Hero({ goToCheck }) {
           <div className="relative flex items-center justify-center">
 
             {/* Glow behind card */}
-            <div className="absolute inset-0 -m-6 rounded-[3.5rem] bg-gradient-to-br from-blue-200/50 via-indigo-100/30 to-orange-100/25 blur-2xl" />
+            <div className="absolute inset-0 -m-3 rounded-[3rem] bg-gradient-to-br from-blue-200/35 via-indigo-100/20 to-orange-100/20 blur-2xl" />
 
             {/* Form Card */}
-            <div className="relative z-10 w-full max-w-[460px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+            <div className="relative z-10 w-full max-w-[452px] overflow-hidden rounded-3xl border border-slate-200/90 bg-white/95 shadow-[0_22px_58px_rgba(15,23,42,0.16)]">
 
               {/* Card Header */}
               <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-5">
@@ -333,6 +333,19 @@ export default function Hero({ goToCheck }) {
                       </>
                     )}
                   </button>
+
+                  <div className="space-y-2 rounded-xl border border-slate-100 bg-slate-50/80 p-3.5 text-[12px] leading-relaxed text-slate-600 sm:text-[12.5px]">
+                    <p className="font-semibold text-slate-700">ทีมงานจะติดต่อกลับภายใน 2-4 ชั่วโมงในเวลาทำการ</p>
+                    <p>ทุกคำขอได้รับการตรวจสอบโดยทีมงานจริง ไม่ใช่ระบบอัตโนมัติ</p>
+                    <p>ยังไม่มีการชำระเงินในขั้นตอนนี้ และไม่มีข้อผูกมัดในการส่งคำขอ</p>
+                  </div>
+
+                  <ol className="grid gap-1.5 text-[12px] leading-relaxed text-slate-500 sm:text-[12.5px]">
+                    <li><span className="font-semibold text-slate-700">1.</span> ทีมงานตรวจสอบคำขอ</li>
+                    <li><span className="font-semibold text-slate-700">2.</span> ติดต่อกลับผ่าน LINE / Email เพื่อยืนยันรายละเอียด</li>
+                    <li><span className="font-semibold text-slate-700">3.</span> แนะนำเอกสารที่เหมาะสมกับปลายทาง</li>
+                    <li><span className="font-semibold text-slate-700">4.</span> ดำเนินการหลังยืนยันข้อมูล</li>
+                  </ol>
 
                 </form>
 

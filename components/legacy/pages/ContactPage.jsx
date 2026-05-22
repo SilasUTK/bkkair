@@ -9,11 +9,26 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+const inquiryTypeOptions = [
+  { value: "package_inquiry", label: "สอบถามแพ็กเกจ" },
+  { value: "order_tracking", label: "ตรวจสอบสถานะคำขอ" },
+  { value: "flight_reservation", label: "ใบจองตั๋วเครื่องบิน" },
+  { value: "hotel_reservation", label: "ใบจองโรงแรม" },
+  { value: "travel_itinerary", label: "แผนการเดินทาง" },
+  { value: "travel_insurance", label: "ประกันการเดินทาง" },
+  { value: "urgent_request", label: "เอกสารเร่งด่วน (Express)" },
+  { value: "document_issue", label: "แจ้งปัญหาเอกสาร" },
+  { value: "data_update", label: "แก้ไขข้อมูล" },
+  { value: "payment_issue", label: "ปัญหาการชำระเงิน" },
+  { value: "business_partnership", label: "ความร่วมมือทางธุรกิจ" },
+  { value: "other", label: "อื่น ๆ" },
+];
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "สอบถามข้อมูลทั่วไป",
+    subject: "package_inquiry",
     message: ""
   });
   const [loading, setLoading] = useState(false);
@@ -178,15 +193,16 @@ export default function ContactPage() {
                           หัวข้อที่ต้องการติดต่อ
                         </span>
                         <select
+                          name="inquiryType"
                           className="h-12 w-full cursor-pointer appearance-none rounded-2xl border-2 border-transparent bg-slate-50 px-4 text-sm font-bold text-slate-900 outline-none transition-all hover:bg-slate-100/50 focus:border-primary-dark focus:bg-white"
                           value={formData.subject}
                           onChange={(event) => setFormData({ ...formData, subject: event.target.value })}
                         >
-                          <option>สอบถามข้อมูลทั่วไป</option>
-                          <option>สอบถามแพ็กเกจวีซ่า</option>
-                          <option>แจ้งปัญหาการใช้งาน</option>
-                          <option>ร่วมงานกับเรา / Partnership</option>
+                          {inquiryTypeOptions.map((item) => (
+                            <option key={item.value} value={item.value}>{item.label}</option>
+                          ))}
                         </select>
+                        <p className="mt-2 text-xs font-bold text-slate-500">เลือกหัวข้อที่ใกล้เคียงกับคำถามของคุณมากที่สุด</p>
                       </label>
                     </div>
 
@@ -226,12 +242,18 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="mt-8 flex items-center justify-center gap-6 text-slate-400">
-              <span className="text-sm font-bold uppercase tracking-widest opacity-50">Social Presence</span>
-              <div className="flex gap-4">
-                <SocialIcon name="fb" />
-                <SocialIcon name="ig" />
-                <SocialIcon name="ln" />
+            <div className="mt-8 rounded-2xl border border-slate-100 bg-white/80 px-5 py-4 text-sm font-semibold text-slate-600">
+              <p className="text-xs font-black uppercase tracking-widest text-slate-500">Official Channels</p>
+              <div className="mt-2 space-y-1.5">
+                <p>
+                  Official LINE OA: <a href="https://line.me/R/ti/p/@823lateh" className="font-black text-primary-dark underline decoration-slate-300 underline-offset-4">@823lateh</a>
+                </p>
+                <p>
+                  Official Email: <a href="mailto:info@bkkair.com" className="font-black text-primary-dark underline decoration-slate-300 underline-offset-4">info@bkkair.com</a>
+                </p>
+                <p>
+                  Official Website: <a href="https://bkkair.com" className="font-black text-primary-dark underline decoration-slate-300 underline-offset-4">bkkair.com</a>
+                </p>
               </div>
             </div>
           </div>
@@ -273,10 +295,3 @@ function InputField({ label, name, type = "text", placeholder, required, value, 
   );
 }
 
-function SocialIcon({ name }) {
-  return (
-    <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-100 bg-white text-xs font-black text-slate-500 shadow-sm transition-all hover:border-primary-dark hover:bg-primary-dark hover:text-white">
-      {name}
-    </div>
-  );
-}

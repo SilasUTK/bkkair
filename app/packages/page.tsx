@@ -30,7 +30,7 @@ const packages = [
     slug: "flight-reservation",
     name: "ใบจองตั๋วเครื่องบิน",
     englishName: "Flight Reservation Document",
-    tagline: "สำหรับผู้ที่ต้องการเฉพาะ flight itinerary ยื่นวีซ่า",
+    tagline: "สำหรับผู้ที่ต้องการเฉพาะ flight reservation เพื่อยื่นวีซ่า",
     price: "฿490",
     priceNote: "ต่อคน / per person",
     delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
@@ -47,7 +47,7 @@ const packages = [
       "ไม่รวมแผนการเดินทาง",
       "ไม่รวมประกันการเดินทาง",
     ],
-    bestFor: "ผู้ที่มีที่พักอยู่แล้ว หรือวีซ่าที่ต้องการแค่ flight itinerary เท่านั้น",
+    bestFor: "ผู้ที่มีที่พักอยู่แล้ว หรือวีซ่าที่ต้องการเฉพาะ flight reservation",
     href: "/order?package=flight-reservation",
     accent: "blue",
   },
@@ -78,7 +78,7 @@ const packages = [
   },
   {
     slug: "full-set",
-    badge: "⭐ แนะนำ / Most Popular",
+    badge: "⭐ Recommended Package",
     name: "ชุดเอกสารครบเซ็ต",
     englishName: "Complete Document Package",
     tagline: "เอกสารสนับสนุนวีซ่าครบชุด ในที่เดียว จบในคำสั่งเดียว",
@@ -89,7 +89,7 @@ const packages = [
     included: [
       "ใบจองตั๋วเครื่องบินไป-กลับ",
       "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง",
-      "แผนการเดินทาง (Travel Itinerary) แบบละเอียด",
+      "แผนการเดินทาง (travel itinerary) แบบละเอียด",
       "เอกสารทุกอย่างรวมในไฟล์ PDF เดียว",
       "รูปแบบตรงตามที่สถานทูตส่วนใหญ่คาดหวัง",
       "ตรวจสอบโดยทีมงานจริงก่อนส่ง",
@@ -113,7 +113,7 @@ const packages = [
     included: [
       "ใบจองตั๋วเครื่องบินไป-กลับ",
       "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง",
-      "แผนการเดินทาง (Travel Itinerary) แบบละเอียด",
+      "แผนการเดินทาง (travel itinerary) แบบละเอียด",
       "ประกันการเดินทางที่ตรงเงื่อนไขวีซ่า Schengen และประเทศอื่น ๆ",
       "คำแนะนำการเลือกประกันที่เหมาะสมกับปลายทางของคุณ",
       "เอกสารทุกอย่างรวมในไฟล์ PDF พร้อมยื่น",
@@ -298,8 +298,8 @@ export default function PackagesPage() {
               ไม่มีค่าใช้จ่ายแอบแฝง ดูราคาได้เลยก่อนสั่ง
             </p>
             <p className="mx-auto mt-4 max-w-3xl text-sm font-semibold leading-relaxed text-slate-500">
-              ใบจองตั๋วเครื่องบินยื่นวีซ่า ราคา, ใบจองโรงแรมยื่นวีซ่า ราคา,
-              เอกสารยื่นวีซ่าราคาเท่าไหร่, flight reservation for visa price และ visa document package Thailand
+              ราคาใบจองตั๋วเครื่องบินยื่นวีซ่า ราคาใบจองโรงแรมยื่นวีซ่า
+              และรายละเอียดแพ็กเกจเอกสารยื่นวีซ่า (flight reservation for visa price)
             </p>
 
             <ul className="mt-8 flex flex-wrap justify-center gap-3" aria-label="จุดเด่นบริการ">
@@ -315,6 +315,12 @@ export default function PackagesPage() {
           <div className="mx-auto mt-10 max-w-5xl rounded-3xl border border-orange-200 bg-white/90 px-6 py-5 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
             <ShieldCheck className="mx-auto h-6 w-6 text-[#FF5722]" aria-hidden="true" />
             <p className="mt-3 text-sm font-semibold leading-relaxed text-slate-700">{complianceDisclaimer}</p>
+            <p className="mt-3 text-xs font-semibold leading-relaxed text-slate-600">
+              ราคาทั้งหมดแสดงเป็นสกุลเงินบาท (THB) และยังไม่รวมภาษีมูลค่าเพิ่ม (VAT) 7% ซึ่งอาจถูกเรียกเก็บเพิ่มเติมตามกฎหมายที่เกี่ยวข้อง
+            </p>
+            <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500">
+              ราคาที่มีผลคือราคาที่แสดง ณ เวลาที่ยืนยันคำสั่งซื้อ
+            </p>
           </div>
         </div>
       </section>

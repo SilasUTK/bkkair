@@ -258,7 +258,7 @@ export default function PrivacyPolicy() {
                 <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider">
                   Updated
                 </span>
-                <span className="text-sm font-semibold text-slate-500">4 พฤษภาคม 2569</span>
+                <span className="text-sm font-semibold text-slate-500">4 พฤษภาคม 2569 (2026)</span>
               </div>
             </div>
           </header>

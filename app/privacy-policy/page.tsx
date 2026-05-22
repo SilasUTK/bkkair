@@ -56,7 +56,7 @@ export default function PrivacyPolicyPage() {
               นโยบายความเป็นส่วนตัว
               <span className="mt-2 block text-xl font-extrabold text-slate-600 sm:text-2xl">Privacy Policy</span>
             </h1>
-            <p className="mt-5 text-sm font-bold text-slate-600 sm:text-base">อัปเดตล่าสุด: 18 พฤษภาคม 2569</p>
+            <p className="mt-5 text-sm font-bold text-slate-600 sm:text-base">อัปเดตล่าสุด: 18 พฤษภาคม 2569 (2026)</p>
             <div className="mt-5 space-y-2 text-base leading-relaxed text-slate-700 sm:text-lg">
               <p>BKK AIR ให้ความสำคัญกับความเป็นส่วนตัวของคุณอย่างจริงจัง</p>
               <p>เราเขียนนโยบายนี้ให้อ่านเข้าใจได้ง่าย ไม่ใช่แค่ภาษากฎหมาย</p>
@@ -306,7 +306,7 @@ export default function PrivacyPolicyPage() {
                     </section>
                   </div>
                   <p className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-slate-800">
-                    <strong>การใช้สิทธิ์:</strong> ติดต่อเราได้ทางอีเมล <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a> เราจะดำเนินการภายใน 30 วัน
+                    <strong>การใช้สิทธิ์:</strong> ติดต่อเราได้ทางอีเมล <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a> เรามุ่งหมายตอบกลับคำขอด้านความเป็นส่วนตัวภายใน 30 วันทำการ
                   </p>
                 </section>
 
@@ -354,20 +354,29 @@ export default function PrivacyPolicyPage() {
                 <section id="privacy-contact" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
                   <h2 className="text-2xl font-black text-slate-900">13. ติดต่อเราเรื่องความเป็นส่วนตัว</h2>
                   <p className="leading-relaxed text-slate-700">
-                    หากคุณมีคำถาม ข้อกังวล หรือต้องการใช้สิทธิ์ด้านข้อมูลส่วนบุคคล ติดต่อเราได้ที่:
+                    เพื่อความชัดเจนในการดูแลข้อมูลส่วนบุคคล BKK AIR แยกช่องทางติดต่อทั่วไปออกจากช่องทางติดต่อด้านความเป็นส่วนตัวโดยเฉพาะ
                   </p>
                   <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 text-slate-800">
-                    <p className="text-lg font-black text-slate-900">BKK AIR</p>
-                    <p className="mt-2 leading-relaxed">
-                      อีเมล: <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a>
-                    </p>
-                    <p className="leading-relaxed">อีเมลทั่วไป: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
+                    <p className="text-lg font-black text-slate-900">Privacy &amp; Data Protection Contact</p>
+                    <p className="mt-2 leading-relaxed font-semibold">BKK AIR</p>
+                    <p className="leading-relaxed">Email (Privacy): <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a></p>
+                    <p className="leading-relaxed">General Support: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
+                    <p className="leading-relaxed">Official LINE OA: <a href="https://line.me/R/ti/p/@823lateh" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">@823lateh</a></p>
+                    <p className="leading-relaxed">Business Hours: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
                     <p className="leading-relaxed">เว็บไซต์: <a href="https://bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">https://bkkair.com</a></p>
-                    <p className="leading-relaxed">LINE: @823lateh</p>
-                    <p className="leading-relaxed">เวลาทำการ: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
-                    <p className="leading-relaxed">ที่ตั้ง: Bangkok, Thailand</p>
+                    <p className="leading-relaxed text-sm text-slate-600">BKK AIR operates as a Thailand-based travel support service.</p>
                   </div>
-                  <p className="leading-relaxed text-slate-700">เราจะตอบกลับภายใน <strong>30 วันทำการ</strong> นับจากได้รับคำร้อง</p>
+                  <div className="rounded-2xl border border-blue-100 bg-blue-50 p-4 text-slate-800">
+                    <p className="font-bold">คุณสามารถติดต่อ privacy@bkkair.com เกี่ยวกับ:</p>
+                    <ul className="mt-2 list-disc space-y-1 pl-6 marker:text-[#2563EB]">
+                      <li>คำขอเข้าถึงข้อมูลส่วนบุคคล</li>
+                      <li>คำขอแก้ไขข้อมูล</li>
+                      <li>คำขอลบข้อมูล</li>
+                      <li>ข้อกังวลด้าน PDPA/Privacy</li>
+                      <li>คำถามเกี่ยวกับการจัดการข้อมูลส่วนบุคคล</li>
+                    </ul>
+                  </div>
+                  <p className="leading-relaxed text-slate-700">เรามุ่งหมายตอบกลับคำขอด้านความเป็นส่วนตัวภายใน <strong>30 วันทำการ</strong> นับจากวันที่ได้รับคำร้อง</p>
                 </section>
               </section>
 

@@ -43,7 +43,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
             <h2>ภาพรวมที่ควรรู้</h2>
             <p>
               การเตรียมเอกสารยื่นวีซ่าควรมองเป็นชุดข้อมูลเดียวกัน ได้แก่ วัตถุประสงค์การเดินทาง เส้นทาง วันที่เดินทาง
-              ที่พัก และหลักฐานการกลับประเทศไทย เอกสารอย่าง flight reservation for visa และ hotel booking for visa
+              ที่พัก และหลักฐานการกลับประเทศไทย เอกสารอย่าง flight reservation และ hotel reservation
               จึงควรสอดคล้องกับข้อมูลส่วนอื่นเสมอ
             </p>
             <h2>BKK AIR ช่วยอะไรได้บ้าง</h2>

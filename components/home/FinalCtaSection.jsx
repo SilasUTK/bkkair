@@ -38,7 +38,7 @@ export default function FinalCtaSection() {
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-blue-100 sm:text-lg">
-          อย่าให้เอกสารกลายเป็นอุปสรรคของการเดินทาง BKK AIR จัดเตรียมให้คุณพร้อมยื่น ภายใน 24 ชั่วโมง สำหรับคนที่ต้องการ visa support Thailand
+          BKK AIR ช่วยจัดเตรียมเอกสารให้พร้อมยื่นภายใน 24 ชั่วโมง เหมาะสำหรับผู้ที่ต้องการบริการ visa support documents ที่ชัดเจนและเชื่อถือได้
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">

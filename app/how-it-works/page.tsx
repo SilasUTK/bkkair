@@ -46,7 +46,7 @@ const steps = [
     title: "รู้ว่าต้องการเอกสารอะไร เลือกได้เลย",
     body: "BKK AIR มีแพ็กเกจให้เลือกตามเอกสารที่คุณต้องการ",
     bullets: [
-      "ใบจองตั๋วเครื่องบิน — สำหรับผู้ที่ต้องการ flight itinerary เท่านั้น",
+      "ใบจองตั๋วเครื่องบิน — สำหรับผู้ที่ต้องการ flight reservation",
       "ใบจองโรงแรม — สำหรับผู้ที่ต้องการหลักฐานที่พัก",
       "ชุดครบเซ็ต — ตั๋ว + โรงแรม + แผนการเดินทาง ในไฟล์เดียว (แนะนำสำหรับส่วนใหญ่)",
       "ชุดครบเซ็ต + ประกันการเดินทาง — สำหรับวีซ่าที่บังคับต้องมีประกัน เช่น Schengen",
@@ -194,8 +194,8 @@ export default function HowItWorksPage() {
               BKK AIR ออกแบบกระบวนการให้ง่ายที่สุด คุณแค่บอกเราว่าจะเดินทางไปไหน เมื่อไหร่ และต้องการเอกสารอะไร — ที่เหลือเราจัดการให้
             </p>
             <p className="mx-auto mt-4 max-w-3xl text-sm font-semibold leading-relaxed text-slate-500">
-              วิธีสั่งเอกสารยื่นวีซ่า, ขั้นตอนยื่นวีซ่าเอกสาร, how to get flight reservation for visa,
-              visa document service how it works Thailand และสั่งใบจองตั๋วยื่นวีซ่า ขั้นตอน
+              แนวทางสั่งเอกสารยื่นวีซ่า: วิธีขอใบจองตั๋วสำหรับยื่นวีซ่า (flight reservation for visa),
+              ขั้นตอนเตรียมเอกสาร และบริการ visa support documents ในประเทศไทย
             </p>
             <ul className="mt-8 flex flex-wrap justify-center gap-3" aria-label="จุดเด่นบริการ">
               {trustBadges.map((badge) => (

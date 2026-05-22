@@ -149,3 +149,112 @@ textarea {
 .animate-glow-pulse {
   animation: glow-pulse 4s ease-in-out infinite;
 }
+
+/* PDF/Print safe rendering mode for Thai typography */
+@media print {
+  @page {
+    margin: 12mm;
+    size: auto;
+  }
+
+  html,
+  body {
+    text-rendering: auto !important;
+    -webkit-font-smoothing: auto !important;
+    -moz-osx-font-smoothing: auto !important;
+    font-family: var(--font-pdf-thai, "Sarabun", "Noto Sans Thai", "Prompt", "Kanit", system-ui, sans-serif) !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    font-kerning: normal !important;
+    font-feature-settings: normal !important;
+    font-variant-ligatures: normal !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    letter-spacing: normal !important;
+  }
+
+  /* Flatten gradient/fancy text styles that can duplicate Thai glyph rendering in print engines */
+  .bg-clip-text,
+  .text-transparent {
+    background: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: #0f172a !important;
+  }
+
+  /* Prevent glow and blur decorative layers from overlapping text in PDF output */
+  [class*="blur"],
+  .animate-float,
+  .animate-float-delayed,
+  .animate-float-slow,
+  .animate-glow-pulse {
+    display: none !important;
+  }
+
+  /* Keep long Thai lines stable and readable when paginated */
+  p,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  a,
+  button,
+  label {
+    line-height: 1.5 !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+  }
+
+  /* Render a stable static navbar in print/PDF exports. */
+  [data-navbar="primary"] {
+    position: static !important;
+    inset: auto !important;
+    z-index: auto !important;
+    width: 100% !important;
+    border-bottom: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  [data-navbar="primary"] [data-mobile-toggle],
+  [data-navbar="primary"] [data-mobile-panel],
+  [data-navbar="primary"] [data-mobile-cta] {
+    display: none !important;
+  }
+
+  [data-navbar="primary"] [data-desktop-nav],
+  [data-navbar="primary"] [data-desktop-cta] {
+    display: flex !important;
+  }
+
+  [data-navbar="primary"] [data-desktop-nav] {
+    gap: 0.5rem !important;
+  }
+
+  [data-navbar="primary"] [data-dropdown-panel] {
+    position: static !important;
+    width: auto !important;
+    margin-top: 0.125rem !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+}

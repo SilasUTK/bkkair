@@ -21,6 +21,10 @@ export default function OrderPage({ searchParams }: { searchParams: { package?: 
             <div className="mt-8 rounded-2xl border border-blue-100 bg-blue-50 p-5 text-sm leading-relaxed text-blue-900">
               Flow: ส่งคำขอ → ทีมงานตรวจสอบ → ติดต่อกลับ → ลูกค้ายืนยันและชำระเงิน → ทีมงานจัดเตรียมเอกสาร → ส่งไฟล์ PDF
             </div>
+            <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 text-xs font-semibold leading-relaxed text-slate-600">
+              ราคาทั้งหมดแสดงเป็นสกุลเงินบาท (THB) และยังไม่รวมภาษีมูลค่าเพิ่ม (VAT) 7% ซึ่งอาจถูกเรียกเก็บเพิ่มเติมตามกฎหมายที่เกี่ยวข้อง
+              โดยราคาที่มีผลคือราคาที่แสดง ณ เวลาที่ยืนยันคำสั่งซื้อ
+            </div>
           </div>
           <OrderForm initialPackage={searchParams.package || ""} initialCountry={searchParams.country || ""} />
         </div>

@@ -69,30 +69,15 @@ export default function Footer({ onNavigate }) {
                 href="https://line.me/R/ti/p/@823lateh"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LINE @823lateh"
+                aria-label="Official LINE OA @823lateh"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#00B900]"
               >
                 <span className="text-xs font-black">LINE</span>
               </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-blue-600"
-              >
-                <span className="font-bold">fb</span>
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-pink-600"
-              >
-                <span className="font-bold">ig</span>
-              </a>
             </div>
+            <p className="mt-3 text-xs font-semibold text-slate-500">
+              Official public channel: LINE OA
+            </p>
           </section>
 
           <nav aria-label="บริการของเรา">
@@ -141,6 +126,12 @@ export default function Footer({ onNavigate }) {
                 </a>
               </li>
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
+                <Mail className="h-5 w-5 shrink-0 text-blue-300" />
+                <p>
+                  Privacy: <a href="mailto:privacy@bkkair.com" className="font-semibold text-white transition-colors hover:text-blue-200">privacy@bkkair.com</a>
+                </p>
+              </li>
+              <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
                 <Clock className="h-5 w-5 shrink-0 text-amber-400" />
                 <p>
                   Monday-Saturday <span className="font-semibold text-white">09:00-18:00 (Thailand Time)</span>
@@ -148,9 +139,13 @@ export default function Footer({ onNavigate }) {
               </li>
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
                 <MapPin className="h-5 w-5 shrink-0 text-accent-orange" />
-                <p>Bangkok, Thailand</p>
+                <p>Bangkok, Thailand (Thailand-based operations)</p>
               </li>
             </ul>
+            <div className="mt-4 rounded-xl border border-slate-700 bg-white/5 px-3 py-2 text-xs leading-relaxed text-slate-400">
+              BKK AIR operates as a Thailand-based travel support service.
+              For business verification requests, please contact <a href="mailto:info@bkkair.com" className="font-semibold text-white hover:text-blue-200">info@bkkair.com</a>.
+            </div>
           </section>
         </div>
 

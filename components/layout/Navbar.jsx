@@ -1,5 +1,7 @@
+"use client";
+
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "./Logo.jsx";
 
 const serviceDropdown = [
@@ -28,6 +30,52 @@ export default function Navbar({ onNavigate }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [mobileCountryOpen, setMobileCountryOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setIsScrolled(window.scrollY > 8);
+    }
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    function onResize() {
+      if (window.innerWidth >= 1024) {
+        setMobileOpen(false);
+        setMobileServiceOpen(false);
+        setMobileCountryOpen(false);
+      }
+    }
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) {
+      document.body.style.overflow = "";
+      return undefined;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    function onKeyDown(event) {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [mobileOpen]);
 
   function scrollToAnchor(href) {
     const sectionId = href.replace("#", "");
@@ -70,17 +118,24 @@ export default function Navbar({ onNavigate }) {
   }
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/90 font-sans shadow-[0_12px_40px_rgba(2,6,23,0.45)] backdrop-blur-xl transition-all duration-300">
+    <header
+      data-navbar="primary"
+      className={`fixed left-0 top-0 z-[90] w-full border-b font-sans transition-[background-color,box-shadow,border-color] duration-300 ${
+        isScrolled
+          ? "border-white/15 bg-slate-950/95 shadow-[0_16px_44px_rgba(2,6,23,0.5)] backdrop-blur-xl"
+          : "border-white/10 bg-slate-950/90 shadow-[0_12px_40px_rgba(2,6,23,0.45)] backdrop-blur-xl"
+      }`}
+    >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-5 px-5 sm:px-8 lg:h-[88px] lg:px-12">
-        <Logo onClick={handleLogoClick} />
+        <Logo onClick={handleLogoClick} className="relative z-[2]" />
 
-        <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex" aria-label="Main navigation">
-          <div className="group relative">
+        <nav data-desktop-nav className="hidden flex-1 items-center justify-center gap-1 lg:flex" aria-label="Main navigation">
+          <div data-dropdown="services" className="group relative">
             <button type="button" className="flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-[15px] font-extrabold text-slate-200 transition-colors hover:bg-white/10 hover:text-white">
               บริการของเรา
               <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
             </button>
-            <div className="pointer-events-none absolute left-1/2 top-full mt-2 w-52 -translate-x-1/2 translate-y-1 rounded-3xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+            <div data-dropdown-panel className="pointer-events-none absolute left-1/2 top-full mt-2 w-52 -translate-x-1/2 translate-y-1 rounded-3xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
               {serviceDropdown.map((item) => (
                 <a key={item.label} href={item.href} onClick={(e) => handleLinkClick(e, item.href)} className="block rounded-xl px-4 py-3 text-sm font-bold text-slate-200 transition-colors hover:bg-white/10 hover:text-accent-orange">
                   {item.label}
@@ -89,12 +144,12 @@ export default function Navbar({ onNavigate }) {
             </div>
           </div>
 
-          <div className="group relative">
+          <div data-dropdown="countries" className="group relative">
             <button type="button" className="flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-[15px] font-extrabold text-slate-200 transition-colors hover:bg-white/10 hover:text-white">
               ประเทศที่รองรับ
               <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
             </button>
-            <div className="pointer-events-none absolute left-1/2 top-full mt-2 w-52 -translate-x-1/2 translate-y-1 rounded-3xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+            <div data-dropdown-panel className="pointer-events-none absolute left-1/2 top-full mt-2 w-52 -translate-x-1/2 translate-y-1 rounded-3xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
               {countryDropdown.map((item) => (
                 <a key={item.label} href={item.href} onClick={(e) => handleLinkClick(e, item.href)} className="block rounded-xl px-4 py-3 text-sm font-bold text-slate-200 transition-colors hover:bg-white/10 hover:text-primary-dark">
                   {item.label}
@@ -111,7 +166,7 @@ export default function Navbar({ onNavigate }) {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div data-desktop-cta className="hidden items-center gap-3 lg:flex">
           <button type="button" onClick={handleContact} className="px-4 py-2.5 text-[15px] font-extrabold text-slate-200 transition-colors hover:text-white">
             ติดต่อเรา
           </button>
@@ -120,13 +175,22 @@ export default function Navbar({ onNavigate }) {
           </button>
         </div>
 
-        <button type="button" onClick={() => setMobileOpen((v) => !v)} className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl border-2 transition-all duration-300 lg:hidden ${mobileOpen ? "border-blue-400 bg-slate-900 text-white" : "border-white/20 bg-white/10 text-slate-200 hover:border-blue-200 hover:text-white"}`} aria-label="Toggle navigation menu" aria-expanded={mobileOpen}>
+        <button
+          data-mobile-cta
+          type="button"
+          onClick={handleOrder}
+          className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-accent-orange px-4 text-xs font-black text-white shadow-md shadow-orange-200/50 transition-all duration-300 hover:bg-accent-hover active:scale-[0.98] lg:hidden"
+        >
+          ส่งคำขอ
+        </button>
+
+        <button data-mobile-toggle type="button" onClick={() => setMobileOpen((v) => !v)} className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl border-2 transition-all duration-300 lg:hidden ${mobileOpen ? "border-blue-400 bg-slate-900 text-white" : "border-white/20 bg-white/10 text-slate-200 hover:border-blue-200 hover:text-white"}`} aria-label="Toggle navigation menu" aria-expanded={mobileOpen} aria-controls="mobile-primary-navigation">
           {mobileOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
         </button>
       </div>
 
-      <div className={`absolute left-0 top-full w-full overflow-hidden bg-slate-950/95 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur-xl transition-all duration-300 ease-in-out lg:hidden ${mobileOpen ? "max-h-[760px] border-b border-white/10 opacity-100" : "max-h-0 opacity-0"}`}>
-        <nav className="px-5 py-6 sm:px-8" aria-label="Mobile navigation">
+      <div data-mobile-panel className={`absolute left-0 top-full w-full overflow-hidden bg-slate-950/95 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur-xl transition-all duration-300 ease-in-out lg:hidden ${mobileOpen ? "max-h-[calc(100vh-5rem)] border-b border-white/10 opacity-100" : "max-h-0 opacity-0"}`}>
+        <nav id="mobile-primary-navigation" className="max-h-[calc(100vh-5rem)] overflow-y-auto px-5 py-6 sm:px-8" aria-label="Mobile navigation">
           <div className="mx-auto flex max-w-7xl flex-col gap-1">
             <MobileDropdown title="บริการของเรา" open={mobileServiceOpen} onToggle={() => setMobileServiceOpen((v) => !v)} links={serviceDropdown} onLinkClick={handleLinkClick} accent="orange" />
             <MobileDropdown title="ประเทศที่รองรับ" open={mobileCountryOpen} onToggle={() => setMobileCountryOpen((v) => !v)} links={countryDropdown} onLinkClick={handleLinkClick} accent="blue" />

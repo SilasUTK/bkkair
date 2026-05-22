@@ -32,7 +32,7 @@ export default function FaqPage() {
             <MessageCircleQuestion className="mx-auto h-10 w-10 text-[#2563EB]" />
             <h1 className="mt-4 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">คำถามที่พบบ่อย</h1>
             <p className="mt-5 text-lg leading-relaxed text-slate-600">
-              รวมคำตอบเกี่ยวกับ flight reservation for visa, hotel booking for visa, เอกสารยื่นวีซ่า และขั้นตอนทีมงานตรวจสอบ
+              รวมคำตอบเกี่ยวกับการเตรียมเอกสารยื่นวีซ่า เช่น flight reservation for visa และ hotel reservation for visa พร้อมขั้นตอนการตรวจสอบโดยทีมงาน
             </p>
           </div>
 

@@ -6,7 +6,7 @@ const benefits = [
     icon: FileText,
     title: "เอกสาร PDF มาตรฐานสถานทูต",
     iconAlt: "visa document service Thailand",
-    description: "ทุกเอกสารผ่านการออกแบบตามรูปแบบที่สถานทูตคาดหวัง — ไม่ใช่แค่ template สำเร็จรูปที่ print ออกมา เป็น embassy-ready documents สำหรับเอกสารยื่นวีซ่า",
+    description: "ทุกเอกสารถูกจัดรูปแบบตามมาตรฐานที่สถานทูตคาดหวัง เพื่อให้ใช้งานได้สะดวกและพร้อมยื่น",
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
@@ -20,7 +20,7 @@ const benefits = [
     icon: SearchCheck,
     title: "ตรวจสอบโดยทีมงานจริง ไม่ใช่ระบบอัตโนมัติ",
     iconAlt: "visa document service Thailand",
-    description: "ทุก order ผ่านการตรวจสอบจากทีมงานที่มีประสบการณ์ด้านเอกสารวีซ่าโดยตรง ก่อนส่งให้คุณ",
+    description: "ทุกคำขอผ่านการตรวจสอบจากทีมงานที่มีประสบการณ์ด้านเอกสารวีซ่าโดยตรงก่อนส่งให้คุณ",
     theme: {
       color: "text-accent-orange",
       bg: "bg-orange-50",
@@ -33,8 +33,8 @@ const benefits = [
   {
     icon: Clock,
     title: "ส่งภายใน 24 ชั่วโมง (มีแบบ Express)",
-    iconAlt: "flight reservation for visa application",
-    description: "ไม่ต้องรอนาน เหมาะทั้งผู้ที่วางแผนล่วงหน้าและผู้ที่ต้องการเร่งด่วน",
+    iconAlt: "flight reservation for visa",
+    description: "รองรับงานทั้งแบบวางแผนล่วงหน้าและงานเร่งด่วนภายในเวลาทำการ",
     theme: {
       color: "text-emerald-600",
       bg: "bg-emerald-50",
@@ -62,7 +62,7 @@ const benefits = [
     icon: MessageCircle,
     title: "ราคาโปร่งใส ไม่มีค่าใช้จ่ายแอบแฝง",
     iconAlt: "visa document service Thailand",
-    description: "ดูราคาได้ชัดเจนก่อนสั่ง ไม่มี surprise charges ทีหลัง",
+    description: "ตรวจสอบราคาได้ชัดเจนก่อนสั่งซื้อ ไม่มีค่าใช้จ่ายเพิ่มเติมที่ไม่แจ้งล่วงหน้า",
     theme: {
       color: "text-sky-600",
       bg: "bg-sky-50",
@@ -75,8 +75,8 @@ const benefits = [
   {
     icon: Globe2,
     title: "ครอบคลุมหลายประเทศปลายทาง",
-    iconAlt: "flight reservation for visa application",
-    description: "รองรับ visa support Thailand สำหรับวีซ่า Schengen, UK, US, Canada, Australia, Japan, South Korea และอีกหลายประเทศ",
+    iconAlt: "flight reservation for visa",
+    description: "รองรับเอกสารสำหรับวีซ่า Schengen, UK, US, Canada, Australia, Japan, South Korea และอีกหลายประเทศ",
     theme: {
       color: "text-rose-600",
       bg: "bg-rose-50",
@@ -108,10 +108,10 @@ export default function WhyChooseUs() {
           </div>
           
           <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
-            เราไม่ได้แค่ส่งเอกสาร — <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เราดูแลคใหม่ให้คุณพร้อมยื่น</span>
+            เราไม่ได้แค่ส่งเอกสาร — <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เราดูแลให้คุณพร้อมยื่น</span>
           </h2>
           <p className="mt-6 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
-            หลายคนเสียเวลาหาข้อมูล จ้างคนผิด หรือได้เอกสารที่ไม่ตรงมาตรฐานสถานทูต BKK AIR ออกแบบบริการนี้มาเพื่อแก้ปัญหาเหล่านั้นโดยตรง พร้อมดูแลเอกสารยื่นวีซ่าแบบ visa support Thailand
+            หลายคนเสียเวลาหาข้อมูลหรือได้เอกสารที่ไม่ตรงตามมาตรฐานสถานทูต BKK AIR จึงออกแบบบริการเพื่อช่วยจัดเตรียม visa support documents ให้ชัดเจนและพร้อมใช้งาน
           </p>
         </div>
 

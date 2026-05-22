@@ -1,5 +1,10 @@
 # LINE Sales Follow-Up Templates
 
+## Privacy Request Routing Note
+
+If a customer asks about personal data rights (access, correction, deletion, PDPA/privacy concerns), route the request to [privacy@bkkair.com](mailto:privacy@bkkair.com).
+Use [info@bkkair.com](mailto:info@bkkair.com) and LINE OA for general support and sales communication.
+
 ## Template 1 - First Contact
 
 Hello, this is BKK AIR. We received your visa flight booking request. May I confirm your travel details?

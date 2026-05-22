@@ -6,56 +6,56 @@ const supportedCountries = [
     name: "กลุ่มประเทศ Schengen",
     slug: "schengen",
     description: "ฝรั่งเศส เยอรมนี อิตาลี สเปน และอีก 22 ประเทศ",
-    requirements: "ต้องการ: ใบจองตั๋ว ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง",
+    docs: ["flight reservation", "hotel reservation", "travel itinerary", "travel insurance"],
   },
   {
     flag: "🇬🇧",
     name: "สหราชอาณาจักร (UK)",
     slug: "uk",
-    description: "เอกสารสนับสนุนสำหรับวีซ่า UK เอกสารที่ต้องสอดคล้องกับแผนเดินทาง",
-    requirements: "ต้องการ: ใบจองตั๋ว ใบจองโรงแรม และแผนการเดินทาง",
+    description: "เอกสารสนับสนุนที่สอดคล้องกับแผนเดินทาง",
+    docs: ["flight reservation", "hotel reservation", "travel itinerary"],
   },
   {
     flag: "🇺🇸",
     name: "สหรัฐอเมริกา (USA)",
     slug: "usa",
-    description: "เอกสารประกอบวีซ่าอเมริกาเอกสารสำหรับอธิบายแผนเดินทางเบื้องต้น",
-    requirements: "ต้องการ: หลักฐานแผนการเดินทางและที่พัก",
+    description: "เอกสารประกอบเพื่ออธิบายแผนเดินทางเบื้องต้น",
+    docs: ["flight reservation", "hotel reservation", "travel itinerary"],
   },
   {
     flag: "🇨🇦",
     name: "แคนาดา",
     slug: "canada",
-    description: "เอกสารประกอบคำขอวีซ่าแคนาดาที่แสดงแผนเดินทางและที่พักชัดเจน",
-    requirements: "ต้องการ: ใบจองตั๋วและหลักฐานที่พัก",
+    description: "เอกสารประกอบที่แสดงแผนเดินทางและที่พักชัดเจน",
+    docs: ["flight reservation", "hotel reservation"],
   },
   {
     flag: "🇦🇺",
     name: "ออสเตรเลีย",
     slug: "australia",
-    description: "เอกสารสนับสนุนสำหรับแสดงกำหนดการเดินทางไปออสเตรเลีย",
-    requirements: "ต้องการ: ใบจองตั๋วและแผนการเดินทาง",
+    description: "เอกสารสนับสนุนสำหรับแสดงกำหนดการเดินทาง",
+    docs: ["flight reservation", "travel itinerary"],
   },
   {
     flag: "🇯🇵",
     name: "ญี่ปุ่น",
     slug: "japan",
-    description: "เอกสารสำหรับแสดงแผนเที่ยวญี่ปุ่นและกำหนดการเดินทางแบบเป็นลำดับ",
-    requirements: "ต้องการ: ใบจองตั๋วและแผนการเดินทางโดยละเอียด",
+    description: "เอกสารสำหรับแสดงแผนเที่ยวและกำหนดการเดินทาง",
+    docs: ["flight reservation", "travel itinerary"],
   },
   {
     flag: "🇰🇷",
     name: "เกาหลีใต้",
     slug: "korea",
-    description: "เอกสารสนับสนุนสำหรับยื่นวีซ่าเกาหลีใต้ พร้อมข้อมูลตั๋วและที่พัก",
-    requirements: "ต้องการ: ใบจองตั๋วและที่พัก",
+    description: "เอกสารสนับสนุนพร้อมข้อมูลตั๋วและที่พัก",
+    docs: ["flight reservation", "hotel reservation"],
   },
   {
     flag: "🌏",
     name: "และอีกหลายประเทศ",
     slug: "other",
     description: "ติดต่อทีมงานเพื่อสอบถามประเทศที่ต้องการ",
-    requirements: "ทีมงานจะช่วยประเมินเอกสารที่เหมาะสมกับปลายทางของคุณ",
+    docs: ["ประเมินตามปลายทาง", "แนะนำรายการเอกสารที่เหมาะสม"],
   },
 ];
 
@@ -76,7 +76,7 @@ export default function SupportedCountriesSection() {
             ครอบคลุมวีซ่าหลายประเทศปลายทาง
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-            ไม่ว่าคุณจะยื่นวีซ่าที่ไหน BKK AIR จัดเตรียมเอกสารสนับสนุนให้ตรงตามรูปแบบที่สถานทูตแต่ละประเทศคาดหวัง ทั้งวีซ่า Schengen เอกสาร, วีซ่า UK เอกสาร, วีซ่าอเมริกาเอกสาร, flight reservation for Schengen visa, hotel booking for UK visa และ embassy-ready documents Thailand
+            ไม่ว่าคุณจะยื่นวีซ่าประเทศใด BKK AIR ช่วยจัดเตรียมเอกสารให้สอดคล้องกับรูปแบบที่สถานทูตคาดหวัง ทั้งเอกสารสำหรับ Schengen, UK, US และบริการ flight reservation กับ hotel reservation
           </p>
         </div>
 
@@ -93,9 +93,17 @@ export default function SupportedCountriesSection() {
                 </div>
               </div>
 
-              <p className="mt-4 flex-1 rounded-2xl border border-blue-100/70 bg-blue-50/60 px-4 py-3 text-sm font-semibold leading-relaxed text-slate-700">
-                {country.requirements}
-              </p>
+              <div className="mt-4 flex-1 rounded-2xl border border-blue-100/70 bg-blue-50/60 px-4 py-3.5">
+                <p className="text-xs font-black uppercase tracking-wider text-slate-500">เอกสารที่ใช้บ่อย</p>
+                <ul className="mt-2 space-y-1.5">
+                  {country.docs.map((doc) => (
+                    <li key={doc} className="text-sm font-semibold text-slate-700">
+                      <span className="mr-2 text-emerald-600">✓</span>
+                      {doc}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </li>
           ))}
         </ul>

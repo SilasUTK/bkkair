@@ -58,7 +58,7 @@ export default function TermsPage() {
               <span className="mt-2 block text-xl font-extrabold text-slate-600 sm:text-2xl">Terms of Service</span>
             </h1>
             <div className="mt-4 flex flex-wrap items-center gap-3 text-sm sm:text-base">
-              <span className="rounded-full bg-white px-3 py-1 font-bold text-slate-700 ring-1 ring-slate-200">อัปเดตล่าสุด: 18 พฤษภาคม 2569</span>
+              <span className="rounded-full bg-white px-3 py-1 font-bold text-slate-700 ring-1 ring-slate-200">อัปเดตล่าสุด: 18 พฤษภาคม 2569 (2026)</span>
               <span className="rounded-full bg-white px-3 py-1 font-bold text-slate-700 ring-1 ring-slate-200">เวอร์ชัน: 1.0</span>
             </div>
             <div className="mt-5 space-y-2 text-base leading-relaxed text-slate-700 sm:text-lg">
@@ -149,9 +149,9 @@ export default function TermsPage() {
                   <p className="leading-relaxed text-slate-700">BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนการยื่นขอวีซ่า ดังต่อไปนี้:</p>
                   <h3 className="text-xl font-extrabold text-slate-900">2.1 ประเภทเอกสารที่ให้บริการ</h3>
                   <ul className="space-y-3 leading-relaxed text-slate-700">
-                    <li><strong>ใบจองตั๋วเครื่องบิน (Flight Reservation Document)</strong><br />เอกสาร PDF แสดงรายละเอียดการเดินทางไป-กลับ ชื่อผู้โดยสาร วันเดินทาง เมืองต้นทางและปลายทาง และหมายเลขเที่ยวบิน</li>
-                    <li><strong>ใบจองโรงแรม (Hotel Reservation Document)</strong><br />เอกสาร PDF แสดงรายละเอียดการจองที่พัก ชื่อผู้เข้าพัก ชื่อและที่อยู่โรงแรม วันเช็คอิน-เช็คเอาท์</li>
-                    <li><strong>แผนการเดินทาง (Travel Itinerary)</strong><br />เอกสาร PDF แสดงกำหนดการเดินทางโดยละเอียด สถานที่ท่องเที่ยว และกิจกรรมตลอดการเดินทาง</li>
+                    <li><strong>ใบจองตั๋วเครื่องบิน (flight reservation document)</strong><br />เอกสาร PDF แสดงรายละเอียดการเดินทางไป-กลับ ชื่อผู้โดยสาร วันเดินทาง เมืองต้นทางและปลายทาง และหมายเลขเที่ยวบิน</li>
+                    <li><strong>ใบจองโรงแรม (hotel reservation document)</strong><br />เอกสาร PDF แสดงรายละเอียดการจองที่พัก ชื่อผู้เข้าพัก ชื่อและที่อยู่โรงแรม วันเช็คอิน-เช็คเอาท์</li>
+                    <li><strong>แผนการเดินทาง (travel itinerary)</strong><br />เอกสาร PDF แสดงกำหนดการเดินทางโดยละเอียด สถานที่ท่องเที่ยว และกิจกรรมตลอดการเดินทาง</li>
                     <li><strong>ชุดเอกสารครบเซ็ต (Complete Document Package)</strong><br />รวมเอกสารข้างต้นในไฟล์ PDF เดียว</li>
                     <li><strong>ประกันการเดินทาง (Travel Insurance)</strong><br />การให้คำแนะนำและสนับสนุนด้านเอกสารประกันการเดินทางตามที่สถานทูตกำหนด</li>
                   </ul>
@@ -218,9 +218,11 @@ export default function TermsPage() {
                   <p className="leading-relaxed text-slate-700">BKK AIR จัดทำเอกสารตามข้อมูลที่ได้รับ หากข้อมูลผิดพลาดเนื่องจากผู้ใช้บริการ อาจมีค่าใช้จ่ายในการแก้ไขตามที่กำหนด</p>
                   <h3 className="text-xl font-extrabold text-slate-900">5.3 ราคาและภาษี</h3>
                   <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>ราคาที่แสดงบนเว็บไซต์เป็นราคาสุดท้าย ไม่มีค่าใช้จ่ายแอบแฝง</li>
-                    <li>ราคาอาจเปลี่ยนแปลงได้โดยไม่แจ้งล่วงหน้า แต่ราคาที่ใช้คือราคา ณ วันที่ยืนยันออเดอร์</li>
-                    <li>หากมีกฎหมายกำหนดให้เรียกเก็บภาษีหรือค่าธรรมเนียมภาครัฐเพิ่มเติม BKK AIR จะแจ้งรายละเอียดให้ทราบอย่างชัดเจนก่อนยืนยันการชำระเงิน</li>
+                    <li>ราคาที่แสดงบนเว็บไซต์เป็นค่าบริการจัดเตรียมเอกสารของ BKK AIR เท่านั้น และไม่รวมค่าธรรมเนียมสถานทูตหรือค่าธรรมเนียมจากหน่วยงานภายนอก</li>
+                    <li>ราคาที่แสดงบนเว็บไซต์ยังไม่รวมภาษีมูลค่าเพิ่ม (VAT) 7% ซึ่งอาจถูกเรียกเก็บเพิ่มเติมตามกฎหมายที่เกี่ยวข้อง</li>
+                    <li>ราคาทั้งหมดแสดงเป็นสกุลเงินบาท (THB) เว้นแต่จะระบุไว้เป็นอย่างอื่น</li>
+                    <li>BKK AIR ขอสงวนสิทธิ์ในการเปลี่ยนแปลงราคา โปรโมชั่น หรือค่าบริการได้โดยไม่ต้องแจ้งให้ทราบล่วงหน้า โดยราคาที่มีผลคือราคาที่แสดง ณ เวลาที่ยืนยันคำสั่งซื้อ</li>
+                    <li>ลูกค้าสามารถขอใบเสร็จรับเงินได้หลังการชำระเงิน และใบกำกับภาษีจะออกให้เฉพาะกรณีที่กฎหมายกำหนด</li>
                   </ul>
                   <h3 className="text-xl font-extrabold text-slate-900">5.4 ช่องทางชำระเงิน</h3>
                   <p className="leading-relaxed text-slate-700">BKK AIR รับชำระเงินผ่านช่องทางที่กำหนด การชำระเงินทุกรายการผ่านระบบที่เข้ารหัสและปลอดภัย BKK AIR ไม่จัดเก็บข้อมูลบัตรเครดิตหรือบัญชีธนาคารของผู้ใช้บริการ</p>
@@ -363,10 +365,12 @@ export default function TermsPage() {
                   <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 text-slate-800">
                     <p className="text-lg font-black text-slate-900">BKK AIR</p>
                     <p className="mt-2 leading-relaxed">อีเมล: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
+                    <p className="leading-relaxed">อีเมลด้านความเป็นส่วนตัว: <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a></p>
                     <p className="leading-relaxed">เว็บไซต์: <a href="https://bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">https://bkkair.com</a></p>
-                    <p className="leading-relaxed">LINE: @823lateh</p>
+                    <p className="leading-relaxed">Official LINE OA: <a href="https://line.me/R/ti/p/@823lateh" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">@823lateh</a></p>
                     <p className="leading-relaxed">เวลาทำการ: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
-                    <p className="leading-relaxed">ที่ตั้ง: Bangkok, Thailand</p>
+                    <p className="leading-relaxed">ที่ตั้ง: Bangkok, Thailand (Thailand-based operations)</p>
+                    <p className="leading-relaxed text-sm text-slate-600">Business verification requests: กรุณาติดต่อ <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
                   </div>
                   <p className="text-sm text-slate-600">อ่านเพิ่มเติมเกี่ยวกับข้อมูลส่วนบุคคลได้ที่ <Link href="/privacy-policy" className="font-bold text-[#2563EB]">นโยบายความเป็นส่วนตัว</Link></p>
                 </section>

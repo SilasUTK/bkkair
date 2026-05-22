@@ -1,4 +1,4 @@
-import { Prompt } from "next/font/google";
+import { Prompt, Sarabun } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -6,6 +6,13 @@ const prompt = Prompt({
   subsets: ["thai", "latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-prompt",
+  display: "swap",
+});
+
+const sarabun = Sarabun({
+  subsets: ["thai", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-pdf-thai",
   display: "swap",
 });
 
@@ -27,7 +34,7 @@ const serviceJsonLd = {
   "@type": "Service",
   name: "BKK AIR Visa Flight and Hotel Booking Support",
   url: "https://bkkair.com",
-  serviceType: "Flight reservation for visa and hotel booking for visa",
+  serviceType: "flight reservation for visa and hotel reservation for visa",
   provider: {
     "@type": "Organization",
     name: "BKK AIR",
@@ -102,7 +109,7 @@ const faqJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="th" className={prompt.variable}>
+    <html lang="th" className={`${prompt.variable} ${sarabun.variable}`}>
       <body className="font-prompt">
         <script
           type="application/ld+json"
