@@ -11,15 +11,17 @@ import {
   CalendarDays
 } from "lucide-react";
 import React, { useMemo, useState } from "react";
-import { createBooking } from "../legacy/services/api.js";
 
 const initialRequest = {
   destination: "",
-  serviceType: "ท่องเที่ยว / ส่วนตัว",
+  visaType: "",
   name: "",
   contact: "",
-  departureDate: ""
+  travelDate: ""
 };
+
+const REQUEST_API_BASE_URL =
+  process.env.NEXT_PUBLIC_REQUEST_API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001";
 
 const countries = [
   "Schengen / วีซ่าเชงเก้น", "UK / วีซ่าอังกฤษ", "USA / วีซ่าอเมริกา",
@@ -62,29 +64,41 @@ export default function Hero({ goToCheck }) {
 
   async function submitRequest(event) {
     event.preventDefault();
+    if (loading) return;
 
     if (!request.destination.trim()) return setError("กรุณาเลือกประเทศที่ต้องการไป");
     if (!request.name.trim()) return setError("กรุณาระบุชื่อ-นามสกุล");
     if (!request.contact.trim()) return setError("กรุณาระบุช่องทางติดต่อ");
-    if (!request.departureDate.trim()) return setError("กรุณาระบุวันเดินทาง");
 
     setLoading(true);
     setError("");
     setCreatedBooking(false);
 
     try {
-      const { contact, ...bookingRequest } = request;
-      await createBooking({
-        ...bookingRequest,
-        phone: contact.trim(),
-        email: "",
-        lineId: "",
-        serviceType: request.serviceType || "Quick Visa Consultation Request"
+      const response = await fetch(`${REQUEST_API_BASE_URL}/api/requests`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          source: "homepage_hero",
+          destination: request.destination.trim(),
+          visaType: request.visaType.trim(),
+          name: request.name.trim(),
+          contact: request.contact.trim(),
+          travelDate: request.travelDate || ""
+        })
       });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.message || data.error || "Request failed");
+      }
+
       setCreatedBooking(true);
       setRequest(initialRequest);
-    } catch (requestError) {
-      setError(requestError.message || "ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง");
+    } catch (_requestError) {
+      setError("ส่งคำขอไม่สำเร็จ กรุณาลองใหม่อีกครั้ง หรือติดต่อ LINE @823lateh");
     } finally {
       setLoading(false);
     }
@@ -251,12 +265,12 @@ export default function Hero({ goToCheck }) {
                     <div className="relative">
                       <CalendarDays className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                       <select
-                        name="serviceType"
-                        value={request.serviceType}
+                        name="visaType"
+                        value={request.visaType}
                         onChange={updateRequest}
-                        required
                         className="h-12 w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50/80 pl-10 pr-9 text-sm font-medium text-slate-700 transition-all hover:border-slate-300 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
                       >
+                        <option value="">เลือกประเภทวีซ่า (ไม่บังคับ)</option>
                         {visaTypes.map(type => <option key={type} value={type}>{type}</option>)}
                       </select>
                       <svg className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
@@ -302,12 +316,11 @@ export default function Hero({ goToCheck }) {
                       วันเดินทาง
                     </label>
                     <input
-                      name="departureDate"
+                      name="travelDate"
                       type="date"
                       min={tomorrowDate}
-                      value={request.departureDate}
+                      value={request.travelDate}
                       onChange={updateRequest}
-                      required
                       className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-700 transition-all hover:border-slate-300 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
                     />
                   </div>
@@ -362,8 +375,7 @@ export default function Hero({ goToCheck }) {
                   <div className="mt-4 flex items-start gap-3 rounded-xl border border-emerald-100 bg-emerald-50 p-3.5 text-emerald-800">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
                     <div>
-                      <p className="text-sm font-bold">ได้รับคำขอเรียบร้อยแล้ว!</p>
-                      <p className="mt-0.5 text-xs text-emerald-600">ทีมงานจะตรวจสอบและติดต่อกลับ</p>
+                      <p className="text-sm font-bold">ส่งคำขอเรียบร้อยแล้ว ทีมงานจะติดต่อกลับภายใน 2–4 ชั่วโมงในเวลาทำการ</p>
                     </div>
                   </div>
                 )}

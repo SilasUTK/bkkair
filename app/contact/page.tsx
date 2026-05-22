@@ -1,27 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Mail, MessageCircle, Clock, ShieldCheck, Languages, FileCheck2, Globe } from "lucide-react";
+import ContactForm from "../../components/contact/ContactForm";
 import MarketingShell from "../../components/marketing/MarketingShell";
 
 export const metadata: Metadata = {
   title: "ติดต่อเรา | BKK AIR",
   description: "ติดต่อทีมงาน BKK AIR ผ่าน LINE OA และ Email เพื่อสอบถามเอกสารยื่นวีซ่า แพ็กเกจบริการ และการตรวจสอบข้อมูลธุรกิจ",
 };
-
-const inquiryTypes = [
-  { value: "package_inquiry", label: "สอบถามแพ็กเกจ" },
-  { value: "order_tracking", label: "ตรวจสอบสถานะคำขอ" },
-  { value: "flight_reservation", label: "ใบจองตั๋วเครื่องบิน" },
-  { value: "hotel_reservation", label: "ใบจองโรงแรม" },
-  { value: "travel_itinerary", label: "แผนการเดินทาง" },
-  { value: "travel_insurance", label: "ประกันการเดินทาง" },
-  { value: "urgent_request", label: "เอกสารเร่งด่วน (Express)" },
-  { value: "document_issue", label: "แจ้งปัญหาเอกสาร" },
-  { value: "data_update", label: "แก้ไขข้อมูล" },
-  { value: "payment_issue", label: "ปัญหาการชำระเงิน" },
-  { value: "business_partnership", label: "ความร่วมมือทางธุรกิจ" },
-  { value: "other", label: "อื่น ๆ" },
-];
 
 const workflowSteps = [
   "ทีมงานตรวจสอบข้อความและประเภทคำขอ",
@@ -121,32 +106,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <form className="rounded-[2rem] bg-[#F8FAFC] p-6 shadow-lg shadow-slate-200/50 sm:p-8">
-            {/* Frontend-only contact form: this page currently has no backend submission endpoint. */}
-            <div className="grid gap-5">
-              <div className="rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800">
-                Human-reviewed responses · No automated visa approval claims
-              </div>
-              <label className="block"><span className="text-xs font-black uppercase tracking-wide text-slate-500">ชื่อ</span><input required className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 focus:border-blue-500 focus:outline-none" /></label>
-              <label className="block"><span className="text-xs font-black uppercase tracking-wide text-slate-500">ช่องทางติดต่อ</span><input required placeholder="เบอร์โทร / อีเมล / LINE ID" className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 focus:border-blue-500 focus:outline-none" /></label>
-              <label className="block">
-                <span className="text-xs font-black uppercase tracking-wide text-slate-500">เรื่องที่ต้องการสอบถาม / Inquiry Type</span>
-                <select name="inquiryType" defaultValue="" required className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 text-slate-700 focus:border-blue-500 focus:outline-none">
-                  <option value="" disabled>เลือกหัวข้อที่ใกล้เคียงกับคำถามของคุณมากที่สุด</option>
-                  {inquiryTypes.map((item) => (
-                    <option key={item.value} value={item.value}>{item.label}</option>
-                  ))}
-                </select>
-                <p className="mt-1.5 text-xs font-medium text-slate-500">หัวข้อนี้ช่วยให้ทีมงานจัดลำดับและส่งต่อคำถามได้เร็วขึ้น</p>
-              </label>
-              <label className="block"><span className="text-xs font-black uppercase tracking-wide text-slate-500">รายละเอียด</span><textarea rows={5} className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 focus:border-blue-500 focus:outline-none" /></label>
-              <button type="button" className="rounded-2xl bg-[#f59e0b] px-6 py-4 font-black text-white shadow-lg shadow-amber-200/60">ส่งข้อความถึงทีมงาน</button>
-              <p className="rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 text-sm font-semibold leading-relaxed text-orange-900">
-                BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูต
-              </p>
-              <Link href="/order" className="text-center text-sm font-bold text-[#003d82]">หรือส่งคำขอเอกสารที่ /order</Link>
-            </div>
-          </form>
+          <ContactForm />
         </div>
 
         <div className="mx-auto mt-12 max-w-7xl rounded-3xl border border-slate-100 bg-[#F8FAFC] p-6 sm:p-8">

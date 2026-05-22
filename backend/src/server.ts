@@ -6,6 +6,8 @@ import rateLimit from "express-rate-limit";
 import adminAuthRoutes from "./routes/adminAuth.js";
 import adminBookingRoutes from "./routes/adminBookings.js";
 import bookingRoutes from "./routes/bookings.js";
+import contactRoutes from "./routes/contact.routes.js";
+import requestRoutes from "./routes/request.routes.js";
 import { requireAdminAuth } from "./middleware/requireAdminAuth.js";
 
 dotenv.config();
@@ -41,6 +43,8 @@ app.get("/api/health", (_request, response) => {
 });
 
 app.use("/api/bookings", bookingRateLimit, bookingRoutes);
+app.use("/api/requests", bookingRateLimit, requestRoutes);
+app.use("/api/contact", bookingRateLimit, contactRoutes);
 app.use("/api/admin/auth/login", loginRateLimit);
 app.use("/api/admin", adminAuthRoutes);
 app.use("/api/admin", requireAdminAuth, adminBookingRoutes);
