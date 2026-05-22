@@ -143,12 +143,12 @@ export default function Footer({ onNavigate }) {
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
                 <Clock className="h-5 w-5 shrink-0 text-amber-400" />
                 <p>
-                  จันทร์-เสาร์ <span className="font-semibold text-white">09:00-18:00 น.</span>
+                  Monday-Saturday <span className="font-semibold text-white">09:00-18:00 (Thailand Time)</span>
                 </p>
               </li>
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
                 <MapPin className="h-5 w-5 shrink-0 text-accent-orange" />
-                <p>กรุงเทพมหานคร, ประเทศไทย</p>
+                <p>Bangkok, Thailand</p>
               </li>
             </ul>
           </section>

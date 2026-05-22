@@ -149,6 +149,9 @@ const termsSections = [
           <span className="font-bold text-slate-900">LINE OA:</span>{" "}
           <span className="text-emerald-600 font-bold bg-emerald-100 px-2 py-0.5 rounded-md">@823lateh</span>
         </p>
+        <p className="text-slate-700 font-medium">Website: https://bkkair.com</p>
+        <p className="text-slate-700 font-medium">Business Hours: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
+        <p className="text-slate-700 font-medium">Location: Bangkok, Thailand</p>
       </div>
     )
   }

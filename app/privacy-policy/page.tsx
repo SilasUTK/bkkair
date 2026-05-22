@@ -306,7 +306,7 @@ export default function PrivacyPolicyPage() {
                     </section>
                   </div>
                   <p className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-slate-800">
-                    <strong>การใช้สิทธิ์:</strong> ติดต่อเราได้ทางอีเมล TODO_REPLACE_REAL_INFO เราจะดำเนินการภายใน 30 วัน
+                    <strong>การใช้สิทธิ์:</strong> ติดต่อเราได้ทางอีเมล <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a> เราจะดำเนินการภายใน 30 วัน
                   </p>
                 </section>
 
@@ -359,10 +359,13 @@ export default function PrivacyPolicyPage() {
                   <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 text-slate-800">
                     <p className="text-lg font-black text-slate-900">BKK AIR</p>
                     <p className="mt-2 leading-relaxed">
-                      อีเมล: <a href="mailto:TODO_REPLACE_REAL_INFO" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">TODO_REPLACE_REAL_INFO</a>
+                      อีเมล: <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a>
                     </p>
+                    <p className="leading-relaxed">อีเมลทั่วไป: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
+                    <p className="leading-relaxed">เว็บไซต์: <a href="https://bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">https://bkkair.com</a></p>
                     <p className="leading-relaxed">LINE: @823lateh</p>
-                    <p className="leading-relaxed">เวลาทำการ: จันทร์–เสาร์ 09:00–18:00 น.</p>
+                    <p className="leading-relaxed">เวลาทำการ: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
+                    <p className="leading-relaxed">ที่ตั้ง: Bangkok, Thailand</p>
                   </div>
                   <p className="leading-relaxed text-slate-700">เราจะตอบกลับภายใน <strong>30 วันทำการ</strong> นับจากได้รับคำร้อง</p>
                 </section>
@@ -387,9 +390,8 @@ export default function PrivacyPolicyPage() {
                   และแนวปฏิบัติที่ดีด้านความเป็นส่วนตัวสากล
                 </blockquote>
                 <blockquote className="rounded-2xl border border-amber-400/50 bg-amber-100 p-4 leading-relaxed text-slate-900">
-                  เนื้อหานโยบายความเป็นส่วนตัวฉบับนี้จัดทำขึ้นเพื่อเป็นแนวทางเบื้องต้นเท่านั้น
-                  <strong> แนะนำอย่างยิ่งให้ทนายความหรือที่ปรึกษากฎหมายที่เชี่ยวชาญด้าน PDPA ตรวจสอบและรับรองก่อนเผยแพร่จริง </strong>
-                  เพื่อให้มั่นใจว่าครบถ้วนถูกต้องตามกฎหมายที่บังคับใช้ในขณะนั้น
+                  นโยบายความเป็นส่วนตัวฉบับนี้ใช้กับการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลทั้งหมดของ BKK AIR
+                  และจะได้รับการอัปเดตเมื่อมีการเปลี่ยนแปลงบริการหรือข้อกำหนดทางกฎหมายที่เกี่ยวข้อง
                 </blockquote>
               </section>
             </main>

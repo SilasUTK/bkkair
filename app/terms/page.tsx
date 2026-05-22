@@ -220,7 +220,7 @@ export default function TermsPage() {
                   <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
                     <li>ราคาที่แสดงบนเว็บไซต์เป็นราคาสุดท้าย ไม่มีค่าใช้จ่ายแอบแฝง</li>
                     <li>ราคาอาจเปลี่ยนแปลงได้โดยไม่แจ้งล่วงหน้า แต่ราคาที่ใช้คือราคา ณ วันที่ยืนยันออเดอร์</li>
-                    <li>TODO_REPLACE_REAL_INFO</li>
+                    <li>หากมีกฎหมายกำหนดให้เรียกเก็บภาษีหรือค่าธรรมเนียมภาครัฐเพิ่มเติม BKK AIR จะแจ้งรายละเอียดให้ทราบอย่างชัดเจนก่อนยืนยันการชำระเงิน</li>
                   </ul>
                   <h3 className="text-xl font-extrabold text-slate-900">5.4 ช่องทางชำระเงิน</h3>
                   <p className="leading-relaxed text-slate-700">BKK AIR รับชำระเงินผ่านช่องทางที่กำหนด การชำระเงินทุกรายการผ่านระบบที่เข้ารหัสและปลอดภัย BKK AIR ไม่จัดเก็บข้อมูลบัตรเครดิตหรือบัญชีธนาคารของผู้ใช้บริการ</p>
@@ -255,7 +255,7 @@ export default function TermsPage() {
                   <h3 className="text-xl font-extrabold text-slate-900">7.1 การแก้ไขข้อมูล</h3>
                   <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
                     <li>แก้ไขได้โดยไม่มีค่าใช้จ่าย หากแจ้งก่อนที่ทีมงานเริ่มจัดทำเอกสาร</li>
-                    <li>หากแจ้งหลังจากเริ่มจัดทำแล้ว อาจมีค่าธรรมเนียมการแก้ไข TODO_REPLACE_REAL_INFO</li>
+                    <li>หากแจ้งหลังจากเริ่มจัดทำแล้ว อาจมีค่าธรรมเนียมการแก้ไขตามความซับซ้อนของรายการที่ขอแก้ไข</li>
                     <li>ข้อมูลที่ผิดพลาดเนื่องจากผู้ใช้บริการ BKK AIR ไม่รับผิดชอบต่อผลที่ตามมา</li>
                   </ul>
                   <h3 className="text-xl font-extrabold text-slate-900">7.2 การยกเลิกออเดอร์</h3>
@@ -363,8 +363,10 @@ export default function TermsPage() {
                   <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 text-slate-800">
                     <p className="text-lg font-black text-slate-900">BKK AIR</p>
                     <p className="mt-2 leading-relaxed">อีเมล: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
+                    <p className="leading-relaxed">เว็บไซต์: <a href="https://bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">https://bkkair.com</a></p>
                     <p className="leading-relaxed">LINE: @823lateh</p>
-                    <p className="leading-relaxed">เวลาทำการ: จันทร์–เสาร์ 09:00–18:00 น.</p>
+                    <p className="leading-relaxed">เวลาทำการ: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
+                    <p className="leading-relaxed">ที่ตั้ง: Bangkok, Thailand</p>
                   </div>
                   <p className="text-sm text-slate-600">อ่านเพิ่มเติมเกี่ยวกับข้อมูลส่วนบุคคลได้ที่ <Link href="/privacy-policy" className="font-bold text-[#2563EB]">นโยบายความเป็นส่วนตัว</Link></p>
                 </section>
@@ -378,10 +380,8 @@ export default function TermsPage() {
                   การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลในทุกกรณี
                 </blockquote>
                 <blockquote className="rounded-2xl border border-amber-400/50 bg-amber-100 p-4 leading-relaxed text-slate-900">
-                  ข้อกำหนดการใช้บริการฉบับนี้จัดทำขึ้นเพื่อเป็นแนวทางเบื้องต้นเท่านั้น
-                  <strong> แนะนำอย่างยิ่งให้ทนายความหรือที่ปรึกษากฎหมายตรวจสอบและรับรองก่อนเผยแพร่จริง </strong>
-                  โดยเฉพาะในส่วนของข้อจำกัดความรับผิด นโยบายคืนเงิน และข้อกำหนดตาม PDPA
-                  เพื่อให้มั่นใจว่าถูกต้องครบถ้วนตามกฎหมายที่บังคับใช้ในขณะนั้น
+                  ข้อกำหนดการใช้บริการฉบับนี้มีผลใช้บังคับกับการใช้บริการทั้งหมดบนเว็บไซต์ BKK AIR
+                  และมีการปรับปรุงตามการเปลี่ยนแปลงของบริการและกฎหมายที่เกี่ยวข้องเป็นระยะ
                 </blockquote>
               </section>
             </main>

@@ -64,9 +64,9 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
               <ContactInfoCard
                 icon={Phone}
-                title="โทรหาเรา"
-                content="02-XXX-XXXX"
-                subContent="จันทร์ - ศุกร์ (09:00 - 18:00)"
+                title="ช่องทางติดต่อหลัก"
+                content="LINE: @823lateh"
+                subContent="Monday-Saturday 09:00-18:00 (Thailand Time)"
                 color="border-blue-100 bg-blue-50 text-blue-600"
               />
               <ContactInfoCard
@@ -79,14 +79,14 @@ export default function ContactPage() {
               <ContactInfoCard
                 icon={Mail}
                 title="อีเมล"
-                content="support@bkkair.com"
+                content="info@bkkair.com"
                 subContent="พร้อมตอบกลับภายใน 24 ชม."
                 color="border-orange-100 bg-orange-50 text-orange-600"
               />
               <ContactInfoCard
                 icon={MapPin}
                 title="ที่ตั้งสำนักงาน"
-                content="BKK AIR HQ, วัฒนา, กรุงเทพฯ"
+                content="Bangkok, Thailand"
                 subContent="นัดหมายล่วงหน้าก่อนเข้าพบ"
                 color="border-purple-100 bg-purple-50 text-purple-600"
               />
@@ -165,7 +165,7 @@ export default function ContactPage() {
                         label="อีเมลติดต่อ"
                         name="email"
                         type="email"
-                        placeholder="you@example.com"
+                        placeholder="อีเมลของคุณ"
                         required
                         value={formData.email}
                         onChange={(event) => setFormData({ ...formData, email: event.target.value })}

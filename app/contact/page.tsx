@@ -28,7 +28,7 @@ export default function ContactPage() {
           </div>
 
           <form className="rounded-[2rem] bg-[#F8FAFC] p-6 shadow-lg shadow-slate-200/50 sm:p-8">
-            {/* Frontend-safe placeholder: no backend endpoint is connected for this contact form yet. */}
+            {/* Frontend-only contact form: this page currently has no backend submission endpoint. */}
             <div className="grid gap-5">
               <label className="block"><span className="text-xs font-black uppercase tracking-wide text-slate-500">ชื่อ</span><input required className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 focus:border-blue-500 focus:outline-none" /></label>
               <label className="block"><span className="text-xs font-black uppercase tracking-wide text-slate-500">ช่องทางติดต่อ</span><input required placeholder="เบอร์โทร / อีเมล / LINE ID" className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 focus:border-blue-500 focus:outline-none" /></label>

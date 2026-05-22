@@ -26,10 +26,32 @@ const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "BKK AIR Visa Flight and Hotel Booking Support",
+  url: "https://bkkair.com",
   serviceType: "Flight reservation for visa and hotel booking for visa",
   provider: {
     "@type": "Organization",
-    name: "BKK AIR"
+    name: "BKK AIR",
+    url: "https://bkkair.com",
+    email: "info@bkkair.com",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bangkok",
+      addressCountry: "TH",
+    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "info@bkkair.com",
+        availableLanguage: ["th", "en"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "privacy",
+        email: "privacy@bkkair.com",
+        availableLanguage: ["th", "en"],
+      },
+    ],
   },
   areaServed: {
     "@type": "Country",

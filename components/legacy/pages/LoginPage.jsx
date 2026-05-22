@@ -115,7 +115,7 @@ export default function LoginPage({ onNavigate }) {
                  {/* Text Mockups */}
                  <div className="w-20 h-2 bg-slate-200 rounded-full mb-3"></div>
                  <div className="w-16 h-1.5 bg-slate-200 rounded-full mb-4"></div>
-                 {/* Fake Login Button inside graphic */}
+                 {/* Decorative login button inside graphic */}
                  <div className="w-24 h-6 bg-primary-dark rounded-lg mt-auto opacity-90"></div>
               </div>
 
@@ -179,7 +179,7 @@ export default function LoginPage({ onNavigate }) {
               name="email"
               type="email"
               icon={Mail}
-              placeholder="you@example.com"
+              placeholder="อีเมลของคุณ"
               value={formData.email}
               onChange={handleChange}
             />

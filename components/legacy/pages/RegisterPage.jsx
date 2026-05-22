@@ -231,7 +231,7 @@ export default function RegisterPage({ onNavigate }) {
                 name="email"
                 type="email"
                 icon={Mail}
-                placeholder="you@example.com"
+                placeholder="อีเมลของคุณ"
                 value={formData.email}
                 onChange={handleChange}
               />
@@ -240,7 +240,7 @@ export default function RegisterPage({ onNavigate }) {
                 name="phone"
                 type="tel"
                 icon={Phone}
-                placeholder="08X-XXX-XXXX"
+                placeholder="เบอร์โทรศัพท์ของคุณ"
                 value={formData.phone}
                 onChange={handleChange}
               />

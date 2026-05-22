@@ -31,7 +31,7 @@ const packages = [
     name: "ใบจองตั๋วเครื่องบิน",
     englishName: "Flight Reservation Document",
     tagline: "สำหรับผู้ที่ต้องการเฉพาะ flight itinerary ยื่นวีซ่า",
-    price: "TODO_PRICE_PLACEHOLDER",
+    price: "฿490",
     priceNote: "ต่อคน / per person",
     delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
     included: [
@@ -56,7 +56,7 @@ const packages = [
     name: "ใบจองโรงแรม",
     englishName: "Hotel Reservation Document",
     tagline: "สำหรับผู้ที่ต้องการหลักฐานที่พักยื่นวีซ่า",
-    price: "TODO_PRICE_PLACEHOLDER",
+    price: "฿490",
     priceNote: "ต่อคน / per person",
     delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
     included: [
@@ -82,9 +82,9 @@ const packages = [
     name: "ชุดเอกสารครบเซ็ต",
     englishName: "Complete Document Package",
     tagline: "เอกสารสนับสนุนวีซ่าครบชุด ในที่เดียว จบในคำสั่งเดียว",
-    price: "TODO_PRICE_PLACEHOLDER",
+    price: "฿890",
     priceNote: "ต่อคน / per person",
-    valueNote: "💰 ประหยัดกว่าสั่งแยก TODO_PRICE_PLACEHOLDER",
+    valueNote: "💰 ประหยัดกว่าสั่งแยก ฿90",
     delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
     included: [
       "ใบจองตั๋วเครื่องบินไป-กลับ",
@@ -107,7 +107,7 @@ const packages = [
     name: "ชุดครบเซ็ต + ประกันการเดินทาง",
     englishName: "Complete Package with Travel Insurance",
     tagline: "เอกสารครบ ประกันครบ พร้อมยื่นวีซ่าได้ทันที",
-    price: "TODO_PRICE_PLACEHOLDER",
+    price: "฿1,490",
     priceNote: "ต่อคน / per person",
     delivery: "⚡ Priority — ส่งก่อน",
     included: [
@@ -138,10 +138,10 @@ const comparisonRows = [
   ["ระยะเวลาส่ง", "24 ชม.", "24 ชม.", "24 ชม.", "Priority"],
   [
     "ราคา",
-    "TODO_PRICE_PLACEHOLDER",
-    "TODO_PRICE_PLACEHOLDER",
-    "TODO_PRICE_PLACEHOLDER",
-    "TODO_PRICE_PLACEHOLDER",
+    "฿490",
+    "฿490",
+    "฿890",
+    "฿1,490",
   ],
 ];
 
@@ -150,19 +150,19 @@ const addOns = [
     title: "Express Delivery",
     icon: "⚡",
     text: "อัปเกรดเป็น Express — รับเอกสารภายใน 3–6 ชั่วโมง",
-    price: "+ TODO_PRICE_PLACEHOLDER",
+    price: "+ ฿390",
   },
   {
     title: "ผู้เดินทางเพิ่มเติม",
     icon: "👥",
     text: "เพิ่มชื่อผู้เดินทางในเอกสารชุดเดียวกัน",
-    price: "+ TODO_PRICE_PLACEHOLDER ต่อคน",
+    price: "+ ฿290 ต่อคน",
   },
   {
     title: "แก้ไขเอกสาร",
     icon: "✏️",
     text: "แก้ไขข้อมูลหลังได้รับเอกสารแล้ว (ภายใน 48 ชั่วโมง)",
-    price: "+ TODO_PRICE_PLACEHOLDER",
+    price: "+ ฿150",
   },
 ];
 
