@@ -88,6 +88,21 @@ server {
     }
 
     # ============================================
+    # Next.js static assets → frontend server
+    # This must run before the generic asset cache rule so /_next/* is not
+    # treated like a filesystem asset.
+    # ============================================
+    location ^~ /_next/ {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Connection "";
+        proxy_http_version 1.1;
+    }
+
+    # ============================================
     # Static Asset Caching (1 year)
     # ============================================
     location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {

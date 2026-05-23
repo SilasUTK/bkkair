@@ -111,6 +111,7 @@ npm run pm2:stop
 Create routing rules in Hostinger (or server Nginx) so:
 
 - `/api/*` -> `http://127.0.0.1:5001`
+- `/_next/*` -> `http://127.0.0.1:3000`
 - all other paths -> `http://127.0.0.1:3000`
 
 Example Nginx location block:
@@ -118,6 +119,14 @@ Example Nginx location block:
 ```nginx
 location /api/ {
   proxy_pass http://127.0.0.1:5001;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Proto $scheme;
+}
+
+location ^~ /_next/ {
+  proxy_pass http://127.0.0.1:3000;
   proxy_set_header Host $host;
   proxy_set_header X-Real-IP $remote_addr;
   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
