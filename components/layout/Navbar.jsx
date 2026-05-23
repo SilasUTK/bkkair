@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Logo from "./Logo.jsx";
 
@@ -8,7 +7,7 @@ const serviceDropdown = [
   { label: "ใบจองตั๋วเครื่องบิน", href: "/packages" },
   { label: "ใบจองโรงแรม", href: "/packages" },
   { label: "แผนการเดินทาง", href: "/packages" },
-  { label: "ประกันการเดินทาง", href: "/packages" },
+  { label: "ประกันการเดินทาง", href: "/packages" }
 ];
 
 const countryDropdown = [
@@ -18,12 +17,12 @@ const countryDropdown = [
   { label: "Canada", href: "/visa/canada" },
   { label: "Australia", href: "/visa/australia" },
   { label: "Japan", href: "/visa/japan" },
-  { label: "Korea", href: "/visa/korea" },
+  { label: "Korea", href: "/visa/korea" }
 ];
 
 const mainLinks = [
   { label: "แพ็กเกจและราคา", href: "/packages" },
-  { label: "คำถามที่พบบ่อย", href: "/faq" },
+  { label: "คำถามที่พบบ่อย", href: "/faq" }
 ];
 
 export default function Navbar({ onNavigate }) {
@@ -34,7 +33,7 @@ export default function Navbar({ onNavigate }) {
 
   useEffect(() => {
     function onScroll() {
-      setIsScrolled(window.scrollY > 8);
+      setIsScrolled(window.scrollY > 12);
     }
 
     onScroll();
@@ -56,32 +55,18 @@ export default function Navbar({ onNavigate }) {
   }, []);
 
   useEffect(() => {
-    if (!mobileOpen) {
-      document.body.style.overflow = "";
-      return undefined;
-    }
-
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
 
     function onKeyDown(event) {
-      if (event.key === "Escape") {
-        setMobileOpen(false);
-      }
+      if (event.key === "Escape") setMobileOpen(false);
     }
 
     window.addEventListener("keydown", onKeyDown);
-
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [mobileOpen]);
-
-  function scrollToAnchor(href) {
-    const sectionId = href.replace("#", "");
-    const target = document.getElementById(sectionId);
-    target?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 
   function handleLinkClick(event, href) {
     setMobileOpen(false);
@@ -89,150 +74,145 @@ export default function Navbar({ onNavigate }) {
     setMobileCountryOpen(false);
 
     if (!href.startsWith("#")) return;
-
     event.preventDefault();
 
     if (onNavigate && window.location.pathname !== "/") {
       onNavigate("home");
-      window.setTimeout(() => scrollToAnchor(href), 50);
+      window.setTimeout(() => document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" }), 50);
       return;
     }
 
-    scrollToAnchor(href);
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
     window.history.replaceState(null, "", href);
   }
 
-  function handleLogoClick() {
+  function goTo(href) {
     setMobileOpen(false);
-    window.location.href = "/";
-  }
-
-  function handleContact() {
-    setMobileOpen(false);
-    window.location.href = "/contact";
-  }
-
-  function handleOrder() {
-    setMobileOpen(false);
-    window.location.href = "/order";
+    window.location.href = href;
   }
 
   return (
     <header
       data-navbar="primary"
-      className={`fixed left-0 top-0 z-[90] w-full border-b font-sans transition-[background-color,box-shadow,border-color] duration-300 ${
+      className={`fixed inset-x-0 top-0 z-[90] w-full font-sans transition duration-300 ${
         isScrolled
-          ? "border-white/15 bg-slate-950/95 shadow-[0_16px_44px_rgba(2,6,23,0.5)] backdrop-blur-xl"
-          : "border-white/10 bg-slate-950/90 shadow-[0_12px_40px_rgba(2,6,23,0.45)] backdrop-blur-xl"
+          ? "border-b border-white/10 bg-slate-950/90 shadow-[0_16px_42px_rgba(2,6,23,0.4)] backdrop-blur-xl"
+          : "bg-gradient-to-b from-slate-950/65 to-transparent"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-5 px-5 sm:px-8 lg:h-[88px] lg:px-12">
-        <Logo onClick={handleLogoClick} className="relative z-[2]" />
+      <div className="mx-auto flex h-20 max-w-7xl items-center gap-3 px-5 sm:px-8 lg:h-[92px] lg:px-12">
+        <Logo onClick={() => goTo("/")} variant="navbar" className="shrink-0 focus:ring-orange-400 focus:ring-offset-0" />
 
-        <nav data-desktop-nav className="hidden flex-1 items-center justify-center gap-1 lg:flex" aria-label="Main navigation">
-          <div data-dropdown="services" className="group relative">
-            <button type="button" className="flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-[15px] font-extrabold text-slate-200 transition-colors hover:bg-white/10 hover:text-white">
-              บริการของเรา
-              <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
-            </button>
-            <div data-dropdown-panel className="pointer-events-none absolute left-1/2 top-full mt-2 w-52 -translate-x-1/2 translate-y-1 rounded-3xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
-              {serviceDropdown.map((item) => (
-                <a key={item.label} href={item.href} onClick={(e) => handleLinkClick(e, item.href)} className="block rounded-xl px-4 py-3 text-sm font-bold text-slate-200 transition-colors hover:bg-white/10 hover:text-accent-orange">
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div data-dropdown="countries" className="group relative">
-            <button type="button" className="flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-[15px] font-extrabold text-slate-200 transition-colors hover:bg-white/10 hover:text-white">
-              ประเทศที่รองรับ
-              <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
-            </button>
-            <div data-dropdown-panel className="pointer-events-none absolute left-1/2 top-full mt-2 w-52 -translate-x-1/2 translate-y-1 rounded-3xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
-              {countryDropdown.map((item) => (
-                <a key={item.label} href={item.href} onClick={(e) => handleLinkClick(e, item.href)} className="block rounded-xl px-4 py-3 text-sm font-bold text-slate-200 transition-colors hover:bg-white/10 hover:text-primary-dark">
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
+        <nav data-desktop-nav className="ml-auto hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+          <DesktopDropdown title="บริการของเรา" links={serviceDropdown} onLinkClick={handleLinkClick} />
+          <DesktopDropdown title="ประเทศที่รองรับ" links={countryDropdown} onLinkClick={handleLinkClick} />
           {mainLinks.map((link) => (
-            <a key={link.label} href={link.href} onClick={(e) => handleLinkClick(e, link.href)} className="group relative rounded-xl px-4 py-2.5 text-[15px] font-extrabold text-slate-200 transition-colors hover:bg-white/10 hover:text-white">
+            <a key={link.label} href={link.href} onClick={(event) => handleLinkClick(event, link.href)} className="rounded-xl px-4 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-orange-300">
               {link.label}
-              <span className="absolute bottom-1.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-accent-orange transition-all duration-300 group-hover:w-4/5"></span>
             </a>
           ))}
-        </nav>
-
-        <div data-desktop-cta className="hidden items-center gap-3 lg:flex">
-          <button type="button" onClick={handleContact} className="px-4 py-2.5 text-[15px] font-extrabold text-slate-200 transition-colors hover:text-white">
+          <button type="button" onClick={() => goTo("/contact")} className="rounded-xl px-4 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-orange-300">
             ติดต่อเรา
           </button>
-          <button type="button" onClick={handleOrder} className="inline-flex h-10 items-center justify-center rounded-full bg-accent-orange px-5 text-sm font-black text-white shadow-md shadow-orange-200/50 transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-hover hover:shadow-orange-300/60 active:scale-[0.97]">
-            สั่งเลย →
-          </button>
-        </div>
+        </nav>
 
         <button
-          data-mobile-cta
+          data-desktop-cta
           type="button"
-          onClick={handleOrder}
-          className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-accent-orange px-4 text-xs font-black text-white shadow-md shadow-orange-200/50 transition-all duration-300 hover:bg-accent-hover active:scale-[0.98] lg:hidden"
+          onClick={() => goTo("/order")}
+          className="ml-3 hidden h-11 items-center gap-2 rounded-full bg-orange-500 px-6 text-sm font-bold text-white shadow-lg shadow-orange-950/25 transition hover:bg-orange-400 lg:inline-flex"
         >
-          ส่งคำขอ
+          สั่งเลย
+          <ArrowRightIcon className="h-4 w-4" />
         </button>
 
-        <button data-mobile-toggle type="button" onClick={() => setMobileOpen((v) => !v)} className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl border-2 transition-all duration-300 lg:hidden ${mobileOpen ? "border-blue-400 bg-slate-900 text-white" : "border-white/20 bg-white/10 text-slate-200 hover:border-blue-200 hover:text-white"}`} aria-label="Toggle navigation menu" aria-expanded={mobileOpen} aria-controls="mobile-primary-navigation">
-          {mobileOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
+        <button type="button" onClick={() => goTo("/order")} className="ml-auto inline-flex h-10 items-center rounded-full bg-orange-500 px-3.5 text-xs font-bold text-white shadow-lg sm:px-4 lg:hidden">
+          ส่งคำขอ
+        </button>
+        <button
+          data-mobile-toggle
+          type="button"
+          onClick={() => setMobileOpen((open) => !open)}
+          aria-expanded={mobileOpen}
+          aria-label="เปิดเมนู"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white backdrop-blur-sm lg:hidden"
+        >
+          {mobileOpen ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
         </button>
       </div>
 
-      <div data-mobile-panel className={`absolute left-0 top-full w-full overflow-hidden bg-slate-950/95 shadow-[0_20px_60px_rgba(2,6,23,0.55)] backdrop-blur-xl transition-all duration-300 ease-in-out lg:hidden ${mobileOpen ? "max-h-[calc(100vh-5rem)] border-b border-white/10 opacity-100" : "max-h-0 opacity-0"}`}>
-        <nav id="mobile-primary-navigation" className="max-h-[calc(100vh-5rem)] overflow-y-auto px-5 py-6 sm:px-8" aria-label="Mobile navigation">
-          <div className="mx-auto flex max-w-7xl flex-col gap-1">
-            <MobileDropdown title="บริการของเรา" open={mobileServiceOpen} onToggle={() => setMobileServiceOpen((v) => !v)} links={serviceDropdown} onLinkClick={handleLinkClick} accent="orange" />
-            <MobileDropdown title="ประเทศที่รองรับ" open={mobileCountryOpen} onToggle={() => setMobileCountryOpen((v) => !v)} links={countryDropdown} onLinkClick={handleLinkClick} accent="blue" />
-
-            {mainLinks.map((link) => (
-              <a key={link.label} href={link.href} onClick={(e) => handleLinkClick(e, link.href)} className="group flex items-center rounded-2xl px-4 py-3.5 text-base font-extrabold text-slate-100 transition-all hover:bg-white/10 hover:text-white hover:pl-6">
-                <span className="mr-3 h-2 w-2 rounded-full bg-slate-600 transition-colors group-hover:bg-accent-orange"></span>
-                {link.label}
-              </a>
-            ))}
-
-            <div className="my-2 h-px w-full bg-white/10"></div>
-            <button type="button" onClick={handleContact} className="rounded-2xl px-4 py-3.5 text-left text-base font-extrabold text-slate-100 transition-all hover:bg-white/10 hover:text-white">ติดต่อเรา</button>
-            <button type="button" onClick={handleOrder} className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-2xl bg-accent-orange px-5 text-sm font-black text-white shadow-md shadow-orange-100/50 transition-all hover:bg-accent-hover active:scale-[0.98]">สั่งเลย →</button>
-          </div>
+      <div data-mobile-panel className={`overflow-hidden bg-slate-950/95 backdrop-blur-xl transition-all lg:hidden ${mobileOpen ? "max-h-[calc(100vh-5rem)] border-t border-white/10 opacity-100" : "max-h-0 opacity-0"}`}>
+        <nav className="max-h-[calc(100vh-5rem)] overflow-y-auto px-5 py-5" aria-label="Mobile navigation">
+          <MobileDropdown title="บริการของเรา" open={mobileServiceOpen} onToggle={() => setMobileServiceOpen((open) => !open)} links={serviceDropdown} onLinkClick={handleLinkClick} />
+          <MobileDropdown title="ประเทศที่รองรับ" open={mobileCountryOpen} onToggle={() => setMobileCountryOpen((open) => !open)} links={countryDropdown} onLinkClick={handleLinkClick} />
+          {mainLinks.map((link) => (
+            <a key={link.label} href={link.href} onClick={(event) => handleLinkClick(event, link.href)} className="block rounded-xl px-4 py-3.5 text-base font-semibold text-white/90 hover:bg-white/10">
+              {link.label}
+            </a>
+          ))}
+          <button type="button" onClick={() => goTo("/contact")} className="block w-full rounded-xl px-4 py-3.5 text-left text-base font-semibold text-white/90 hover:bg-white/10">
+            ติดต่อเรา
+          </button>
+          <button type="button" onClick={() => goTo("/order")} className="mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-orange-500 text-sm font-bold text-white">
+            สั่งเลย
+            <ArrowRightIcon className="h-4 w-4" />
+          </button>
         </nav>
       </div>
     </header>
   );
 }
 
-function MobileDropdown({ title, open, onToggle, links, onLinkClick, accent }) {
-  const hoverClass = accent === "orange" ? "hover:bg-white/10 hover:text-accent-orange" : "hover:bg-white/10 hover:text-primary-dark";
+function DesktopDropdown({ title, links, onLinkClick }) {
+  return (
+    <div className="group relative">
+      <button type="button" className="flex items-center gap-1 rounded-xl px-4 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-orange-300">
+        {title}
+        <DropdownIcon className="h-4 w-4" />
+      </button>
+      <div className="pointer-events-none absolute left-1/2 top-full mt-2 w-52 -translate-x-1/2 translate-y-1 rounded-2xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-2xl backdrop-blur transition group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+        {links.map((link) => (
+          <a key={link.label} href={link.href} onClick={(event) => onLinkClick(event, link.href)} className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-100 transition hover:bg-white/10 hover:text-orange-300">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
 
+function MobileDropdown({ title, open, onToggle, links, onLinkClick }) {
   return (
     <div>
-      <button type="button" onClick={onToggle} className="group flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-base font-extrabold text-slate-100 transition-all hover:bg-white/10 hover:text-white">
-        <span className="flex items-center gap-3">
-          <span className="h-2 w-2 rounded-full bg-slate-600 transition-colors group-hover:bg-accent-orange"></span>
-          {title}
-        </span>
-        <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${open ? "rotate-180 text-blue-300" : ""}`} />
+      <button type="button" onClick={onToggle} className="flex w-full items-center justify-between rounded-xl px-4 py-3.5 text-base font-semibold text-white/90 hover:bg-white/10">
+        {title}
+        <DropdownIcon className={`h-4 w-4 transition ${open ? "rotate-180 text-orange-400" : ""}`} />
       </button>
       {open && (
-        <div className="ml-9 mt-1 flex flex-col gap-0.5">
-          {links.map((item) => (
-            <a key={item.label} href={item.href} onClick={(e) => onLinkClick(e, item.href)} className={`rounded-xl px-4 py-3 text-sm font-bold text-slate-200 transition-colors ${hoverClass}`}>
-              {item.label}
+        <div className="mb-2 ml-4 border-l border-white/10 pl-3">
+          {links.map((link) => (
+            <a key={link.label} href={link.href} onClick={(event) => onLinkClick(event, link.href)} className="block rounded-xl px-4 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-orange-300">
+              {link.label}
             </a>
           ))}
         </div>
       )}
     </div>
   );
+}
+
+function MenuIcon({ className = "" }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" d="M4 7h16M4 12h16M4 17h16" /></svg>;
+}
+
+function CloseIcon({ className = "" }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" d="M6 6l12 12M18 6 6 18" /></svg>;
+}
+
+function DropdownIcon({ className = "" }) {
+  return <svg className={className} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M5.2 7.7a.75.75 0 0 1 1.06 0L10 11.44l3.74-3.74a.75.75 0 1 1 1.06 1.06l-4.27 4.27a.75.75 0 0 1-1.06 0L5.2 8.76a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" /></svg>;
+}
+
+function ArrowRightIcon({ className = "" }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M13 5l7 7-7 7" /></svg>;
 }

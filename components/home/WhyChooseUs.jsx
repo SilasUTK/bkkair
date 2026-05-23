@@ -1,3 +1,5 @@
+"use client";
+
 import { Clock, FileText, Globe2, LockKeyhole, MessageCircle, SearchCheck, Sparkles } from "lucide-react";
 import React from "react";
 
@@ -10,10 +12,9 @@ const benefits = [
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
-      border: "border-blue-100",
-      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.2)]",
-      gradient: "from-blue-500 to-indigo-500",
-      watermark: "text-blue-50/50"
+      border: "border-slate-100 hover:border-blue-200",
+      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.15)]",
+      gradient: "from-blue-500 to-indigo-500"
     }
   },
   {
@@ -22,12 +23,11 @@ const benefits = [
     iconAlt: "visa document service Thailand",
     description: "ทุกคำขอผ่านการตรวจสอบจากทีมงานที่มีประสบการณ์ด้านเอกสารวีซ่าโดยตรงก่อนส่งให้คุณ",
     theme: {
-      color: "text-accent-orange",
+      color: "text-orange-600",
       bg: "bg-orange-50",
-      border: "border-orange-100",
-      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(255,87,34,0.2)]",
-      gradient: "from-accent-orange to-orange-400",
-      watermark: "text-orange-50/60"
+      border: "border-slate-100 hover:border-orange-200",
+      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(245,158,11,0.18)]",
+      gradient: "from-orange-500 to-amber-400"
     }
   },
   {
@@ -38,10 +38,9 @@ const benefits = [
     theme: {
       color: "text-emerald-600",
       bg: "bg-emerald-50",
-      border: "border-emerald-100",
-      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.2)]",
-      gradient: "from-emerald-500 to-teal-400",
-      watermark: "text-emerald-50/60"
+      border: "border-slate-100 hover:border-emerald-200",
+      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.15)]",
+      gradient: "from-emerald-500 to-teal-400"
     }
   },
   {
@@ -52,10 +51,9 @@ const benefits = [
     theme: {
       color: "text-purple-600",
       bg: "bg-purple-50",
-      border: "border-purple-100",
-      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(147,51,234,0.18)]",
-      gradient: "from-purple-500 to-fuchsia-400",
-      watermark: "text-purple-50/60"
+      border: "border-slate-100 hover:border-purple-200",
+      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(147,51,234,0.12)]",
+      gradient: "from-purple-500 to-fuchsia-400"
     }
   },
   {
@@ -66,10 +64,9 @@ const benefits = [
     theme: {
       color: "text-sky-600",
       bg: "bg-sky-50",
-      border: "border-sky-100",
-      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(2,132,199,0.18)]",
-      gradient: "from-sky-500 to-cyan-400",
-      watermark: "text-sky-50/60"
+      border: "border-slate-100 hover:border-sky-200",
+      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(2,132,199,0.12)]",
+      gradient: "from-sky-500 to-cyan-400"
     }
   },
   {
@@ -80,10 +77,9 @@ const benefits = [
     theme: {
       color: "text-rose-600",
       bg: "bg-rose-50",
-      border: "border-rose-100",
-      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(225,29,72,0.16)]",
-      gradient: "from-rose-500 to-orange-400",
-      watermark: "text-rose-50/60"
+      border: "border-slate-100 hover:border-rose-200",
+      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(225,29,72,0.12)]",
+      gradient: "from-rose-500 to-orange-400"
     }
   }
 ];
@@ -94,20 +90,20 @@ export default function WhyChooseUs() {
       
       {/* Subtle background accents */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -right-40 -top-10 h-[440px] w-[440px] rounded-full bg-blue-50 blur-[80px]" />
-        <div className="absolute -left-40 bottom-0 h-[380px] w-[380px] rounded-full bg-orange-50 blur-[80px]" />
+        <div className="absolute -right-40 -top-10 h-[440px] w-[440px] rounded-full bg-blue-50/70 blur-[80px]" />
+        <div className="absolute -left-40 bottom-0 h-[380px] w-[380px] rounded-full bg-orange-50/70 blur-[80px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         
         {/* === Header Section === */}
-          <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-            <Sparkles className="h-4 w-4 text-orange-500" />
+        <div className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
+          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
+            <Sparkles className="h-4 w-4 text-orange-500 animate-pulse" />
             <span className="uppercase tracking-widest text-slate-500 text-xs">ทำไมต้องเลือก BKK AIR</span>
           </div>
           
-          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
+          <h2 className="text-4xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
             เราไม่ได้แค่ส่งเอกสาร — <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เราดูแลให้คุณพร้อมยื่น</span>
           </h2>
           <p className="mt-6 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
@@ -116,24 +112,31 @@ export default function WhyChooseUs() {
         </div>
 
         {/* === Cards Grid Section === */}
-          <div className="grid grid-cols-1 items-stretch gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 items-stretch gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit) => {
             const Icon = benefit.icon;
             return (
               <article
                 key={benefit.title}
-                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 ${benefit.theme.border} ${benefit.theme.hoverShadow} shadow-[0_4px_20px_rgba(15,23,42,0.06)]`}
+                className={`group relative flex h-full flex-col overflow-hidden rounded-[2rem] border bg-white/90 backdrop-blur-sm p-6 md:p-8 transition-all duration-300 hover:-translate-y-1.5 ${benefit.theme.border} ${benefit.theme.hoverShadow} shadow-[0_8px_30px_rgb(0,0,0,0.03)]`}
               >
                 {/* Gradient top accent line */}
-                <div className={`absolute inset-x-0 top-0 h-[3px] rounded-t-3xl bg-gradient-to-r ${benefit.theme.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
+                <div className={`absolute inset-x-0 top-0 h-[4px] rounded-t-3xl bg-gradient-to-r ${benefit.theme.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
 
-                {/* Icon */}
-                <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${benefit.theme.gradient} shadow-md`}>
-                  <Icon className="h-5.5 w-5.5 text-white" aria-hidden="true" />
+                {/* Horizontal Header (Icon & Title side-by-side) */}
+                <div className="flex items-center gap-4 mb-5">
+                  <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${benefit.theme.gradient} shadow-md shadow-slate-100 transition-transform duration-300 group-hover:scale-105`}>
+                    <Icon className="h-5.5 w-5.5 text-white" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base font-bold leading-snug text-slate-900 group-hover:text-slate-950 transition-colors">
+                    {benefit.title}
+                  </h3>
                 </div>
 
-                <h3 className="mb-3 text-[1rem] font-bold leading-snug text-slate-900">{benefit.title}</h3>
-                <p className="text-sm leading-relaxed text-slate-500">{benefit.description}</p>
+                {/* Description */}
+                <p className="text-[13.5px] leading-relaxed text-slate-500">
+                  {benefit.description}
+                </p>
               </article>
             );
           })}

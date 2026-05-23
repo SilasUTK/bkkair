@@ -2,21 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Logo({ className = "", onClick, variant = "default" }) {
-  const isFooter = variant === "footer";
-  const logoSrc = isFooter ? "/assets/logo/logo-white.png" : "/assets/logo/logo.png";
-  const sizeClass = isFooter
-    ? "h-10 w-[148px] sm:h-11 sm:w-[164px] md:w-[176px]"
-    : "h-9 w-[132px] sm:h-10 sm:w-[148px] md:h-11 md:w-[164px]";
+  const onDarkBackground = variant === "footer" || variant === "navbar";
+  const logoSrc = "/assets/logo/logo.png";
+  const sizeClass = onDarkBackground
+    ? "h-11 w-[138px] sm:h-12 sm:w-[150px] md:w-[164px]"
+    : "h-12 w-[150px] sm:h-[52px] sm:w-[163px] md:w-[176px]";
 
   const content = (
-    <span className={`relative block shrink-0 ${sizeClass}`}>
+    <span className={`relative block shrink-0 overflow-hidden rounded-lg ${sizeClass} ${onDarkBackground ? "" : "bg-slate-950 px-2 py-1 shadow-sm"}`}>
       <Image
         src={logoSrc}
         alt="BKK AIR"
         fill
         sizes="(max-width: 640px) 132px, (max-width: 768px) 148px, 176px"
         className="object-contain"
-        priority={!isFooter}
+        priority={variant !== "footer"}
       />
     </span>
   );
