@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import multer from "multer";
 import path from "path";
 import { NextFunction, Request, Response } from "express";
-import { sendContactNotification } from "../services/contactEmail.js";
+import { sendContactEmail } from "../services/email.service.js";
 
 const uploadDir = path.resolve(process.cwd(), "uploads", "contact");
 const maxFileSize = 5 * 1024 * 1024;
@@ -110,6 +110,14 @@ export async function createContactMessage(req: Request, res: Response) {
     const attachmentStoragePath = attachmentFileName ? path.posix.join("uploads", "contact", attachmentFileName) : null;
     const referenceId = `CNT-${Date.now().toString(36).toUpperCase()}-${crypto.randomBytes(3).toString("hex").toUpperCase()}`;
 
+    console.info("[Contact Form] Received", {
+      inquiryType,
+      hasAttachment: Boolean(attachmentFileName),
+      attachmentFileName,
+      submittedAtIso,
+      referenceId,
+    });
+
     await storeContactMessage({
       referenceId,
       name,
@@ -121,9 +129,10 @@ export async function createContactMessage(req: Request, res: Response) {
       submittedAtIso,
       source: "contact_page",
     });
+    console.info("[Contact Form] Logged contact message", { referenceId });
 
     try {
-      await sendContactNotification({
+      const emailId = await sendContactEmail({
         name,
         contact,
         inquiryType,
@@ -133,17 +142,20 @@ export async function createContactMessage(req: Request, res: Response) {
         attachmentReferenceId: referenceId,
         submittedAtIso,
       });
+
+      console.info("[Contact Form] Completed", { emailId, referenceId });
+
+      return res.status(200).json({
+        success: true,
+        message: "Request received and email sent successfully",
+        emailId,
+      });
     } catch (emailError) {
-      console.error("Contact email send error:", (emailError as Error).message);
+      console.error("[Contact Form] Email failure:", (emailError as Error).message);
       return res.status(500).json({ success: false, message: "Unable to send message" });
     }
-
-    return res.status(201).json({
-      success: true,
-      message: "Contact message received successfully",
-    });
   } catch (error) {
-    console.error("Create contact message error:", error);
+    console.error("[Contact Form] Failed:", error);
     return res.status(500).json({ success: false, message: "Unable to send message" });
   }
 }

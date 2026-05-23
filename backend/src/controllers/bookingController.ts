@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import pool from "../services/db.js";
 import { sendLineNotification } from "../services/lineNotify.js";
 import { normalizeWorkflowStatus, publicBookingResponse } from "../services/bookingWorkflow.js";
+import { sendGenericNotificationEmail } from "../services/email.service.js";
 
 function readParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] || "" : value || "";
@@ -104,27 +105,27 @@ export async function createBooking(req: Request, res: Response) {
     const finalPassengerCount = Number(passengerCount ?? 1);
 
     if (!Number.isInteger(finalPassengerCount) || finalPassengerCount < 1 || finalPassengerCount > 8) {
-      return res.status(400).json({ error: "Passenger count must be between 1 and 8" });
+      return res.status(400).json({ success: false, message: "Passenger count must be between 1 and 8" });
     }
 
     if (!finalCustomerName.trim() || !finalPhone.trim()) {
-      return res.status(400).json({ error: "Contact name and phone are required" });
+      return res.status(400).json({ success: false, message: "Contact name and phone are required" });
     }
 
     if (!String(finalEmail || "").trim() && !String(finalLineId || "").trim()) {
-      return res.status(400).json({ error: "Email or LINE ID is required" });
+      return res.status(400).json({ success: false, message: "Email or LINE ID is required" });
     }
 
     if (!finalDestination || !departureDate) {
-      return res.status(400).json({ error: "Destination and departure date are required" });
+      return res.status(400).json({ success: false, message: "Destination and departure date are required" });
     }
 
     if (departureDate < getTomorrowDateInput()) {
-      return res.status(400).json({ error: "Departure date must be tomorrow or later" });
+      return res.status(400).json({ success: false, message: "Departure date must be tomorrow or later" });
     }
 
     if (returnDate && returnDate <= departureDate) {
-      return res.status(400).json({ error: "Return date must be after departure date" });
+      return res.status(400).json({ success: false, message: "Return date must be after departure date" });
     }
 
     const bookingCode = await generateBookingCode();
@@ -156,18 +157,78 @@ export async function createBooking(req: Request, res: Response) {
       status,
     };
 
+    const submittedAtIso = new Date().toISOString();
+    console.info("[Booking Request] Received", {
+      destination: finalDestination,
+      passengerCount: finalPassengerCount,
+      hasReturnDate: Boolean(returnDate),
+      submittedAtIso,
+    });
+
     await insertBooking(bookingData);
+    console.info("[Booking Request] Saved request record", { bookingCode });
+
+    const emailId = await sendGenericNotificationEmail({
+      formType: "Booking Request",
+      subject: "New Booking Request — BKK AIR",
+      lines: [
+        "New Booking Request — BKK AIR",
+        "",
+        "Booking Code:",
+        bookingCode,
+        "",
+        "Name:",
+        finalCustomerName,
+        "",
+        "Phone:",
+        finalPhone,
+        "",
+        "Email:",
+        finalEmail || "N/A",
+        "",
+        "LINE ID:",
+        finalLineId || "N/A",
+        "",
+        "Origin:",
+        origin || "N/A",
+        "",
+        "Destination:",
+        finalDestination,
+        "",
+        "Visa Country:",
+        finalDestination,
+        "",
+        "Service Type:",
+        finalServiceType,
+        "",
+        "Departure Date:",
+        departureDate,
+        "",
+        "Return Date:",
+        returnDate || "N/A",
+        "",
+        "Passengers:",
+        String(finalPassengerCount),
+        "",
+        "Submitted:",
+        submittedAtIso,
+      ],
+    });
+
+    console.info("[Booking Request] Email sent", { emailId, bookingCode });
+
     sendLineNotification(formatLineBookingMessage(bookingData)).catch((notificationError) => {
       console.error("LINE notification dispatch error:", notificationError.message);
     });
 
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
-      message: "Request submitted successfully",
+      message: "Request received and email sent successfully",
+      emailId,
     });
   } catch (error) {
-    console.error("Create booking error:", error);
-    return res.status(500).json({ error: "Server error" });
+    console.error("[Booking Request] Failed:", error);
+    return res.status(500).json({ success: false, message: "Unable to send message" });
   }
 }
 

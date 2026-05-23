@@ -9,6 +9,7 @@ import bookingRoutes from "./routes/bookings.js";
 import contactRoutes from "./routes/contact.routes.js";
 import requestRoutes from "./routes/request.routes.js";
 import { requireAdminAuth } from "./middleware/requireAdminAuth.js";
+import { getEmailConfigurationWarnings } from "./services/email.service.js";
 
 dotenv.config();
 
@@ -51,4 +52,11 @@ app.use("/api/admin", requireAdminAuth, adminBookingRoutes);
 
 app.listen(port, () => {
   console.log(`Backend running on http://localhost:${port}`);
+
+  const emailWarnings = getEmailConfigurationWarnings();
+  if (emailWarnings.length > 0) {
+    for (const warning of emailWarnings) {
+      console.warn(`[Email Config] ${warning}`);
+    }
+  }
 });

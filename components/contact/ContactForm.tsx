@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { FormEvent, useRef, useState } from "react";
-
-const CONTACT_API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001";
+import { useRef, useState } from "react";
+import { apiUrl } from "../../lib/apiBase";
 
 const inquiryTypes = [
   "สอบถามแพ็กเกจ",
@@ -16,188 +14,206 @@ const inquiryTypes = [
   "อื่น ๆ",
 ];
 
-const initialForm = {
-  name: "",
-  contact: "",
-  inquiryType: "",
-  message: "",
-};
-
 export default function ContactForm() {
-  const [form, setForm] = useState(initialForm);
-  const [attachment, setAttachment] = useState<File | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  function updateField(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+  const [formData, setFormData] = useState({
+    name: "",
+    contact: "",
+    inquiryType: "",
+    message: "",
+  });
+
+  const [attachment, setAttachment] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) {
     const { name, value } = event.target;
-    setForm((current) => ({ ...current, [name]: value }));
-    setSuccess(false);
-    setError("");
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setSuccessMessage("");
+    setErrorMessage("");
   }
 
-  function updateAttachment(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0] || null;
     setAttachment(file);
-    setSuccess(false);
-    setError("");
+    setSuccessMessage("");
+    setErrorMessage("");
   }
 
-  async function submitForm(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     if (loading) return;
 
-    if (!form.name.trim()) return setError("กรุณาระบุชื่อ");
-    if (!form.contact.trim()) return setError("กรุณาระบุช่องทางติดต่อ");
-    if (!form.inquiryType.trim()) return setError("กรุณาเลือกหัวข้อคำถาม");
-    if (!form.message.trim()) return setError("กรุณาระบุรายละเอียด");
-
-    if (attachment && attachment.size > 5 * 1024 * 1024) {
-      return setError("ขนาดไฟล์ต้องไม่เกิน 5MB");
+    if (!formData.name.trim()) {
+      setErrorMessage("กรุณากรอกชื่อ");
+      return;
     }
 
-    setLoading(true);
-    setSuccess(false);
-    setError("");
+    if (!formData.contact.trim()) {
+      setErrorMessage("กรุณากรอกช่องทางติดต่อ");
+      return;
+    }
+
+    if (!formData.inquiryType.trim()) {
+      setErrorMessage("กรุณาเลือกเรื่องที่ต้องการสอบถาม");
+      return;
+    }
+
+    if (!formData.message.trim()) {
+      setErrorMessage("กรุณากรอกรายละเอียด");
+      return;
+    }
 
     try {
-      const formData = new FormData();
-      formData.append("name", form.name.trim());
-      formData.append("contact", form.contact.trim());
-      formData.append("inquiryType", form.inquiryType.trim());
-      formData.append("message", form.message.trim());
+      setLoading(true);
+      setSuccessMessage("");
+      setErrorMessage("");
+
+      const payload = new FormData();
+      payload.append("name", formData.name.trim());
+      payload.append("contact", formData.contact.trim());
+      payload.append("inquiryType", formData.inquiryType.trim());
+      payload.append("message", formData.message.trim());
 
       if (attachment) {
-        formData.append("attachment", attachment);
+        payload.append("attachment", attachment);
       }
 
-      const response = await fetch(`${CONTACT_API_BASE_URL}/api/contact`, {
+      const response = await fetch(apiUrl("/api/contact"), {
         method: "POST",
-        body: formData,
+        body: payload,
       });
 
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}));
-        throw new Error(data.message || "Unable to send message");
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || !result?.success) {
+        throw new Error(result?.message || "Unable to send message");
       }
 
-      setForm(initialForm);
+      setSuccessMessage("ส่งข้อความเรียบร้อยแล้ว ทีมงานจะติดต่อกลับภายในเวลาทำการ");
+
+      setFormData({
+        name: "",
+        contact: "",
+        inquiryType: "",
+        message: "",
+      });
+
       setAttachment(null);
+
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-      setSuccess(true);
-    } catch (_error) {
-      setError("ส่งข้อความไม่สำเร็จ กรุณาลองใหม่อีกครั้ง หรือติดต่อ LINE @823lateh");
+    } catch (error) {
+      setErrorMessage("ส่งข้อความไม่สำเร็จ กรุณาลองใหม่อีกครั้ง หรือติดต่อ LINE @823lateh");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <form onSubmit={submitForm} className="rounded-[2rem] bg-[#F8FAFC] p-6 shadow-lg shadow-slate-200/50 sm:p-8">
-      <div className="grid gap-5">
-        <div className="rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800">
-          Human-reviewed responses · No automated visa approval claims
-        </div>
-
-        <label className="block">
-          <span className="text-xs font-black uppercase tracking-wide text-slate-500">ชื่อ</span>
+    <form onSubmit={handleSubmit} className="rounded-[28px] bg-white p-6 shadow-xl shadow-slate-200/70">
+      <div className="space-y-5">
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">ชื่อ</label>
           <input
             name="name"
-            value={form.name}
-            onChange={updateField}
-            required
-            className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 focus:border-blue-500 focus:outline-none"
+            value={formData.name}
+            onChange={handleChange}
+            type="text"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
           />
-        </label>
+        </div>
 
-        <label className="block">
-          <span className="text-xs font-black uppercase tracking-wide text-slate-500">ช่องทางติดต่อ</span>
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">ช่องทางติดต่อ</label>
           <input
             name="contact"
-            value={form.contact}
-            onChange={updateField}
-            required
+            value={formData.contact}
+            onChange={handleChange}
+            type="text"
             placeholder="เบอร์โทร / อีเมล / LINE ID"
-            className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 focus:border-blue-500 focus:outline-none"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
           />
-        </label>
+        </div>
 
-        <label className="block">
-          <span className="text-xs font-black uppercase tracking-wide text-slate-500">เรื่องที่ต้องการสอบถาม / Inquiry Type</span>
+        <div>
+          <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-slate-700">
+            เรื่องที่ต้องการสอบถาม / Inquiry Type
+          </label>
           <select
             name="inquiryType"
-            value={form.inquiryType}
-            onChange={updateField}
-            required
-            className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 text-slate-700 focus:border-blue-500 focus:outline-none"
+            value={formData.inquiryType}
+            onChange={handleChange}
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
           >
-            <option value="" disabled>
-              เลือกหัวข้อที่ใกล้เคียงกับคำถามของคุณมากที่สุด
-            </option>
-            {inquiryTypes.map((item) => (
-              <option key={item} value={item}>
-                {item}
+            <option value="">เลือกหัวข้อที่ต้องการสอบถาม</option>
+            {inquiryTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
               </option>
             ))}
           </select>
-          <p className="mt-1.5 text-xs font-medium text-slate-500">หัวข้อนี้ช่วยให้ทีมงานจัดลำดับและส่งต่อคำถามได้เร็วขึ้น</p>
-        </label>
+          <p className="mt-2 text-xs text-slate-500">
+            หัวข้อนี้ช่วยให้ทีมงานจัดลำดับและส่งต่อคำถามได้เร็วขึ้น
+          </p>
+        </div>
 
-        <label className="block">
-          <span className="text-xs font-black uppercase tracking-wide text-slate-500">รายละเอียด</span>
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">รายละเอียด</label>
           <textarea
             name="message"
-            rows={5}
-            value={form.message}
-            onChange={updateField}
-            required
-            className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 focus:border-blue-500 focus:outline-none"
+            value={formData.message}
+            onChange={handleChange}
+            rows={6}
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
           />
-        </label>
+        </div>
 
-        <label className="block">
-          <span className="text-xs font-black uppercase tracking-wide text-slate-500">แนบไฟล์ (ถ้ามี)</span>
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-700">แนบไฟล์ (ถ้ามี)</label>
           <input
             ref={fileInputRef}
+            onChange={handleFileChange}
             type="file"
-            name="attachment"
             accept=".pdf,.jpg,.jpeg,.png,.webp"
-            onChange={updateAttachment}
-            className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-white px-4 py-3.5 text-sm text-slate-700 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:font-semibold file:text-blue-700 hover:file:bg-blue-100 focus:border-blue-500 focus:outline-none"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 file:mr-4 file:rounded-xl file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:font-semibold file:text-blue-700"
           />
-          <p className="mt-1.5 text-xs font-medium text-slate-500">รองรับ PDF, JPG, JPEG, PNG, WEBP ขนาดไม่เกิน 5MB</p>
-        </label>
+          <p className="mt-2 text-xs text-slate-500">
+            รองรับ PDF, JPG, JPEG, PNG, WEBP ขนาดไม่เกิน 5MB
+          </p>
+        </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="rounded-2xl bg-[#f59e0b] px-6 py-4 font-black text-white shadow-lg shadow-amber-200/60 disabled:cursor-not-allowed disabled:opacity-70"
+          className="w-full rounded-2xl bg-orange-500 px-6 py-4 font-bold text-white shadow-lg shadow-orange-500/25 transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? "กำลังส่งข้อความ..." : "ส่งข้อความถึงทีมงาน"}
         </button>
 
-        {error && (
-          <p className="rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-semibold leading-relaxed text-red-700">
-            {error}
-          </p>
+        {successMessage && (
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+            {successMessage}
+          </div>
         )}
 
-        {success && (
-          <p className="rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-semibold leading-relaxed text-emerald-800">
-            ส่งข้อความเรียบร้อยแล้ว ทีมงานจะติดต่อกลับภายในเวลาทำการ
-          </p>
+        {errorMessage && (
+          <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+            {errorMessage}
+          </div>
         )}
-
-        <p className="rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 text-sm font-semibold leading-relaxed text-orange-900">
-          BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูต
-        </p>
-        <Link href="/order" className="text-center text-sm font-bold text-[#003d82]">
-          หรือส่งคำขอเอกสารที่ /order
-        </Link>
       </div>
     </form>
   );
