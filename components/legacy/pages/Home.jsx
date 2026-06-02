@@ -21,7 +21,9 @@ export default function HomePage(props) {
       <WorkflowTimeline />
 
       {/* SECTION 4: SERVICE PACKAGES */}
-      <ServicePackages />
+      <div id="services" className="scroll-mt-24">
+        <ServicePackages />
+      </div>
 
       {/* SECTION 5: SUPPORTED COUNTRIES */}
       <SupportedCountriesSection />

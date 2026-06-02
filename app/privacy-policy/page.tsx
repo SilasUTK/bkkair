@@ -254,23 +254,11 @@ export default function PrivacyPolicyPage() {
 
                 <section id="cookies" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
                   <h2 className="text-2xl font-black text-slate-900">7. คุกกี้ (Cookies)</h2>
-                  <p className="leading-relaxed text-slate-700">เว็บไซต์ของ BKK AIR ใช้คุกกี้เพื่อการทำงานและการวิเคราะห์ แบ่งเป็น:</p>
-                  <section className="space-y-2">
-                    <h3 className="text-xl font-extrabold text-slate-900">คุกกี้ที่จำเป็น (Essential Cookies)</h3>
-                    <p className="leading-relaxed text-slate-700">จำเป็นสำหรับการทำงานของเว็บไซต์ เช่น การรักษาสถานะการเข้าใช้งาน ไม่สามารถปิดได้</p>
-                  </section>
-                  <section className="space-y-2">
-                    <h3 className="text-xl font-extrabold text-slate-900">คุกกี้วิเคราะห์ (Analytics Cookies)</h3>
-                    <p className="leading-relaxed text-slate-700">
-                      ใช้เพื่อทำความเข้าใจว่าผู้ใช้งานโต้ตอบกับเว็บไซต์อย่างไร เช่น Google Analytics คุณสามารถปิดได้ผ่านการตั้งค่าเบราว์เซอร์
-                    </p>
-                  </section>
-                  <section className="space-y-2">
-                    <h3 className="text-xl font-extrabold text-slate-900">คุกกี้การตลาด (Marketing Cookies)</h3>
-                    <p className="leading-relaxed text-slate-700">(ถ้ามี) ใช้สำหรับการแสดงโฆษณาที่เกี่ยวข้อง คุณสามารถปฏิเสธได้</p>
-                  </section>
                   <p className="leading-relaxed text-slate-700">
-                    คุณสามารถจัดการคุกกี้ได้ผ่านการตั้งค่าเบราว์เซอร์ของคุณ การปิดคุกกี้บางประเภทอาจส่งผลต่อประสบการณ์การใช้งาน
+                    เว็บไซต์ของเราใช้คุกกี้ที่จำเป็นเพื่อให้เว็บไซต์ทำงานได้อย่างถูกต้อง และอาจใช้คุกกี้เพื่อการวิเคราะห์หรือการตลาดเมื่อได้รับความยินยอมจากคุณ คุณสามารถอ่านรายละเอียดเพิ่มเติมได้ที่{" "}
+                    <Link href="/cookies-policy" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">
+                      หน้านโยบายคุกกี้
+                    </Link>
                   </p>
                 </section>
 
@@ -306,7 +294,7 @@ export default function PrivacyPolicyPage() {
                     </section>
                   </div>
                   <p className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-slate-800">
-                    <strong>การใช้สิทธิ์:</strong> ติดต่อเราได้ทางอีเมล <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a> เรามุ่งหมายตอบกลับคำขอด้านความเป็นส่วนตัวภายใน 30 วันทำการ
+                    <strong>การใช้สิทธิ์:</strong> ติดต่อเราได้ทางอีเมล <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a> เรามุ่งหมายตอบกลับคำขอด้านความเป็นส่วนตัวภายใน 30 วันทำการ
                   </p>
                 </section>
 
@@ -359,7 +347,7 @@ export default function PrivacyPolicyPage() {
                   <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 text-slate-800">
                     <p className="text-lg font-black text-slate-900">Privacy &amp; Data Protection Contact</p>
                     <p className="mt-2 leading-relaxed font-semibold">BKK AIR</p>
-                    <p className="leading-relaxed">Email (Privacy): <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a></p>
+                    <p className="leading-relaxed">Email (Privacy): <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
                     <p className="leading-relaxed">General Support: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
                     <p className="leading-relaxed">Official LINE OA: <a href="https://line.me/R/ti/p/@823lateh" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">@823lateh</a></p>
                     <p className="leading-relaxed">Business Hours: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
@@ -367,7 +355,7 @@ export default function PrivacyPolicyPage() {
                     <p className="leading-relaxed text-sm text-slate-600">BKK AIR operates as a Thailand-based travel support service.</p>
                   </div>
                   <div className="rounded-2xl border border-blue-100 bg-blue-50 p-4 text-slate-800">
-                    <p className="font-bold">คุณสามารถติดต่อ privacy@bkkair.com เกี่ยวกับ:</p>
+                    <p className="font-bold">คุณสามารถติดต่อ info@bkkair.com เกี่ยวกับ:</p>
                     <ul className="mt-2 list-disc space-y-1 pl-6 marker:text-[#2563EB]">
                       <li>คำขอเข้าถึงข้อมูลส่วนบุคคล</li>
                       <li>คำขอแก้ไขข้อมูล</li>
@@ -425,4 +413,3 @@ export default function PrivacyPolicyPage() {
     </MarketingShell>
   );
 }
-

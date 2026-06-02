@@ -1,45 +1,48 @@
+import Link from "next/link";
 import { Clock, LockKeyhole, Mail, MapPin, MessageCircle } from "lucide-react";
 import Logo from "./Logo.jsx";
 
 const servicesLinks = [
-  { label: "ใบจองตั๋วเครื่องบินยื่นวีซ่า", href: "/packages" },
-  { label: "ใบจองโรงแรมยื่นวีซ่า", href: "/packages" },
-  { label: "แผนการเดินทาง", href: "/packages" },
-  { label: "ประกันการเดินทาง", href: "/packages" },
-  { label: "ชุดเอกสารครบเซ็ต", href: "/packages" },
+  { label: "หน้าแรก", href: "/" },
+  { label: "บริการของเรา", href: "/#services" },
+  { label: "แพ็กเกจและราคา", href: "/packages" },
+  { label: "ประเทศที่รองรับ", href: "/#countries" },
+  { label: "ขั้นตอนการสั่งซื้อ", href: "/#workflow" },
 ];
 
 const infoLinks = [
-  { label: "เกี่ยวกับเรา", href: "/contact" },
-  { label: "วิธีการสั่งซื้อ", href: "/how-it-works" },
   { label: "คำถามที่พบบ่อย", href: "/faq" },
   { label: "ติดต่อเรา", href: "/contact" },
+  { label: "สั่งเลย", href: "/order" },
+  { label: "ทำไมต้องเลือก BKK AIR", href: "/#why-choose-us" },
 ];
 
 const legalLinks = [
-  { label: "นโยบายความเป็นส่วนตัว", href: "/privacy-policy" },
-  { label: "ข้อกำหนดการใช้บริการ", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Cookie Policy", href: "/cookies-policy" },
+  { label: "Terms", href: "/terms" },
 ];
 
 function FooterAnchor({ href, children }) {
   return (
-    <a
+    <Link
       href={href}
       className="group flex items-center text-slate-400 transition-all duration-300 hover:text-white"
     >
       <span className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-accent-orange opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100"></span>
       <span className="transition-transform duration-300 group-hover:translate-x-1">{children}</span>
-    </a>
+    </Link>
   );
 }
 
 export default function Footer({ onNavigate }) {
-  function handleLogoClick() {
-    window.location.href = "/";
-  }
-
   function handleAdminLogin() {
     onNavigate?.("admin");
+  }
+
+  function handleCookieSettings() {
+    window.localStorage.removeItem("bkkair_cookie_consent");
+    window.dispatchEvent(new Event("bkkair:open-cookie-settings"));
   }
 
   return (
@@ -58,7 +61,7 @@ export default function Footer({ onNavigate }) {
         {/* Main Grid */}
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           <section aria-label="BKK AIR">
-            <Logo onClick={handleLogoClick} variant="footer" />
+            <Logo variant="footer" />
             <p className="mt-4 text-sm font-medium leading-relaxed text-slate-400">
               บริการจัดเตรียมเอกสารสนับสนุนวีซ่า สําหรับนักเดินทางชาวไทย ส่ง{" "}
               <strong className="font-semibold text-slate-300">PDF พร้อมยื่นสถานทูต</strong>{" "}
@@ -128,7 +131,7 @@ export default function Footer({ onNavigate }) {
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
                 <Mail className="h-5 w-5 shrink-0 text-blue-300" />
                 <p>
-                  Privacy: <a href="mailto:privacy@bkkair.com" className="font-semibold text-white transition-colors hover:text-blue-200">privacy@bkkair.com</a>
+                  Privacy: <a href="mailto:info@bkkair.com" className="font-semibold text-white transition-colors hover:text-blue-200">info@bkkair.com</a>
                 </p>
               </li>
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
@@ -164,10 +167,17 @@ export default function Footer({ onNavigate }) {
           <p>© 2026 BKK AIR. สงวนลิขสิทธิ์ทุกประการ</p>
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             {legalLinks.map((link) => (
-              <a key={link.href} href={link.href} className="transition-colors hover:text-white">
+              <Link key={link.href} href={link.href} className="transition-colors hover:text-white">
                 {link.label}
-              </a>
+              </Link>
             ))}
+            <button
+              type="button"
+              onClick={handleCookieSettings}
+              className="transition-colors hover:text-white"
+            >
+              ตั้งค่าคุกกี้
+            </button>
             <span className="hidden h-1 w-1 rounded-full bg-slate-700 md:block" aria-hidden="true"></span>
             <button
               type="button"
@@ -183,4 +193,3 @@ export default function Footer({ onNavigate }) {
     </footer>
   );
 }
-

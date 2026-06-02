@@ -27,20 +27,19 @@ const trustBadges = [
 
 const packages = [
   {
-    slug: "flight-reservation",
+    slug: "flight",
     name: "ใบจองตั๋วเครื่องบิน",
-    englishName: "Flight Reservation Document",
+    englishName: "Flight Reservation",
     tagline: "สำหรับผู้ที่ต้องการเฉพาะ flight reservation เพื่อยื่นวีซ่า",
-    price: "฿490",
-    priceNote: "ต่อคน / per person",
+    price: "฿500",
+    priceNote: "ต่อคน",
     delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
     included: [
       "ใบจองตั๋วเครื่องบินไป-กลับ (Round Trip)",
       "แสดงชื่อผู้โดยสารตามหนังสือเดินทาง",
       "แสดงวันเดินทาง เมืองต้นทาง และปลายทาง",
       "แสดงหมายเลขเที่ยวบินและสายการบิน",
-      "ไฟล์ PDF มาตรฐานสถานทูต",
-      "ตรวจสอบโดยทีมงานจริงก่อนส่ง",
+      "PDF มาตรฐานสถานทูต ตรวจสอบโดยทีมงาน",
     ],
     notIncluded: [
       "ไม่รวมใบจองโรงแรม",
@@ -48,24 +47,23 @@ const packages = [
       "ไม่รวมประกันการเดินทาง",
     ],
     bestFor: "ผู้ที่มีที่พักอยู่แล้ว หรือวีซ่าที่ต้องการเฉพาะ flight reservation",
-    href: "/order?package=flight-reservation",
+    href: "/order?package=flight",
     accent: "blue",
   },
   {
-    slug: "hotel-booking",
+    slug: "hotel",
     name: "ใบจองโรงแรม",
-    englishName: "Hotel Reservation Document",
+    englishName: "Hotel Reservation",
     tagline: "สำหรับผู้ที่ต้องการหลักฐานที่พักยื่นวีซ่า",
-    price: "฿490",
-    priceNote: "ต่อคน / per person",
+    price: "฿500",
+    priceNote: "ต่อคน",
     delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
     included: [
       "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง",
       "แสดงชื่อผู้เข้าพักตามหนังสือเดินทาง",
       "แสดงชื่อโรงแรม ที่อยู่ และวันเช็คอิน-เช็คเอาท์",
       "ครอบคลุมทุกคืนของการเดินทาง",
-      "ไฟล์ PDF มาตรฐานสถานทูต",
-      "ตรวจสอบโดยทีมงานจริงก่อนส่ง",
+      "PDF มาตรฐานสถานทูต ตรวจสอบโดยทีมงาน",
     ],
     notIncluded: [
       "ไม่รวมใบจองตั๋วเครื่องบิน",
@@ -73,75 +71,145 @@ const packages = [
       "ไม่รวมประกันการเดินทาง",
     ],
     bestFor: "ผู้ที่มีตั๋วอยู่แล้ว และต้องการเฉพาะหลักฐานที่พัก",
-    href: "/order?package=hotel-booking",
+    href: "/order?package=hotel",
     accent: "orange",
   },
   {
-    slug: "full-set",
-    badge: "⭐ Recommended Package",
-    name: "ชุดเอกสารครบเซ็ต",
-    englishName: "Complete Document Package",
-    tagline: "เอกสารสนับสนุนวีซ่าครบชุด ในที่เดียว จบในคำสั่งเดียว",
-    price: "฿890",
-    priceNote: "ต่อคน / per person",
-    valueNote: "💰 ประหยัดกว่าสั่งแยก ฿90",
+    slug: "itinerary",
+    name: "เอกสารแผนการเดินทาง",
+    englishName: "Travel Itinerary",
+    tagline: "สำหรับผู้ที่ต้องการแผนการเดินทางรายวันประกอบเอกสารยื่นวีซ่า",
+    price: "฿700",
+    priceNote: "ต่อคน",
+    delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
+    included: [
+      "แผนการเดินทางรายวัน (Day-by-Day Itinerary)",
+      "ระบุสถานที่พัก เมือง และกิจกรรมหลัก",
+      "รูปแบบที่สถานทูตส่วนใหญ่ยอมรับ",
+      "ปรับแต่งตามเส้นทางจริงของคุณ",
+      "PDF มาตรฐานสถานทูต ตรวจสอบโดยทีมงาน",
+    ],
+    notIncluded: [
+      "ไม่รวมใบจองตั๋วเครื่องบิน",
+      "ไม่รวมใบจองโรงแรม",
+      "ไม่รวมประกันการเดินทาง",
+    ],
+    bestFor: "ผู้ที่ต้องการ travel itinerary ที่สอดคล้องกับแผนยื่นวีซ่า",
+    href: "/order?package=itinerary",
+    accent: "blue",
+  },
+  {
+    slug: "flight-hotel",
+    name: "ใบจองตั๋ว + ใบจองโรงแรม",
+    englishName: "Flight + Hotel Bundle",
+    tagline: "แพ็กเกจรวมสำหรับผู้ที่ต้องใช้ทั้งหลักฐานการเดินทางและที่พัก",
+    originalPrice: "฿1,000",
+    price: "฿800",
+    priceNote: "ต่อคน",
+    valueNote: "💰 ประหยัด ฿200",
     delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
     included: [
       "ใบจองตั๋วเครื่องบินไป-กลับ",
       "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง",
-      "แผนการเดินทาง (travel itinerary) แบบละเอียด",
-      "เอกสารทุกอย่างรวมในไฟล์ PDF เดียว",
-      "รูปแบบตรงตามที่สถานทูตส่วนใหญ่คาดหวัง",
-      "ตรวจสอบโดยทีมงานจริงก่อนส่ง",
-      "ส่งภายใน 24 ชั่วโมง",
+      "ข้อมูลผู้เดินทางตรงตามหนังสือเดินทาง",
+      "PDF พร้อมยื่นสถานทูต",
+      "ประหยัดกว่าสั่งแยก ฿200",
     ],
-    notIncluded: ["ไม่รวมประกันการเดินทาง (อัปเกรดได้ที่แพ็กเกจ Premium)"],
-    bestFor: "วีซ่า Schengen, UK, Japan, South Korea และผู้ที่ต้องการความสะดวกสูงสุด",
-    href: "/order?package=full-set",
+    notIncluded: ["ไม่รวมแผนการเดินทาง", "ไม่รวมประกันการเดินทาง"],
+    bestFor: "ผู้ที่ต้องใช้ทั้งใบจองตั๋วและใบจองโรงแรม",
+    href: "/order?package=flight-hotel",
+    accent: "orange",
+  },
+  {
+    slug: "bundle3",
+    name: "ใบจองตั๋ว + โรงแรม + แผนการเดินทาง",
+    englishName: "Flight + Hotel + Itinerary",
+    tagline: "ชุดเอกสารหลักสำหรับยื่นวีซ่าที่ต้องการความสอดคล้องทั้งแผนและใบจอง",
+    originalPrice: "฿1,700",
+    price: "฿1,500",
+    priceNote: "ต่อคน",
+    valueNote: "💰 ประหยัด ฿200",
+    delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
+    included: [
+      "ใบจองตั๋วเครื่องบินไป-กลับ",
+      "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง",
+      "แผนการเดินทางรายวัน",
+      "เอกสารทั้ง 3 รายการสอดคล้องกัน",
+      "PDF มาตรฐานสถานทูต ตรวจสอบโดยทีมงาน",
+    ],
+    notIncluded: ["ไม่รวม Cover Letter", "ไม่รวมคำแนะนำเอกสารเฉพาะประเทศ", "ไม่รวมประกันการเดินทาง"],
+    bestFor: "ผู้ที่ต้องการเอกสารหลักครบ 3 รายการ",
+    href: "/order?package=bundle3",
+    accent: "blue",
+  },
+  {
+    slug: "complete",
+    badge: "⭐ Recommended Package",
+    name: "ชุดเอกสารครบเซ็ต",
+    englishName: "Complete Visa Support Package",
+    tagline: "บริการดูแลครบวงจรสำหรับผู้ที่ต้องการเอกสารพร้อมยื่นแบบมั่นใจ",
+    originalPrice: "฿4,200",
+    price: "฿3,500",
+    priceNote: "ต่อคน",
+    valueNote: "💰 ประหยัดกว่าสั่งแยก ฿700",
+    delivery: "⏱ ส่งภายใน 24 ชั่วโมง",
+    included: [
+      "ใบจองตั๋วเครื่องบินไป-กลับ",
+      "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง",
+      "แผนการเดินทางรายวัน",
+      "เอกสารแนะนำตัว Cover Letter",
+      "คำแนะนำเอกสารที่ต้องใช้ทั้งหมดเฉพาะประเทศ",
+      "PDF มาตรฐานสถานทูต",
+      "ตรวจสอบโดยทีมงานจริง",
+    ],
+    notIncluded: ["ไม่รวมประกันการเดินทาง"],
+    bestFor: "ผู้ที่ต้องการเอกสารสนับสนุนครบชุดในที่เดียว",
+    href: "/order?package=complete",
     highlighted: "popular",
     accent: "orange",
   },
   {
-    slug: "premium",
-    badge: "👑 Premium",
-    name: "ชุดครบเซ็ต + ประกันการเดินทาง",
-    englishName: "Complete Package with Travel Insurance",
-    tagline: "เอกสารครบ ประกันครบ พร้อมยื่นวีซ่าได้ทันที",
-    price: "฿1,490",
-    priceNote: "ต่อคน / per person",
-    delivery: "⚡ Priority — ส่งก่อน",
+    slug: "insurance",
+    name: "ประกันการเดินทาง MSIG",
+    englishName: "MSIG Travel Insurance",
+    tagline: "ประกันการเดินทางสำหรับประกอบการยื่นวีซ่า",
+    pricePrefix: "เริ่มต้น",
+    price: "฿190",
+    priceNote: "ขึ้นอยู่กับแผนและระยะเวลา",
+    delivery: "ปรึกษาแผนที่เหมาะสมกับประเทศปลายทาง",
     included: [
-      "ใบจองตั๋วเครื่องบินไป-กลับ",
-      "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง",
-      "แผนการเดินทาง (travel itinerary) แบบละเอียด",
-      "ประกันการเดินทางที่ตรงเงื่อนไขวีซ่า Schengen และประเทศอื่น ๆ",
-      "คำแนะนำการเลือกประกันที่เหมาะสมกับปลายทางของคุณ",
-      "เอกสารทุกอย่างรวมในไฟล์ PDF พร้อมยื่น",
-      "ตรวจสอบโดยทีมงานจริงก่อนส่ง",
-      "Priority delivery — ส่งก่อนแพ็กเกจอื่น",
+      "แผนประกันการเดินทาง MSIG",
+      "ใช้ประกอบเอกสารยื่นวีซ่าได้ทุกแผน",
+      "ราคาเริ่มต้น ฿190",
+      "คำแนะนำการเลือกประกันที่เหมาะสม",
+      "ขึ้นอยู่กับแผนและระยะเวลาการเดินทาง",
     ],
-    notIncluded: [],
-    bestFor: "วีซ่า Schengen (บังคับมีประกัน) และผู้ที่ต้องการจัดการทุกอย่างในขั้นตอนเดียว",
-    href: "/order?package=premium",
-    highlighted: "premium",
+    notIncluded: ["ไม่รวมเอกสารใบจองตั๋ว/โรงแรม"],
+    bestFor: "ประเทศที่กำหนดให้มีประกันการเดินทาง เช่น Schengen",
+    href: "/insurance",
     accent: "emerald",
   },
 ];
 
 const comparisonRows = [
-  ["ใบจองตั๋วเครื่องบิน", "✓", "—", "✓", "✓"],
-  ["ใบจองโรงแรม", "—", "✓", "✓", "✓"],
-  ["แผนการเดินทาง", "—", "—", "✓", "✓"],
-  ["ประกันการเดินทาง", "—", "—", "—", "✓"],
-  ["PDF มาตรฐานสถานทูต", "✓", "✓", "✓", "✓"],
-  ["ตรวจสอบโดยทีมงาน", "✓", "✓", "✓", "✓"],
-  ["ระยะเวลาส่ง", "24 ชม.", "24 ชม.", "24 ชม.", "Priority"],
+  ["ใบจองตั๋วเครื่องบิน", "✓", "—", "—", "✓", "✓", "✓", "—"],
+  ["ใบจองโรงแรม", "—", "✓", "—", "✓", "✓", "✓", "—"],
+  ["แผนการเดินทาง", "—", "—", "✓", "—", "✓", "✓", "—"],
+  ["Cover Letter", "—", "—", "—", "—", "—", "✓", "—"],
+  ["คำแนะนำเอกสารเฉพาะประเทศ", "—", "—", "—", "—", "—", "✓", "—"],
+  ["ประกันการเดินทาง", "—", "—", "—", "—", "—", "—", "✓"],
+  ["PDF มาตรฐานสถานทูต", "✓", "✓", "✓", "✓", "✓", "✓", "—"],
+  ["ตรวจสอบโดยทีมงาน", "✓", "✓", "✓", "✓", "✓", "✓", "✓"],
+  ["ระยะเวลาส่ง", "24 ชม.", "24 ชม.", "24 ชม.", "24 ชม.", "24 ชม.", "24 ชม.", "ตามแผน"],
   [
     "ราคา",
-    "฿490",
-    "฿490",
-    "฿890",
-    "฿1,490",
+    "฿500",
+    "฿500",
+    "฿700",
+    "฿800",
+    "฿1,500",
+    "฿3,500",
+    "เริ่มต้น ฿190",
   ],
 ];
 
@@ -334,7 +402,7 @@ export default function PackagesPage() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 md:gap-8 lg:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-14 grid gap-6 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
             {packages.map((pkg) => {
               const styles = accentClasses(pkg.accent, pkg.highlighted);
 
@@ -360,9 +428,17 @@ export default function PackagesPage() {
                   <p className="mt-4 min-h-[72px] text-sm leading-relaxed text-slate-600">{pkg.tagline}</p>
 
                   <div className="mt-6">
-                    <p className="text-3xl font-black text-slate-900">{pkg.price}</p>
+                    {"originalPrice" in pkg && pkg.originalPrice && (
+                      <p className="text-xs font-bold text-slate-400 line-through">{pkg.originalPrice}</p>
+                    )}
+                    <p className="text-3xl font-black text-slate-900">
+                      {"pricePrefix" in pkg && pkg.pricePrefix ? (
+                        <span className="mr-2 align-middle text-sm font-bold text-slate-500">{pkg.pricePrefix}</span>
+                      ) : null}
+                      {pkg.price}
+                    </p>
                     <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">{pkg.priceNote}</p>
-                    {pkg.valueNote && (
+                    {"valueNote" in pkg && pkg.valueNote && (
                       <p className="mt-3 rounded-2xl bg-orange-50 px-4 py-2 text-sm font-bold text-orange-700">
                         {pkg.valueNote}
                       </p>
@@ -433,7 +509,16 @@ export default function PackagesPage() {
             <table className="min-w-[860px] w-full text-left text-sm">
               <thead className="sticky top-24 z-10 bg-blue-50 text-slate-900">
                 <tr>
-                  {["รายการ", "ใบจองตั๋ว", "ใบจองโรงแรม", "ครบเซ็ต ⭐", "Premium 👑"].map((heading) => (
+                  {[
+                    "รายการ",
+                    "ตั๋ว ฿500",
+                    "โรงแรม ฿500",
+                    "แผน ฿700",
+                    "ตั๋ว+โรงแรม ฿800",
+                    "ตั๋ว+โรงแรม+แผน ฿1,500",
+                    "ครบเซ็ต ⭐ ฿3,500",
+                    "MSIG เริ่มต้น ฿190",
+                  ].map((heading) => (
                     <th key={heading} className="border-b border-blue-100 px-5 py-4 text-sm font-black">
                       {heading}
                     </th>

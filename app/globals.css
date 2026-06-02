@@ -150,6 +150,15 @@ textarea {
   animation: glow-pulse 4s ease-in-out infinite;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* PDF/Print safe rendering mode for Thai typography */
 @media print {
   @page {

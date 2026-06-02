@@ -165,8 +165,8 @@ const policySections = [
       <div className="space-y-3 bg-blue-50/50 p-5 rounded-2xl border border-blue-100/50">
         <p className="flex items-center gap-2">
           <span className="font-bold text-slate-900">Privacy Email:</span>{" "}
-          <a href="mailto:privacy@bkkair.com" className="text-blue-600 font-medium hover:text-blue-800 underline decoration-blue-200 underline-offset-4">
-            privacy@bkkair.com
+          <a href="mailto:info@bkkair.com" className="text-blue-600 font-medium hover:text-blue-800 underline decoration-blue-200 underline-offset-4">
+            info@bkkair.com
           </a>
         </p>
         <p className="flex items-center gap-2">

@@ -1,140 +1,157 @@
-import { Clock, FileSignature, MessageCircle, Plane, ShieldCheck } from "lucide-react";
-import React from "react";
+import { Check, ClipboardCheck, CreditCard, FileCheck2, FileText, ShieldCheck } from "lucide-react";
+
+const steps = [
+  {
+    number: "01",
+    title: "แจ้งประเทศและบริการ",
+    description: "เลือกประเทศและเอกสารที่ต้องใช้ เช่น ใบจองตั๋ว ใบจองโรงแรม หรือชุดเอกสารครบเซ็ต",
+    icon: ClipboardCheck,
+  },
+  {
+    number: "02",
+    title: "ส่งข้อมูลและชำระเงิน",
+    description: "กรอกข้อมูลสำคัญตามหนังสือเดินทางและวันเดินทาง ทีมงานยืนยันรายละเอียดก่อนเริ่มงาน",
+    icon: CreditCard,
+  },
+  {
+    number: "03",
+    title: "ทีมงานตรวจสอบ",
+    description: "ผู้เชี่ยวชาญตรวจข้อมูลและจัดทำเอกสาร PDF ตามรูปแบบที่พร้อมใช้ยื่นสถานทูต",
+    icon: ShieldCheck,
+  },
+  {
+    number: "04",
+    title: "รับไฟล์พร้อมยื่น",
+    description: "รับไฟล์ PDF สำหรับพิมพ์หรือแนบในระบบออนไลน์ พร้อมคำแนะนำการใช้งาน",
+    icon: FileCheck2,
+  },
+];
 
 export default function WorkflowTimeline() {
   return (
-    <section id="timeline" className="relative w-full overflow-hidden bg-white py-16 md:py-24 font-sans">
-      
-      {/* Decorative Brand Light Gradients */}
+    <section id="workflow" className="relative w-full overflow-hidden bg-white py-16 font-sans md:py-24">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute -left-20 top-20 h-[350px] w-[350px] rounded-full bg-blue-500/5 blur-[90px]" />
-        <div className="absolute -right-20 bottom-10 h-[350px] w-[350px] rounded-full bg-orange-500/5 blur-[90px]" />
+        <div className="absolute left-1/2 top-0 h-[520px] w-[780px] -translate-x-1/2 rounded-full bg-blue-500/[0.06] blur-[100px]" />
+        <div className="absolute -right-32 bottom-0 h-[360px] w-[360px] rounded-full bg-orange-400/[0.08] blur-[90px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        { }
-        {/* Main Grid Wrapper matching Nicepage asymmetrical 50/50 block style but using BKK AIR colors */}
-        <div className="grid grid-cols-1 overflow-hidden rounded-[2.5rem] border border-slate-200/80 bg-slate-50 lg:grid-cols-12 shadow-2xl">
-          
-          {/* ================= LEFT COLUMN: STEP 1 & STEP 2 (lg:col-span-3) ================= */}
-          <div className="flex flex-col lg:col-span-3">
-            
-            {}
-            {/* Step 1: Deep BKK AIR Blue Block */}
-            <div className="flex flex-1 flex-col justify-between bg-[#003d82] p-8 text-white min-h-[250px] md:min-h-[280px] relative group transition-all duration-300 hover:bg-[#003572]">
-              {/* Subtle accent light */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-orange-300">
-                <ShieldCheck className="h-7 w-7" />
-              </div>
-              
-              <div className="relative z-10">
-                <p className="text-xs font-black tracking-widest text-orange-400 uppercase mb-2">STEP 01</p>
-                <h3 className="text-lg font-bold leading-snug mb-3">เลือกแพ็กเกจที่ต้องการ</h3>
-                <p className="text-sm leading-relaxed text-blue-100/80">
-                  เลือกเอกสารที่ต้องการ เช่น ใบจองตั๋ว ใบจองโรงแรม แผนการเดินทาง หรือชุดครบเซ็ต พร้อมระบุประเทศที่จะยื่นวีซ่า
-                </p>
-              </div>
-            </div>
-
-            {/* Step 2: Off-White Slate Block with Brand Navy elements */}
-            <div className="flex flex-1 flex-col justify-between bg-slate-50 p-8 text-slate-800 min-h-[250px] md:min-h-[280px] border-t border-slate-200/60 lg:border-t-0 lg:border-b lg:border-slate-200/40 relative group">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-[#003d82] shadow-sm">
-                <FileSignature className="h-7 w-7" />
-              </div>
-              <div>
-                <p className="text-xs font-black tracking-widest text-blue-600/70 uppercase mb-2">STEP 02</p>
-                <h3 className="text-lg font-bold leading-snug text-slate-900 mb-3">กรอกข้อมูลและชำระเงิน</h3>
-                <p className="text-sm leading-relaxed text-slate-600">
-                  กรอกข้อมูลการเดินทางของคุณผ่านฟอร์มที่ปลอดภัย — ชื่อ-นามสกุล (ตามหนังสือเดินทาง) วันเดินทาง ปลายทาง และข้อมูลที่จำเป็น
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* ================= MIDDLE COLUMN: PORTRAIT VISUAL (lg:col-span-5) ================= */}
-          {}
-          <div className="relative min-h-[350px] lg:col-span-5 lg:min-h-full overflow-hidden group">
-            <img 
-              src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=1200" 
-              alt="Traveler exploring visa support" 
-              className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
-            />
-            {/* Elegant vignette overlay utilizing Navy Blue shadow to blend with the site theme */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/60 via-transparent to-[#0f172a]/20" />
-            
-            {/* Floating micro-badge for context with Brand Blue Accent */}
-            <div className="absolute bottom-6 left-6 inline-flex items-center gap-2 rounded-full bg-white/95 backdrop-blur px-4.5 py-2 text-xs font-bold text-slate-800 shadow-xl border border-slate-100">
-              <span className="h-2 w-2 rounded-full bg-[#f59e0b] animate-pulse" />
-              BKK AIR Travel Support
-            </div>
-          </div>
-
-          {/* ================= RIGHT COLUMN: HEADER & STEPS 3, 4 (lg:col-span-4) ================= */}
-          {}
-          <div className="flex flex-col lg:col-span-4">
-            
-            {/* Header Block: Large Typography Area */}
-            <div className="flex flex-1 flex-col justify-center bg-white p-8 lg:p-10 border-b border-slate-200/80">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3.5 py-1 text-[11px] font-extrabold text-[#003d82] uppercase tracking-widest w-fit border border-blue-100/60">
-                <Clock className="h-3.5 w-3.5 text-blue-600 animate-pulse" />
-                Workflow
-              </div>
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 leading-tight sm:text-4xl">
-                สั่ง รับ ยื่น — <br/>ง่ายกว่าที่คิด
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-slate-500">
-                ไม่จำเป็นต้องมีความรู้ด้านวีซ่ามาก่อน เพียงแจ้งปลายทางและช่วงเวลาเดินทาง ทีมงานจะช่วยจัดเตรียมเอกสารให้ครบตามความต้องการ
-              </p>
-            </div>
-
-            {/* Bottom Row inside Right Column (Splitting Step 3 and 4 side-by-side) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2">
-              
-              {/* Step 3: Brand Sky Blue Block */}
-              <div className="flex flex-col justify-between bg-[#1e5a96] p-6 text-white min-h-[260px] relative group transition-all duration-300 hover:bg-[#194c7f]">
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-blue-200">
-                  <MessageCircle className="h-6 w-6" />
-                </div>
-                <div className="relative z-10 mt-8">
-                  <p className="text-[10px] font-black tracking-widest text-blue-200 uppercase mb-1">STEP 03</p>
-                  <h3 className="text-base font-bold leading-snug mb-2">ทีมงานตรวจสอบ</h3>
-                  <p className="text-xs leading-relaxed text-blue-100/85">
-                    ทีมงานตรวจสอบข้อมูลและจัดเตรียมเอกสาร PDF ตามมาตรฐานสถานทูตภายใน 24 ชั่วโมง
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 4: Brand Accent Orange Block (Calls for action, represents the final submission!) */}
-              <div className="flex flex-col justify-between bg-[#f59e0b] p-6 text-white min-h-[260px] relative group transition-all duration-300 hover:bg-[#e08e04]">
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 text-white">
-                  <Plane className="h-6 w-6" />
-                </div>
-                <div className="relative z-10 mt-8">
-                  <p className="text-[10px] font-black tracking-widest text-white/90 uppercase mb-1">STEP 04</p>
-                  <h3 className="text-base font-bold leading-snug mb-2">รับ PDF & ยื่นได้เลย</h3>
-                  <p className="text-xs leading-relaxed text-amber-50/90">
-                    คุณจะได้รับไฟล์ PDF ทางอีเมล พร้อมสำหรับการพิมพ์หรือแนบยื่นระบบออนไลน์ของสถานทูตได้ทันที
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="mb-10 max-w-3xl lg:mb-12">
+          <p className="text-sm font-black uppercase tracking-[0.28em] text-orange-500">Workflow</p>
+          <h2 className="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-5xl">
+            ส่งข้อมูล — รับไฟล์พร้อมยื่น
+          </h2>
+          <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+            ง่าย รวดเร็ว และตรวจสอบโดยทีมงานจริง ผ่านขั้นตอนที่ออกแบบมาเพื่อให้เอกสารวีซ่าของคุณพร้อมใช้งานอย่างมั่นใจ
+          </p>
         </div>
 
-        {/* Reassurance text beneath the grid */}
-        <p className="mt-8 text-center text-sm font-semibold text-slate-500 tracking-wide">
-          * มีข้อสงสัยระหว่างทาง? ทีมงานพร้อมตอบคำถามทุกขั้นตอนผ่านช่องทางบริการ
-        </p>
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.47fr)_minmax(0,0.53fr)] lg:gap-16">
+          <ProcessVisual />
 
+          <div className="relative">
+            <div className="absolute left-6 top-8 hidden h-[calc(100%-4rem)] w-px bg-gradient-to-b from-orange-400 via-blue-400 to-slate-200 sm:block" />
+            <div className="space-y-4">
+              {steps.map((step) => {
+                const Icon = step.icon;
+                return (
+                  <article
+                    key={step.number}
+                    className="group relative rounded-3xl border border-slate-200/80 bg-white/90 p-5 shadow-[0_14px_42px_rgba(15,23,42,0.05)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(37,99,235,0.12)] sm:ml-16"
+                  >
+                    <div className="absolute -left-[4.75rem] top-5 hidden h-12 w-12 items-center justify-center rounded-2xl border border-white bg-slate-950 text-sm font-black text-white shadow-[0_0_0_6px_rgba(255,255,255,0.95),0_16px_36px_rgba(15,23,42,0.22)] transition group-hover:scale-105 group-hover:shadow-[0_0_0_6px_rgba(255,247,237,1),0_18px_42px_rgba(249,115,22,0.28)] sm:flex">
+                      {step.number}
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-50 text-orange-600 ring-1 ring-orange-100 sm:hidden">
+                        <span className="text-sm font-black">{step.number}</span>
+                      </div>
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 ring-1 ring-blue-100">
+                        <Icon className="h-5 w-5" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-extrabold tracking-tight text-slate-950">
+                          {step.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+function ProcessVisual() {
+  return (
+    <div className="relative min-h-[500px] overflow-hidden rounded-[2rem] border border-white/70 bg-[#0B1220] p-6 shadow-[0_30px_90px_rgba(11,18,32,0.24)] sm:p-8">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(59,130,246,0.28),transparent_28%),radial-gradient(circle_at_78%_72%,rgba(249,115,22,0.22),transparent_32%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08)_0,transparent_32%,rgba(255,255,255,0.04)_100%)]" />
+
+      <div className="relative mx-auto mt-4 max-w-[360px] rounded-[1.8rem] border border-white/15 bg-white/[0.08] p-4 shadow-2xl backdrop-blur-xl">
+        <div className="rounded-[1.35rem] bg-white p-5 shadow-xl">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-slate-400">Visa Support PDF</p>
+              <h3 className="mt-1 text-lg font-extrabold text-slate-950">Embassy Ready Pack</h3>
+            </div>
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-500 text-white shadow-lg shadow-orange-500/25">
+              <FileText className="h-5 w-5" />
+            </div>
+          </div>
+          <div className="mt-5 space-y-3">
+            {["Flight reservation", "Hotel booking", "Travel itinerary"].map((label) => (
+              <div key={label} className="flex items-center justify-between rounded-2xl bg-slate-50 px-3 py-2.5">
+                <span className="text-sm font-bold text-slate-700">{label}</span>
+                <Check className="h-4 w-4 text-emerald-500" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="animate-float absolute left-5 top-8 w-44 rounded-3xl border border-white/15 bg-white/[0.12] p-4 text-white shadow-2xl backdrop-blur-xl">
+        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-blue-200">Passport</p>
+        <div className="mt-5 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-900 shadow-inner" />
+        <p className="mt-4 text-sm font-extrabold">Traveler Profile</p>
+        <p className="mt-1 text-xs text-slate-300">Verified details</p>
+      </div>
+
+      <div className="animate-float-delayed absolute bottom-8 left-8 w-52 rounded-3xl border border-white/15 bg-white/[0.13] p-4 text-white shadow-2xl backdrop-blur-xl">
+        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-orange-200">Booking Confirmation</p>
+        <div className="mt-4 grid grid-cols-3 gap-2">
+          <div className="col-span-2 h-2 rounded-full bg-white/70" />
+          <div className="h-2 rounded-full bg-orange-400" />
+          <div className="h-2 rounded-full bg-white/30" />
+          <div className="col-span-2 h-2 rounded-full bg-white/40" />
+        </div>
+        <div className="mt-5 rounded-2xl border border-orange-300/30 bg-orange-400/15 px-3 py-2 text-xs font-bold text-orange-100">
+          Ready for review
+        </div>
+      </div>
+
+      <div className="animate-float-slow absolute right-5 top-16 w-48 rounded-3xl border border-white/15 bg-white/[0.14] p-4 text-white shadow-2xl backdrop-blur-xl">
+        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200">Embassy Checklist</p>
+        <div className="mt-4 space-y-2">
+          {["Name match", "Dates checked", "PDF format"].map((label) => (
+            <div key={label} className="flex items-center gap-2 text-xs font-bold text-slate-100">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              {label}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="absolute bottom-10 right-8 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-white shadow-xl backdrop-blur-xl">
+        PDF Approved
+      </div>
+    </div>
   );
 }

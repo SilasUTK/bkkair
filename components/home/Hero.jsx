@@ -1,37 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
-import { apiUrl } from "../../lib/apiBase";
-
-const initialRequest = {
-  destination: "",
-  visaType: "",
-  name: "",
-  contact: "",
-  travelDate: ""
-};
-
-const countries = [
-  "Schengen / วีซ่าเชงเก้น",
-  "UK / วีซ่าอังกฤษ",
-  "USA / วีซ่าอเมริกา",
-  "Australia / วีซ่าออสเตรเลีย",
-  "Canada / วีซ่าแคนาดา",
-  "Japan / วีซ่าญี่ปุ่น",
-  "Korea / วีซ่าเกาหลี",
-  "อื่นๆ"
-];
-
-const visaTypes = [
-  "ท่องเที่ยว / ส่วนตัว",
-  "ธุรกิจ",
-  "เยี่ยมครอบครัว",
-  "นักเรียน",
-  "ทำงาน",
-  "Transit"
-];
-
-const fieldClassName =
-  "h-10 w-full rounded-lg border border-slate-200 bg-slate-50 pl-10 pr-4 text-sm font-medium text-slate-700 placeholder:text-slate-400 transition focus:border-orange-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-100";
+import HeroForm from "@/components/HeroForm";
 
 const benefits = [
   {
@@ -57,63 +25,10 @@ const benefits = [
 ];
 
 export default function Hero({ goToCheck }) {
-  const [request, setRequest] = useState(initialRequest);
-  const [createdBooking, setCreatedBooking] = useState(false);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  function updateRequest(event) {
-    const { name, value } = event.target;
-    setError("");
-    setCreatedBooking(false);
-    setRequest((current) => ({ ...current, [name]: value }));
-  }
-
-  async function submitRequest(event) {
-    event.preventDefault();
-    if (loading) return;
-
-    if (!request.destination.trim()) return setError("กรุณาเลือกประเทศที่ต้องการไป");
-    if (!request.name.trim()) return setError("กรุณาระบุชื่อ-นามสกุล");
-    if (!request.contact.trim()) return setError("กรุณาระบุช่องทางติดต่อ");
-
-    setLoading(true);
-    setError("");
-    setCreatedBooking(false);
-
-    try {
-      const response = await fetch(apiUrl("/api/requests"), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          source: "homepage_hero",
-          destination: request.destination.trim(),
-          visaType: request.visaType.trim(),
-          name: request.name.trim(),
-          contact: request.contact.trim(),
-          travelDate: request.travelDate || ""
-        })
-      });
-
-      const result = await response.json().catch(() => ({}));
-
-      if (!response.ok || !result?.success) {
-        throw new Error(result?.message || result?.error || "Request failed");
-      }
-
-      setCreatedBooking(true);
-      setRequest(initialRequest);
-    } catch (_requestError) {
-      setError("ส่งคำขอไม่สำเร็จ กรุณาลองใหม่อีกครั้ง หรือติดต่อ LINE @823lateh");
-    } finally {
-      setLoading(false);
-    }
-  }
-
   return (
     <section id="hero" className="relative flex min-h-screen w-full items-center overflow-hidden bg-slate-950 pb-14 pt-28 font-sans sm:pb-16 sm:pt-32 lg:pt-28">
       <Image
-        src="/images/hero-bg.jpg"
+        src="/images/background/hero-bg.jpg"
         alt=""
         fill
         priority
@@ -180,96 +95,7 @@ export default function Hero({ goToCheck }) {
                 <p className="mt-1 text-xs text-slate-500">ไม่ต้องชำระเงินก่อน ทีมงานติดต่อกลับ</p>
               </div>
 
-              <form onSubmit={submitRequest} className="space-y-2.5">
-                <FormField icon={<LocationIcon className="h-[18px] w-[18px]" />}>
-                  <select
-                    name="destination"
-                    value={request.destination}
-                    onChange={updateRequest}
-                    required
-                    aria-label="ประเทศที่ต้องการไป"
-                    className={`${fieldClassName} cursor-pointer appearance-none pr-10`}
-                  >
-                    <option value="" disabled>ประเทศที่ต้องการไป...</option>
-                    {countries.map((country) => <option key={country} value={country}>{country}</option>)}
-                  </select>
-                  <DropdownIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                </FormField>
-
-                <FormField icon={<VisaIcon className="h-[18px] w-[18px]" />}>
-                  <select
-                    name="visaType"
-                    value={request.visaType}
-                    onChange={updateRequest}
-                    aria-label="ประเภทวีซ่า"
-                    className={`${fieldClassName} cursor-pointer appearance-none pr-10`}
-                  >
-                    <option value="">เลือกประเภทวีซ่า (ไม่บังคับ)</option>
-                    {visaTypes.map((type) => <option key={type} value={type}>{type}</option>)}
-                  </select>
-                  <DropdownIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                </FormField>
-
-                <FormField icon={<UserIcon className="h-[18px] w-[18px]" />}>
-                  <input
-                    name="name"
-                    value={request.name}
-                    onChange={updateRequest}
-                    type="text"
-                    placeholder="ชื่อ-นามสกุล"
-                    required
-                    className={fieldClassName}
-                  />
-                </FormField>
-
-                <FormField icon={<ContactIcon className="h-[18px] w-[18px]" />}>
-                  <input
-                    name="contact"
-                    value={request.contact}
-                    onChange={updateRequest}
-                    type="text"
-                    placeholder="เบอร์โทร / อีเมล / LINE ID"
-                    required
-                    className={fieldClassName}
-                  />
-                </FormField>
-
-                <FormField icon={<CalendarIcon className="h-[18px] w-[18px]" />}>
-                  <input
-                    name="travelDate"
-                    value={request.travelDate}
-                    onChange={updateRequest}
-                    type="date"
-                    aria-label="วันเดินทาง (ไม่บังคับ)"
-                    className={fieldClassName}
-                  />
-                </FormField>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="group mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-800 px-5 text-sm font-bold text-white shadow-lg transition hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-65"
-                >
-                  {loading ? (
-                    <>
-                      <LoadingIcon className="h-5 w-5 animate-spin" />
-                      กำลังส่งข้อมูล...
-                    </>
-                  ) : (
-                    <>
-                      ส่งคำขอให้ทีมงานตรวจสอบ
-                      <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                    </>
-                  )}
-                </button>
-              </form>
-
-              {error && <StatusMessage tone="error" icon={<ShieldIcon className="h-5 w-5" />}>{error}</StatusMessage>}
-              {createdBooking && (
-                <StatusMessage tone="success" icon={<CheckBadgeIcon className="h-5 w-5" />}>
-                  ส่งคำขอเรียบร้อยแล้ว ทีมงานจะติดต่อกลับภายใน 2–4 ชั่วโมงในเวลาทำการ
-                </StatusMessage>
-              )}
+              <HeroForm />
 
               <div className="mt-4 text-center text-[11px] leading-relaxed text-slate-500">
                 <p className="flex items-center justify-center gap-1.5 font-medium">
@@ -287,28 +113,6 @@ export default function Hero({ goToCheck }) {
         </div>
       </div>
     </section>
-  );
-}
-
-function FormField({ icon, children }) {
-  return (
-    <div className="relative">
-      <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">{icon}</span>
-      {children}
-    </div>
-  );
-}
-
-function StatusMessage({ tone, icon, children }) {
-  const colors = tone === "success"
-    ? "border-emerald-100 bg-emerald-50 text-emerald-800"
-    : "border-red-100 bg-red-50 text-red-700";
-
-  return (
-    <div className={`mt-4 flex items-start gap-2.5 rounded-xl border p-3 text-sm font-medium ${colors}`}>
-      <span className="mt-0.5 shrink-0">{icon}</span>
-      <p>{children}</p>
-    </div>
   );
 }
 
@@ -336,38 +140,10 @@ function CheckIcon({ className = "" }) {
   return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path strokeLinecap="round" strokeLinejoin="round" d="m8.5 12 2.5 2.5 4.75-5" /></svg>;
 }
 
-function LocationIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21s7-6 7-11A7 7 0 0 0 5 10c0 5 7 11 7 11Z" /><circle cx="12" cy="10" r="2.25" /></svg>;
-}
-
-function VisaIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2" /><circle cx="9" cy="11" r="2" /><path strokeLinecap="round" d="M6.4 15c1.4-1.4 3.8-1.4 5.2 0M14.5 10h3M14.5 13h3" /></svg>;
-}
-
-function UserIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="12" cy="8" r="3.5" /><path strokeLinecap="round" strokeLinejoin="round" d="M5 20c.6-4 3-6 7-6s6.4 2 7 6" /></svg>;
-}
-
-function ContactIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M6.2 3.8h3l1.4 5-2 1.6a12 12 0 0 0 5 5l1.6-2 5 1.4v3a2.3 2.3 0 0 1-2.4 2.3A14.1 14.1 0 0 1 3.9 6.2a2.3 2.3 0 0 1 2.3-2.4Z" /></svg>;
-}
-
-function CalendarIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" /><path strokeLinecap="round" d="M8 3.5v4M16 3.5v4M4 10h16" /></svg>;
-}
-
-function DropdownIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M5.2 7.7a.75.75 0 0 1 1.06 0L10 11.44l3.74-3.74a.75.75 0 1 1 1.06 1.06l-4.27 4.27a.75.75 0 0 1-1.06 0L5.2 8.76a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" /></svg>;
-}
-
 function ShieldIcon({ className = "" }) {
   return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3 20 6v5.5c0 4.5-3 7.5-8 9.5-5-2-8-5-8-9.5V6l8-3Z" /><path strokeLinecap="round" strokeLinejoin="round" d="m8.5 12 2.3 2.3 4.8-5" /></svg>;
 }
 
 function ArrowRightIcon({ className = "" }) {
   return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M13 5l7 7-7 7" /></svg>;
-}
-
-function LoadingIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle className="opacity-25" cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="3" /><path className="opacity-80" d="M12 3a9 9 0 0 1 9 9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" /></svg>;
 }

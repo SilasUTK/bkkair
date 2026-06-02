@@ -91,7 +91,7 @@ export default function ContactPage() {
             <div className="mt-4 rounded-2xl border border-indigo-100 bg-indigo-50 p-5">
               <p className="text-sm font-black uppercase tracking-wide text-indigo-900">Privacy &amp; Data Rights</p>
               <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-700">
-                สำหรับคำขอด้านข้อมูลส่วนบุคคล กรุณาติดต่อ <a href="mailto:privacy@bkkair.com" className="font-black text-indigo-700 underline decoration-indigo-300 underline-offset-4">privacy@bkkair.com</a>
+                สำหรับคำขอด้านข้อมูลส่วนบุคคล กรุณาติดต่อ <a href="mailto:info@bkkair.com" className="font-black text-indigo-700 underline decoration-indigo-300 underline-offset-4">info@bkkair.com</a>
               </p>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 ใช้สำหรับคำขอเข้าถึงข้อมูล แก้ไขข้อมูล ลบข้อมูล และข้อกังวลด้าน PDPA/Privacy โดยเรามุ่งหมายตอบกลับภายใน 30 วันทำการ

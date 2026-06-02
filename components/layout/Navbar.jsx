@@ -1,31 +1,30 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Logo from "./Logo.jsx";
 
 const serviceDropdown = [
-  { label: "ใบจองตั๋วเครื่องบิน", href: "/packages" },
-  { label: "ใบจองโรงแรม", href: "/packages" },
-  { label: "แผนการเดินทาง", href: "/packages" },
-  { label: "ประกันการเดินทาง", href: "/packages" }
+  { label: "บริการทั้งหมด", href: "/#services" },
+  { label: "ทำไมต้องเลือก BKK AIR", href: "/#why-choose-us" },
+  { label: "ขั้นตอนการสั่งซื้อ", href: "/#workflow" },
+  { label: "ประเทศที่ให้บริการ", href: "/#countries" },
 ];
 
 const countryDropdown = [
-  { label: "Schengen", href: "/visa/schengen" },
-  { label: "UK", href: "/visa/uk" },
-  { label: "USA", href: "/visa/usa" },
-  { label: "Canada", href: "/visa/canada" },
-  { label: "Australia", href: "/visa/australia" },
-  { label: "Japan", href: "/visa/japan" },
-  { label: "Korea", href: "/visa/korea" }
+  { label: "ประเทศที่รองรับทั้งหมด", href: "/#countries" },
+  { label: "สอบถามประเทศอื่น", href: "/contact" },
 ];
 
 const mainLinks = [
-  { label: "แพ็กเกจและราคา", href: "/packages" },
-  { label: "คำถามที่พบบ่อย", href: "/faq" }
+  { label: "แพ็กเกจและราคา", href: "/packages", match: ["/packages"] },
+  { label: "คำถามที่พบบ่อย", href: "/faq", match: ["/faq"] },
+  { label: "ติดต่อเรา", href: "/contact", match: ["/contact"] },
 ];
 
-export default function Navbar({ onNavigate }) {
+export default function Navbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [mobileCountryOpen, setMobileCountryOpen] = useState(false);
@@ -44,9 +43,7 @@ export default function Navbar({ onNavigate }) {
   useEffect(() => {
     function onResize() {
       if (window.innerWidth >= 1024) {
-        setMobileOpen(false);
-        setMobileServiceOpen(false);
-        setMobileCountryOpen(false);
+        closeMobileMenu();
       }
     }
 
@@ -58,7 +55,7 @@ export default function Navbar({ onNavigate }) {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
 
     function onKeyDown(event) {
-      if (event.key === "Escape") setMobileOpen(false);
+      if (event.key === "Escape") closeMobileMenu();
     }
 
     window.addEventListener("keydown", onKeyDown);
@@ -68,27 +65,14 @@ export default function Navbar({ onNavigate }) {
     };
   }, [mobileOpen]);
 
-  function handleLinkClick(event, href) {
+  function closeMobileMenu() {
     setMobileOpen(false);
     setMobileServiceOpen(false);
     setMobileCountryOpen(false);
-
-    if (!href.startsWith("#")) return;
-    event.preventDefault();
-
-    if (onNavigate && window.location.pathname !== "/") {
-      onNavigate("home");
-      window.setTimeout(() => document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" }), 50);
-      return;
-    }
-
-    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.replaceState(null, "", href);
   }
 
-  function goTo(href) {
-    setMobileOpen(false);
-    window.location.href = href;
+  function isActive(link) {
+    return Boolean(link.match?.includes(pathname));
   }
 
   return (
@@ -97,38 +81,49 @@ export default function Navbar({ onNavigate }) {
       className={`fixed inset-x-0 top-0 z-[90] w-full font-sans transition duration-300 ${
         isScrolled
           ? "border-b border-white/10 bg-slate-950/90 shadow-[0_16px_42px_rgba(2,6,23,0.4)] backdrop-blur-xl"
-          : "bg-gradient-to-b from-slate-950/65 to-transparent"
+          : "bg-gradient-to-b from-slate-950/70 to-slate-950/10 backdrop-blur-sm"
       }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center gap-3 px-5 sm:px-8 lg:h-[92px] lg:px-12">
-        <Logo onClick={() => goTo("/")} variant="navbar" className="shrink-0 focus:ring-orange-400 focus:ring-offset-0" />
+        <Logo variant="navbar" className="shrink-0 focus:ring-orange-400 focus:ring-offset-0" />
 
         <nav data-desktop-nav className="ml-auto hidden items-center gap-1 lg:flex" aria-label="Main navigation">
-          <DesktopDropdown title="บริการของเรา" links={serviceDropdown} onLinkClick={handleLinkClick} />
-          <DesktopDropdown title="ประเทศที่รองรับ" links={countryDropdown} onLinkClick={handleLinkClick} />
+          <DesktopDropdown title="บริการของเรา" links={serviceDropdown} onLinkClick={closeMobileMenu} />
+          <DesktopDropdown title="ประเทศที่รองรับ" links={countryDropdown} onLinkClick={closeMobileMenu} />
+
           {mainLinks.map((link) => (
-            <a key={link.label} href={link.href} onClick={(event) => handleLinkClick(event, link.href)} className="rounded-xl px-4 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-orange-300">
+            <Link
+              key={link.label}
+              href={link.href}
+              onClick={closeMobileMenu}
+              aria-current={isActive(link) ? "page" : undefined}
+              className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
+                isActive(link)
+                  ? "bg-white/10 text-orange-300"
+                  : "text-white/90 hover:bg-white/10 hover:text-orange-300"
+              }`}
+            >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <button type="button" onClick={() => goTo("/contact")} className="rounded-xl px-4 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-orange-300">
-            ติดต่อเรา
-          </button>
         </nav>
 
-        <button
+        <Link
           data-desktop-cta
-          type="button"
-          onClick={() => goTo("/order")}
+          href="/order"
           className="ml-3 hidden h-11 items-center gap-2 rounded-full bg-orange-500 px-6 text-sm font-bold text-white shadow-lg shadow-orange-950/25 transition hover:bg-orange-400 lg:inline-flex"
         >
           สั่งเลย
           <ArrowRightIcon className="h-4 w-4" />
-        </button>
+        </Link>
 
-        <button type="button" onClick={() => goTo("/order")} className="ml-auto inline-flex h-10 items-center rounded-full bg-orange-500 px-3.5 text-xs font-bold text-white shadow-lg sm:px-4 lg:hidden">
+        <Link
+          href="/order"
+          onClick={closeMobileMenu}
+          className="ml-auto inline-flex h-10 items-center rounded-full bg-orange-500 px-3.5 text-xs font-bold text-white shadow-lg sm:px-4 lg:hidden"
+        >
           ส่งคำขอ
-        </button>
+        </Link>
         <button
           data-mobile-toggle
           type="button"
@@ -143,20 +138,31 @@ export default function Navbar({ onNavigate }) {
 
       <div data-mobile-panel className={`overflow-hidden bg-slate-950/95 backdrop-blur-xl transition-all lg:hidden ${mobileOpen ? "max-h-[calc(100vh-5rem)] border-t border-white/10 opacity-100" : "max-h-0 opacity-0"}`}>
         <nav className="max-h-[calc(100vh-5rem)] overflow-y-auto px-5 py-5" aria-label="Mobile navigation">
-          <MobileDropdown title="บริการของเรา" open={mobileServiceOpen} onToggle={() => setMobileServiceOpen((open) => !open)} links={serviceDropdown} onLinkClick={handleLinkClick} />
-          <MobileDropdown title="ประเทศที่รองรับ" open={mobileCountryOpen} onToggle={() => setMobileCountryOpen((open) => !open)} links={countryDropdown} onLinkClick={handleLinkClick} />
+          <MobileDropdown title="บริการของเรา" open={mobileServiceOpen} onToggle={() => setMobileServiceOpen((open) => !open)} links={serviceDropdown} onLinkClick={closeMobileMenu} />
+          <MobileDropdown title="ประเทศที่รองรับ" open={mobileCountryOpen} onToggle={() => setMobileCountryOpen((open) => !open)} links={countryDropdown} onLinkClick={closeMobileMenu} />
+
           {mainLinks.map((link) => (
-            <a key={link.label} href={link.href} onClick={(event) => handleLinkClick(event, link.href)} className="block rounded-xl px-4 py-3.5 text-base font-semibold text-white/90 hover:bg-white/10">
+            <Link
+              key={link.label}
+              href={link.href}
+              onClick={closeMobileMenu}
+              aria-current={isActive(link) ? "page" : undefined}
+              className={`block rounded-xl px-4 py-3.5 text-base font-semibold ${
+                isActive(link) ? "bg-white/10 text-orange-300" : "text-white/90 hover:bg-white/10"
+              }`}
+            >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <button type="button" onClick={() => goTo("/contact")} className="block w-full rounded-xl px-4 py-3.5 text-left text-base font-semibold text-white/90 hover:bg-white/10">
-            ติดต่อเรา
-          </button>
-          <button type="button" onClick={() => goTo("/order")} className="mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-orange-500 text-sm font-bold text-white">
+
+          <Link
+            href="/order"
+            onClick={closeMobileMenu}
+            className="mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-orange-500 text-sm font-bold text-white"
+          >
             สั่งเลย
             <ArrowRightIcon className="h-4 w-4" />
-          </button>
+          </Link>
         </nav>
       </div>
     </header>
@@ -170,11 +176,16 @@ function DesktopDropdown({ title, links, onLinkClick }) {
         {title}
         <DropdownIcon className="h-4 w-4" />
       </button>
-      <div className="pointer-events-none absolute left-1/2 top-full mt-2 w-52 -translate-x-1/2 translate-y-1 rounded-2xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-2xl backdrop-blur transition group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+      <div className="pointer-events-none absolute left-1/2 top-full mt-2 w-60 -translate-x-1/2 translate-y-1 rounded-2xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-2xl backdrop-blur transition group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
         {links.map((link) => (
-          <a key={link.label} href={link.href} onClick={(event) => onLinkClick(event, link.href)} className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-100 transition hover:bg-white/10 hover:text-orange-300">
+          <Link
+            key={link.label}
+            href={link.href}
+            onClick={onLinkClick}
+            className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-100 transition hover:bg-white/10 hover:text-orange-300"
+          >
             {link.label}
-          </a>
+          </Link>
         ))}
       </div>
     </div>
@@ -191,9 +202,14 @@ function MobileDropdown({ title, open, onToggle, links, onLinkClick }) {
       {open && (
         <div className="mb-2 ml-4 border-l border-white/10 pl-3">
           {links.map((link) => (
-            <a key={link.label} href={link.href} onClick={(event) => onLinkClick(event, link.href)} className="block rounded-xl px-4 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-orange-300">
+            <Link
+              key={link.label}
+              href={link.href}
+              onClick={onLinkClick}
+              className="block rounded-xl px-4 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-orange-300"
+            >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       )}

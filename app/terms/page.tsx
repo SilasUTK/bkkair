@@ -365,7 +365,7 @@ export default function TermsPage() {
                   <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 text-slate-800">
                     <p className="text-lg font-black text-slate-900">BKK AIR</p>
                     <p className="mt-2 leading-relaxed">อีเมล: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
-                    <p className="leading-relaxed">อีเมลด้านความเป็นส่วนตัว: <a href="mailto:privacy@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">privacy@bkkair.com</a></p>
+                    <p className="leading-relaxed">อีเมลด้านความเป็นส่วนตัว: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
                     <p className="leading-relaxed">เว็บไซต์: <a href="https://bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">https://bkkair.com</a></p>
                     <p className="leading-relaxed">Official LINE OA: <a href="https://line.me/R/ti/p/@823lateh" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">@823lateh</a></p>
                     <p className="leading-relaxed">เวลาทำการ: Monday-Saturday 09:00-18:00 (Thailand Time)</p>

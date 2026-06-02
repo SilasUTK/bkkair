@@ -3,13 +3,13 @@ import Link from "next/link";
 
 export default function Logo({ className = "", onClick, variant = "default" }) {
   const onDarkBackground = variant === "footer" || variant === "navbar";
-  const logoSrc = "/assets/logo/logo.png";
+  const logoSrc = "/images/logo/logo.png";
   const sizeClass = onDarkBackground
     ? "h-11 w-[138px] sm:h-12 sm:w-[150px] md:w-[164px]"
     : "h-12 w-[150px] sm:h-[52px] sm:w-[163px] md:w-[176px]";
 
   const content = (
-    <span className={`relative block shrink-0 overflow-hidden rounded-lg ${sizeClass} ${onDarkBackground ? "" : "bg-slate-950 px-2 py-1 shadow-sm"}`}>
+    <span className={`relative block shrink-0 overflow-hidden rounded-lg bg-transparent ${sizeClass}`}>
       <Image
         src={logoSrc}
         alt="BKK AIR"

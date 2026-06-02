@@ -1,5 +1,6 @@
 import { Prompt, Sarabun } from "next/font/google";
 import type { Metadata } from "next";
+import CookieConsent from "../components/CookieConsent";
 import "./globals.css";
 
 const prompt = Prompt({
@@ -20,6 +21,11 @@ export const metadata: Metadata = {
   title: "BKK AIR | ใบจองตั๋วยื่นวีซ่า & เอกสารสนับสนุนสถานทูต",
   description:
     "จัดเตรียมเอกสารยื่นวีซ่าครบชุด — ใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง ส่ง PDF ภายใน 24 ชั่วโมง โดย BKK AIR",
+  icons: {
+    icon: "/images/icons/site-icon.svg",
+    shortcut: "/images/icons/site-icon.svg",
+    apple: "/images/icons/site-icon.svg"
+  },
   openGraph: {
     title: "BKK AIR | ใบจองตั๋วยื่นวีซ่า & เอกสารสนับสนุนสถานทูต",
     description:
@@ -55,7 +61,7 @@ const serviceJsonLd = {
       {
         "@type": "ContactPoint",
         contactType: "privacy",
-        email: "privacy@bkkair.com",
+        email: "info@bkkair.com",
         availableLanguage: ["th", "en"],
       },
     ],
@@ -120,6 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

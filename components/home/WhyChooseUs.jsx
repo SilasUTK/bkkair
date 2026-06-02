@@ -1,7 +1,6 @@
 "use client";
 
 import { Clock, FileText, Globe2, LockKeyhole, MessageCircle, SearchCheck, Sparkles } from "lucide-react";
-import React from "react";
 
 const benefits = [
   {
@@ -86,62 +85,69 @@ const benefits = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="benefits" className="relative w-full overflow-hidden bg-bg-light py-20 md:py-28 font-sans selection:bg-blue-200 selection:text-primary-navy">
-      
+    <section id="why-choose-us" className="relative w-full overflow-hidden bg-slate-50 py-14 font-sans selection:bg-blue-200 selection:text-primary-navy md:py-20">
       {/* Subtle background accents */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute -right-40 -top-10 h-[440px] w-[440px] rounded-full bg-blue-50/70 blur-[80px]" />
         <div className="absolute -left-40 bottom-0 h-[380px] w-[380px] rounded-full bg-orange-50/70 blur-[80px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        
-        {/* === Header Section === */}
-        <div className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
-          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
-            <Sparkles className="h-4 w-4 text-orange-500 animate-pulse" />
-            <span className="uppercase tracking-widest text-slate-500 text-xs">ทำไมต้องเลือก BKK AIR</span>
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="grid items-center gap-9 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-14">
+          <div className="relative min-h-[260px] overflow-hidden rounded-3xl bg-slate-900 shadow-xl shadow-slate-900/15 md:min-h-[420px]">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="h-full min-h-[260px] w-full object-cover md:min-h-[420px]"
+            >
+              <source src="/videos/visa-support.mp4" type="video/mp4" />
+            </video>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
           </div>
-          
-          <h2 className="text-4xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
-            เราไม่ได้แค่ส่งเอกสาร — <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เราดูแลให้คุณพร้อมยื่น</span>
-          </h2>
-          <p className="mt-6 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
-            หลายคนเสียเวลาหาข้อมูลหรือได้เอกสารที่ไม่ตรงตามมาตรฐานสถานทูต BKK AIR จึงออกแบบบริการเพื่อช่วยจัดเตรียม visa support documents ให้ชัดเจนและพร้อมใช้งาน
-          </p>
+
+          <div>
+            <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/90 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
+              <Sparkles className="h-4 w-4 animate-pulse text-orange-500" />
+              <span className="text-xs uppercase tracking-widest text-slate-500">ทำไมต้องเลือก BKK AIR</span>
+            </div>
+
+            <h2 className="max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+              เราไม่ได้แค่ส่งเอกสาร — <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เราดูแลให้คุณพร้อมยื่น</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
+              BKK AIR ช่วยจัดเตรียม visa support documents ให้ชัดเจน ถูกต้อง และพร้อมใช้งาน ลดเวลาหาข้อมูลเอง และลดความเสี่ยงจากเอกสารที่ไม่ตรงมาตรฐานสถานทูต
+            </p>
+
+            <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {benefits.map((benefit) => {
+                const Icon = benefit.icon;
+                return (
+                  <article
+                    key={benefit.title}
+                    className={`group relative overflow-hidden rounded-2xl border bg-white/92 p-4 shadow-[0_8px_24px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 ${benefit.theme.border} ${benefit.theme.hoverShadow}`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${benefit.theme.gradient} shadow-sm transition-transform duration-300 group-hover:scale-105`}>
+                        <Icon className="h-5 w-5 text-white" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-bold leading-snug text-slate-900">
+                          {benefit.title}
+                        </h3>
+                        <p className="mt-1.5 text-xs leading-relaxed text-slate-500">
+                          {benefit.description}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
         </div>
-
-        {/* === Cards Grid Section === */}
-        <div className="grid grid-cols-1 items-stretch gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((benefit) => {
-            const Icon = benefit.icon;
-            return (
-              <article
-                key={benefit.title}
-                className={`group relative flex h-full flex-col overflow-hidden rounded-[2rem] border bg-white/90 backdrop-blur-sm p-6 md:p-8 transition-all duration-300 hover:-translate-y-1.5 ${benefit.theme.border} ${benefit.theme.hoverShadow} shadow-[0_8px_30px_rgb(0,0,0,0.03)]`}
-              >
-                {/* Gradient top accent line */}
-                <div className={`absolute inset-x-0 top-0 h-[4px] rounded-t-3xl bg-gradient-to-r ${benefit.theme.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
-
-                {/* Horizontal Header (Icon & Title side-by-side) */}
-                <div className="flex items-center gap-4 mb-5">
-                  <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${benefit.theme.gradient} shadow-md shadow-slate-100 transition-transform duration-300 group-hover:scale-105`}>
-                    <Icon className="h-5.5 w-5.5 text-white" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-base font-bold leading-snug text-slate-900 group-hover:text-slate-950 transition-colors">
-                    {benefit.title}
-                  </h3>
-                </div>
-
-                {/* Description */}
-                <p className="text-[13.5px] leading-relaxed text-slate-500">
-                  {benefit.description}
-                </p>
-              </article>
-            );
-          })}
-        </div>
-
       </div>
     </section>
   );
