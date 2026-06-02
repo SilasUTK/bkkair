@@ -20,7 +20,7 @@ const countryDropdown = [
 const mainLinks = [
   { label: "แพ็กเกจและราคา", href: "/packages", match: ["/packages"] },
   { label: "คำถามที่พบบ่อย", href: "/faq", match: ["/faq"] },
-  { label: "ติดต่อเรา", href: "/contact", match: ["/contact"] },
+  { label: "สอบถามผ่าน LINE", href: "/contact", match: ["/contact"] },
 ];
 
 export default function Navbar() {

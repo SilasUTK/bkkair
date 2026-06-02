@@ -89,8 +89,8 @@ export default function VisaCountryPage({ params }: { params: { country: string 
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">โดยทั่วไปไม่ควรซื้อตั๋วจริงก่อนทราบผลวีซ่า เพราะมีความเสี่ยงเรื่องค่าเปลี่ยนหรือยกเลิก</p>
               </details>
               <details className="rounded-2xl bg-[#F8FAFC] p-5">
-                <summary className="cursor-pointer font-bold">BKK AIR รับประกันผลวีซ่าไหม?</summary>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">ไม่รับประกัน ผลวีซ่าขึ้นอยู่กับสถานทูตหรือศูนย์รับคำร้องเท่านั้น</p>
+                <summary className="cursor-pointer font-bold">BKK AIR มีส่วนต่อผลวีซ่าไหม?</summary>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">ไม่มี ผลวีซ่าขึ้นอยู่กับสถานทูตหรือศูนย์รับคำร้องเท่านั้น</p>
               </details>
             </div>
           </section>

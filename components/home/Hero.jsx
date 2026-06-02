@@ -4,13 +4,13 @@ import HeroForm from "@/components/HeroForm";
 const benefits = [
   {
     icon: LightningIcon,
-    label: "ส่งงานรวดเร็ว",
-    sub: "ส่ง PDF ภายใน 24 ชม. มีบริการ Express"
+    label: "เจ้าหน้าที่ติดต่อกลับรวดเร็ว",
+    sub: "รับคำขอและตรวจข้อมูลเบื้องต้นในเวลาทำการ"
   },
   {
     icon: DocumentIcon,
-    label: "PDF พร้อมปริ้นยื่น",
-    sub: "จัดรูปแบบมาตรฐาน พร้อมยื่นตรวจสอบ"
+    label: "เอกสาร PDF สำหรับประกอบคำร้อง",
+    sub: "จัดข้อมูลให้สอดคล้องกับแผนเดินทางของคุณ"
   },
   {
     icon: GlobeIcon,
@@ -20,7 +20,7 @@ const benefits = [
   {
     icon: CheckIcon,
     label: "ตรวจสอบโดยคนจริง",
-    sub: "ทีมงานตรวจสอบรายละเอียดก่อนส่ง"
+    sub: "ทุกคำขอผ่านเจ้าหน้าที่ก่อนเริ่มดำเนินการ"
   }
 ];
 
@@ -44,20 +44,21 @@ export default function Hero({ goToCheck }) {
           <div className="max-w-[710px] text-white">
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-4 py-2 text-xs font-semibold text-orange-300 shadow-xl backdrop-blur-sm sm:text-sm">
               <CheckBadgeIcon className="h-4 w-4 text-orange-400" />
-              บริการเอกสารสำหรับนักเดินทางชาวไทย
+              บริการเอกสารประกอบการยื่นวีซ่าสำหรับนักเดินทางชาวไทย
             </div>
 
             <h1 className="text-[2.55rem] font-extrabold leading-[1.13] tracking-tight text-white sm:text-5xl lg:text-[3.55rem] xl:text-[4rem]">
-              เอกสารสนับสนุนวีซ่า
-              <span className="block bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">
-                พร้อมยื่นสถานทูต
-              </span>
-              <span className="block">ครบ จบ ใน 24 ชั่วโมง</span>
+              เตรียมเอกสารยื่นวีซ่า ครบ จบ ในที่เดียว
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg">
-              BKK AIR จัดเตรียมเอกสารสนับสนุนวีซ่าครบชุด ทั้งใบจองตั๋วเครื่องบิน ใบจองโรงแรม
-              และแผนการเดินทาง ในรูปแบบ PDF มาตรฐานสถานทูต พร้อมให้คุณยื่นได้ทันที
+              BKK AIR ช่วยจัดเตรียมใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และเอกสารสนับสนุนวีซ่า ในรูปแบบ PDF พร้อมยื่นสถานทูต
+            </p>
+            <p className="mt-3 max-w-2xl text-sm font-semibold leading-relaxed text-orange-200 sm:text-base">
+              Embassy-Ready Visa Support Documents for Thai Travelers — Flight Reservation, Hotel Booking, Travel Itinerary
+            </p>
+            <p className="mt-2 max-w-2xl text-xs font-medium leading-relaxed text-slate-400 sm:text-sm">
+              จองตั๋วเครื่องบินยื่นวีซ่า · ใบจองโรงแรมยื่นวีซ่า · embassy-ready documents · visa support Thailand
             </p>
 
             <ul className="mt-9 grid gap-x-8 gap-y-6 sm:grid-cols-2" aria-label="จุดเด่น BKK AIR">
@@ -78,8 +79,8 @@ export default function Hero({ goToCheck }) {
             </ul>
 
             <p className="mt-8 max-w-2xl text-xs leading-relaxed text-slate-400">
-              BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น
-              การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูต
+              เอกสารเป็น supporting materials เท่านั้น ไม่ใช่ตั๋วจริงหรือการจองจริง
+              และการอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลแต่เพียงผู้เดียว
             </p>
           </div>
 
@@ -87,12 +88,12 @@ export default function Hero({ goToCheck }) {
             <div className="absolute -inset-4 rounded-[2.1rem] bg-orange-400/10 blur-2xl" />
             <div className="relative rounded-[1.8rem] border border-white/80 bg-white px-5 pb-5 pt-8 shadow-[0_26px_68px_rgba(2,6,23,0.4)] sm:px-7 sm:pb-6">
               <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-2 text-xs font-bold text-white shadow-lg shadow-orange-500/25 sm:text-sm">
-                ฟรี! ให้คำปรึกษา
+                ส่งคำขอให้ทีมงานตรวจสอบ
               </span>
 
               <div className="mb-4 text-center">
-                <h2 className="text-2xl font-extrabold text-slate-800">ส่งคำขอฟรี</h2>
-                <p className="mt-1 text-xs text-slate-500">ไม่ต้องชำระเงินก่อน ทีมงานติดต่อกลับ</p>
+                <h2 className="text-2xl font-extrabold text-slate-800">Quick Request</h2>
+                <p className="mt-1 text-xs text-slate-500">ฝากข้อมูลเบื้องต้น เจ้าหน้าที่จะติดต่อกลับ</p>
               </div>
 
               <HeroForm />

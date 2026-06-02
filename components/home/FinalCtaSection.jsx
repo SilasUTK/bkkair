@@ -1,7 +1,7 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
 
 const reassuranceItems = [
-  "ส่งภายใน 24 ชั่วโมง",
+  "เจ้าหน้าที่ตรวจคำขอ",
   "ตรวจสอบโดยทีมงานจริง",
   "ราคาโปร่งใส",
 ];
@@ -27,18 +27,18 @@ export default function FinalCtaSection() {
         {/* Badge */}
         <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-blue-100 backdrop-blur-sm">
           <span className="text-amber-300" aria-hidden="true">✦</span>
-          บริการจัดเตรียมเอกสารยื่นวีซ่า
+          บริการจัดเตรียมเอกสารประกอบการยื่นวีซ่า
         </div>
 
         <h2
           id="final-cta-heading"
           className="text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl"
         >
-          พร้อมเตรียมเอกสารยื่นวีซ่าแล้วหรือยัง?
+          พร้อมเริ่มเตรียมเอกสารวีซ่าแล้วหรือยัง?
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-blue-100 sm:text-lg">
-          BKK AIR ช่วยจัดเตรียมเอกสารให้พร้อมยื่นภายใน 24 ชั่วโมง เหมาะสำหรับผู้ที่ต้องการบริการ visa support documents ที่ชัดเจนและเชื่อถือได้
+          สั่งเอกสารวันนี้ รับไฟล์ PDF ภายใน 24 ชั่วโมง พร้อมยื่นสถานทูต
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -46,7 +46,7 @@ export default function FinalCtaSection() {
             href="/packages"
             className="inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-2xl bg-white px-8 text-base font-black text-primary-navy shadow-[0_8px_32px_rgba(0,0,0,0.20)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] focus:outline-none focus:ring-4 focus:ring-white/40 sm:w-auto"
           >
-            📄 เลือกแพ็กเกจและสั่งเลย
+            สั่งเอกสารเลย →
             <ArrowRight className="h-5 w-5" aria-hidden="true" />
             <span className="sr-only">สั่งเอกสารยื่นวีซ่า</span>
           </a>
@@ -55,10 +55,14 @@ export default function FinalCtaSection() {
             href="/contact"
             className="inline-flex min-h-[56px] w-full items-center justify-center gap-2 rounded-2xl border border-white/25 bg-white/10 px-8 text-base font-bold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/25 sm:w-auto"
           >
-            ปรึกษาทีมงานฟรี ไม่มีข้อผูกมัด
+            หรือสอบถามก่อนได้ที่ LINE: @823lateh
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
+
+        <p className="mx-auto mt-5 max-w-2xl text-xs font-medium leading-relaxed text-blue-100/75">
+          *BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนเท่านั้น การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุล
+        </p>
 
         <ul
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
@@ -76,7 +80,8 @@ export default function FinalCtaSection() {
         </ul>
 
         <p className="mx-auto mt-8 max-w-2xl rounded-2xl border border-white/15 bg-white/10 px-5 py-4 text-sm font-medium leading-relaxed text-blue-100/80 backdrop-blur-sm">
-          BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุน — การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูต
+          BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น เอกสารไม่ใช่ตั๋วจริงหรือการจองจริง
+          และการอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุลแต่เพียงผู้เดียว
         </p>
       </div>
     </section>

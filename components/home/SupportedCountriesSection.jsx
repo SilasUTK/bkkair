@@ -3,13 +3,15 @@ import { ArrowRight } from "lucide-react";
 const supportedCountries = [
   {
     flag: "🇪🇺",
+    region: "ยุโรป (Schengen)",
     name: "กลุ่มประเทศ Schengen",
     slug: "schengen",
-    description: "ฝรั่งเศส เยอรมนี อิตาลี สเปน และอีก 22 ประเทศ",
+    description: "France, Germany, Italy, Spain, Netherlands, Switzerland + others",
     docs: ["flight reservation", "hotel reservation", "travel itinerary", "travel insurance"],
   },
   {
     flag: "🇬🇧",
+    region: "สหราชอาณาจักร",
     name: "สหราชอาณาจักร (UK)",
     slug: "uk",
     description: "เอกสารสนับสนุนที่สอดคล้องกับแผนเดินทาง",
@@ -17,6 +19,7 @@ const supportedCountries = [
   },
   {
     flag: "🇺🇸",
+    region: "อเมริกาเหนือ",
     name: "สหรัฐอเมริกา (USA)",
     slug: "usa",
     description: "เอกสารประกอบเพื่ออธิบายแผนเดินทางเบื้องต้น",
@@ -24,6 +27,7 @@ const supportedCountries = [
   },
   {
     flag: "🇨🇦",
+    region: "อเมริกาเหนือ",
     name: "แคนาดา",
     slug: "canada",
     description: "เอกสารประกอบที่แสดงแผนเดินทางและที่พักชัดเจน",
@@ -31,13 +35,15 @@ const supportedCountries = [
   },
   {
     flag: "🇦🇺",
+    region: "โอเชียเนีย",
     name: "ออสเตรเลีย",
     slug: "australia",
-    description: "เอกสารสนับสนุนสำหรับแสดงกำหนดการเดินทาง",
+    description: "Australia, New Zealand",
     docs: ["flight reservation", "travel itinerary"],
   },
   {
     flag: "🇯🇵",
+    region: "เอเชีย",
     name: "ญี่ปุ่น",
     slug: "japan",
     description: "เอกสารสำหรับแสดงแผนเที่ยวและกำหนดการเดินทาง",
@@ -45,13 +51,15 @@ const supportedCountries = [
   },
   {
     flag: "🇰🇷",
+    region: "เอเชีย",
     name: "เกาหลีใต้",
     slug: "korea",
-    description: "เอกสารสนับสนุนพร้อมข้อมูลตั๋วและที่พัก",
+    description: "Japan, South Korea, China + others",
     docs: ["flight reservation", "hotel reservation"],
   },
   {
     flag: "🌏",
+    region: "ประเทศอื่น ๆ",
     name: "และอีกหลายประเทศ",
     slug: "other",
     description: "ติดต่อทีมงานเพื่อสอบถามประเทศที่ต้องการ",
@@ -73,10 +81,10 @@ export default function SupportedCountriesSection() {
             ประเทศที่ให้บริการ
           </p>
           <h2 id="supported-countries-heading" className="mt-2 text-3xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            ครอบคลุมวีซ่าหลายประเทศปลายทาง
+            รองรับการยื่นวีซ่าทุกประเทศหลัก
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-[15px]">
-            ไม่ว่าคุณจะยื่นวีซ่าประเทศใด BKK AIR ช่วยจัดเตรียมเอกสารให้สอดคล้องกับรูปแบบที่สถานทูตคาดหวัง ทั้งเอกสารสำหรับ Schengen, UK, US และบริการ flight reservation กับ hotel reservation
+            ไม่ว่าคุณจะยื่นวีซ่าที่ไหน เราช่วยเตรียมเอกสารสนับสนุนให้ครบตามที่สถานทูตต้องการ
           </p>
         </div>
 
@@ -88,6 +96,7 @@ export default function SupportedCountriesSection() {
                   <span aria-hidden="true">{country.flag}</span>
                 </div>
                 <div>
+                  <p className="text-[11px] font-black uppercase tracking-wider text-blue-600">{country.region}</p>
                   <h3 className="text-xl font-bold leading-snug text-slate-900">{country.name}</h3>
                   <p className="mt-1 text-sm leading-snug text-slate-600">{country.description}</p>
                 </div>
@@ -110,7 +119,7 @@ export default function SupportedCountriesSection() {
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 rounded-2xl border border-blue-100/80 bg-white/85 px-5 py-5 text-center shadow-[0_14px_44px_rgba(15,23,42,0.07)] backdrop-blur sm:flex-row sm:text-left">
           <p className="text-sm font-bold text-slate-800 sm:text-base">
-            ไม่แน่ใจว่าต้องใช้เอกสารอะไร?
+            หากประเทศปลายทางของคุณไม่อยู่ในรายการ ติดต่อเราได้ที่ LINE @823lateh เพื่อสอบถามเพิ่มเติม
           </p>
           <a
             href="/contact"

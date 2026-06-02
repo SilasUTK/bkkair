@@ -1,13 +1,13 @@
 "use client";
 
-import { Clock, FileText, Globe2, LockKeyhole, MessageCircle, SearchCheck, Sparkles } from "lucide-react";
+import { Clock, FileText, LockKeyhole, MessageCircle, Sparkles } from "lucide-react";
 
 const benefits = [
   {
     icon: FileText,
-    title: "เอกสาร PDF มาตรฐานสถานทูต",
+    title: "เอกสารพร้อมยื่นสถานทูต",
     iconAlt: "visa document service Thailand",
-    description: "ทุกเอกสารถูกจัดรูปแบบตามมาตรฐานที่สถานทูตคาดหวัง เพื่อให้ใช้งานได้สะดวกและพร้อมยื่น",
+    description: "ทุกไฟล์ PDF ผ่านการตรวจสอบมาตรฐานก่อนส่ง ครอบคลุมข้อมูลที่สถานทูตต้องการ",
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
@@ -17,23 +17,10 @@ const benefits = [
     }
   },
   {
-    icon: SearchCheck,
-    title: "ตรวจสอบโดยทีมงานจริง ไม่ใช่ระบบอัตโนมัติ",
-    iconAlt: "visa document service Thailand",
-    description: "ทุกคำขอผ่านการตรวจสอบจากทีมงานที่มีประสบการณ์ด้านเอกสารวีซ่าโดยตรงก่อนส่งให้คุณ",
-    theme: {
-      color: "text-orange-600",
-      bg: "bg-orange-50",
-      border: "border-slate-100 hover:border-orange-200",
-      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(245,158,11,0.18)]",
-      gradient: "from-orange-500 to-amber-400"
-    }
-  },
-  {
     icon: Clock,
-    title: "ส่งภายใน 24 ชั่วโมง (มีแบบ Express)",
+    title: "รับเอกสารภายใน 24 ชั่วโมง",
     iconAlt: "flight reservation for visa",
-    description: "รองรับงานทั้งแบบวางแผนล่วงหน้าและงานเร่งด่วนภายในเวลาทำการ",
+    description: "แพ็กเกจมาตรฐานส่งภายใน 24 ชั่วโมง และแพ็กเกจด่วนภายใน 3–6 ชั่วโมง หลังชำระเงิน",
     theme: {
       color: "text-emerald-600",
       bg: "bg-emerald-50",
@@ -46,7 +33,7 @@ const benefits = [
     icon: LockKeyhole,
     title: "ข้อมูลของคุณปลอดภัย",
     iconAlt: "visa document service Thailand",
-    description: "เราไม่จัดเก็บข้อมูลส่วนตัวของคุณเกินความจำเป็น และไม่เปิดเผยข้อมูลให้บุคคลภายนอก",
+    description: "เราเก็บเฉพาะข้อมูลที่จำเป็นในการจัดทำเอกสาร และลบข้อมูลหลังส่งเสร็จตามนโยบายความเป็นส่วนตัว",
     theme: {
       color: "text-purple-600",
       bg: "bg-purple-50",
@@ -57,28 +44,15 @@ const benefits = [
   },
   {
     icon: MessageCircle,
-    title: "ราคาโปร่งใส ไม่มีค่าใช้จ่ายแอบแฝง",
+    title: "ทีมงานพร้อมดูแลทุกขั้นตอน",
     iconAlt: "visa document service Thailand",
-    description: "ตรวจสอบราคาได้ชัดเจนก่อนสั่งซื้อ ไม่มีค่าใช้จ่ายเพิ่มเติมที่ไม่แจ้งล่วงหน้า",
+    description: "ติดต่อเราผ่าน LINE OA @823lateh วันจันทร์–เสาร์ 09:00–18:00 น. (เวลาไทย)",
     theme: {
       color: "text-sky-600",
       bg: "bg-sky-50",
       border: "border-slate-100 hover:border-sky-200",
       hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(2,132,199,0.12)]",
       gradient: "from-sky-500 to-cyan-400"
-    }
-  },
-  {
-    icon: Globe2,
-    title: "ครอบคลุมหลายประเทศปลายทาง",
-    iconAlt: "flight reservation for visa",
-    description: "รองรับเอกสารสำหรับวีซ่า Schengen, UK, US, Canada, Australia, Japan, South Korea และอีกหลายประเทศ",
-    theme: {
-      color: "text-rose-600",
-      bg: "bg-rose-50",
-      border: "border-slate-100 hover:border-rose-200",
-      hoverShadow: "hover:shadow-[0_20px_40px_-15px_rgba(225,29,72,0.12)]",
-      gradient: "from-rose-500 to-orange-400"
     }
   }
 ];
@@ -115,10 +89,10 @@ export default function WhyChooseUs() {
             </div>
 
             <h2 className="max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
-              เราไม่ได้แค่ส่งเอกสาร — <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เราดูแลให้คุณพร้อมยื่น</span>
+              ทำไมนักเดินทางไทยถึงเลือก BKK AIR
             </h2>
             <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
-              BKK AIR ช่วยจัดเตรียม visa support documents ให้ชัดเจน ถูกต้อง และพร้อมใช้งาน ลดเวลาหาข้อมูลเอง และลดความเสี่ยงจากเอกสารที่ไม่ตรงมาตรฐานสถานทูต
+              เราเข้าใจว่าการยื่นวีซ่าคือขั้นตอนที่ต้องใช้ความละเอียด เอกสารทุกชิ้นของเราจึงผ่านการตรวจสอบโดยทีมงาน ก่อนส่งถึงมือคุณ
             </p>
 
             <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">

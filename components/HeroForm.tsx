@@ -209,11 +209,17 @@ export default function HeroForm() {
           </>
         ) : (
           <>
-            ส่งคำขอเอกสาร
+            สั่งเอกสารเลย →
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </>
         )}
       </button>
+      <p className="text-center text-xs font-semibold leading-relaxed text-slate-500">
+        ส่งภายใน 24 ชั่วโมง · ตรวจสอบโดยทีมงาน · ปลอดภัย 100%
+      </p>
+      <p className="text-center text-[11px] leading-relaxed text-slate-400">
+        *BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนเท่านั้น การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุล
+      </p>
     </form>
   );
 }

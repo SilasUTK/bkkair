@@ -3,26 +3,26 @@ import { Check, ClipboardCheck, CreditCard, FileCheck2, FileText, ShieldCheck } 
 const steps = [
   {
     number: "01",
-    title: "แจ้งประเทศและบริการ",
-    description: "เลือกประเทศและเอกสารที่ต้องใช้ เช่น ใบจองตั๋ว ใบจองโรงแรม หรือชุดเอกสารครบเซ็ต",
+    title: "เลือกแพ็กเกจที่ต้องการ",
+    description: "เลือกประเภทเอกสารที่คุณต้องการ เช่น ใบจองตั๋ว ใบจองโรงแรม หรือแผนการเดินทาง",
     icon: ClipboardCheck,
   },
   {
     number: "02",
-    title: "ส่งข้อมูลและชำระเงิน",
-    description: "กรอกข้อมูลสำคัญตามหนังสือเดินทางและวันเดินทาง ทีมงานยืนยันรายละเอียดก่อนเริ่มงาน",
+    title: "กรอกข้อมูลการเดินทาง",
+    description: "ระบุชื่อ-นามสกุล วันเดินทาง ประเทศปลายทาง และข้อมูลที่จำเป็น ตามแบบฟอร์มของเรา",
     icon: CreditCard,
   },
   {
     number: "03",
-    title: "ทีมงานตรวจสอบ",
-    description: "ผู้เชี่ยวชาญตรวจข้อมูลและจัดทำเอกสาร PDF ตามรูปแบบที่พร้อมใช้ยื่นสถานทูต",
+    title: "ชำระเงินและยืนยันออเดอร์",
+    description: "ชำระผ่านช่องทางที่กำหนด ทีมงานจะยืนยันออเดอร์และเริ่มดำเนินการหลังตรวจข้อมูลครบถ้วน",
     icon: ShieldCheck,
   },
   {
     number: "04",
-    title: "รับไฟล์พร้อมยื่น",
-    description: "รับไฟล์ PDF สำหรับพิมพ์หรือแนบในระบบออนไลน์ พร้อมคำแนะนำการใช้งาน",
+    title: "รับไฟล์ PDF ทางอีเมล",
+    description: "ส่งเอกสาร PDF ไปยังอีเมลที่คุณลงทะเบียน ภายใน 24 ชั่วโมง (หรือ 3–6 ชั่วโมง สำหรับแพ็กเกจ Express)",
     icon: FileCheck2,
   },
 ];
@@ -39,10 +39,10 @@ export default function WorkflowTimeline() {
         <div className="mb-10 max-w-3xl lg:mb-12">
           <p className="text-sm font-black uppercase tracking-[0.28em] text-orange-500">Workflow</p>
           <h2 className="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-5xl">
-            ส่งข้อมูล — รับไฟล์พร้อมยื่น
+            สั่งเอกสารง่าย ๆ แค่ 4 ขั้นตอน
           </h2>
           <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
-            ง่าย รวดเร็ว และตรวจสอบโดยทีมงานจริง ผ่านขั้นตอนที่ออกแบบมาเพื่อให้เอกสารวีซ่าของคุณพร้อมใช้งานอย่างมั่นใจ
+            ไม่ต้องซับซ้อน ไม่ต้องไปที่ไหน ทำได้จากบ้าน
           </p>
         </div>
 
@@ -100,7 +100,7 @@ function ProcessVisual() {
           <div className="flex items-center justify-between border-b border-slate-100 pb-4">
             <div>
               <p className="text-[10px] font-black uppercase tracking-[0.24em] text-slate-400">Visa Support PDF</p>
-              <h3 className="mt-1 text-lg font-extrabold text-slate-950">Embassy Ready Pack</h3>
+              <h3 className="mt-1 text-lg font-extrabold text-slate-950">Visa Support Pack</h3>
             </div>
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-500 text-white shadow-lg shadow-orange-500/25">
               <FileText className="h-5 w-5" />
@@ -125,7 +125,7 @@ function ProcessVisual() {
       </div>
 
       <div className="animate-float-delayed absolute bottom-8 left-8 w-52 rounded-3xl border border-white/15 bg-white/[0.13] p-4 text-white shadow-2xl backdrop-blur-xl">
-        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-orange-200">Booking Confirmation</p>
+        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-orange-200">Support Document Draft</p>
         <div className="mt-4 grid grid-cols-3 gap-2">
           <div className="col-span-2 h-2 rounded-full bg-white/70" />
           <div className="h-2 rounded-full bg-orange-400" />
@@ -138,7 +138,7 @@ function ProcessVisual() {
       </div>
 
       <div className="animate-float-slow absolute right-5 top-16 w-48 rounded-3xl border border-white/15 bg-white/[0.14] p-4 text-white shadow-2xl backdrop-blur-xl">
-        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200">Embassy Checklist</p>
+        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-200">Document Checklist</p>
         <div className="mt-4 space-y-2">
           {["Name match", "Dates checked", "PDF format"].map((label) => (
             <div key={label} className="flex items-center gap-2 text-xs font-bold text-slate-100">
@@ -150,7 +150,7 @@ function ProcessVisual() {
       </div>
 
       <div className="absolute bottom-10 right-8 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-white shadow-xl backdrop-blur-xl">
-        PDF Approved
+        Staff Reviewed
       </div>
     </div>
   );

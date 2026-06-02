@@ -54,14 +54,15 @@ const cardVisuals = {
 const packages = [
   {
     id: "flight",
-    subtitle: "Flight Reservation",
+    subtitle: "Flight Reservation Document",
     name: "ใบจองตั๋วเครื่องบิน",
+    tag: "ใช้ได้กับทุกประเทศ",
     price: "฿500",
     unit: "ต่อคน",
     popular: false,
     icon: PlaneTakeoff,
     orderLink: "/order?package=flight",
-    description: "เหมาะสำหรับผู้ที่ต้องการ flight reservation เพื่อยื่นวีซ่า",
+    description: "เอกสาร PDF แสดงรายละเอียดเส้นทางบิน วันเดินทาง เมืองต้นทางและปลายทาง และหมายเลขเที่ยวบิน เหมาะสำหรับประกอบการยื่นวีซ่าทุกประเทศ",
     theme: {
       color: "text-blue-600",
       bg: "bg-blue-50",
@@ -72,24 +73,25 @@ const packages = [
       checkIcon: "text-blue-500",
     },
     features: [
-      { text: "ใบจองตั๋วเครื่องบินไป-กลับ (Round Trip)", included: true },
+      { text: "เอกสารใบจองตั๋วเครื่องบินไป-กลับ (Round Trip)", included: true },
       { text: "แสดงชื่อผู้โดยสารตามหนังสือเดินทาง", included: true },
       { text: "แสดงวันเดินทาง เมืองต้นทาง และปลายทาง", included: true },
       { text: "แสดงหมายเลขเที่ยวบินและสายการบิน", included: true },
-      { text: "PDF มาตรฐานสถานทูต ตรวจสอบโดยทีมงาน", included: true },
+      { text: "PDF สำหรับประกอบการยื่นวีซ่า ตรวจสอบโดยทีมงาน", included: true },
     ],
   },
 
   {
     id: "hotel",
-    subtitle: "Hotel Reservation",
+    subtitle: "Hotel Reservation Document",
     name: "ใบจองโรงแรม",
+    tag: "ยอดนิยม",
     price: "฿500",
     unit: "ต่อคน",
     popular: false,
     icon: Hotel,
     orderLink: "/order?package=hotel",
-    description: "เหมาะสำหรับผู้ที่ต้องการหลักฐานที่พักสำหรับยื่นวีซ่า",
+    description: "เอกสาร PDF แสดงรายละเอียดที่พัก วันเช็คอิน-เช็คเอาท์ ที่อยู่โรงแรม และชื่อผู้เข้าพัก ครบตามที่สถานทูตต้องการ",
     theme: {
       color: "text-[#FF5722]",
       bg: "bg-orange-50",
@@ -100,24 +102,25 @@ const packages = [
       checkIcon: "text-orange-500",
     },
     features: [
-      { text: "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง", included: true },
+      { text: "เอกสารใบจองโรงแรมตามระยะเวลาการเดินทาง", included: true },
       { text: "แสดงชื่อผู้เข้าพักตามหนังสือเดินทาง", included: true },
       { text: "แสดงชื่อโรงแรม ที่อยู่ วันเช็คอิน-เอาท์", included: true },
       { text: "ครอบคลุมทุกคืนของการเดินทาง", included: true },
-      { text: "PDF มาตรฐานสถานทูต ตรวจสอบโดยทีมงาน", included: true },
+      { text: "PDF สำหรับประกอบการยื่นวีซ่า ตรวจสอบโดยทีมงาน", included: true },
     ],
   },
 
   {
     id: "itinerary",
     subtitle: "Travel Itinerary",
-    name: "เอกสารแผนการเดินทาง",
+    name: "แผนการเดินทาง",
+    tag: "แนะนำสำหรับ Schengen",
     price: "฿700",
     unit: "ต่อคน",
     popular: false,
     icon: MapPinned,
     orderLink: "/order?package=itinerary",
-    description: "เหมาะสำหรับผู้ที่ต้องการแผนการเดินทางรายวันประกอบเอกสารยื่นวีซ่า",
+    description: "เอกสาร PDF แสดงกำหนดการเดินทางวันต่อวัน สถานที่ท่องเที่ยว และกิจกรรมตลอดการเดินทาง",
     theme: {
       color: "text-emerald-600",
       bg: "bg-emerald-50",
@@ -130,9 +133,9 @@ const packages = [
     features: [
       { text: "แผนการเดินทางรายวัน (Day-by-Day Itinerary)", included: true },
       { text: "ระบุสถานที่พัก เมือง และกิจกรรมหลัก", included: true },
-      { text: "รูปแบบที่สถานทูตส่วนใหญ่ยอมรับ", included: true },
+      { text: "รูปแบบที่ใช้ประกอบแฟ้มเอกสารวีซ่าได้", included: true },
       { text: "ปรับแต่งตามเส้นทางจริงของคุณ", included: true },
-      { text: "PDF มาตรฐานสถานทูต ตรวจสอบโดยทีมงาน", included: true },
+      { text: "PDF สำหรับประกอบการยื่นวีซ่า ตรวจสอบโดยทีมงาน", included: true },
     ],
   },
 
@@ -158,10 +161,10 @@ const packages = [
       checkIcon: "text-sky-500",
     },
     features: [
-      { text: "ใบจองตั๋วเครื่องบินไป-กลับ", included: true },
-      { text: "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง", included: true },
+      { text: "เอกสารใบจองตั๋วเครื่องบินไป-กลับ", included: true },
+      { text: "เอกสารใบจองโรงแรมตามระยะเวลาการเดินทาง", included: true },
       { text: "ข้อมูลผู้เดินทางตรงตามหนังสือเดินทาง", included: true },
-      { text: "PDF พร้อมยื่นสถานทูต", included: true },
+      { text: "PDF สำหรับประกอบการยื่นวีซ่า", included: true },
       { text: "ประหยัดกว่าสั่งแยก ฿200", included: true },
     ],
   },
@@ -188,8 +191,8 @@ const packages = [
       checkIcon: "text-purple-500",
     },
     features: [
-      { text: "ใบจองตั๋วเครื่องบินไป-กลับ", included: true },
-      { text: "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง", included: true },
+      { text: "เอกสารใบจองตั๋วเครื่องบินไป-กลับ", included: true },
+      { text: "เอกสารใบจองโรงแรมตามระยะเวลาการเดินทาง", included: true },
       { text: "แผนการเดินทางรายวัน", included: true },
       { text: "เอกสารทั้ง 3 รายการสอดคล้องกัน", included: true },
       { text: "ประหยัดกว่าสั่งแยก ฿200", included: true },
@@ -198,8 +201,9 @@ const packages = [
 
   {
     id: "complete",
-    subtitle: "Complete Visa Support Package",
-    name: "ชุดเอกสารครบเซ็ต",
+    subtitle: "Complete Document Package",
+    name: "ชุดเอกสารครบชุด",
+    tag: "ประหยัดที่สุด",
     originalPrice: "฿4,200",
     price: "฿3,500",
     save: "฿700",
@@ -207,7 +211,7 @@ const packages = [
     popular: true,
     icon: Package,
     orderLink: "/order?package=complete",
-    description: "บริการดูแลครบวงจรสำหรับผู้ที่ต้องการเอกสารพร้อมยื่นแบบมั่นใจ",
+    description: "รวมใบจองตั๋ว + ใบจองโรงแรม + แผนการเดินทาง ในไฟล์ PDF เดียว ครบทุกอย่างที่สถานทูตต้องการ ในราคาพิเศษกว่าซื้อแยก",
     theme: {
       color: "text-[#FF5722]",
       bg: "bg-orange-50",
@@ -218,12 +222,12 @@ const packages = [
       checkIcon: "text-orange-500",
     },
     features: [
-      { text: "ใบจองตั๋วเครื่องบินไป-กลับ", included: true },
-      { text: "ใบจองโรงแรมตลอดระยะเวลาการเดินทาง", included: true },
+      { text: "เอกสารใบจองตั๋วเครื่องบินไป-กลับ", included: true },
+      { text: "เอกสารใบจองโรงแรมตามระยะเวลาการเดินทาง", included: true },
       { text: "แผนการเดินทางรายวัน", included: true },
       { text: "เอกสารแนะนำตัว Cover Letter", included: true },
       { text: "คำแนะนำเอกสารที่ต้องใช้ทั้งหมดเฉพาะประเทศ", included: true },
-      { text: "PDF มาตรฐานสถานทูต", included: true },
+      { text: "PDF สำหรับประกอบการยื่นวีซ่า", included: true },
       { text: "ตรวจสอบโดยทีมงานจริง", included: true },
     ],
   },
@@ -325,11 +329,11 @@ export default function ServicePackages() {
           </div>
 
           <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
-            เลือกแพ็กเกจเอกสารยื่นวีซ่าที่เหมาะกับคุณ
+            แพ็กเกจบริการของเรา
           </h2>
 
           <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
-            ทุกแพ็กเกจแสดงราคาจริงต่อคน ตรวจสอบโดยทีมงานจริง และส่งเป็น PDF มาตรฐานสถานทูตภายใน 24 ชั่วโมง
+            เลือกเอกสารที่คุณต้องการ หรือสั่งแบบครบชุดในราคาพิเศษ
           </p>
           <p className="mt-3 text-sm font-bold text-slate-400">
             เลื่อนซ้าย–ขวา หรือกดลูกศรเพื่อดูแพ็กเกจทั้งหมด
@@ -414,6 +418,11 @@ export default function ServicePackages() {
                     <p className="min-h-[48px] text-sm leading-relaxed text-slate-500">
                       {pkg.description}
                     </p>
+                    {pkg.tag && (
+                      <p className="mt-3 inline-flex w-fit rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-black text-slate-600">
+                        {pkg.tag}
+                      </p>
+                    )}
                     <PriceBlock pkg={pkg} />
 
                     <ul className="mt-6 space-y-3">
@@ -449,7 +458,7 @@ export default function ServicePackages() {
 
                     <div className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-600">
                       <Clock className={`h-3.5 w-3.5 ${pkg.theme.checkIcon}`} />
-                      ส่งภายใน 24 ชั่วโมง
+                      ทีมงานแจ้งเวลาส่งหลังตรวจคำขอ
                     </div>
 
                     <div className="mt-auto pt-6">
@@ -457,7 +466,7 @@ export default function ServicePackages() {
                         onClick={() => goToOrder(pkg.orderLink)}
                         className={`w-full rounded-2xl py-3.5 text-sm font-bold transition-all duration-300 ${pkg.theme.btnClass}`}
                       >
-                        สั่งเลย
+                        ส่งคำขอ
                       </button>
                     </div>
                   </div>
@@ -474,10 +483,14 @@ export default function ServicePackages() {
         {/* Footer */}
         <div className="mt-14 rounded-3xl border border-blue-100/70 bg-white/85 px-6 py-6 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
           <p className="text-sm font-semibold leading-relaxed text-slate-600">
+            *เอกสารทั้งหมดเป็นเอกสารสนับสนุนการยื่นวีซ่าเท่านั้น ไม่ใช่การจองตั๋วหรือโรงแรมจริง และไม่มีผลผูกพันทางธุรกิจ
+          </p>
+          <p className="mt-3 text-sm font-semibold leading-relaxed text-slate-600">
             ราคาเป็นราคาต่อคน ยกเว้นประกันการเดินทางที่ขึ้นอยู่กับแผนและระยะเวลาการเดินทาง
           </p>
           <p className="mt-3 text-sm font-semibold leading-relaxed text-slate-600">
-            BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูต
+            BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น เอกสารเหล่านี้ไม่ใช่ตั๋วจริงหรือการจองจริง
+            และการอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุลเท่านั้น
           </p>
         </div>
       </div>

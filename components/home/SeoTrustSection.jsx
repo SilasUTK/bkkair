@@ -4,8 +4,8 @@ import React from "react";
 const features = [
   {
     icon: "🔐",
-    title: "ข้อมูลส่วนตัวปลอดภัย",
-    desc: "เราเก็บรวบรวมข้อมูลเท่าที่จำเป็นสำหรับการจัดทำเอกสารเท่านั้น ไม่มีการขายหรือแชร์ข้อมูลให้บุคคลภายนอก",
+    title: "ตรวจสอบโดยทีมงานจริง",
+    desc: "เอกสารทุกชิ้นผ่านการตรวจสอบความถูกต้องโดยทีมงาน BKK AIR ก่อนส่งให้คุณทุกครั้ง",
     color: {
       bg: "bg-orange-100",
       icon: "text-accent-orange",
@@ -15,8 +15,8 @@ const features = [
   },
   {
     icon: "🛡️",
-    title: "ระบบชำระเงินที่ปลอดภัย",
-    desc: "การชำระเงินผ่านช่องทางที่เข้ารหัส — เราไม่จัดเก็บข้อมูลบัตรเครดิตหรือบัญชีธนาคารของคุณ",
+    title: "ปลอดภัยตาม PDPA",
+    desc: "เราเก็บข้อมูลเฉพาะที่จำเป็น และดำเนินการตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 ของไทย",
     color: {
       bg: "bg-blue-100",
       icon: "text-primary-dark",
@@ -26,8 +26,8 @@ const features = [
   },
   {
     icon: "📄",
-    title: "เอกสารสนับสนุนวีซ่า ไม่ใช่การรับประกันวีซ่า",
-    desc: "BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนเท่านั้น การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลในทุกกรณี",
+    title: "ระบบ SSL/TLS เข้ารหัสทุกการส่งข้อมูล",
+    desc: "ข้อมูลของคุณถูกส่งผ่านการเข้ารหัส SSL/TLS ตลอดเวลา ไม่มีการเก็บข้อมูลบัตรเครดิตในระบบ",
     color: {
       bg: "bg-emerald-100",
       icon: "text-emerald-600",
@@ -37,8 +37,8 @@ const features = [
   },
   {
     icon: "💬",
-    title: "โปร่งใสทุกขั้นตอน",
-    desc: "คุณรู้ว่าจ่ายค่าอะไร ได้รับอะไร และกระบวนการเป็นอย่างไร — ก่อนที่จะสั่งซื้อ",
+    title: "นโยบายคืนเงินชัดเจน",
+    desc: "ยกเลิกก่อนเริ่มงานคืน 100% · หลังเริ่มงานคืน 50% · ส่งแล้วไม่คืน — อ่านรายละเอียดใน Terms of Service",
     color: {
       bg: "bg-purple-100",
       icon: "text-purple-600",
@@ -66,20 +66,11 @@ export default function SeoTrustSection() {
           </div>
 
           <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl lg:text-5xl">
-            คุณฝากข้อมูลไว้กับเรา
-            <br className="hidden sm:block" />
-            <span className="relative inline-block mt-2">
-              <span className="relative z-10 text-accent-orange">
-                เราจริงจังกับเรื่องนี้
-              </span>
-              <svg className="absolute -bottom-3 left-0 -z-10 h-3 w-full text-accent-orange/20" viewBox="0 0 100 10" preserveAspectRatio="none">
-                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" strokeLinecap="round"/>
-              </svg>
-            </span>
+            ปลอดภัย โปร่งใส เชื่อถือได้
           </h2>
 
           <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
-            BKK AIR ออกแบบระบบและกระบวนการให้ข้อมูลของคุณปลอดภัยทุกขั้นตอน สำหรับ visa document service Thailand ที่เน้น safe visa support และเอกสารวีซ่าปลอดภัย
+            เราออกแบบทุกขั้นตอนโดยคำนึงถึงความปลอดภัยของข้อมูลคุณเป็นอันดับแรก
           </p>
         </div>
 
@@ -107,7 +98,8 @@ export default function SeoTrustSection() {
 
           <div className="mx-auto mt-12 max-w-5xl rounded-2xl border border-orange-100 bg-white p-6 md:p-8 shadow-[0_4px_20px_rgba(15,23,42,0.06)]">
           <p className="text-base font-semibold leading-relaxed text-slate-700">
-            เราไม่ใช่ตัวแทนวีซ่า ไม่ได้มีความสัมพันธ์พิเศษกับสถานทูตใด ๆ และไม่รับประกันผลการยื่นวีซ่า
+            เราไม่ใช่ตัวแทนวีซ่า ไม่ได้มีความสัมพันธ์พิเศษกับสถานทูตใด ๆ ไม่ออกตั๋วจริงหรือยืนยันโรงแรมจริง
+            และการอนุมัติวีซ่าเป็นการตัดสินใจของสถานทูตหรือสถานกงสุลแต่เพียงผู้เดียว
           </p>
           <a href="/privacy-policy" className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700 underline underline-offset-4 transition-colors hover:text-blue-900">
             อ่านนโยบายความเป็นส่วนตัว →

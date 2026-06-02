@@ -48,7 +48,7 @@ export default function Footer({ onNavigate }) {
   return (
     <footer
       id="contact"
-      className="relative mt-16 overflow-hidden rounded-t-[3rem] bg-primary-navy pb-10 pt-14 font-sans text-slate-300 shadow-2xl sm:rounded-t-[4rem] md:pb-12 md:pt-16"
+      className="relative mt-12 overflow-hidden rounded-t-[3rem] bg-primary-navy pb-9 pt-12 font-sans text-slate-300 shadow-2xl sm:rounded-t-[4rem] md:pb-10 md:pt-14"
     >
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -63,9 +63,7 @@ export default function Footer({ onNavigate }) {
           <section aria-label="BKK AIR">
             <Logo variant="footer" />
             <p className="mt-4 text-sm font-medium leading-relaxed text-slate-400">
-              บริการจัดเตรียมเอกสารสนับสนุนวีซ่า สําหรับนักเดินทางชาวไทย ส่ง{" "}
-              <strong className="font-semibold text-slate-300">PDF พร้อมยื่นสถานทูต</strong>{" "}
-              ภายใน 24 ชั่วโมง
+              บริการจัดเตรียมเอกสารสนับสนุนวีซ่า สำหรับนักเดินทางชาวไทย ส่ง PDF พร้อมยื่นสถานทูต ภายใน 24 ชั่วโมง
             </p>
             <div className="mt-6 flex items-center gap-3">
               <a
@@ -137,12 +135,12 @@ export default function Footer({ onNavigate }) {
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
                 <Clock className="h-5 w-5 shrink-0 text-amber-400" />
                 <p>
-                  Monday-Saturday <span className="font-semibold text-white">09:00-18:00 (Thailand Time)</span>
+                  Monday–Saturday <span className="font-semibold text-white">09:00–18:00 (Thailand Time)</span>
                 </p>
               </li>
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
                 <MapPin className="h-5 w-5 shrink-0 text-accent-orange" />
-                <p>Bangkok, Thailand (Thailand-based operations)</p>
+                <p>Bangkok, Thailand</p>
               </li>
             </ul>
             <div className="mt-4 rounded-xl border border-slate-700 bg-white/5 px-3 py-2 text-xs leading-relaxed text-slate-400">
@@ -155,16 +153,13 @@ export default function Footer({ onNavigate }) {
         {/* ── Legal Disclaimer ── */}
         <div className="mt-10 rounded-2xl border border-slate-800 bg-white/5 px-6 py-4">
           <p className="text-center text-xs leading-relaxed text-slate-500">
-            BKK AIR ให้บริการจัดเตรียม
-            <strong className="text-slate-400">เอกสารสนับสนุนวีซ่า</strong>เท่านั้น
-            เราไม่ใช่ตัวแทนวีซ่า ไม่มีความสัมพันธ์กับสถานทูต และไม่รับประกันการอนุมัติวีซ่า
-            การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลในทุกกรณี
+            BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น เราไม่ใช่ตัวแทนวีซ่า ไม่มีความสัมพันธ์กับสถานทูต และไม่รับประกันผลการอนุมัติวีซ่า การตัดสินใจอนุมัติวีซ่าเป็นอำนาจของสถานทูตหรือสถานกงสุลทุกกรณี
           </p>
         </div>
 
         {/* ── Bottom Bar ── */}
         <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-sm font-medium text-slate-500 md:flex-row">
-          <p>© 2026 BKK AIR. สงวนลิขสิทธิ์ทุกประการ</p>
+          <p>© 2026 BKK AIR สงวนลิขสิทธิ์ทุกประการ</p>
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             {legalLinks.map((link) => (
               <Link key={link.href} href={link.href} className="transition-colors hover:text-white">

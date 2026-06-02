@@ -1,23 +1,5 @@
-import { MessageSquareHeart, ShieldCheck, FileCheck2, Mail, MessageCircle } from "lucide-react";
+import { MessageSquareHeart, ShieldCheck } from "lucide-react";
 import React from "react";
-
-const feedbackSources = [
-  {
-    icon: MessageCircle,
-    title: "Submitted via LINE OA",
-    description: "ข้อเสนอแนะที่ลูกค้าส่งหลังได้รับเอกสารและปิดงานแล้ว",
-  },
-  {
-    icon: Mail,
-    title: "Feedback via Email",
-    description: "ข้อคิดเห็นจากลูกค้าที่ตอบกลับอีเมลหลังการส่งมอบเอกสาร",
-  },
-  {
-    icon: FileCheck2,
-    title: "After Service Completion",
-    description: "เผยแพร่เฉพาะ feedback ที่มีแหล่งที่มาชัดเจนและตรวจสอบได้",
-  },
-];
 
 export default function Testimonials() {
   return (
@@ -36,44 +18,25 @@ export default function Testimonials() {
           </div>
           
           <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
-            ความคิดเห็นลูกค้าและแหล่งที่มา
-            <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">เผยแพร่แบบโปร่งใสและตรวจสอบได้</span>
+            ลูกค้าพูดถึงเรา
           </h2>
           
           <p className="mt-6 text-lg font-medium leading-relaxed text-slate-600">
-            BKK AIR เผยแพร่เฉพาะความคิดเห็นที่มีแหล่งที่มาชัดเจนหลังให้บริการเสร็จสิ้น หากยังไม่มีข้อมูลที่ยืนยันได้ เราจะไม่แสดงรีวิวเชิงอ้างอิง
+            รีวิวจากนักเดินทางจริงที่ใช้บริการ BKK AIR
           </p>
         </div>
 
-        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3 md:gap-8">
-          {feedbackSources.map((source) => {
-            const Icon = source.icon;
-            return (
-              <article
-                key={source.title}
-                className="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 md:p-8 shadow-[0_4px_20px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(15,23,42,0.09)]"
-              >
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <h3 className="text-sm font-bold text-slate-900">{source.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{source.description}</p>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-orange-200 bg-white/90 px-6 py-5 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-          <p className="text-sm font-semibold leading-relaxed text-slate-600">
-            ความคิดเห็นเหล่านี้เป็นประสบการณ์ส่วนบุคคลของลูกค้า และไม่รับประกันผลการอนุมัติวีซ่า
+        <div className="mx-auto max-w-3xl rounded-3xl border border-orange-200 bg-white/90 px-6 py-8 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
+          <p className="text-base font-semibold leading-relaxed text-slate-700">
+            [รอข้อมูลรีวิวจริงจากลูกค้า — ห้ามใช้รีวิวปลอมหรือตัวเลขที่ไม่เป็นความจริง]
           </p>
           <p className="mt-2 text-xs leading-relaxed text-slate-500">
-            BKK AIR จะเผยแพร่รีวิวต่อสาธารณะเฉพาะเมื่อสามารถระบุแหล่งที่มาและช่วงเวลาการเก็บข้อมูลได้ชัดเจน
+            ก่อนเผยแพร่รีวิวจริง ต้องยืนยันแหล่งที่มาจาก LINE OA หรืออีเมล และไม่ใช้ชื่อ รูปภาพ หรือคะแนนที่แต่งขึ้น
           </p>
         </div>
 
         <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-center text-sm font-semibold text-slate-700">
-          <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-emerald-600" /> No fake ratings, no fabricated endorsements, no visa guarantee claims</span>
+          <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-emerald-600" /> No fake ratings, no fabricated endorsements, no visa outcome claims</span>
         </div>
       </div>
     </section>
