@@ -15,3 +15,4 @@ build_hostinger
 pm2-logs
 
 public/bkkair-OLD/
+public/*-OLD*/
