@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  ArrowUp,
+  CheckCircle2,
+  Clock,
+  Copy,
+  Database,
+  Globe2,
+  Mail,
+  Search,
+  Shield,
+  Sparkles,
+  UserCheck,
+} from "lucide-react";
 import MarketingShell from "../../components/marketing/MarketingShell";
 
 export const metadata: Metadata = {
-  title: "นโยบายความเป็นส่วนตัว — BKK AIR",
+  title: "นโยบายความเป็นส่วนตัว | BKK AIR",
   description:
-    "BKK AIR ให้ความสำคัญกับความเป็นส่วนตัวของคุณ อ่านนโยบายการเก็บรวบรวม ใช้ และปกป้องข้อมูลส่วนบุคคลของเรา",
+    "นโยบายความเป็นส่วนตัวของ BKK AIR เกี่ยวกับการเก็บรวบรวม ใช้ เปิดเผย และดูแลข้อมูลส่วนบุคคลของผู้ใช้บริการตามแนวทาง PDPA",
   alternates: {
     canonical: "https://bkkair.com/privacy-policy",
   },
@@ -16,399 +29,673 @@ export const metadata: Metadata = {
 };
 
 const tableOfContents = [
-  { id: "introduction", label: "1. บทนำ" },
-  { id: "collected-data", label: "2. ข้อมูลที่เราเก็บรวบรวม" },
-  { id: "purpose-of-use", label: "3. วัตถุประสงค์การใช้ข้อมูล" },
-  { id: "third-party-disclosure", label: "4. การเปิดเผยข้อมูลแก่บุคคลภายนอก" },
-  { id: "retention", label: "5. ระยะเวลาการเก็บข้อมูล" },
-  { id: "security", label: "6. ความปลอดภัยของข้อมูล" },
-  { id: "cookies", label: "7. คุกกี้ (Cookies)" },
-  { id: "rights", label: "8. สิทธิ์ของคุณ (Your Rights)" },
-  { id: "international-transfer", label: "9. การโอนข้อมูลระหว่างประเทศ" },
-  { id: "minors", label: "10. ความเป็นส่วนตัวของผู้เยาว์" },
-  { id: "external-links", label: "11. ลิงก์ไปยังเว็บไซต์ภายนอก" },
-  { id: "policy-updates", label: "12. การเปลี่ยนแปลงนโยบายนี้" },
-  { id: "privacy-contact", label: "13. ติดต่อเราเรื่องความเป็นส่วนตัว" },
-  { id: "plain-summary", label: "สรุปสั้น ๆ" },
-  { id: "compliance-note", label: "Compliance Note และ Disclaimer" },
+  { id: "section-1", label: "1. บทนำ" },
+  { id: "section-2", label: "2. ผู้ควบคุมข้อมูล" },
+  { id: "section-3", label: "3. ข้อมูลที่เก็บรวบรวม" },
+  { id: "section-4", label: "4. ฐานทางกฎหมาย" },
+  { id: "section-5", label: "5. วัตถุประสงค์การใช้" },
+  { id: "section-6", label: "6. การเปิดเผยต่อภายนอก" },
+  { id: "section-7", label: "7. ระยะเวลาเก็บข้อมูล" },
+  { id: "section-8", label: "8. ความปลอดภัยข้อมูล" },
+  { id: "section-9", label: "9. คุกกี้ (Cookies)" },
+  { id: "section-10", label: "10. สิทธิ์ของผู้ใช้บริการ" },
+  { id: "section-11", label: "11. โอนข้อมูลต่างประเทศ" },
+  { id: "section-12", label: "12. ความเป็นส่วนตัวผู้เยาว์" },
+  { id: "section-13", label: "13. ลิงก์ไปยังภายนอก" },
+  { id: "section-14", label: "14. การปรับปรุงนโยบาย" },
+  { id: "section-15", label: "15. ติดต่อเรื่องความปลอดภัย" },
+  { id: "section-16", label: "สรุปสั้น ๆ (TL;DR)" },
+  { id: "section-17", label: "Compliance Note" },
 ];
+
+function PolicySection({
+  id,
+  title,
+  children,
+}: {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section
+      id={id}
+      className="policy-section scroll-mt-28 rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/20 sm:p-7"
+    >
+      <div className="mb-4 flex items-start justify-between gap-4">
+        <h2 className="text-xl font-black tracking-tight text-white sm:text-2xl">
+          {title}
+        </h2>
+        <button
+          type="button"
+          className="copy-section-link shrink-0 rounded-lg border border-slate-700 bg-slate-800 p-2 text-slate-400 transition hover:border-blue-500 hover:text-white"
+          data-section-id={id}
+          aria-label={`Copy link to ${title}`}
+        >
+          <Copy className="h-4 w-4" />
+        </button>
+      </div>
+      <div className="space-y-4 text-sm leading-relaxed text-slate-300 sm:text-base">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function InfoCard({
+  icon,
+  title,
+  children,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
+      <div className="mb-3 flex items-center gap-3">
+        <span className="rounded-xl bg-blue-500/10 p-2 text-blue-400">{icon}</span>
+        <h3 className="font-black text-white">{title}</h3>
+      </div>
+      <div className="text-sm leading-relaxed text-slate-300">{children}</div>
+    </div>
+  );
+}
 
 export default function PrivacyPolicyPage() {
   return (
     <MarketingShell>
-      <article className="bg-white px-6 py-16 md:py-24 lg:px-8">
-        <div className="mx-auto max-w-6xl scroll-smooth">
-          <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="font-semibold text-slate-600 transition hover:text-[#2563EB]">
-                  หน้าแรก
-                </Link>
-              </li>
-              <li aria-hidden="true">›</li>
-              <li className="font-semibold text-slate-900">นโยบายความเป็นส่วนตัว</li>
-            </ol>
-          </nav>
+      <article className="relative min-h-screen overflow-hidden bg-[#090d16] text-slate-200 selection:bg-blue-600 selection:text-white">
+        <div className="pointer-events-none absolute left-8 top-10 h-80 w-80 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="pointer-events-none absolute right-0 top-96 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-24 left-1/4 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
 
-          <header className="mt-6 rounded-3xl border border-slate-200 bg-[#F8FAFC] p-6 sm:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#2563EB]">Privacy Policy</p>
-            <h1 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+        <section className="relative border-b border-slate-800 bg-gradient-to-b from-blue-950/45 via-[#090d16] to-[#090d16] px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl text-center">
+            <nav
+              aria-label="Breadcrumb"
+              className="mb-5 flex items-center justify-center gap-2 text-xs font-semibold text-slate-400"
+            >
+              <Link href="/" className="transition hover:text-blue-400">
+                หน้าแรก
+              </Link>
+              <span aria-hidden="true">/</span>
+              <span className="text-slate-200">นโยบายความเป็นส่วนตัว</span>
+            </nav>
+
+            <span className="inline-flex rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-black uppercase tracking-[0.2em] text-blue-400">
+              Privacy Guard
+            </span>
+            <h1 className="mx-auto mt-4 max-w-4xl text-3xl font-black tracking-tight text-white sm:text-5xl">
               นโยบายความเป็นส่วนตัว
-              <span className="mt-2 block text-xl font-extrabold text-slate-600 sm:text-2xl">Privacy Policy</span>
             </h1>
-            <p className="mt-5 text-sm font-bold text-slate-600 sm:text-base">อัปเดตล่าสุด: 18 พฤษภาคม 2569 (2026)</p>
-            <div className="mt-5 space-y-2 text-base leading-relaxed text-slate-700 sm:text-lg">
-              <p>BKK AIR ให้ความสำคัญกับความเป็นส่วนตัวของคุณอย่างจริงจัง</p>
-              <p>เราเขียนนโยบายนี้ให้อ่านเข้าใจได้ง่าย ไม่ใช่แค่ภาษากฎหมาย</p>
-              <p>เพื่อให้คุณรู้ชัดเจนว่าเราเก็บข้อมูลอะไร ใช้ทำอะไร และปกป้องอย่างไร</p>
+            <p className="mt-3 text-sm font-black uppercase tracking-[0.2em] text-blue-400">
+              Privacy Policy
+            </p>
+            <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-slate-400 sm:text-base">
+              BKK AIR ให้ความสำคัญกับความเป็นส่วนตัวของผู้ใช้บริการ
+              และดูแลจัดการข้อมูลส่วนบุคคลอย่างรัดกุมตามแนวทางของพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล
+              พ.ศ. 2562 (PDPA)
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-bold text-slate-500">
+              <span className="inline-flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                อัปเดตล่าสุด: 18 พฤษภาคม 2569 (2026)
+              </span>
+              <span className="rounded border border-blue-900/40 bg-blue-950/40 px-2.5 py-1 text-blue-300">
+                PDPA Compliant
+              </span>
             </div>
-          </header>
+          </div>
+        </section>
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_17rem] lg:items-start">
-            <main className="min-w-0 space-y-8">
-              <section className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8" aria-labelledby="toc-heading">
-                <h2 id="toc-heading" className="text-2xl font-black text-slate-900">
-                  สารบัญนโยบายความเป็นส่วนตัว
-                </h2>
-                <p className="mt-2 text-slate-600">เลือกหัวข้อเพื่อไปยังส่วนที่ต้องการอ่านได้ทันที</p>
-                <ul className="mt-5 grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+        <main className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="inline-flex w-fit rounded-2xl border border-slate-700 bg-slate-800/80 p-1.5">
+              <a
+                href="#full-policy"
+                className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-blue-600/10"
+              >
+                อ่านฉบับเต็ม
+              </a>
+              <a
+                href="#section-16"
+                className="rounded-xl px-5 py-2.5 text-sm font-black text-slate-400 transition hover:text-white"
+              >
+                สรุปสั้น ๆ
+              </a>
+            </div>
+
+            <label className="relative block w-full max-w-md">
+              <span className="sr-only">ค้นหาตามคำสำคัญ</span>
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500" />
+              <input
+                id="policySearchInput"
+                type="search"
+                placeholder="ค้นหาตามคำสำคัญ..."
+                className="w-full rounded-xl border border-slate-700 bg-slate-800/70 py-2.5 pl-10 pr-4 text-sm font-semibold text-white outline-none transition placeholder:text-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30"
+              />
+            </label>
+          </div>
+
+          <div
+            id="searchNotice"
+            className="mb-6 hidden rounded-xl border border-blue-800/50 bg-blue-950/40 p-4 text-sm font-semibold text-blue-300"
+          >
+            กำลังแสดงเฉพาะหัวข้อที่พบจากคำค้นหา
+          </div>
+
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
+            <aside className="hidden max-h-[calc(100vh-120px)] space-y-6 overflow-y-auto pr-2 lg:sticky lg:top-24 lg:col-span-3 lg:block">
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 backdrop-blur">
+                <div className="mb-4 flex items-center justify-between border-b border-slate-800 pb-3">
+                  <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                    ในหน้านี้
+                  </span>
+                  <span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-xs font-black text-blue-400">
+                    17 หัวข้อ
+                  </span>
+                </div>
+                <nav className="space-y-1">
                   {tableOfContents.map((item) => (
-                    <li key={item.id}>
-                      <a
-                        href={`#${item.id}`}
-                        className="block rounded-xl border border-slate-200 bg-[#F8FAFC] px-3 py-2 font-semibold text-slate-700 transition hover:border-blue-200 hover:text-[#2563EB]"
-                      >
-                        {item.label}
-                      </a>
-                    </li>
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      className="toc-link block rounded-r-md border-l-2 border-transparent px-3 py-1.5 pl-4 text-xs font-bold text-slate-400 transition hover:border-slate-600 hover:text-white"
+                    >
+                      {item.label}
+                    </a>
                   ))}
-                </ul>
-              </section>
+                </nav>
+              </div>
 
-              <section className="space-y-8 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8">
-                <section id="introduction" className="scroll-mt-28 space-y-4">
-                  <h2 className="text-2xl font-black text-slate-900">1. บทนำ</h2>
-                  <p className="leading-relaxed text-slate-700">
-                    BKK AIR (&quot;เรา&quot;, &quot;ของเรา&quot;) ดำเนินกิจการบริการจัดเตรียมเอกสารสนับสนุนวีซ่าสำหรับนักเดินทาง ผ่านเว็บไซต์ bkkair.com
-                  </p>
-                  <p className="leading-relaxed text-slate-700">
-                    นโยบายความเป็นส่วนตัวฉบับนี้อธิบายว่า BKK AIR เก็บรวบรวม ใช้ เปิดเผย และปกป้องข้อมูลส่วนบุคคลของคุณอย่างไร เมื่อคุณใช้บริการของเรา
-                  </p>
-                  <p className="leading-relaxed text-slate-700">การใช้บริการของ BKK AIR ถือว่าคุณได้อ่านและยอมรับนโยบายนี้แล้ว</p>
-                </section>
-
-                <section id="collected-data" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">2. ข้อมูลที่เราเก็บรวบรวม</h2>
-                  <p className="leading-relaxed text-slate-700">เราเก็บเฉพาะข้อมูลที่จำเป็นสำหรับการให้บริการเท่านั้น แบ่งออกเป็น 2 ประเภท:</p>
-
-                  <section className="space-y-3">
-                    <h3 className="text-xl font-extrabold text-slate-900">2.1 ข้อมูลที่คุณให้เราโดยตรง</h3>
-                    <p className="leading-relaxed text-slate-700">เมื่อคุณสั่งซื้อบริการ คุณจะให้ข้อมูลดังต่อไปนี้:</p>
-                    <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                      <li><strong>ชื่อ-นามสกุล</strong> ของผู้เดินทาง (ตามหนังสือเดินทาง)</li>
-                      <li><strong>วันเดินทาง</strong> และประเทศปลายทาง</li>
-                      <li><strong>ประเทศที่ยื่นวีซ่า</strong></li>
-                      <li><strong>ที่อยู่อีเมล</strong> สำหรับรับเอกสารและการสื่อสาร</li>
-                      <li><strong>หมายเลขโทรศัพท์</strong> สำหรับติดต่อกรณีจำเป็น</li>
-                      <li>
-                        <strong>ข้อมูลการชำระเงิน</strong> — ประมวลผลผ่านผู้ให้บริการชำระเงินที่ได้รับการรับรอง
-                        เราไม่จัดเก็บข้อมูลบัตรเครดิตหรือบัญชีธนาคารของคุณ
-                      </li>
-                    </ul>
-                  </section>
-
-                  <section className="space-y-3">
-                    <h3 className="text-xl font-extrabold text-slate-900">2.2 ข้อมูลที่ระบบเก็บโดยอัตโนมัติ</h3>
-                    <p className="leading-relaxed text-slate-700">เมื่อคุณเยี่ยมชมเว็บไซต์ของเรา ระบบอาจเก็บข้อมูลทางเทคนิคโดยอัตโนมัติ ได้แก่:</p>
-                    <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                      <li>IP address</li>
-                      <li>ประเภทเบราว์เซอร์และอุปกรณ์</li>
-                      <li>หน้าที่เยี่ยมชมและระยะเวลาที่ใช้</li>
-                      <li>แหล่งที่มาของการเข้าชม (เช่น มาจาก Google หรือ Social Media)</li>
-                    </ul>
-                    <p className="leading-relaxed text-slate-700">ข้อมูลเหล่านี้ใช้สำหรับการวิเคราะห์การใช้งานเว็บไซต์และปรับปรุงบริการเท่านั้น</p>
-                  </section>
-                </section>
-
-                <section id="purpose-of-use" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">3. วัตถุประสงค์การใช้ข้อมูล</h2>
-                  <p className="leading-relaxed text-slate-700">เราใช้ข้อมูลของคุณเพื่อวัตถุประสงค์ดังต่อไปนี้เท่านั้น:</p>
-                  <div className="overflow-x-auto rounded-2xl border border-slate-200">
-                    <table className="min-w-[680px] w-full border-collapse text-left text-sm sm:text-base">
-                      <thead className="bg-[#F8FAFC] text-slate-900">
-                        <tr>
-                          <th className="border-b border-slate-200 px-4 py-3 font-extrabold">วัตถุประสงค์</th>
-                          <th className="border-b border-slate-200 px-4 py-3 font-extrabold">ประเภทข้อมูลที่ใช้</th>
-                        </tr>
-                      </thead>
-                      <tbody className="text-slate-700">
-                        <tr>
-                          <td className="border-b border-slate-200 px-4 py-3">จัดทำเอกสารสนับสนุนวีซ่าตามที่สั่ง</td>
-                          <td className="border-b border-slate-200 px-4 py-3">ชื่อ วันเดินทาง ปลายทาง</td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-slate-200 px-4 py-3">ส่งเอกสาร PDF ให้คุณ</td>
-                          <td className="border-b border-slate-200 px-4 py-3">อีเมล</td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-slate-200 px-4 py-3">ยืนยันออเดอร์และการชำระเงิน</td>
-                          <td className="border-b border-slate-200 px-4 py-3">อีเมล โทรศัพท์</td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-slate-200 px-4 py-3">ติดต่อกรณีข้อมูลไม่ครบหรือมีปัญหา</td>
-                          <td className="border-b border-slate-200 px-4 py-3">อีเมล โทรศัพท์</td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-slate-200 px-4 py-3">ปรับปรุงคุณภาพบริการ</td>
-                          <td className="border-b border-slate-200 px-4 py-3">ข้อมูลการใช้งานเว็บไซต์</td>
-                        </tr>
-                        <tr>
-                          <td className="px-4 py-3">ปฏิบัติตามข้อกำหนดทางกฎหมาย</td>
-                          <td className="px-4 py-3">ตามที่กฎหมายกำหนด</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="space-y-2 rounded-2xl border border-blue-100 bg-blue-50 p-4 text-slate-800">
-                    <p className="font-bold">เราไม่ใช้ข้อมูลของคุณเพื่อ:</p>
-                    <ul className="list-disc space-y-1 pl-6 marker:text-[#2563EB]">
-                      <li>ส่งข้อความโฆษณาโดยไม่ได้รับความยินยอม</li>
-                      <li>ขายหรือให้เช่าข้อมูลแก่บุคคลภายนอก</li>
-                      <li>วิเคราะห์พฤติกรรมเพื่อวัตถุประสงค์เชิงพาณิชย์อื่นใด</li>
-                    </ul>
-                  </div>
-                </section>
-
-                <section id="third-party-disclosure" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">4. การเปิดเผยข้อมูลแก่บุคคลภายนอก</h2>
-                  <p className="leading-relaxed text-slate-700">
-                    BKK AIR ไม่ขาย ไม่ให้เช่า และไม่แลกเปลี่ยนข้อมูลส่วนบุคคลของคุณกับบุคคลภายนอก ยกเว้นกรณีดังต่อไปนี้:
-                  </p>
-                  <section className="space-y-3">
-                    <h3 className="text-xl font-extrabold text-slate-900">4.1 ผู้ให้บริการที่จำเป็น (Service Providers)</h3>
-                    <p className="leading-relaxed text-slate-700">เราอาจแชร์ข้อมูลบางส่วนกับผู้ให้บริการที่ช่วยดำเนินการของเรา เช่น:</p>
-                    <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                      <li><strong>ผู้ให้บริการชำระเงิน</strong> — เพื่อประมวลผลการชำระเงินอย่างปลอดภัย</li>
-                      <li><strong>ผู้ให้บริการอีเมล</strong> — เพื่อส่งเอกสารและการแจ้งเตือน</li>
-                      <li><strong>ผู้ให้บริการ Hosting</strong> — เพื่อการทำงานของเว็บไซต์</li>
-                    </ul>
-                    <p className="leading-relaxed text-slate-700">
-                      ผู้ให้บริการเหล่านี้มีข้อผูกพันทางสัญญาที่ต้องรักษาความลับของข้อมูล และไม่สามารถใช้ข้อมูลของคุณเพื่อวัตถุประสงค์อื่น
-                    </p>
-                  </section>
-                  <section className="space-y-3">
-                    <h3 className="text-xl font-extrabold text-slate-900">4.2 กรณีที่กฎหมายกำหนด</h3>
-                    <p className="leading-relaxed text-slate-700">
-                      เราอาจเปิดเผยข้อมูลหากได้รับคำสั่งจากหน่วยงานรัฐหรือกระบวนการทางกฎหมายที่ชอบด้วยกฎหมาย โดยจะแจ้งให้คุณทราบเท่าที่สามารถทำได้
-                    </p>
-                  </section>
-                </section>
-
-                <section id="retention" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">5. ระยะเวลาการเก็บข้อมูล</h2>
-                  <p className="leading-relaxed text-slate-700">เราเก็บข้อมูลของคุณตามระยะเวลาดังนี้:</p>
-                  <div className="overflow-x-auto rounded-2xl border border-slate-200">
-                    <table className="min-w-[680px] w-full border-collapse text-left text-sm sm:text-base">
-                      <thead className="bg-[#F8FAFC] text-slate-900">
-                        <tr>
-                          <th className="border-b border-slate-200 px-4 py-3 font-extrabold">ประเภทข้อมูล</th>
-                          <th className="border-b border-slate-200 px-4 py-3 font-extrabold">ระยะเวลาเก็บ</th>
-                        </tr>
-                      </thead>
-                      <tbody className="text-slate-700">
-                        <tr>
-                          <td className="border-b border-slate-200 px-4 py-3">ข้อมูลออเดอร์และเอกสาร</td>
-                          <td className="border-b border-slate-200 px-4 py-3">90 วันหลังจากส่งเอกสาร</td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-slate-200 px-4 py-3">ข้อมูลการติดต่อ</td>
-                          <td className="border-b border-slate-200 px-4 py-3">1 ปี หรือจนกว่าคุณขอลบ</td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-slate-200 px-4 py-3">ข้อมูลการใช้งานเว็บไซต์</td>
-                          <td className="border-b border-slate-200 px-4 py-3">26 เดือน (มาตรฐาน Google Analytics)</td>
-                        </tr>
-                        <tr>
-                          <td className="px-4 py-3">ข้อมูลการชำระเงิน</td>
-                          <td className="px-4 py-3">ตามที่ผู้ให้บริการชำระเงินกำหนด</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <p className="leading-relaxed text-slate-700">เมื่อครบกำหนด เราจะลบหรือทำให้ข้อมูลไม่สามารถระบุตัวตนได้</p>
-                </section>
-
-                <section id="security" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">6. ความปลอดภัยของข้อมูล</h2>
-                  <p className="leading-relaxed text-slate-700">BKK AIR ใช้มาตรการรักษาความปลอดภัยที่เหมาะสมเพื่อปกป้องข้อมูลของคุณ ได้แก่:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li><strong>การเข้ารหัส SSL/TLS</strong> สำหรับการรับส่งข้อมูลทั้งหมดบนเว็บไซต์</li>
-                    <li><strong>การเข้ารหัสข้อมูล</strong> ที่จัดเก็บในระบบ</li>
-                    <li><strong>การจำกัดการเข้าถึง</strong> เฉพาะทีมงานที่จำเป็นต้องใช้ข้อมูลในการให้บริการ</li>
-                    <li><strong>การตรวจสอบระบบ</strong> อย่างสม่ำเสมอ</li>
-                  </ul>
-                  <p className="leading-relaxed text-slate-700">
-                    อย่างไรก็ตาม ไม่มีระบบใดที่ปลอดภัย 100% หากพบการละเมิดข้อมูลที่กระทบต่อคุณ เราจะแจ้งให้ทราบโดยเร็วที่สุดตามที่กฎหมายกำหนด
-                  </p>
-                </section>
-
-                <section id="cookies" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">7. คุกกี้ (Cookies)</h2>
-                  <p className="leading-relaxed text-slate-700">
-                    เว็บไซต์ของเราใช้คุกกี้ที่จำเป็นเพื่อให้เว็บไซต์ทำงานได้อย่างถูกต้อง และอาจใช้คุกกี้เพื่อการวิเคราะห์หรือการตลาดเมื่อได้รับความยินยอมจากคุณ คุณสามารถอ่านรายละเอียดเพิ่มเติมได้ที่{" "}
-                    <Link href="/cookies-policy" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">
-                      หน้านโยบายคุกกี้
-                    </Link>
-                  </p>
-                </section>
-
-                <section id="rights" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">8. สิทธิ์ของคุณ (Your Rights)</h2>
-                  <p className="leading-relaxed text-slate-700">
-                    ภายใต้พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) คุณมีสิทธิ์ดังต่อไปนี้:
-                  </p>
-                  <div className="space-y-3">
-                    <section>
-                      <h4 className="text-lg font-extrabold text-slate-900">สิทธิ์ในการเข้าถึงข้อมูล (Right to Access)</h4>
-                      <p className="leading-relaxed text-slate-700">คุณสามารถขอดูข้อมูลส่วนบุคคลที่เราเก็บไว้เกี่ยวกับคุณได้</p>
-                    </section>
-                    <section>
-                      <h4 className="text-lg font-extrabold text-slate-900">สิทธิ์ในการแก้ไขข้อมูล (Right to Rectification)</h4>
-                      <p className="leading-relaxed text-slate-700">คุณสามารถขอแก้ไขข้อมูลที่ไม่ถูกต้องหรือไม่ครบถ้วนได้</p>
-                    </section>
-                    <section>
-                      <h4 className="text-lg font-extrabold text-slate-900">สิทธิ์ในการลบข้อมูล (Right to Erasure)</h4>
-                      <p className="leading-relaxed text-slate-700">คุณสามารถขอให้เราลบข้อมูลส่วนบุคคลของคุณได้ ภายใต้เงื่อนไขที่กฎหมายกำหนด</p>
-                    </section>
-                    <section>
-                      <h4 className="text-lg font-extrabold text-slate-900">สิทธิ์ในการจำกัดการประมวลผล (Right to Restriction)</h4>
-                      <p className="leading-relaxed text-slate-700">คุณสามารถขอให้เราหยุดประมวลผลข้อมูลของคุณชั่วคราวได้ในบางกรณี</p>
-                    </section>
-                    <section>
-                      <h4 className="text-lg font-extrabold text-slate-900">สิทธิ์ในการโอนย้ายข้อมูล (Right to Data Portability)</h4>
-                      <p className="leading-relaxed text-slate-700">คุณสามารถขอรับข้อมูลของคุณในรูปแบบที่อ่านได้โดยเครื่อง</p>
-                    </section>
-                    <section>
-                      <h4 className="text-lg font-extrabold text-slate-900">สิทธิ์ในการคัดค้าน (Right to Object)</h4>
-                      <p className="leading-relaxed text-slate-700">คุณสามารถคัดค้านการประมวลผลข้อมูลของคุณในบางกรณีได้</p>
-                    </section>
-                  </div>
-                  <p className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-slate-800">
-                    <strong>การใช้สิทธิ์:</strong> ติดต่อเราได้ทางอีเมล <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a> เรามุ่งหมายตอบกลับคำขอด้านความเป็นส่วนตัวภายใน 30 วันทำการ
-                  </p>
-                </section>
-
-                <section id="international-transfer" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">9. การโอนข้อมูลระหว่างประเทศ</h2>
-                  <p className="leading-relaxed text-slate-700">BKK AIR ดำเนินงานในประเทศไทย ข้อมูลของคุณจัดเก็บและประมวลผลในประเทศไทยเป็นหลัก</p>
-                  <p className="leading-relaxed text-slate-700">
-                    ในกรณีที่จำเป็นต้องโอนข้อมูลไปยังต่างประเทศ เช่น ผ่านผู้ให้บริการ Cloud หรือ Analytics
-                    เราดำเนินการให้มั่นใจว่าข้อมูลได้รับการปกป้องในระดับที่เทียบเท่าหรือสูงกว่ามาตรฐานของไทย
-                  </p>
-                </section>
-
-                <section id="minors" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">10. ความเป็นส่วนตัวของผู้เยาว์</h2>
-                  <p className="leading-relaxed text-slate-700">
-                    บริการของ BKK AIR ไม่ได้มุ่งเป้าหมายไปยังบุคคลที่มีอายุต่ำกว่า 20 ปี หากคุณอายุต่ำกว่า 20 ปี กรุณาให้ผู้ปกครองหรือผู้แทนโดยชอบธรรมดำเนินการแทน
-                  </p>
-                  <p className="leading-relaxed text-slate-700">
-                    หากเราพบว่าได้เก็บข้อมูลของผู้เยาว์โดยไม่มีความยินยอมจากผู้ปกครอง เราจะดำเนินการลบข้อมูลดังกล่าวโดยเร็ว
-                  </p>
-                </section>
-
-                <section id="external-links" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">11. ลิงก์ไปยังเว็บไซต์ภายนอก</h2>
-                  <p className="leading-relaxed text-slate-700">
-                    เว็บไซต์ของเราอาจมีลิงก์ไปยังเว็บไซต์ภายนอก เช่น เว็บไซต์สถานทูต ผู้ให้บริการประกันการเดินทาง หรือแหล่งข้อมูลอื่น ๆ
-                  </p>
-                  <p className="leading-relaxed text-slate-700">
-                    BKK AIR ไม่รับผิดชอบต่อนโยบายความเป็นส่วนตัวหรือการปฏิบัติด้านข้อมูลของเว็บไซต์เหล่านั้น กรุณาอ่านนโยบายของแต่ละเว็บไซต์ก่อนใช้งาน
-                  </p>
-                </section>
-
-                <section id="policy-updates" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">12. การเปลี่ยนแปลงนโยบายนี้</h2>
-                  <p className="leading-relaxed text-slate-700">
-                    BKK AIR อาจอัปเดตนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราว เมื่อมีการเปลี่ยนแปลงที่มีนัยสำคัญ เราจะแจ้งให้ทราบผ่าน:
-                  </p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>ประกาศบนเว็บไซต์</li>
-                    <li>อีเมลแจ้งเตือน (สำหรับผู้ที่เคยใช้บริการ)</li>
-                  </ul>
-                  <p className="leading-relaxed text-slate-700">วันที่อัปเดตล่าสุดจะแสดงไว้ที่ด้านบนของหน้านี้เสมอ การใช้บริการต่อไปหลังจากการเปลี่ยนแปลงถือว่าคุณยอมรับนโยบายฉบับใหม่</p>
-                </section>
-
-                <section id="privacy-contact" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">13. ติดต่อเราเรื่องความเป็นส่วนตัว</h2>
-                  <p className="leading-relaxed text-slate-700">
-                    เพื่อความชัดเจนในการดูแลข้อมูลส่วนบุคคล BKK AIR แยกช่องทางติดต่อทั่วไปออกจากช่องทางติดต่อด้านความเป็นส่วนตัวโดยเฉพาะ
-                  </p>
-                  <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 text-slate-800">
-                    <p className="text-lg font-black text-slate-900">Privacy &amp; Data Protection Contact</p>
-                    <p className="mt-2 leading-relaxed font-semibold">BKK AIR</p>
-                    <p className="leading-relaxed">Email (Privacy): <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
-                    <p className="leading-relaxed">General Support: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
-                    <p className="leading-relaxed">Official LINE OA: <a href="https://line.me/R/ti/p/@823lateh" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">@823lateh</a></p>
-                    <p className="leading-relaxed">Business Hours: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
-                    <p className="leading-relaxed">เว็บไซต์: <a href="https://bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">https://bkkair.com</a></p>
-                    <p className="leading-relaxed text-sm text-slate-600">BKK AIR operates as a Thailand-based travel support service.</p>
-                  </div>
-                  <div className="rounded-2xl border border-blue-100 bg-blue-50 p-4 text-slate-800">
-                    <p className="font-bold">คุณสามารถติดต่อ info@bkkair.com เกี่ยวกับ:</p>
-                    <ul className="mt-2 list-disc space-y-1 pl-6 marker:text-[#2563EB]">
-                      <li>คำขอเข้าถึงข้อมูลส่วนบุคคล</li>
-                      <li>คำขอแก้ไขข้อมูล</li>
-                      <li>คำขอลบข้อมูล</li>
-                      <li>ข้อกังวลด้าน PDPA/Privacy</li>
-                      <li>คำถามเกี่ยวกับการจัดการข้อมูลส่วนบุคคล</li>
-                    </ul>
-                  </div>
-                  <p className="leading-relaxed text-slate-700">เรามุ่งหมายตอบกลับคำขอด้านความเป็นส่วนตัวภายใน <strong>30 วันทำการ</strong> นับจากวันที่ได้รับคำร้อง</p>
-                </section>
-              </section>
-
-              <section id="plain-summary" className="scroll-mt-28 rounded-3xl border border-emerald-200 bg-emerald-50/70 p-6 sm:p-8">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-700">สรุปสั้น ๆ</p>
-                <h2 className="mt-2 text-2xl font-black text-slate-900">ถ้าไม่อยากอ่านทั้งหมด นี่คือสิ่งสำคัญที่ควรรู้</h2>
-                <ul className="mt-6 grid gap-3 text-slate-800 sm:grid-cols-2">
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4"><strong>เราเก็บเฉพาะข้อมูลที่ต้องใช้จริง ๆ</strong><br />ชื่อ วันเดินทาง อีเมล — เท่าที่จำเป็นสำหรับจัดทำเอกสารให้คุณ</li>
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4"><strong>เราไม่ขายข้อมูลของคุณ</strong><br />ไม่เคย และไม่มีแผนจะทำ</li>
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4"><strong>ข้อมูลบัตรเครดิตของคุณปลอดภัย</strong><br />เราไม่จัดเก็บข้อมูลการชำระเงิน — ประมวลผลผ่านระบบที่ได้รับการรับรองเท่านั้น</li>
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4"><strong>คุณมีสิทธิ์ขอดู แก้ไข หรือลบข้อมูลได้เสมอ</strong><br />แค่ติดต่อเรา เราจัดการให้ภายใน 30 วัน</li>
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4 sm:col-span-2"><strong>เราไม่เก็บข้อมูลนานกว่าที่จำเป็น</strong><br />เอกสารและข้อมูลออเดอร์จะถูกลบภายใน 90 วันหลังส่งเอกสาร</li>
-                </ul>
-              </section>
-
-              <section id="compliance-note" className="scroll-mt-28 space-y-4 rounded-3xl border border-slate-300 bg-slate-900 p-6 text-slate-100 sm:p-8">
-                <h2 className="text-2xl font-black text-white">Compliance Note และ Disclaimer</h2>
-                <blockquote className="rounded-2xl border border-slate-600 bg-slate-800 p-4 leading-relaxed">
-                  นโยบายนี้จัดทำขึ้นตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)
-                  และแนวปฏิบัติที่ดีด้านความเป็นส่วนตัวสากล
-                </blockquote>
-                <blockquote className="rounded-2xl border border-amber-400/50 bg-amber-100 p-4 leading-relaxed text-slate-900">
-                  นโยบายความเป็นส่วนตัวฉบับนี้ใช้กับการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลทั้งหมดของ BKK AIR
-                  และจะได้รับการอัปเดตเมื่อมีการเปลี่ยนแปลงบริการหรือข้อกำหนดทางกฎหมายที่เกี่ยวข้อง
-                </blockquote>
-              </section>
-            </main>
-
-            <aside className="hidden lg:block">
-              <div className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">On This Page</p>
-                <ul className="mt-3 space-y-1 text-sm">
-                  {tableOfContents.map((item) => (
-                    <li key={`desktop-${item.id}`}>
-                      <a href={`#${item.id}`} className="block rounded-lg px-2 py-1.5 font-semibold text-slate-700 transition hover:bg-[#F8FAFC] hover:text-[#2563EB]">
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+              <div className="rounded-2xl border border-slate-800 bg-gradient-to-br from-indigo-950/80 to-slate-900/90 p-5 shadow-xl">
+                <div className="mb-2 flex items-center gap-2 text-xs font-black text-indigo-400">
+                  <Shield className="h-4 w-4" />
+                  ฝ่ายคุ้มครองข้อมูลส่วนบุคคล
+                </div>
+                <h3 className="mb-2 text-sm font-black text-white">
+                  คำถามเกี่ยวกับ PDPA?
+                </h3>
+                <p className="mb-4 text-xs leading-relaxed text-slate-400">
+                  หากมีคำถามหรือคำขอเกี่ยวกับข้อมูลส่วนบุคคลของคุณ
+                  สามารถส่งเรื่องให้ทีมงานตรวจสอบโดยตรง
+                </p>
+                <a
+                  href="mailto:privacy@bkkair.com"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-2 text-xs font-black text-white transition hover:bg-blue-500"
+                >
+                  <Mail className="h-4 w-4" />
+                  privacy@bkkair.com
+                </a>
               </div>
             </aside>
+
+            <div id="full-policy" className="lg:col-span-9">
+              <div className="space-y-5">
+                <PolicySection id="section-1" title="1. บทนำ">
+                  <p>
+                    BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนวีซ่าสำหรับผู้เดินทาง
+                    ผ่านเว็บไซต์ bkkair.com เช่น เอกสารจองตั๋วเครื่องบิน
+                    เอกสารจองโรงแรม แผนการเดินทาง และเอกสาร PDF
+                    อื่นที่เกี่ยวข้องกับการยื่นวีซ่า
+                  </p>
+                  <p>
+                    การใช้เว็บไซต์หรือส่งคำขอใช้บริการกับ BKK AIR
+                    ถือว่าผู้ใช้บริการได้อ่านและรับทราบนโยบายความเป็นส่วนตัวฉบับนี้แล้ว
+                  </p>
+                </PolicySection>
+
+                <PolicySection id="section-2" title="2. ผู้ควบคุมข้อมูลส่วนบุคคล">
+                  <p>
+                    BKK AIR เป็นผู้ควบคุมข้อมูลส่วนบุคคล (Data Controller)
+                    สำหรับข้อมูลที่ผู้ใช้บริการส่งให้เราโดยตรงผ่านเว็บไซต์ อีเมล LINE OA
+                    หรือช่องทางติดต่ออื่นของ BKK AIR
+                  </p>
+                  <InfoCard icon={<UserCheck className="h-5 w-5" />} title="BKK AIR">
+                    <p>
+                      Email:{" "}
+                      <a href="mailto:privacy@bkkair.com" className="font-bold text-blue-400 underline">
+                        privacy@bkkair.com
+                      </a>
+                    </p>
+                    <p>
+                      LINE OA:{" "}
+                      <a href="https://line.me/R/ti/p/@823lateh" className="font-bold text-blue-400 underline">
+                        @823lateh
+                      </a>
+                    </p>
+                    <p>Business Hours: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
+                  </InfoCard>
+                </PolicySection>
+
+                <PolicySection id="section-3" title="3. ข้อมูลที่เราเก็บรวบรวม">
+                  <p>เราเก็บเฉพาะข้อมูลที่จำเป็นต่อการจัดเตรียมเอกสารและการให้บริการเท่านั้น</p>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <InfoCard icon={<Database className="h-5 w-5" />} title="ข้อมูลที่ผู้ใช้บริการให้เราโดยตรง">
+                      <ul className="list-disc space-y-2 pl-5 marker:text-blue-400">
+                        <li>ชื่อ-นามสกุลของผู้เดินทางตามหนังสือเดินทาง</li>
+                        <li>วันเดินทาง ประเทศปลายทาง และประเทศที่ยื่นวีซ่า</li>
+                        <li>อีเมล หมายเลขโทรศัพท์ หรือ LINE ID สำหรับการติดต่อ</li>
+                        <li>รายละเอียดบริการที่ต้องการ เช่น เอกสารจองตั๋ว เอกสารจองโรงแรม หรือแผนการเดินทาง</li>
+                        <li>ข้อมูลการชำระเงินที่จำเป็นต่อการยืนยันคำขอ</li>
+                      </ul>
+                    </InfoCard>
+                    <InfoCard icon={<Globe2 className="h-5 w-5" />} title="ข้อมูลที่ระบบเก็บโดยอัตโนมัติ">
+                      <ul className="list-disc space-y-2 pl-5 marker:text-blue-400">
+                        <li>IP address</li>
+                        <li>ประเภทอุปกรณ์และเบราว์เซอร์</li>
+                        <li>หน้าเว็บไซต์ที่เข้าชมและระยะเวลาการใช้งาน</li>
+                        <li>แหล่งที่มาของการเข้าชม เช่น Google หรือ Social Media</li>
+                      </ul>
+                    </InfoCard>
+                  </div>
+                  <p>
+                    BKK AIR ไม่จัดเก็บข้อมูลบัตรเครดิตหรือข้อมูลบัญชีธนาคารเต็มรูปแบบ
+                    การชำระเงินอาจดำเนินการผ่านผู้ให้บริการชำระเงินที่ได้รับการรับรอง
+                  </p>
+                </PolicySection>
+
+                <PolicySection id="section-4" title="4. ฐานทางกฎหมายในการใช้ข้อมูล">
+                  <p>BKK AIR ประมวลผลข้อมูลส่วนบุคคลตามฐานทางกฎหมายที่เหมาะสม ได้แก่:</p>
+                  <ul className="list-disc space-y-2 pl-6 marker:text-blue-400">
+                    <li><strong className="text-white">การปฏิบัติตามสัญญา</strong> เพื่อจัดเตรียมเอกสารและให้บริการตามคำขอ</li>
+                    <li><strong className="text-white">ความยินยอม</strong> สำหรับกิจกรรมที่ต้องอาศัยความยินยอม เช่น คุกกี้บางประเภทหรือการสื่อสารทางการตลาด</li>
+                    <li><strong className="text-white">ประโยชน์โดยชอบด้วยกฎหมาย</strong> เพื่อดูแลความปลอดภัย ป้องกันการทุจริต และปรับปรุงคุณภาพบริการ</li>
+                    <li><strong className="text-white">การปฏิบัติตามกฎหมาย</strong> เพื่อปฏิบัติตามข้อกำหนดของกฎหมาย หน่วยงานรัฐ หรือกระบวนการทางกฎหมายที่เกี่ยวข้อง</li>
+                  </ul>
+                </PolicySection>
+
+                <PolicySection id="section-5" title="5. วัตถุประสงค์การใช้ข้อมูล">
+                  <div className="overflow-x-auto rounded-2xl border border-slate-800">
+                    <table className="w-full min-w-[680px] border-collapse text-left text-sm">
+                      <thead className="bg-slate-950 text-white">
+                        <tr>
+                          <th className="border-b border-slate-800 px-4 py-3 font-black">วัตถุประสงค์</th>
+                          <th className="border-b border-slate-800 px-4 py-3 font-black">ประเภทข้อมูลที่ใช้</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-slate-300">
+                        {[
+                          ["จัดเตรียมเอกสาร PDF ตามคำขอ", "ชื่อผู้เดินทาง วันเดินทาง ปลายทาง รายละเอียดบริการ"],
+                          ["ส่งเอกสารและแจ้งสถานะคำขอ", "อีเมล โทรศัพท์ LINE ID"],
+                          ["ยืนยันการชำระเงินและออกหลักฐานการให้บริการ", "ข้อมูลคำขอ ข้อมูลการชำระเงินที่จำเป็น"],
+                          ["ติดต่อกรณีข้อมูลไม่ครบหรือมีข้อผิดพลาด", "อีเมล โทรศัพท์ LINE ID"],
+                          ["ปรับปรุงความปลอดภัยและคุณภาพเว็บไซต์", "ข้อมูลการใช้งานเว็บไซต์และข้อมูลทางเทคนิค"],
+                        ].map(([purpose, data]) => (
+                          <tr key={purpose}>
+                            <td className="border-b border-slate-800 px-4 py-3">{purpose}</td>
+                            <td className="border-b border-slate-800 px-4 py-3">{data}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="rounded-2xl border border-blue-800/50 bg-blue-950/30 p-4">
+                    <p className="font-black text-white">BKK AIR ไม่ใช้ข้อมูลของผู้ใช้บริการเพื่อ:</p>
+                    <ul className="mt-2 list-disc space-y-1 pl-6 marker:text-blue-400">
+                      <li>ขายหรือให้เช่าข้อมูลแก่บุคคลภายนอก</li>
+                      <li>ส่งข้อความการตลาดโดยไม่ได้รับความยินยอม</li>
+                      <li>ใช้ข้อมูลเกินกว่าวัตถุประสงค์ที่เกี่ยวข้องกับบริการ</li>
+                    </ul>
+                  </div>
+                </PolicySection>
+
+                <PolicySection id="section-6" title="6. การเปิดเผยข้อมูลแก่บุคคลภายนอก">
+                  <p>
+                    BKK AIR ไม่ขายข้อมูลส่วนบุคคลของผู้ใช้บริการ
+                    แต่อาจเปิดเผยข้อมูลเท่าที่จำเป็นต่อการให้บริการกับผู้เกี่ยวข้องดังนี้:
+                  </p>
+                  <ul className="list-disc space-y-2 pl-6 marker:text-blue-400">
+                    <li>ผู้ให้บริการชำระเงิน เพื่อประมวลผลการชำระเงินอย่างปลอดภัย</li>
+                    <li>ผู้ให้บริการอีเมลหรือระบบสื่อสาร เพื่อส่งเอกสาร PDF และแจ้งสถานะคำขอ</li>
+                    <li>ผู้ให้บริการ Hosting, Cloud หรือระบบวิเคราะห์เว็บไซต์ เพื่อให้เว็บไซต์ทำงานได้อย่างเหมาะสม</li>
+                    <li>หน่วยงานรัฐหรือกระบวนการทางกฎหมาย เมื่อมีข้อกำหนดตามกฎหมาย</li>
+                  </ul>
+                </PolicySection>
+
+                <PolicySection id="section-7" title="7. ระยะเวลาการเก็บข้อมูล">
+                  <div className="overflow-x-auto rounded-2xl border border-slate-800">
+                    <table className="w-full min-w-[680px] border-collapse text-left text-sm">
+                      <thead className="bg-slate-950 text-white">
+                        <tr>
+                          <th className="border-b border-slate-800 px-4 py-3 font-black">ประเภทข้อมูล</th>
+                          <th className="border-b border-slate-800 px-4 py-3 font-black">ระยะเวลาเก็บ</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-slate-300">
+                        {[
+                          ["ข้อมูลคำขอและเอกสาร PDF", "90 วันหลังจากส่งเอกสาร หรือเท่าที่จำเป็นต่อการให้บริการ"],
+                          ["ข้อมูลการติดต่อ", "1 ปี หรือจนกว่าผู้ใช้บริการขอให้ลบ"],
+                          ["ข้อมูลการใช้งานเว็บไซต์", "ตามระยะเวลาของเครื่องมือวิเคราะห์ที่ใช้งาน"],
+                          ["ข้อมูลการชำระเงิน", "ตามที่กฎหมายหรือผู้ให้บริการชำระเงินกำหนด"],
+                        ].map(([type, retention]) => (
+                          <tr key={type}>
+                            <td className="border-b border-slate-800 px-4 py-3">{type}</td>
+                            <td className="border-b border-slate-800 px-4 py-3">{retention}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </PolicySection>
+
+                <PolicySection id="section-8" title="8. ความปลอดภัยของข้อมูล">
+                  <ul className="list-disc space-y-2 pl-6 marker:text-blue-400">
+                    <li>ใช้การเข้ารหัส SSL/TLS สำหรับการรับส่งข้อมูลบนเว็บไซต์</li>
+                    <li>จำกัดการเข้าถึงข้อมูลเฉพาะทีมงานที่จำเป็นต่อการให้บริการ</li>
+                    <li>ใช้ระบบ Hosting และเครื่องมือที่เหมาะสมต่อการรักษาความปลอดภัย</li>
+                    <li>ตรวจสอบและปรับปรุงมาตรการด้านความปลอดภัยอย่างต่อเนื่อง</li>
+                  </ul>
+                  <p>
+                    อย่างไรก็ตาม ไม่มีระบบใดปลอดภัย 100%
+                    หากเกิดเหตุละเมิดข้อมูลที่อาจกระทบต่อผู้ใช้บริการ
+                    เราจะดำเนินการแจ้งและแก้ไขตามที่กฎหมายกำหนด
+                  </p>
+                </PolicySection>
+
+                <PolicySection id="section-9" title="9. คุกกี้ (Cookies)">
+                  <p>
+                    เว็บไซต์ของเราใช้คุกกี้ที่จำเป็นเพื่อให้เว็บไซต์ทำงานได้อย่างถูกต้อง
+                    และอาจใช้คุกกี้เพื่อการวิเคราะห์หรือการตลาดเมื่อได้รับความยินยอมจากผู้ใช้บริการ
+                  </p>
+                  <p>
+                    อ่านรายละเอียดเพิ่มเติมได้ที่{" "}
+                    <Link href="/cookies-policy" className="font-bold text-blue-400 underline">
+                      นโยบายคุกกี้
+                    </Link>
+                  </p>
+                </PolicySection>
+
+                <PolicySection id="section-10" title="10. สิทธิ์ของผู้ใช้บริการ">
+                  <p>ภายใต้ PDPA ผู้ใช้บริการมีสิทธิ์เกี่ยวกับข้อมูลส่วนบุคคลของตน ดังนี้:</p>
+                  <ul className="list-disc space-y-2 pl-6 marker:text-blue-400">
+                    <li>สิทธิ์ในการเข้าถึงข้อมูล (Right to Access)</li>
+                    <li>สิทธิ์ในการแก้ไขข้อมูลให้ถูกต้อง (Right to Rectification)</li>
+                    <li>สิทธิ์ในการลบข้อมูล (Right to Erasure)</li>
+                    <li>สิทธิ์ในการจำกัดการประมวลผล (Right to Restriction)</li>
+                    <li>สิทธิ์ในการโอนย้ายข้อมูล (Right to Data Portability)</li>
+                    <li>สิทธิ์ในการคัดค้านการประมวลผล (Right to Object)</li>
+                    <li>สิทธิ์ในการถอนความยินยอม (Withdrawal of Consent)</li>
+                  </ul>
+                  <p className="rounded-2xl border border-amber-500/40 bg-amber-950/30 p-4 text-amber-100">
+                    <strong>การใช้สิทธิ์:</strong> ติดต่อ{" "}
+                    <a href="mailto:privacy@bkkair.com" className="font-bold text-amber-200 underline">
+                      privacy@bkkair.com
+                    </a>{" "}
+                    โดยเรามุ่งหมายตอบกลับคำขอภายใน <strong>30 วันทำการ</strong>
+                    นับจากวันที่ได้รับข้อมูลครบถ้วน
+                  </p>
+                </PolicySection>
+
+                <PolicySection id="section-11" title="11. การโอนข้อมูลระหว่างประเทศ">
+                  <p>
+                    BKK AIR ดำเนินงานในประเทศไทยเป็นหลัก อย่างไรก็ตาม บางระบบ เช่น Hosting,
+                    Cloud, Analytics หรือระบบอีเมล อาจมีการประมวลผลข้อมูลผ่านผู้ให้บริการในต่างประเทศ
+                  </p>
+                  <p>
+                    หากมีการโอนข้อมูลระหว่างประเทศ
+                    เราจะใช้มาตรการที่เหมาะสมเพื่อคุ้มครองข้อมูลตามมาตรฐานที่เกี่ยวข้อง
+                  </p>
+                </PolicySection>
+
+                <PolicySection id="section-12" title="12. ความเป็นส่วนตัวของผู้เยาว์">
+                  <p>
+                    บริการของ BKK AIR ไม่ได้มุ่งเป้าไปยังบุคคลที่มีอายุต่ำกว่า 20 ปี
+                    หากผู้ใช้บริการเป็นผู้เยาว์
+                    ควรได้รับความยินยอมจากผู้ปกครองหรือผู้แทนโดยชอบธรรมก่อนใช้บริการ
+                  </p>
+                </PolicySection>
+
+                <PolicySection id="section-13" title="13. ลิงก์ไปยังเว็บไซต์ภายนอก">
+                  <p>
+                    เว็บไซต์ของเราอาจมีลิงก์ไปยังเว็บไซต์ภายนอก เช่น เว็บไซต์สถานทูต
+                    ผู้ให้บริการประกันการเดินทาง หรือแหล่งข้อมูลอื่น
+                  </p>
+                  <p>
+                    BKK AIR ไม่รับผิดชอบต่อนโยบายความเป็นส่วนตัวหรือการจัดการข้อมูลของเว็บไซต์ภายนอก
+                    ผู้ใช้บริการควรตรวจสอบนโยบายของเว็บไซต์นั้นก่อนใช้งาน
+                  </p>
+                </PolicySection>
+
+                <PolicySection id="section-14" title="14. การเปลี่ยนแปลงนโยบายนี้">
+                  <p>
+                    BKK AIR อาจปรับปรุงนโยบายนี้เป็นครั้งคราว
+                    เพื่อให้สอดคล้องกับการเปลี่ยนแปลงของบริการ เทคโนโลยี หรือกฎหมายที่เกี่ยวข้อง
+                  </p>
+                  <p>วันที่อัปเดตล่าสุดจะแสดงไว้ด้านบนของหน้านี้เสมอ</p>
+                </PolicySection>
+
+                <PolicySection id="section-15" title="15. ติดต่อเรื่องความเป็นส่วนตัว">
+                  <InfoCard icon={<Mail className="h-5 w-5" />} title="Privacy & Data Protection Contact">
+                    <p className="font-semibold text-white">BKK AIR</p>
+                    <p>
+                      Email:{" "}
+                      <a href="mailto:privacy@bkkair.com" className="font-bold text-blue-400 underline">
+                        privacy@bkkair.com
+                      </a>
+                    </p>
+                    <p>
+                      Official LINE OA:{" "}
+                      <a href="https://line.me/R/ti/p/@823lateh" className="font-bold text-blue-400 underline">
+                        @823lateh
+                      </a>
+                    </p>
+                    <p>Business Hours: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
+                    <p>Website: https://bkkair.com</p>
+                  </InfoCard>
+                </PolicySection>
+
+                <section
+                  id="section-16"
+                  className="policy-section scroll-mt-28 rounded-2xl border border-emerald-800/60 bg-emerald-950/30 p-5 sm:p-7"
+                >
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400">
+                    สรุปสั้น ๆ (TL;DR)
+                  </p>
+                  <h2 className="mt-2 text-2xl font-black text-white">
+                    สิ่งสำคัญที่ควรรู้
+                  </h2>
+                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                    {[
+                      ["เราเก็บข้อมูลเท่าที่จำเป็น", "เพื่อจัดเตรียมเอกสาร PDF และติดต่อผู้ใช้บริการเท่านั้น"],
+                      ["เราไม่ขายข้อมูลส่วนบุคคล", "และไม่เปิดเผยข้อมูลเกินความจำเป็น"],
+                      ["คุณมีสิทธิ์ตาม PDPA", "สามารถขอเข้าถึง แก้ไข ลบ คัดค้าน หรือถอนความยินยอมได้"],
+                      ["ติดต่อเรื่องข้อมูลส่วนบุคคล", "privacy@bkkair.com ภายใน 30 วันทำการ"],
+                    ].map(([title, body]) => (
+                      <div key={title} className="rounded-2xl border border-emerald-800/60 bg-slate-900/70 p-4">
+                        <CheckCircle2 className="mb-3 h-5 w-5 text-emerald-400" />
+                        <h3 className="font-black text-white">{title}</h3>
+                        <p className="mt-1 text-sm leading-relaxed text-slate-300">{body}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section
+                  id="section-17"
+                  className="policy-section scroll-mt-28 space-y-4 rounded-2xl border border-slate-700 bg-slate-950 p-5 text-slate-100 sm:p-7"
+                >
+                  <div className="flex items-center gap-3">
+                    <Sparkles className="h-5 w-5 text-blue-400" />
+                    <h2 className="text-2xl font-black text-white">
+                      Compliance Note และ Disclaimer
+                    </h2>
+                  </div>
+                  <blockquote className="rounded-2xl border border-slate-700 bg-slate-900 p-4 leading-relaxed text-slate-300">
+                    นโยบายนี้จัดทำขึ้นตามแนวทางของพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล
+                    พ.ศ. 2562 (PDPA) และแนวปฏิบัติด้านความเป็นส่วนตัวที่เหมาะสม
+                  </blockquote>
+                  <blockquote className="rounded-2xl border border-amber-500/40 bg-amber-950/30 p-4 leading-relaxed text-amber-100">
+                    BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น
+                    ไม่มีส่วนเกี่ยวข้องกับสถานทูต หน่วยงานรัฐ หรือหน่วยงานตรวจคนเข้าเมือง
+                    และไม่สามารถรับประกันผลการอนุมัติวีซ่าได้
+                  </blockquote>
+                </section>
+              </div>
+            </div>
           </div>
+        </main>
+
+        <footer className="relative mt-16 border-t border-slate-800 bg-[#090d16] px-4 py-12 sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-4">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 font-black text-white">
+                  B
+                </span>
+                <span className="font-black tracking-widest text-white">BKK AIR</span>
+              </div>
+              <p className="text-xs leading-relaxed text-slate-400">
+                บริการจัดเตรียมชุดเอกสาร แผนการบิน แผนการเดินทาง
+                และเอกสารสนับสนุนข้อมูลการยื่นขอวีซ่าไปต่างประเทศ
+              </p>
+            </div>
+            <div>
+              <h3 className="mb-4 text-sm font-black uppercase tracking-wider text-white">
+                บริการของเรา
+              </h3>
+              <ul className="space-y-2 text-xs text-slate-400">
+                <li><Link href="/" className="transition hover:text-white">จัดเตรียมเอกสารสนับสนุนวีซ่า</Link></li>
+                <li><Link href="/packages" className="transition hover:text-white">แพ็กเกจบริการ</Link></li>
+                <li><Link href="/how-it-works" className="transition hover:text-white">ขั้นตอนการสั่งซื้อเอกสาร</Link></li>
+                <li><Link href="/faq" className="transition hover:text-white">คำถามที่พบบ่อย (FAQ)</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-4 text-sm font-black uppercase tracking-wider text-white">
+                ความโปร่งใสและกฎหมาย
+              </h3>
+              <ul className="space-y-2 text-xs text-slate-400">
+                <li><a href="#section-1" className="font-bold text-blue-400 transition hover:text-blue-300">นโยบายความเป็นส่วนตัว</a></li>
+                <li><Link href="/cookies-policy" className="transition hover:text-white">นโยบายคุกกี้</Link></li>
+                <li><Link href="/terms" className="transition hover:text-white">ข้อตกลงและเงื่อนไข</Link></li>
+                <li><a href="#section-17" className="transition hover:text-white">Compliance Note</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-4 text-sm font-black uppercase tracking-wider text-white">
+                ข้อกำหนด PDPA
+              </h3>
+              <p className="text-xs leading-relaxed text-slate-400">
+                นโยบายนี้ออกแบบตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
+                (PDPA) ของประเทศไทย
+              </p>
+              <span className="mt-4 inline-flex rounded border border-emerald-800/40 bg-emerald-950/40 px-2.5 py-1 text-[11px] font-black uppercase tracking-wider text-emerald-400">
+                PDPA Compliant
+              </span>
+            </div>
+          </div>
+          <div className="mx-auto mt-10 max-w-7xl border-t border-slate-800 pt-6 text-center">
+            <p className="mx-auto max-w-4xl text-[11px] leading-relaxed text-slate-500">
+              <strong>คำชี้แจงสำคัญ (Disclaimer):</strong> BKK AIR
+              มีบทบาทเป็นผู้ให้บริการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น
+              ไม่ใช่สถานทูต หน่วยงานรัฐ หรือระบบยืนยันผลการอนุมัติวีซ่า
+            </p>
+            <p className="mt-4 text-xs text-slate-400">&copy; 2026 BKK AIR. All rights reserved.</p>
+          </div>
+        </footer>
+
+        <button
+          id="backToTop"
+          type="button"
+          className="pointer-events-none fixed bottom-6 right-6 z-50 translate-y-4 rounded-full border border-slate-700 bg-slate-800 p-3 text-white opacity-0 shadow-2xl transition hover:bg-slate-700"
+          aria-label="Back to top"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
+
+        <div
+          id="toastNotification"
+          className="fixed right-6 top-20 z-50 translate-x-80 rounded-xl border border-emerald-500/50 bg-emerald-600/90 px-5 py-3 text-sm font-bold text-white opacity-0 shadow-xl transition"
+        >
+          คัดลอกลิงก์สำเร็จแล้ว
         </div>
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (() => {
+                const searchInput = document.getElementById("policySearchInput");
+                const searchNotice = document.getElementById("searchNotice");
+                const sections = Array.from(document.querySelectorAll(".policy-section"));
+                const backToTop = document.getElementById("backToTop");
+                const toast = document.getElementById("toastNotification");
+                const navLinks = Array.from(document.querySelectorAll(".toc-link"));
+
+                const showToast = () => {
+                  if (!toast) return;
+                  toast.classList.remove("translate-x-80", "opacity-0");
+                  toast.classList.add("translate-x-0", "opacity-100");
+                  window.setTimeout(() => {
+                    toast.classList.remove("translate-x-0", "opacity-100");
+                    toast.classList.add("translate-x-80", "opacity-0");
+                  }, 2200);
+                };
+
+                document.querySelectorAll(".copy-section-link").forEach((button) => {
+                  button.addEventListener("click", async () => {
+                    const id = button.getAttribute("data-section-id");
+                    const url = window.location.href.split("#")[0] + "#" + id;
+                    try {
+                      await navigator.clipboard.writeText(url);
+                    } catch {
+                      const input = document.createElement("input");
+                      input.value = url;
+                      document.body.appendChild(input);
+                      input.select();
+                      document.execCommand("copy");
+                      input.remove();
+                    }
+                    showToast();
+                  });
+                });
+
+                searchInput?.addEventListener("input", () => {
+                  const query = searchInput.value.trim().toLowerCase();
+                  let hasQuery = Boolean(query);
+                  sections.forEach((section) => {
+                    const match = section.textContent.toLowerCase().includes(query);
+                    section.style.display = !hasQuery || match ? "" : "none";
+                  });
+                  searchNotice?.classList.toggle("hidden", !hasQuery);
+                });
+
+                backToTop?.addEventListener("click", () => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+
+                window.addEventListener("scroll", () => {
+                  if (backToTop) {
+                    const visible = window.scrollY > 300;
+                    backToTop.classList.toggle("opacity-0", !visible);
+                    backToTop.classList.toggle("translate-y-4", !visible);
+                    backToTop.classList.toggle("pointer-events-none", !visible);
+                  }
+
+                  let activeId = "";
+                  sections.forEach((section) => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 150 && rect.bottom >= 150) {
+                      activeId = section.id;
+                    }
+                  });
+
+                  if (activeId) {
+                    navLinks.forEach((link) => {
+                      const active = link.getAttribute("href") === "#" + activeId;
+                      link.classList.toggle("border-blue-500", active);
+                      link.classList.toggle("bg-blue-500/10", active);
+                      link.classList.toggle("text-blue-400", active);
+                      link.classList.toggle("border-transparent", !active);
+                      link.classList.toggle("text-slate-400", !active);
+                    });
+                  }
+                }, { passive: true });
+              })();
+            `,
+          }}
+        />
       </article>
     </MarketingShell>
   );

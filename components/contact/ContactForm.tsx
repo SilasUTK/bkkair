@@ -1,6 +1,8 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useRef, useState } from "react";
+import { FileUp, Send, ShieldCheck, UserRound } from "lucide-react";
 import { apiUrl } from "../../lib/apiBase";
 
 const inquiryTypes = [
@@ -123,98 +125,156 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[28px] bg-white p-6 shadow-xl shadow-slate-200/70">
-      <div className="space-y-5">
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">ชื่อ</label>
-          <input
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            type="text"
-            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
-          />
+    <form
+      onSubmit={handleSubmit}
+      className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-[0_28px_90px_rgba(15,23,42,0.12)] sm:p-7 lg:p-8"
+    >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-blue-50 via-orange-50/40 to-transparent" />
+
+      <div className="relative">
+        <div className="mb-7 flex items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#2563EB]">Inquiry Form</p>
+            <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">
+              ส่งรายละเอียดให้ทีมงาน
+            </h2>
+            <p className="mt-2 text-sm font-medium leading-relaxed text-slate-500">
+              แจ้งข้อมูลเบื้องต้น ทีมงานจะตรวจสอบและติดต่อกลับผ่านช่องทางที่คุณสะดวก
+            </p>
+          </div>
+          <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-950 text-orange-300 sm:flex">
+            <ShieldCheck className="h-6 w-6" aria-hidden="true" />
+          </div>
         </div>
 
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">ช่องทางติดต่อ</label>
-          <input
-            name="contact"
-            value={formData.contact}
-            onChange={handleChange}
-            type="text"
-            placeholder="เบอร์โทร / อีเมล / LINE ID"
-            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
-          />
-        </div>
+        <div className="space-y-6">
+          <fieldset className="space-y-4 rounded-2xl border border-slate-100 bg-white/80 p-4 sm:p-5">
+            <legend className="flex items-center gap-2 px-2 text-sm font-black text-slate-950">
+              <UserRound className="h-4 w-4 text-[#2563EB]" aria-hidden="true" />
+              Personal Info
+            </legend>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FieldShell label="ชื่อ">
+                <input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  type="text"
+                  autoComplete="name"
+                  className={fieldClassName}
+                />
+              </FieldShell>
 
-        <div>
-          <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-slate-700">
-            เรื่องที่ต้องการสอบถาม / Inquiry Type
-          </label>
-          <select
-            name="inquiryType"
-            value={formData.inquiryType}
-            onChange={handleChange}
-            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
+              <FieldShell label="ช่องทางติดต่อ">
+                <input
+                  name="contact"
+                  value={formData.contact}
+                  onChange={handleChange}
+                  type="text"
+                  autoComplete="email"
+                  placeholder="เบอร์โทร / อีเมล / LINE ID"
+                  className={fieldClassName}
+                />
+              </FieldShell>
+            </div>
+          </fieldset>
+
+          <fieldset className="space-y-4 rounded-2xl border border-slate-100 bg-white/80 p-4 sm:p-5">
+            <legend className="px-2 text-sm font-black text-slate-950">Contact Method & Inquiry</legend>
+            <FieldShell label="เรื่องที่ต้องการสอบถาม / Inquiry Type">
+              <select
+                name="inquiryType"
+                value={formData.inquiryType}
+                onChange={handleChange}
+                className={fieldClassName}
+              >
+                <option value="">เลือกหัวข้อที่ต้องการสอบถาม</option>
+                {inquiryTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </FieldShell>
+            <p className="-mt-2 text-xs font-medium leading-relaxed text-slate-500">
+              หัวข้อนี้ช่วยให้ทีมงานจัดลำดับและส่งต่อคำถามได้เร็วขึ้น
+            </p>
+          </fieldset>
+
+          <fieldset className="space-y-4 rounded-2xl border border-slate-100 bg-white/80 p-4 sm:p-5">
+            <legend className="px-2 text-sm font-black text-slate-950">Inquiry Details</legend>
+            <FieldShell label="รายละเอียด">
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows={5}
+                placeholder="เช่น ประเทศปลายทาง วันที่เดินทาง ประเภทเอกสารที่ต้องการ หรือหมายเลขคำขอเดิม"
+                className={`${fieldClassName} resize-none`}
+              />
+            </FieldShell>
+          </fieldset>
+
+          <fieldset className="space-y-3 rounded-2xl border border-dashed border-blue-200 bg-blue-50/50 p-4 sm:p-5">
+            <legend className="px-2 text-sm font-black text-slate-950">Attachment</legend>
+            <input
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              type="file"
+              accept=".pdf,.jpg,.jpeg,.png,.webp"
+              className="sr-only"
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="flex w-full flex-col items-center justify-center rounded-2xl border border-white bg-white px-5 py-6 text-center shadow-[0_12px_34px_rgba(37,99,235,0.08)] transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-[0_18px_44px_rgba(37,99,235,0.13)]"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-orange-300">
+                <FileUp className="h-6 w-6" aria-hidden="true" />
+              </span>
+              <span className="mt-3 text-sm font-black text-slate-950">
+                {attachment ? attachment.name : "แนบไฟล์ประกอบคำถาม"}
+              </span>
+              <span className="mt-1 text-xs font-medium text-slate-500">
+                รองรับ PDF / JPG / PNG / WEBP ขนาดไม่เกิน 5MB
+              </span>
+            </button>
+          </fieldset>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="group flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-accent-orange px-6 text-base font-black text-white shadow-[0_20px_55px_rgba(249,115,22,0.28)] transition hover:-translate-y-0.5 hover:bg-accent-hover disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60"
           >
-            <option value="">เลือกหัวข้อที่ต้องการสอบถาม</option>
-            {inquiryTypes.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-          <p className="mt-2 text-xs text-slate-500">
-            หัวข้อนี้ช่วยให้ทีมงานจัดลำดับและส่งต่อคำถามได้เร็วขึ้น
-          </p>
+            {loading ? "กำลังส่งข้อความ..." : "ส่งข้อความถึงทีมงาน"}
+            <Send className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
+          </button>
+
+          {successMessage && (
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+              {successMessage}
+            </div>
+          )}
+
+          {errorMessage && (
+            <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+              {errorMessage}
+            </div>
+          )}
         </div>
-
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">รายละเอียด</label>
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            rows={6}
-            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
-          />
-        </div>
-
-        <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">แนบไฟล์ (ถ้ามี)</label>
-          <input
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            type="file"
-            accept=".pdf,.jpg,.jpeg,.png,.webp"
-            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-4 text-slate-900 file:mr-4 file:rounded-xl file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:font-semibold file:text-blue-700"
-          />
-          <p className="mt-2 text-xs text-slate-500">
-            รองรับ PDF, JPG, JPEG, PNG, WEBP ขนาดไม่เกิน 5MB
-          </p>
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded-2xl bg-orange-500 px-6 py-4 font-bold text-white shadow-lg shadow-orange-500/25 transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {loading ? "กำลังส่งข้อความ..." : "ส่งข้อความถึงทีมงาน"}
-        </button>
-
-        {successMessage && (
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
-            {successMessage}
-          </div>
-        )}
-
-        {errorMessage && (
-          <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
-            {errorMessage}
-          </div>
-        )}
       </div>
     </form>
+  );
+}
+
+const fieldClassName =
+  "w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-orange-400 focus:ring-4 focus:ring-orange-100";
+
+function FieldShell({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <label className="block">
+      <span className="mb-2 block text-sm font-bold text-slate-700">{label}</span>
+      {children}
+    </label>
   );
 }

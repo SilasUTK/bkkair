@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Globe2 } from "lucide-react";
 
 const supportedCountries = [
   {
@@ -76,14 +76,18 @@ export default function SupportedCountriesSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-primary-dark sm:text-sm">
-            ประเทศที่ให้บริการ
-          </p>
-          <h2 id="supported-countries-heading" className="mt-2 text-3xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            รองรับการยื่นวีซ่าทุกประเทศหลัก
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/90 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
+            <Globe2 className="h-4 w-4 text-orange-500" aria-hidden="true" />
+            <span className="text-xs uppercase tracking-widest text-slate-500">ประเทศที่ให้บริการ</span>
+          </div>
+          <h2 id="supported-countries-heading" className="mx-auto max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+            รองรับประเทศหลักสำหรับ{" "}
+            <span className="whitespace-nowrap bg-gradient-to-r from-blue-700 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
+              การยื่นวีซ่า
+            </span>
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-[15px]">
+          <p className="mx-auto mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
             ไม่ว่าคุณจะยื่นวีซ่าที่ไหน เราช่วยเตรียมเอกสารสนับสนุนให้ครบตามที่สถานทูตต้องการ
           </p>
         </div>

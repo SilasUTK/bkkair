@@ -4,23 +4,27 @@ import HeroForm from "@/components/HeroForm";
 const benefits = [
   {
     icon: LightningIcon,
-    label: "เจ้าหน้าที่ติดต่อกลับรวดเร็ว",
-    sub: "รับคำขอและตรวจข้อมูลเบื้องต้นในเวลาทำการ"
+    label: "ส่งภายใน 24 ชั่วโมง"
   },
   {
     icon: DocumentIcon,
-    label: "เอกสาร PDF สำหรับประกอบคำร้อง",
-    sub: "จัดข้อมูลให้สอดคล้องกับแผนเดินทางของคุณ"
+    label: "ราคาโปร่งใส"
   },
   {
     icon: GlobeIcon,
-    label: "ครอบคลุมหลายประเทศ",
-    sub: "Schengen, UK, USA, ออสเตรเลีย ฯลฯ"
+    label: "ไม่ต้องเดินทาง"
   },
   {
     icon: CheckIcon,
-    label: "ตรวจสอบโดยคนจริง",
-    sub: "ทุกคำขอผ่านเจ้าหน้าที่ก่อนเริ่มดำเนินการ"
+    label: "มีทีมแก้ไขให้"
+  },
+  {
+    icon: BankIcon,
+    label: "ใช้ยื่นสถานทูต"
+  },
+  {
+    icon: ShieldIcon,
+    label: "ตรวจสอบโดยทีมงาน"
   }
 ];
 
@@ -43,67 +47,59 @@ export default function Hero({ goToCheck }) {
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(375px,0.72fr)] lg:gap-10 xl:gap-16">
           <div className="max-w-[710px] text-white">
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-4 py-2 text-xs font-semibold text-orange-300 shadow-xl backdrop-blur-sm sm:text-sm">
-              <CheckBadgeIcon className="h-4 w-4 text-orange-400" />
-              บริการเอกสารประกอบการยื่นวีซ่าสำหรับนักเดินทางชาวไทย
+              <LightningIcon className="h-4 w-4 text-orange-400" />
+              ส่ง PDF ภายใน 24 ชั่วโมง
             </div>
 
             <h1 className="text-[2.55rem] font-extrabold leading-[1.13] tracking-tight text-white sm:text-5xl lg:text-[3.55rem] xl:text-[4rem]">
-              เตรียมเอกสารยื่นวีซ่า ครบ จบ ในที่เดียว
+              เอกสารยื่น
+              <span className="bg-gradient-to-r from-orange-300 via-orange-500 to-amber-300 bg-clip-text text-transparent">วีซ่า</span>
+              <span className="block bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent">พร้อมส่งภายใน</span>
+              <span className="block">24 ชั่วโมง</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg">
-              BKK AIR ช่วยจัดเตรียมใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และเอกสารสนับสนุนวีซ่า ในรูปแบบ PDF พร้อมยื่นสถานทูต
-            </p>
-            <p className="mt-3 max-w-2xl text-sm font-semibold leading-relaxed text-orange-200 sm:text-base">
-              Embassy-Ready Visa Support Documents for Thai Travelers — Flight Reservation, Hotel Booking, Travel Itinerary
-            </p>
-            <p className="mt-2 max-w-2xl text-xs font-medium leading-relaxed text-slate-400 sm:text-sm">
-              จองตั๋วเครื่องบินยื่นวีซ่า · ใบจองโรงแรมยื่นวีซ่า · embassy-ready documents · visa support Thailand
+              BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนวีซ่าสำหรับนักเดินทางชาวไทย
+              ใบจองตั๋วเครื่องบิน ใบจองโรงแรม และแผนการเดินทาง
             </p>
 
-            <ul className="mt-9 grid gap-x-8 gap-y-6 sm:grid-cols-2" aria-label="จุดเด่น BKK AIR">
+            <ul className="mt-9 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" aria-label="จุดเด่น BKK AIR">
               {benefits.map((benefit) => {
                 const Icon = benefit.icon;
                 return (
-                  <li key={benefit.label} className="flex items-start gap-4">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/[0.06] text-orange-400 backdrop-blur-sm">
-                      <Icon className="h-6 w-6" />
-                    </span>
-                    <span>
-                      <span className="block text-base font-bold text-white">{benefit.label}</span>
-                      <span className="mt-1 block text-sm leading-relaxed text-slate-400">{benefit.sub}</span>
-                    </span>
+                  <li key={benefit.label} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-center text-xs font-bold text-slate-200 backdrop-blur-sm sm:text-sm">
+                    <Icon className="h-4 w-4 text-orange-400" />
+                    <span>{benefit.label}</span>
                   </li>
                 );
               })}
             </ul>
 
-            <p className="mt-8 max-w-2xl text-xs leading-relaxed text-slate-400">
-              เอกสารเป็น supporting materials เท่านั้น ไม่ใช่ตั๋วจริงหรือการจองจริง
-              และการอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลแต่เพียงผู้เดียว
-            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a href="#hero-request-form" className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-orange-500 px-7 text-sm font-extrabold text-white shadow-lg shadow-orange-500/25 transition hover:bg-orange-400">
+                สั่งเอกสารเลย
+                <ArrowRightIcon className="h-4 w-4" />
+              </a>
+              <a href="#packages" className="inline-flex h-14 items-center justify-center rounded-full border border-white/25 bg-white/[0.04] px-7 text-sm font-extrabold text-white backdrop-blur-sm transition hover:border-orange-300 hover:text-orange-200">
+                ดูแพ็กเกจและราคา
+              </a>
+            </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[406px] lg:ml-auto">
+          <div id="hero-request-form" className="relative mx-auto w-full max-w-[430px] lg:ml-auto">
             <div className="absolute -inset-4 rounded-[2.1rem] bg-orange-400/10 blur-2xl" />
-            <div className="relative rounded-[1.8rem] border border-white/80 bg-white px-5 pb-5 pt-8 shadow-[0_26px_68px_rgba(2,6,23,0.4)] sm:px-7 sm:pb-6">
-              <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-2 text-xs font-bold text-white shadow-lg shadow-orange-500/25 sm:text-sm">
-                ส่งคำขอให้ทีมงานตรวจสอบ
-              </span>
-
-              <div className="mb-4 text-center">
-                <h2 className="text-2xl font-extrabold text-slate-800">Quick Request</h2>
-                <p className="mt-1 text-xs text-slate-500">ฝากข้อมูลเบื้องต้น เจ้าหน้าที่จะติดต่อกลับ</p>
+            <div className="relative rounded-[1.8rem] border border-white/15 bg-slate-950/80 px-5 pb-5 pt-8 shadow-[0_26px_68px_rgba(2,6,23,0.55)] backdrop-blur-xl sm:px-7 sm:pb-6">
+              <div className="mb-5">
+                <h2 className="text-2xl font-extrabold text-white">รับคำปรึกษาฟรี</h2>
               </div>
 
               <HeroForm />
 
-              <div className="mt-4 text-center text-[11px] leading-relaxed text-slate-500">
-                <p className="flex items-center justify-center gap-1.5 font-medium">
+              <div className="mt-4 text-center text-[11px] leading-relaxed text-slate-400">
+                <p className="flex items-center justify-center gap-1.5 font-medium text-slate-300">
                   <ShieldIcon className="h-4 w-4 text-emerald-500" />
                   ข้อมูลของคุณปลอดภัยและเป็นความลับ
                 </p>
-                <p className="mt-1.5">ทีมงานจะติดต่อกลับภายใน 2-4 ชั่วโมงในเวลาทำการ</p>
                 <button type="button" onClick={goToCheck} className="mt-2 inline-flex items-center gap-1 font-semibold text-slate-500 transition hover:text-orange-500">
                   มีรหัสอ้างอิงอยู่แล้ว? ตรวจสอบสถานะ
                   <ArrowRightIcon className="h-3.5 w-3.5" />
@@ -139,6 +135,10 @@ function GlobeIcon({ className = "" }) {
 
 function CheckIcon({ className = "" }) {
   return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path strokeLinecap="round" strokeLinejoin="round" d="m8.5 12 2.5 2.5 4.75-5" /></svg>;
+}
+
+function BankIcon({ className = "" }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M3.5 10.5 12 5l8.5 5.5M5 10.5h14M6.5 10.5v7M10.5 10.5v7M14.5 10.5v7M18.5 10.5v7M4.5 17.5h15M3.5 20h17" /></svg>;
 }
 
 function ShieldIcon({ className = "" }) {

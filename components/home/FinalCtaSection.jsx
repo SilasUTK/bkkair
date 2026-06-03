@@ -25,19 +25,25 @@ export default function FinalCtaSection() {
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center lg:px-8">
 
         {/* Badge */}
-        <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-blue-100 backdrop-blur-sm">
-          <span className="text-amber-300" aria-hidden="true">✦</span>
-          บริการจัดเตรียมเอกสารประกอบการยื่นวีซ่า
+        <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-bold text-blue-100 shadow-[0_10px_30px_rgba(15,23,42,0.20)] backdrop-blur">
+          <span className="text-orange-300" aria-hidden="true">✦</span>
+          <span className="text-xs uppercase tracking-widest text-blue-100/80">
+            บริการจัดเตรียมเอกสารประกอบการยื่นวีซ่า
+          </span>
         </div>
 
         <h2
           id="final-cta-heading"
-          className="text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl"
+          className="mx-auto max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]"
         >
-          พร้อมเริ่มเตรียมเอกสารวีซ่าแล้วหรือยัง?
+          พร้อมเริ่มเตรียม{" "}
+          <span className="whitespace-nowrap bg-gradient-to-r from-sky-300 via-blue-300 to-cyan-200 bg-clip-text text-transparent">
+            เอกสารวีซ่า
+          </span>{" "}
+          แล้วหรือยัง?
         </h2>
 
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-blue-100 sm:text-lg">
+        <p className="mx-auto mt-4 max-w-2xl text-base font-medium leading-relaxed text-blue-100/85">
           สั่งเอกสารวันนี้ รับไฟล์ PDF ภายใน 24 ชั่วโมง พร้อมยื่นสถานทูต
         </p>
 

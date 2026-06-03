@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
+import {
+  ArrowUp,
+  CheckCircle2,
+  Clock,
+  Copy,
+  FileText,
+  Mail,
+  Search,
+  Shield,
+  Sparkles,
+  XCircle,
+} from "lucide-react";
 import MarketingShell from "../../components/marketing/MarketingShell";
 
 export const metadata: Metadata = {
-  title: "ข้อกำหนดการใช้บริการ — BKK AIR",
+  title: "ข้อกำหนดการใช้บริการ | BKK AIR",
   description:
-    "อ่านข้อกำหนดและเงื่อนไขการใช้บริการจัดเตรียมเอกสารสนับสนุนวีซ่าของ BKK AIR ขอบเขตบริการ นโยบายการคืนเงิน และข้อจำกัดความรับผิดชอบ",
+    "ข้อกำหนดการใช้บริการ BKK AIR สำหรับบริการจัดเตรียมเอกสารสนับสนุนวีซ่า ขอบเขตบริการ การชำระเงิน การส่งมอบเอกสาร นโยบายคืนเงิน และข้อจำกัดความรับผิดชอบ",
   alternates: {
     canonical: "https://bkkair.com/terms",
   },
@@ -16,398 +29,723 @@ export const metadata: Metadata = {
 };
 
 const tableOfContents = [
-  { id: "general-definitions", label: "1. ข้อมูลทั่วไปและคำนิยาม" },
-  { id: "service-scope", label: "2. ขอบเขตของบริการ" },
-  { id: "not-provided", label: "3. สิ่งที่ BKK AIR ไม่ได้ให้บริการ" },
-  { id: "visa-disclaimer", label: "4. ข้อสำคัญเรื่องวีซ่าและสถานทูต" },
-  { id: "ordering-payment", label: "5. ข้อกำหนดการสั่งซื้อและชำระเงิน" },
-  { id: "delivery", label: "6. การส่งมอบเอกสาร" },
-  { id: "edit-cancel", label: "7. การแก้ไขและยกเลิกออเดอร์" },
-  { id: "refund-policy", label: "8. นโยบายการคืนเงิน" },
-  { id: "user-responsibilities", label: "9. ความรับผิดชอบของผู้ใช้บริการ" },
-  { id: "liability-limit", label: "10. ข้อจำกัดความรับผิดชอบของ BKK AIR" },
-  { id: "intellectual-property", label: "11. ทรัพย์สินทางปัญญา" },
-  { id: "service-termination", label: "12. การระงับหรือยกเลิกบริการ" },
-  { id: "governing-law", label: "13. กฎหมายที่ใช้บังคับ" },
-  { id: "terms-updates", label: "14. การเปลี่ยนแปลงข้อกำหนด" },
-  { id: "contact", label: "15. ติดต่อเรา" },
-  { id: "compliance-disclaimer", label: "Compliance Disclaimer" },
+  { id: "section-1", label: "1. ข้อมูลทั่วไปและคำนิยาม" },
+  { id: "section-2", label: "2. ขอบเขตของบริการ" },
+  { id: "section-3", label: "3. สิ่งที่ BKK AIR ไม่ได้ให้บริการ" },
+  { id: "section-4", label: "4. ข้อสำคัญเรื่องวีซ่าและสถานทูต" },
+  { id: "section-5", label: "5. การส่งคำขอและการชำระเงิน" },
+  { id: "section-6", label: "6. การส่งมอบเอกสาร" },
+  { id: "section-7", label: "7. การแก้ไขและยกเลิกคำขอ" },
+  { id: "section-8", label: "8. นโยบายการคืนเงิน" },
+  { id: "section-9", label: "9. ความรับผิดชอบของผู้ใช้บริการ" },
+  { id: "section-10", label: "10. ข้อจำกัดความรับผิดชอบ" },
+  { id: "section-11", label: "11. ทรัพย์สินทางปัญญา" },
+  { id: "section-12", label: "12. การระงับหรือยกเลิกบริการ" },
+  { id: "section-13", label: "13. กฎหมายที่ใช้บังคับ" },
+  { id: "section-14", label: "14. การเปลี่ยนแปลงข้อกำหนด" },
+  { id: "section-15", label: "15. ติดต่อเรา" },
+  { id: "section-16", label: "สรุปสั้น ๆ" },
+  { id: "section-17", label: "Compliance Note" },
 ];
+
+function PolicySection({
+  id,
+  number,
+  title,
+  tone = "blue",
+  children,
+}: {
+  id: string;
+  number: string;
+  title: string;
+  tone?: "blue" | "red" | "amber" | "emerald" | "indigo";
+  children: ReactNode;
+}) {
+  const toneClass = {
+    blue: "bg-blue-500/20 text-blue-400",
+    red: "bg-rose-500/20 text-rose-400",
+    amber: "bg-amber-500/20 text-amber-400",
+    emerald: "bg-emerald-500/20 text-emerald-400",
+    indigo: "bg-indigo-500/20 text-indigo-400",
+  }[tone];
+
+  return (
+    <section
+      id={id}
+      className="policy-section scroll-mt-28 rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-xl shadow-slate-950/20 sm:p-8"
+    >
+      <div className="mb-5 flex items-start justify-between gap-4">
+        <h2 className="flex items-center text-xl font-black tracking-tight text-white sm:text-2xl">
+          <span className={`mr-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-black ${toneClass}`}>
+            {number}
+          </span>
+          {title}
+        </h2>
+        <button
+          type="button"
+          className="copy-section-link shrink-0 rounded-lg border border-slate-700 bg-slate-800 p-2 text-slate-500 transition hover:border-blue-500 hover:text-white"
+          data-section-id={id}
+          aria-label={`Copy link to ${title}`}
+        >
+          <Copy className="h-4 w-4" />
+        </button>
+      </div>
+      <div className="space-y-4 text-sm leading-relaxed text-slate-300 sm:text-base">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function SummaryCard({
+  title,
+  children,
+  tone = "blue",
+}: {
+  title: string;
+  children: ReactNode;
+  tone?: "blue" | "emerald" | "amber" | "indigo";
+}) {
+  const iconClass = {
+    blue: "bg-blue-500/10 text-blue-400",
+    emerald: "bg-emerald-500/10 text-emerald-400",
+    amber: "bg-amber-500/10 text-amber-400",
+    indigo: "bg-indigo-500/10 text-indigo-400",
+  }[tone];
+
+  return (
+    <div className="flex items-start gap-4 rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+      <span className={`shrink-0 rounded-lg p-2 ${iconClass}`}>
+        <CheckCircle2 className="h-5 w-5" />
+      </span>
+      <div>
+        <h3 className="mb-1 text-sm font-black text-white sm:text-base">{title}</h3>
+        <p className="text-xs font-medium leading-relaxed text-slate-400 sm:text-sm">{children}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function TermsPage() {
   return (
     <MarketingShell>
-      <article className="bg-white px-6 py-16 md:py-24 lg:px-8">
-        <div className="mx-auto max-w-6xl scroll-smooth">
-          <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="font-semibold text-slate-600 transition hover:text-[#2563EB]">
-                  หน้าแรก
-                </Link>
-              </li>
-              <li aria-hidden="true">›</li>
-              <li className="font-semibold text-slate-900">ข้อกำหนดการใช้บริการ</li>
-            </ol>
-          </nav>
+      <article className="relative min-h-screen overflow-hidden bg-[#090d16] text-[#e2e8f0] selection:bg-blue-600 selection:text-white">
+        <div className="pointer-events-none absolute left-12 top-12 h-[450px] w-[450px] rounded-full bg-blue-500/10 blur-[80px]" />
+        <div className="pointer-events-none absolute right-12 top-1/3 h-[450px] w-[450px] rounded-full bg-indigo-500/10 blur-[80px]" />
 
-          <header className="mt-6 rounded-3xl border border-slate-200 bg-[#F8FAFC] p-6 sm:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#2563EB]">Terms of Service</p>
-            <h1 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+        <section className="relative z-10 border-b border-slate-800 px-6 pb-10 pt-16">
+          <div className="mx-auto max-w-6xl text-center">
+            <nav
+              aria-label="Breadcrumb"
+              className="mb-5 flex items-center justify-center gap-2 text-xs font-semibold text-slate-400"
+            >
+              <Link href="/" className="transition hover:text-blue-500">
+                หน้าแรก
+              </Link>
+              <span className="text-slate-600">/</span>
+              <span className="text-slate-300">ข้อกำหนดการใช้บริการ</span>
+            </nav>
+
+            <span className="mb-4 inline-block rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-black uppercase tracking-[0.2em] text-blue-400">
+              Terms &amp; Conditions
+            </span>
+            <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">
               ข้อกำหนดการใช้บริการ
-              <span className="mt-2 block text-xl font-extrabold text-slate-600 sm:text-2xl">Terms of Service</span>
+              <span className="mt-2 block text-xl font-extrabold uppercase tracking-wider text-slate-400 sm:text-2xl">
+                Terms of Service
+              </span>
             </h1>
-            <div className="mt-4 flex flex-wrap items-center gap-3 text-sm sm:text-base">
-              <span className="rounded-full bg-white px-3 py-1 font-bold text-slate-700 ring-1 ring-slate-200">อัปเดตล่าสุด: 18 พฤษภาคม 2569 (2026)</span>
-              <span className="rounded-full bg-white px-3 py-1 font-bold text-slate-700 ring-1 ring-slate-200">เวอร์ชัน: 1.0</span>
-            </div>
-            <div className="mt-5 space-y-2 text-base leading-relaxed text-slate-700 sm:text-lg">
-              <p>ข้อกำหนดฉบับนี้ระบุสิ่งที่ BKK AIR ให้บริการ สิ่งที่ไม่ได้ให้บริการ</p>
-              <p>และสิ่งที่คุณควรทราบก่อนใช้บริการ</p>
-              <p>กรุณาอ่านให้ครบก่อนสั่งซื้อ เพราะการใช้บริการถือว่าคุณยอมรับข้อกำหนดเหล่านี้แล้ว</p>
-            </div>
-          </header>
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_17rem] lg:items-start">
-            <main className="min-w-0 space-y-8">
-              <section className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8" aria-labelledby="toc-heading">
-                <h2 id="toc-heading" className="text-2xl font-black text-slate-900">
-                  สารบัญข้อกำหนดการใช้บริการ
-                </h2>
-                <ul className="mt-5 grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
-                  {tableOfContents.map((item) => (
-                    <li key={item.id}>
-                      <a
-                        href={`#${item.id}`}
-                        className="block rounded-xl border border-slate-200 bg-[#F8FAFC] px-3 py-2 font-semibold text-slate-700 transition hover:border-blue-200 hover:text-[#2563EB]"
-                      >
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 overflow-x-auto rounded-2xl border border-slate-200">
-                  <table className="min-w-[680px] w-full border-collapse text-left text-sm sm:text-base">
-                    <thead className="bg-[#F8FAFC]">
-                      <tr>
-                        <th className="border-b border-slate-200 px-4 py-3 font-extrabold text-slate-900">หมวด</th>
-                        <th className="border-b border-slate-200 px-4 py-3 font-extrabold text-slate-900">หัวข้ออ้างอิง</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-slate-700">
-                      <tr>
-                        <td className="border-b border-slate-200 px-4 py-3">บริการและข้อจำกัด</td>
-                        <td className="border-b border-slate-200 px-4 py-3">ข้อ 2, 3, 4</td>
-                      </tr>
-                      <tr>
-                        <td className="border-b border-slate-200 px-4 py-3">การสั่งซื้อและคืนเงิน</td>
-                        <td className="border-b border-slate-200 px-4 py-3">ข้อ 5, 6, 7, 8</td>
-                      </tr>
-                      <tr>
-                        <td className="border-b border-slate-200 px-4 py-3">ความรับผิดและกฎหมาย</td>
-                        <td className="border-b border-slate-200 px-4 py-3">ข้อ 9, 10, 11, 12, 13, 14</td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">ช่องทางติดต่อ</td>
-                        <td className="px-4 py-3">ข้อ 15</td>
-                      </tr>
-                    </tbody>
-                  </table>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs">
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-3.5 py-1.5 font-black text-slate-300">
+                <Clock className="h-4 w-4" />
+                อัปเดตล่าสุด: 18 พฤษภาคม 2569 (2026)
+              </span>
+              <span className="rounded-full border border-slate-800 bg-slate-900 px-3.5 py-1.5 font-black text-slate-300">
+                เวอร์ชัน: 1.0
+              </span>
+            </div>
+
+            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-slate-400 sm:text-base">
+              ข้อกำหนดและเงื่อนไขการใช้บริการฉบับนี้ อธิบายถึงขอบเขตบริการ
+              สิทธิ์ความรับผิดชอบ เงื่อนไขการชำระเงิน การส่งมอบและแก้ไขไฟล์งาน
+              ตลอดจนนโยบายการคืนเงินและขอบเขตข้อจำกัดความรับผิดชอบทั้งหมดของ BKK AIR
+            </p>
+          </div>
+        </section>
+
+        <main className="relative z-10 mx-auto max-w-6xl px-6 py-8">
+          <div className="mb-8 flex flex-col items-center justify-between gap-4 border-b border-slate-800 pb-6 sm:flex-row">
+            <div className="inline-flex rounded-2xl border border-slate-800 bg-slate-900/80 p-1.5">
+              <button
+                type="button"
+                id="btnViewFull"
+                className="terms-view-button rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-blue-500/20"
+                data-view-target="full"
+              >
+                อ่านข้อตกลงเต็ม
+              </button>
+              <button
+                type="button"
+                id="btnViewSummary"
+                className="terms-view-button rounded-xl px-5 py-2.5 text-sm font-black text-slate-400 transition hover:text-white"
+                data-view-target="summary"
+              >
+                สรุปสั้น ๆ
+              </button>
+            </div>
+
+            <label id="termsSearchBox" className="relative block w-full sm:w-80">
+              <span className="sr-only">ค้นหาเงื่อนไขหรือนโยบาย</span>
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+              <input
+                id="termsSearchInput"
+                type="search"
+                placeholder="ค้นหาเงื่อนไข/นโยบาย..."
+                className="w-full rounded-xl border border-slate-700/60 bg-slate-800/50 py-2.5 pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-slate-400 hover:bg-slate-800/80 focus:ring-2 focus:ring-blue-500"
+              />
+            </label>
+          </div>
+
+          <div
+            id="searchNotice"
+            className="mb-6 hidden rounded-xl border border-blue-800/50 bg-blue-950/40 p-4 text-sm font-semibold text-blue-300"
+          >
+            กำลังแสดงเฉพาะหัวข้อที่พบจากคำค้นหา
+          </div>
+
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
+            <aside
+              id="sidebar-nav"
+              className="hidden max-h-[calc(100vh-120px)] space-y-6 overflow-y-auto pr-2 lg:sticky lg:top-24 lg:col-span-3 lg:block"
+            >
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-sm">
+                <div className="mb-4 flex items-center justify-between border-b border-slate-800 pb-3">
+                  <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                    ในหน้านี้
+                  </span>
+                  <span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-xs font-black text-blue-400">
+                    17 หัวข้อ
+                  </span>
                 </div>
-              </section>
+                <nav className="space-y-1">
+                  {tableOfContents.map((item) => (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      className="toc-link block rounded-r-md border-l-2 border-transparent px-3 py-1.5 pl-4 text-xs font-bold text-slate-400 transition hover:border-slate-600 hover:text-white"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
 
-              <section className="rounded-3xl border border-emerald-200 bg-emerald-50/70 p-6 sm:p-8">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-700">สรุปสั้น ๆ</p>
-                <h2 className="mt-2 text-2xl font-black text-slate-900">สิ่งที่ควรรู้ก่อนใช้บริการ BKK AIR</h2>
-                <ul className="mt-6 grid gap-3 text-slate-800 sm:grid-cols-2">
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4"><strong>เราทำอะไร</strong><br />จัดเตรียมเอกสาร PDF สนับสนุนวีซ่า เช่น ใบจองตั๋ว ใบจองโรงแรม แผนการเดินทาง</li>
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4"><strong>เราไม่ได้ทำอะไร</strong><br />ไม่ได้จองตั๋วจริง ไม่ได้จองโรงแรมจริง และไม่ได้รับประกันว่าวีซ่าจะผ่าน</li>
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4"><strong>วีซ่าผ่านหรือไม่</strong><br />การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตเสมอ BKK AIR ไม่มีส่วนเกี่ยวข้องกับกระบวนการนั้น</li>
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4"><strong>นโยบายคืนเงิน</strong><br />ยกเลิกก่อนเริ่ม = คืน 100% | หลังเริ่มจัดทำ = คืน 50% | ส่งแล้ว = ไม่คืน</li>
-                  <li className="rounded-2xl border border-emerald-200 bg-white p-4 sm:col-span-2"><strong>ความถูกต้องของข้อมูล</strong><br />ชื่อ-นามสกุลต้องตรงหนังสือเดินทางทุกตัว เราจัดทำตามข้อมูลที่ได้รับ</li>
-                </ul>
-              </section>
+              <div className="rounded-2xl border border-slate-800 bg-gradient-to-br from-indigo-950/40 to-slate-900/60 p-5 shadow-xl">
+                <div className="mb-2 flex items-center gap-2 text-xs font-black text-indigo-400">
+                  <Shield className="h-4 w-4" />
+                  ศูนย์รวมความช่วยเหลือ
+                </div>
+                <h3 className="mb-2 text-sm font-black text-white">
+                  มีปัญหาการรับส่งไฟล์?
+                </h3>
+                <p className="mb-4 text-xs leading-relaxed text-slate-400">
+                  หากไม่ได้รับเอกสารภายใน 24 ชั่วโมง หรือข้อมูลมีปัญหา
+                  โปรดติดต่อฝ่ายประสานงานได้ทันที
+                </p>
+                <a
+                  href="mailto:info@bkkair.com"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-2 text-xs font-black text-white transition hover:bg-blue-500"
+                >
+                  <Mail className="h-4 w-4" />
+                  info@bkkair.com
+                </a>
+              </div>
+            </aside>
 
-              <section className="space-y-8 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8">
-                <section id="general-definitions" className="scroll-mt-28 space-y-4">
-                  <h2 className="text-2xl font-black text-slate-900">1. ข้อมูลทั่วไปและคำนิยาม</h2>
-                  <p className="leading-relaxed text-slate-700">
-                    BKK AIR (&quot;บริษัท&quot;, &quot;เรา&quot;, &quot;ของเรา&quot;) ดำเนินกิจการบริการจัดเตรียมเอกสารสนับสนุนวีซ่า ผ่านเว็บไซต์ bkkair.com
+            <div id="fullPolicyContainer" className="lg:col-span-9">
+              <div className="space-y-6">
+                <PolicySection id="section-1" number="1" title="ข้อมูลทั่วไปและคำนิยาม">
+                  <p>
+                    <strong className="text-blue-400">BKK AIR</strong>{" "}
+                    ให้บริการจัดเตรียมเอกสารข้อมูลเชิงท่องเที่ยวเพื่อใช้เป็นหลักฐานสนับสนุนการยื่นวีซ่าสำหรับผู้เดินทาง
+                    ผ่านเว็บไซต์ <Link href="/" className="font-bold text-blue-400 hover:underline">bkkair.com</Link>
                   </p>
-                  <p className="leading-relaxed text-slate-700">ในข้อกำหนดฉบับนี้:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li><strong>&quot;บริการ&quot;</strong> หมายถึง การจัดเตรียมเอกสารสนับสนุนวีซ่าในรูปแบบ PDF ได้แก่ ใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และเอกสารประกอบอื่น ๆ ที่ BKK AIR จัดให้</li>
-                    <li><strong>&quot;เอกสารสนับสนุนวีซ่า&quot;</strong> หมายถึง เอกสาร PDF ที่จัดทำขึ้นเพื่อประกอบการยื่นขอวีซ่าเท่านั้น ไม่ใช่ตั๋วเครื่องบินจริง ใบจองโรงแรมจริง หรือสัญญาใด ๆ ที่มีผลผูกพันทางธุรกิจ</li>
-                    <li><strong>&quot;ผู้ใช้บริการ&quot;</strong> หมายถึง บุคคลใด ๆ ที่เข้าใช้เว็บไซต์หรือสั่งซื้อบริการของ BKK AIR</li>
-                    <li><strong>&quot;ออเดอร์&quot;</strong> หมายถึง คำสั่งซื้อบริการที่ผู้ใช้บริการยืนยันและชำระเงินแล้ว</li>
+                  <ul className="list-disc space-y-2 pl-6 marker:text-blue-400">
+                    <li>
+                      <strong className="text-white">“บริการ”</strong> หมายถึง การรับเรื่อง เรียบเรียง
+                      และส่งมอบชุดเอกสารรูปแบบไฟล์ PDF เพื่อสนับสนุนวีซ่า เช่น ใบจองตั๋วเครื่องบิน
+                      ใบจองโรงแรม แผนการเดินทาง และเอกสารที่เกี่ยวข้อง
+                    </li>
+                    <li>
+                      <strong className="text-white">“เอกสารสนับสนุนวีซ่า”</strong> หมายถึง เอกสาร PDF
+                      เพื่อใช้ประกอบการยื่นวีซ่าเท่านั้น ไม่ใช่ตั๋วโดยสารจริง ใบจองโรงแรมจริง
+                      หรือหลักฐานการชำระเงินให้สายการบินหรือโรงแรม
+                    </li>
+                    <li>
+                      <strong className="text-white">“ผู้ใช้บริการ”</strong> หมายถึง บุคคลที่เข้าใช้เว็บไซต์
+                      ส่งคำขอ หรือใช้บริการของ BKK AIR
+                    </li>
+                    <li>
+                      <strong className="text-white">“คำขอ”</strong> หมายถึง รายการบริการที่ผู้ใช้บริการส่งข้อมูล
+                      ยืนยันรายละเอียด และชำระเงินเรียบร้อยแล้ว
+                    </li>
                   </ul>
-                  <p className="leading-relaxed text-slate-700">การใช้บริการของ BKK AIR ไม่ว่าในรูปแบบใด ถือว่าผู้ใช้บริการได้อ่าน เข้าใจ และยอมรับข้อกำหนดฉบับนี้ทุกประการ</p>
-                </section>
+                </PolicySection>
 
-                <section id="service-scope" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">2. ขอบเขตของบริการ</h2>
-                  <p className="leading-relaxed text-slate-700">BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนการยื่นขอวีซ่า ดังต่อไปนี้:</p>
-                  <h3 className="text-xl font-extrabold text-slate-900">2.1 ประเภทเอกสารที่ให้บริการ</h3>
-                  <ul className="space-y-3 leading-relaxed text-slate-700">
-                    <li><strong>ใบจองตั๋วเครื่องบิน (flight reservation document)</strong><br />เอกสาร PDF แสดงรายละเอียดการเดินทางไป-กลับ ชื่อผู้โดยสาร วันเดินทาง เมืองต้นทางและปลายทาง และหมายเลขเที่ยวบิน</li>
-                    <li><strong>ใบจองโรงแรม (hotel reservation document)</strong><br />เอกสาร PDF แสดงรายละเอียดการจองที่พัก ชื่อผู้เข้าพัก ชื่อและที่อยู่โรงแรม วันเช็คอิน-เช็คเอาท์</li>
-                    <li><strong>แผนการเดินทาง (travel itinerary)</strong><br />เอกสาร PDF แสดงกำหนดการเดินทางโดยละเอียด สถานที่ท่องเที่ยว และกิจกรรมตลอดการเดินทาง</li>
-                    <li><strong>ชุดเอกสารครบเซ็ต (Complete Document Package)</strong><br />รวมเอกสารข้างต้นในไฟล์ PDF เดียว</li>
-                    <li><strong>ประกันการเดินทาง (Travel Insurance)</strong><br />การให้คำแนะนำและสนับสนุนด้านเอกสารประกันการเดินทางตามที่สถานทูตกำหนด</li>
-                  </ul>
-                  <h3 className="text-xl font-extrabold text-slate-900">2.2 มาตรฐานการให้บริการ</h3>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>เอกสารทุกชิ้นตรวจสอบโดยทีมงานจริงก่อนส่ง</li>
-                    <li>เอกสารจัดทำในรูปแบบ PDF</li>
-                    <li>ส่งเอกสารทางอีเมลที่ผู้ใช้บริการระบุ</li>
-                    <li>ระยะเวลาส่งภายใน 24 ชั่วโมงนับจากชำระเงินและข้อมูลครบถ้วน (แพ็กเกจมาตรฐาน)</li>
-                  </ul>
-                </section>
+                <PolicySection id="section-2" number="2" title="ขอบเขตของบริการ">
+                  <p>
+                    BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนการยื่นวีซ่าในรูปแบบเอกสาร PDF
+                    ตามข้อมูลที่ผู้ใช้บริการให้ไว้ โดยบริการเป็นงานรับคำขอและให้ทีมงานตรวจสอบก่อนจัดทำเอกสาร
+                  </p>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {[
+                      ["ใบจองตั๋วเครื่องบิน", "เอกสาร PDF แสดงรายละเอียดการเดินทาง เช่น ชื่อผู้เดินทาง เมืองต้นทาง เมืองปลายทาง วันเดินทาง และรายละเอียดเที่ยวบิน"],
+                      ["ใบจองโรงแรม", "เอกสาร PDF แสดงรายละเอียดที่พัก เช่น ชื่อผู้เข้าพัก ชื่อโรงแรม วันที่เข้าพัก และวันที่ออกจากที่พัก"],
+                      ["แผนการเดินทาง", "เอกสาร PDF แสดงกำหนดการเดินทางโดยสรุปสำหรับใช้ประกอบการยื่นวีซ่า"],
+                      ["ชุดเอกสารครบเซ็ต", "รวมเอกสารสนับสนุนที่เกี่ยวข้องตามแพ็กเกจที่ผู้ใช้บริการเลือก"],
+                    ].map(([title, body]) => (
+                      <div key={title} className="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                        <h3 className="font-black text-white">{title}</h3>
+                        <p className="mt-1 text-sm text-slate-400">{body}</p>
+                      </div>
+                    ))}
+                  </div>
+                </PolicySection>
 
-                <section id="not-provided" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">3. สิ่งที่ BKK AIR ไม่ได้ให้บริการ</h2>
-                  <p className="leading-relaxed text-slate-700">เพื่อความชัดเจน BKK AIR <strong>ไม่ได้</strong> ให้บริการดังต่อไปนี้:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-rose-500">
-                    <li>การจองตั๋วเครื่องบินจริงหรือการซื้อตั๋วโดยสาร</li>
-                    <li>การจองโรงแรมจริงหรือการชำระค่าที่พัก</li>
-                    <li>การยื่นใบสมัครวีซ่าแทนผู้ใช้บริการ</li>
-                    <li>การรับประกันการอนุมัติวีซ่าหรือผลการยื่นวีซ่า</li>
-                    <li>การให้คำปรึกษากฎหมายด้านการเข้าเมืองหรือตรวจคนเข้าเมือง</li>
-                    <li>การเป็นตัวแทนหรือนายหน้าวีซ่าที่ได้รับใบอนุญาต</li>
-                    <li>การมีความสัมพันธ์หรือข้อตกลงใด ๆ กับสถานทูตหรือสถานกงสุลต่างประเทศ</li>
-                    <li>การรับประกันว่าเอกสารที่จัดทำจะได้รับการยอมรับจากสถานทูต</li>
+                <PolicySection id="section-3" number="3" title="สิ่งที่ BKK AIR ไม่ได้ให้บริการ" tone="red">
+                  <ul className="grid gap-3 md:grid-cols-2">
+                    {[
+                      "ไม่ได้ออกตั๋วเครื่องบินจริงหรือชำระค่าตั๋วโดยสารแทนผู้ใช้บริการ",
+                      "ไม่ได้จองโรงแรมจริงหรือชำระค่าที่พักแทนผู้ใช้บริการ",
+                      "ไม่ได้ยื่นใบสมัครวีซ่าแทนผู้ใช้บริการ",
+                      "ไม่ได้ให้คำปรึกษากฎหมายด้านการเข้าเมืองหรือตรวจคนเข้าเมือง",
+                      "ไม่ได้เป็นตัวแทนของสถานทูต สถานกงสุล หน่วยงานรัฐ หรือหน่วยงานตรวจคนเข้าเมือง",
+                      "ไม่ได้รับประกันว่าเอกสารจะได้รับการยอมรับหรือวีซ่าจะได้รับการอนุมัติ",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-3 rounded-xl border border-rose-900/40 bg-rose-950/20 p-3">
+                        <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
-                </section>
+                </PolicySection>
 
-                <section id="visa-disclaimer" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">4. ข้อสำคัญเรื่องวีซ่าและสถานทูต</h2>
-                  <p className="rounded-2xl border border-amber-200 bg-amber-50 p-4 font-bold text-slate-800">นี่คือข้อความที่สำคัญที่สุดในข้อกำหนดฉบับนี้ กรุณาอ่านอย่างละเอียด</p>
-                  <h3 className="text-xl font-extrabold text-slate-900">4.1 BKK AIR เป็นบริการจัดเตรียมเอกสารสนับสนุนเท่านั้น</h3>
-                  <p className="leading-relaxed text-slate-700">BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนสำหรับประกอบการยื่นขอวีซ่าเท่านั้น เราไม่ใช่บริษัทหรือตัวแทนวีซ่า ไม่มีใบอนุญาตประกอบธุรกิจนายหน้าวีซ่า และไม่มีความสัมพันธ์พิเศษใด ๆ กับสถานทูต สถานกงสุล หรือหน่วยงานรัฐบาลต่างประเทศ</p>
-                  <h3 className="text-xl font-extrabold text-slate-900">4.2 การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตเสมอ</h3>
-                  <p className="leading-relaxed text-slate-700">การอนุมัติหรือปฏิเสธวีซ่าเป็นดุลยพินิจเด็ดขาดของสถานทูตหรือสถานกงสุลของแต่ละประเทศ ซึ่งพิจารณาจากปัจจัยหลายประการ เช่น ประวัติการเดินทาง ฐานะทางการเงิน วัตถุประสงค์การเดินทาง และเอกสารประกอบทั้งหมด</p>
-                  <p className="leading-relaxed text-slate-700">BKK AIR ไม่มีอำนาจ ไม่มีอิทธิพล และไม่มีส่วนเกี่ยวข้องใด ๆ กับกระบวนการตัดสินใจของสถานทูต</p>
-                  <h3 className="text-xl font-extrabold text-slate-900">4.3 ไม่มีการรับประกันผลวีซ่า</h3>
-                  <p className="leading-relaxed text-slate-700">BKK AIR ไม่รับประกันว่า:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>วีซ่าจะได้รับการอนุมัติ</li>
-                    <li>เอกสารที่จัดทำจะได้รับการยอมรับจากสถานทูต</li>
-                    <li>การใช้บริการของเราจะเพิ่มโอกาสได้รับวีซ่า</li>
-                  </ul>
-                  <p className="leading-relaxed text-slate-700">หากวีซ่าถูกปฏิเสธไม่ว่าด้วยเหตุใด BKK AIR ไม่รับผิดชอบต่อความเสียหายใด ๆ ที่เกิดขึ้น</p>
-                  <h3 className="text-xl font-extrabold text-slate-900">4.4 ข้อกำหนดเอกสารอาจเปลี่ยนแปลง</h3>
-                  <p className="leading-relaxed text-slate-700">ข้อกำหนดด้านเอกสารของแต่ละสถานทูตอาจเปลี่ยนแปลงได้โดยไม่แจ้งล่วงหน้า ผู้ใช้บริการมีหน้าที่ตรวจสอบข้อกำหนดล่าสุดจากเว็บไซต์สถานทูตโดยตรงก่อนยื่น BKK AIR ไม่รับผิดชอบหากข้อกำหนดของสถานทูตเปลี่ยนแปลงหลังจากจัดทำเอกสาร</p>
-                </section>
+                <PolicySection id="section-4" number="4" title="ข้อสำคัญเรื่องวีซ่าและสถานทูต" tone="amber">
+                  <p className="rounded-2xl border border-amber-900/40 bg-amber-950/30 p-4 font-bold text-amber-200">
+                    BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น ไม่มีส่วนเกี่ยวข้องกับสถานทูต
+                    หน่วยงานรัฐ หรือหน่วยงานตรวจคนเข้าเมือง และไม่สามารถรับประกันผลการอนุมัติวีซ่าได้
+                  </p>
+                  <p>
+                    การอนุมัติหรือปฏิเสธวีซ่าเป็นดุลยพินิจของสถานทูตหรือหน่วยงานที่เกี่ยวข้อง
+                    โดยพิจารณาจากข้อมูล ประวัติ เอกสาร และข้อกำหนดของแต่ละประเทศ
+                  </p>
+                  <p>
+                    ผู้ใช้บริการมีหน้าที่ตรวจสอบข้อกำหนดเอกสารล่าสุดจากเว็บไซต์สถานทูต
+                    หรือหน่วยงานที่เกี่ยวข้องก่อนยื่นเอกสารทุกครั้ง
+                  </p>
+                </PolicySection>
 
-                <section id="ordering-payment" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">5. ข้อกำหนดการสั่งซื้อและชำระเงิน</h2>
-                  <h3 className="text-xl font-extrabold text-slate-900">5.1 การยืนยันออเดอร์</h3>
-                  <p className="leading-relaxed text-slate-700">ออเดอร์จะถือว่าสมบูรณ์เมื่อ:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>ผู้ใช้บริการกรอกข้อมูลครบถ้วนและถูกต้อง</li>
-                    <li>ชำระเงินสำเร็จ</li>
-                    <li>ได้รับอีเมลยืนยันออเดอร์จาก BKK AIR</li>
+                <PolicySection id="section-5" number="5" title="การส่งคำขอและการชำระเงิน">
+                  <p>
+                    คำขอจะถือว่าสมบูรณ์เมื่อผู้ใช้บริการส่งข้อมูลครบถ้วน ชำระเงินเรียบร้อย
+                    และได้รับการยืนยันจาก BKK AIR โดยเป็นคำขอที่รอการตรวจสอบและจัดทำจากทีมงาน
+                  </p>
+                  <ul className="list-disc space-y-2 pl-6 marker:text-blue-400">
+                    <li>ผู้ใช้บริการต้องกรอกข้อมูลให้ถูกต้องและครบถ้วน</li>
+                    <li>ชื่อและนามสกุลต้องตรงกับหนังสือเดินทางทุกตัวอักษร</li>
+                    <li>วันเดินทาง ประเทศปลายทาง และรายละเอียดบริการต้องถูกต้องก่อนยืนยันคำขอ</li>
+                    <li>ราคาที่แสดงเป็นค่าบริการจัดเตรียมเอกสารของ BKK AIR เท่านั้น</li>
+                    <li>ราคายังไม่รวมค่าธรรมเนียมสถานทูต ค่าธรรมเนียมหน่วยงานภายนอก หรือค่าใช้จ่ายอื่นที่ไม่ได้ระบุ</li>
                   </ul>
-                  <h3 className="text-xl font-extrabold text-slate-900">5.2 ความถูกต้องของข้อมูล</h3>
-                  <p className="leading-relaxed text-slate-700">ผู้ใช้บริการมีหน้าที่รับผิดชอบในความถูกต้องของข้อมูลที่กรอก โดยเฉพาะ:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>ชื่อ-นามสกุลตามหนังสือเดินทาง (ตัวสะกดต้องถูกต้องทุกตัว)</li>
-                    <li>วันเดินทาง</li>
-                    <li>ประเทศปลายทาง</li>
-                  </ul>
-                  <p className="leading-relaxed text-slate-700">BKK AIR จัดทำเอกสารตามข้อมูลที่ได้รับ หากข้อมูลผิดพลาดเนื่องจากผู้ใช้บริการ อาจมีค่าใช้จ่ายในการแก้ไขตามที่กำหนด</p>
-                  <h3 className="text-xl font-extrabold text-slate-900">5.3 ราคาและภาษี</h3>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>ราคาที่แสดงบนเว็บไซต์เป็นค่าบริการจัดเตรียมเอกสารของ BKK AIR เท่านั้น และไม่รวมค่าธรรมเนียมสถานทูตหรือค่าธรรมเนียมจากหน่วยงานภายนอก</li>
-                    <li>ราคาที่แสดงบนเว็บไซต์ยังไม่รวมภาษีมูลค่าเพิ่ม (VAT) 7% ซึ่งอาจถูกเรียกเก็บเพิ่มเติมตามกฎหมายที่เกี่ยวข้อง</li>
-                    <li>ราคาทั้งหมดแสดงเป็นสกุลเงินบาท (THB) เว้นแต่จะระบุไว้เป็นอย่างอื่น</li>
-                    <li>BKK AIR ขอสงวนสิทธิ์ในการเปลี่ยนแปลงราคา โปรโมชั่น หรือค่าบริการได้โดยไม่ต้องแจ้งให้ทราบล่วงหน้า โดยราคาที่มีผลคือราคาที่แสดง ณ เวลาที่ยืนยันคำสั่งซื้อ</li>
-                    <li>ลูกค้าสามารถขอใบเสร็จรับเงินได้หลังการชำระเงิน และใบกำกับภาษีจะออกให้เฉพาะกรณีที่กฎหมายกำหนด</li>
-                  </ul>
-                  <h3 className="text-xl font-extrabold text-slate-900">5.4 ช่องทางชำระเงิน</h3>
-                  <p className="leading-relaxed text-slate-700">BKK AIR รับชำระเงินผ่านช่องทางที่กำหนด การชำระเงินทุกรายการผ่านระบบที่เข้ารหัสและปลอดภัย BKK AIR ไม่จัดเก็บข้อมูลบัตรเครดิตหรือบัญชีธนาคารของผู้ใช้บริการ</p>
-                </section>
+                </PolicySection>
 
-                <section id="delivery" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">6. การส่งมอบเอกสาร</h2>
-                  <h3 className="text-xl font-extrabold text-slate-900">6.1 ช่องทางและระยะเวลา</h3>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>เอกสารส่งเป็นไฟล์ PDF ทางอีเมลที่ผู้ใช้บริการระบุ</li>
-                    <li>แพ็กเกจมาตรฐาน: ภายใน 24 ชั่วโมงนับจากชำระเงินสำเร็จและข้อมูลครบถ้วน</li>
-                    <li>แพ็กเกจ Express: ภายใน 3–6 ชั่วโมงในเวลาทำการ</li>
+                <PolicySection id="section-6" number="6" title="การส่งมอบเอกสาร">
+                  <ul className="list-disc space-y-2 pl-6 marker:text-blue-400">
+                    <li>เอกสารจะถูกส่งเป็นเอกสาร PDF ไปยังอีเมลที่ผู้ใช้บริการระบุ</li>
+                    <li>แพ็กเกจมาตรฐาน: ภายใน 24 ชั่วโมงหลังชำระเงินและข้อมูลครบถ้วน</li>
+                    <li>แพ็กเกจ Express: ภายใน 3-6 ชั่วโมงในเวลาทำการ หากมีให้บริการ</li>
+                    <li>ระยะเวลาส่งมอบเป็นเป้าหมายการให้บริการ อาจเปลี่ยนแปลงได้หากข้อมูลไม่ครบหรือมีเหตุสุดวิสัย</li>
                   </ul>
-                  <p className="leading-relaxed text-slate-700">ระยะเวลาดังกล่าวเป็นเป้าหมายการให้บริการ ไม่ใช่การรับประกันที่มีผลผูกพัน กรณีมีเหตุสุดวิสัย BKK AIR จะแจ้งให้ทราบและดำเนินการโดยเร็ว</p>
-                  <h3 className="text-xl font-extrabold text-slate-900">6.2 ความรับผิดชอบของผู้ใช้บริการหลังรับเอกสาร</h3>
-                  <p className="leading-relaxed text-slate-700">ผู้ใช้บริการมีหน้าที่:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>ตรวจสอบความถูกต้องของเอกสารทันทีที่ได้รับ</li>
-                    <li>แจ้งข้อผิดพลาดภายใน 48 ชั่วโมงหลังได้รับ</li>
-                    <li>ตรวจสอบว่าเอกสารตรงตามข้อกำหนดของสถานทูตก่อนยื่น</li>
-                  </ul>
-                  <h3 className="text-xl font-extrabold text-slate-900">6.3 กรณีไม่ได้รับเอกสาร</h3>
-                  <p className="leading-relaxed text-slate-700">หากไม่ได้รับเอกสารภายในระยะเวลาที่กำหนด กรุณา:</p>
-                  <ol className="list-decimal space-y-2 pl-6 leading-relaxed text-slate-700 marker:font-semibold marker:text-[#2563EB]">
-                    <li>ตรวจสอบกล่อง Spam/Junk Mail ก่อน</li>
-                    <li>หากยังไม่ได้รับ ติดต่อทีมงานพร้อมหมายเลขออเดอร์ทันที</li>
-                  </ol>
-                </section>
+                  <p>
+                    หลังได้รับเอกสาร ผู้ใช้บริการควรตรวจสอบความถูกต้องทันที
+                    หากพบข้อผิดพลาดควรแจ้ง BKK AIR ภายใน 48 ชั่วโมงหลังได้รับเอกสาร
+                  </p>
+                </PolicySection>
 
-                <section id="edit-cancel" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">7. การแก้ไขและยกเลิกออเดอร์</h2>
-                  <h3 className="text-xl font-extrabold text-slate-900">7.1 การแก้ไขข้อมูล</h3>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>แก้ไขได้โดยไม่มีค่าใช้จ่าย หากแจ้งก่อนที่ทีมงานเริ่มจัดทำเอกสาร</li>
-                    <li>หากแจ้งหลังจากเริ่มจัดทำแล้ว อาจมีค่าธรรมเนียมการแก้ไขตามความซับซ้อนของรายการที่ขอแก้ไข</li>
-                    <li>ข้อมูลที่ผิดพลาดเนื่องจากผู้ใช้บริการ BKK AIR ไม่รับผิดชอบต่อผลที่ตามมา</li>
+                <PolicySection id="section-7" number="7" title="การแก้ไขและยกเลิกคำขอ">
+                  <ul className="list-disc space-y-2 pl-6 marker:text-blue-400">
+                    <li>แก้ไขข้อมูลได้โดยไม่มีค่าใช้จ่าย หากแจ้งก่อนที่ทีมงานเริ่มจัดเตรียมเอกสาร</li>
+                    <li>หากเริ่มจัดเตรียมเอกสารแล้ว อาจมีค่าธรรมเนียมการแก้ไขตามความซับซ้อน</li>
+                    <li>หากส่งเอกสารแล้ว การแก้ไขที่เกิดจากข้อมูลผิดพลาดของผู้ใช้บริการอาจมีค่าบริการเพิ่มเติม</li>
+                    <li>การยกเลิกคำขอต้องแจ้งผ่านอีเมลหรือช่องทางติดต่อที่ BKK AIR กำหนด</li>
                   </ul>
-                  <h3 className="text-xl font-extrabold text-slate-900">7.2 การยกเลิกออเดอร์</h3>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>ยกเลิกได้โดยไม่มีค่าใช้จ่าย หากแจ้งก่อนที่ทีมงานเริ่มจัดทำเอกสาร</li>
-                    <li>หากทีมงานเริ่มจัดทำแล้ว ไม่สามารถยกเลิกได้ (ดูนโยบายคืนเงินในข้อ 8)</li>
-                    <li>การยกเลิกต้องแจ้งเป็นลายลักษณ์อักษรทางอีเมลหรือช่องทางที่กำหนด</li>
-                  </ul>
-                </section>
+                </PolicySection>
 
-                <section id="refund-policy" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">8. นโยบายการคืนเงิน</h2>
-                  <p className="leading-relaxed text-slate-700">BKK AIR มีนโยบายการคืนเงินดังนี้:</p>
-                  <div className="overflow-x-auto rounded-2xl border border-slate-200">
-                    <table className="min-w-[680px] w-full border-collapse text-left text-sm sm:text-base">
-                      <thead className="bg-[#F8FAFC]">
+                <PolicySection id="section-8" number="8" title="นโยบายการคืนเงิน" tone="amber">
+                  <div className="overflow-x-auto rounded-2xl border border-slate-800">
+                    <table className="w-full min-w-[680px] border-collapse text-left text-sm">
+                      <thead className="bg-slate-950 text-white">
                         <tr>
-                          <th className="border-b border-slate-200 px-4 py-3 font-extrabold text-slate-900">สถานการณ์</th>
-                          <th className="border-b border-slate-200 px-4 py-3 font-extrabold text-slate-900">นโยบาย</th>
+                          <th className="border-b border-slate-800 px-4 py-3 font-black">สถานการณ์</th>
+                          <th className="border-b border-slate-800 px-4 py-3 font-black">นโยบาย</th>
                         </tr>
                       </thead>
-                      <tbody className="text-slate-700">
-                        <tr><td className="border-b border-slate-200 px-4 py-3">ยกเลิกก่อนทีมงานเริ่มจัดทำ</td><td className="border-b border-slate-200 px-4 py-3">คืนเงิน 100%</td></tr>
-                        <tr><td className="border-b border-slate-200 px-4 py-3">ทีมงานเริ่มจัดทำแล้ว แต่ยังไม่ส่ง</td><td className="border-b border-slate-200 px-4 py-3">คืนเงิน 50%</td></tr>
-                        <tr><td className="border-b border-slate-200 px-4 py-3">ส่งเอกสารแล้ว ข้อมูลถูกต้องตามที่กรอก</td><td className="border-b border-slate-200 px-4 py-3">ไม่คืนเงิน</td></tr>
-                        <tr><td className="border-b border-slate-200 px-4 py-3">เอกสารมีข้อผิดพลาดจาก BKK AIR</td><td className="border-b border-slate-200 px-4 py-3">แก้ไขฟรีหรือคืนเงิน 100%</td></tr>
-                        <tr><td className="px-4 py-3">วีซ่าถูกปฏิเสธ</td><td className="px-4 py-3">ไม่คืนเงิน*</td></tr>
+                      <tbody className="text-slate-300">
+                        {[
+                          ["ยกเลิกก่อนทีมงานเริ่มจัดเตรียมเอกสาร", "คืนเงิน 100%"],
+                          ["ทีมงานเริ่มจัดเตรียมเอกสารแล้ว แต่ยังไม่ได้ส่งเอกสาร", "อาจคืนเงินบางส่วนตามงานที่ดำเนินการแล้ว"],
+                          ["ส่งเอกสารแล้ว และเอกสารถูกต้องตามข้อมูลที่ผู้ใช้บริการให้ไว้", "ไม่สามารถคืนเงินได้"],
+                          ["เอกสารมีข้อผิดพลาดจาก BKK AIR", "แก้ไขฟรี หรือคืนเงินตามกรณีที่เหมาะสม"],
+                          ["วีซ่าถูกปฏิเสธหรือเอกสารถูกสถานทูตไม่รับพิจารณา", "ไม่สามารถคืนเงินได้ เนื่องจากอยู่นอกเหนือการควบคุมของ BKK AIR"],
+                        ].map(([situation, policy]) => (
+                          <tr key={situation}>
+                            <td className="border-b border-slate-800 px-4 py-3">{situation}</td>
+                            <td className="border-b border-slate-800 px-4 py-3">{policy}</td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
-                  <p className="leading-relaxed text-slate-700">*การปฏิเสธวีซ่าเป็นดุลยพินิจของสถานทูต ซึ่งอยู่นอกเหนือการควบคุมของ BKK AIR</p>
-                  <p className="leading-relaxed text-slate-700"><strong>ระยะเวลาคืนเงิน:</strong> 7–14 วันทำการหลังอนุมัติ ผ่านช่องทางการชำระเงินเดิม</p>
-                  <p className="leading-relaxed text-slate-700"><strong>วิธีขอคืนเงิน:</strong> ติดต่อทีมงานทางอีเมลพร้อมหมายเลขออเดอร์และเหตุผล</p>
-                </section>
+                  <p>
+                    ระยะเวลาคืนเงินโดยทั่วไปคือ 7-14 วันทำการหลังจากได้รับอนุมัติคำขอคืนเงิน
+                    โดยคืนผ่านช่องทางการชำระเงินเดิมหรือช่องทางที่ BKK AIR กำหนด
+                  </p>
+                </PolicySection>
 
-                <section id="user-responsibilities" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">9. ความรับผิดชอบของผู้ใช้บริการ</h2>
-                  <p className="leading-relaxed text-slate-700">ผู้ใช้บริการตกลงและรับรองว่า:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li><strong>9.1</strong> ข้อมูลทั้งหมดที่กรอกเป็นความจริงและถูกต้อง</li>
-                    <li><strong>9.2</strong> ใช้บริการเพื่อวัตถุประสงค์ที่ถูกกฎหมายเท่านั้น</li>
-                    <li><strong>9.3</strong> ไม่ใช้เอกสารที่ได้รับเพื่อวัตถุประสงค์ที่ฉ้อโกงหรือหลอกลวง</li>
-                    <li><strong>9.4</strong> เข้าใจและยอมรับว่าเอกสารที่ได้รับเป็นเอกสารสนับสนุนวีซ่า ไม่ใช่ตั๋วหรือการจองจริง</li>
-                    <li><strong>9.5</strong> รับทราบว่าการอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูต และ BKK AIR ไม่รับประกันผลใด ๆ</li>
-                    <li><strong>9.6</strong> มีอายุครบ 20 ปีบริบูรณ์ หรือได้รับความยินยอมจากผู้ปกครองโดยชอบธรรม</li>
-                    <li><strong>9.7</strong> ไม่พยายามเข้าถึงระบบของ BKK AIR โดยไม่ได้รับอนุญาต</li>
+                <PolicySection id="section-9" number="9" title="ความรับผิดชอบของผู้ใช้บริการ">
+                  <ul className="list-disc space-y-2 pl-6 marker:text-blue-400">
+                    <li>ให้ข้อมูลจริง ถูกต้อง และครบถ้วน</li>
+                    <li>ตรวจสอบชื่อ-นามสกุลให้ตรงกับหนังสือเดินทางทุกตัวอักษร</li>
+                    <li>ตรวจสอบวันเดินทาง ประเทศปลายทาง และรายละเอียดบริการก่อนยืนยันคำขอ</li>
+                    <li>ตรวจสอบเอกสาร PDF หลังได้รับ และก่อนนำไปใช้ยื่นวีซ่า</li>
+                    <li>ใช้เอกสารเพื่อวัตถุประสงค์ที่ถูกต้องตามกฎหมายเท่านั้น</li>
+                    <li>ไม่ใช้เอกสารเพื่อการฉ้อโกง ปลอมแปลง หรือทำให้บุคคลอื่นเข้าใจผิด</li>
+                    <li>ยอมรับว่า BKK AIR ไม่สามารถรับประกันผลการอนุมัติวีซ่าได้</li>
                   </ul>
-                  <p className="leading-relaxed text-slate-700">BKK AIR ขอสงวนสิทธิ์ปฏิเสธการให้บริการหากพบว่าผู้ใช้บริการละเมิดข้อกำหนดข้างต้น</p>
-                </section>
+                </PolicySection>
 
-                <section id="liability-limit" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">10. ข้อจำกัดความรับผิดชอบของ BKK AIR</h2>
-                  <h3 className="text-xl font-extrabold text-slate-900">10.1 ขอบเขตความรับผิดชอบ</h3>
-                  <p className="leading-relaxed text-slate-700">BKK AIR รับผิดชอบเฉพาะคุณภาพและความถูกต้องของเอกสารที่จัดทำตามข้อมูลที่ได้รับเท่านั้น</p>
-                  <h3 className="text-xl font-extrabold text-slate-900">10.2 BKK AIR ไม่รับผิดชอบต่อ:</h3>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>การปฏิเสธวีซ่าหรือการไม่อนุมัติวีซ่าจากสถานทูต</li>
-                    <li>ความเสียหายที่เกิดจากการที่ผู้ใช้บริการกรอกข้อมูลผิด</li>
-                    <li>ความเสียหายที่เกิดจากการเปลี่ยนแปลงนโยบายของสถานทูตหลังจัดทำเอกสาร</li>
-                    <li>ความล่าช้าหรือข้อผิดพลาดของระบบอีเมลที่อยู่นอกการควบคุมของเรา</li>
-                    <li>ความเสียหายทางอ้อม ความเสียหายพิเศษ หรือการสูญเสียกำไรใด ๆ</li>
-                    <li>ค่าใช้จ่ายที่เกิดจากการวางแผนการเดินทางที่ต้องยกเลิก เช่น ค่าตั๋ว ค่าโรงแรม หรือค่าทัวร์</li>
+                <PolicySection id="section-10" number="10" title="ข้อจำกัดความรับผิดชอบ" tone="amber">
+                  <p>
+                    BKK AIR รับผิดชอบเฉพาะการจัดเตรียมเอกสาร PDF ตามข้อมูลที่ผู้ใช้บริการให้ไว้เท่านั้น
+                  </p>
+                  <ul className="list-disc space-y-2 pl-6 marker:text-amber-400">
+                    <li>ไม่รับผิดชอบต่อผลการอนุมัติหรือปฏิเสธวีซ่า</li>
+                    <li>ไม่รับผิดชอบต่อความเสียหายจากข้อมูลที่ผู้ใช้บริการให้มาผิด</li>
+                    <li>ไม่รับผิดชอบต่อข้อกำหนดสถานทูตที่เปลี่ยนแปลงหลังจากจัดเตรียมเอกสาร</li>
+                    <li>ไม่รับผิดชอบต่อความล่าช้าของระบบอีเมล อินเทอร์เน็ต หรือระบบภายนอก</li>
+                    <li>ไม่รับผิดชอบต่อค่าใช้จ่ายทางอ้อม เช่น ค่าตั๋ว ค่าโรงแรม ค่าทัวร์ หรือแผนการเดินทางที่ถูกยกเลิก</li>
                   </ul>
-                  <h3 className="text-xl font-extrabold text-slate-900">10.3 วงเงินความรับผิดสูงสุด</h3>
-                  <p className="leading-relaxed text-slate-700">ในกรณีที่ BKK AIR มีความรับผิดใด ๆ วงเงินความรับผิดสูงสุดของ BKK AIR จำกัดอยู่ที่จำนวนเงินที่ผู้ใช้บริการชำระสำหรับออเดอร์นั้น ๆ เท่านั้น</p>
-                </section>
+                  <p>
+                    หาก BKK AIR มีความรับผิดใด ๆ วงเงินความรับผิดสูงสุดจำกัดไม่เกินจำนวนเงินที่ผู้ใช้บริการชำระสำหรับคำขอนั้น
+                  </p>
+                </PolicySection>
 
-                <section id="intellectual-property" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">11. ทรัพย์สินทางปัญญา</h2>
-                  <p className="leading-relaxed text-slate-700">เนื้อหาทั้งหมดบนเว็บไซต์ BKK AIR รวมถึงแต่ไม่จำกัดเฉพาะ โลโก้ ข้อความ รูปภาพ การออกแบบ และรูปแบบเอกสาร เป็นทรัพย์สินของ BKK AIR และได้รับการคุ้มครองตามกฎหมายทรัพย์สินทางปัญญา</p>
-                  <p className="leading-relaxed text-slate-700">ผู้ใช้บริการไม่มีสิทธิ์ทำซ้ำ ดัดแปลง เผยแพร่ หรือนำเนื้อหาใด ๆ ไปใช้เพื่อวัตถุประสงค์เชิงพาณิชย์โดยไม่ได้รับอนุญาตเป็นลายลักษณ์อักษร</p>
-                </section>
+                <PolicySection id="section-11" number="11" title="ทรัพย์สินทางปัญญา">
+                  <p>
+                    เนื้อหา โลโก้ ข้อความ รูปภาพ การออกแบบ เว็บไซต์ และรูปแบบเอกสารของ BKK AIR
+                    เป็นทรัพย์สินของ BKK AIR หรือผู้ให้สิทธิ์ที่เกี่ยวข้อง
+                    และได้รับความคุ้มครองตามกฎหมายทรัพย์สินทางปัญญา
+                  </p>
+                </PolicySection>
 
-                <section id="service-termination" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">12. การระงับหรือยกเลิกบริการ</h2>
-                  <p className="leading-relaxed text-slate-700">BKK AIR ขอสงวนสิทธิ์ระงับหรือยกเลิกการให้บริการแก่ผู้ใช้บริการในกรณีดังต่อไปนี้:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
+                <PolicySection id="section-12" number="12" title="การระงับหรือยกเลิกบริการ" tone="red">
+                  <p>BKK AIR ขอสงวนสิทธิ์ระงับหรือปฏิเสธการให้บริการ หากพบว่าผู้ใช้บริการ:</p>
+                  <ul className="list-disc space-y-2 pl-6 marker:text-rose-400">
+                    <li>ให้ข้อมูลเท็จหรือปลอมแปลงข้อมูล</li>
+                    <li>ใช้บริการเพื่อวัตถุประสงค์ที่ผิดกฎหมาย</li>
                     <li>ละเมิดข้อกำหนดการใช้บริการ</li>
-                    <li>ให้ข้อมูลเท็จหรือปลอมแปลง</li>
-                    <li>ใช้บริการเพื่อวัตถุประสงค์ที่ฉ้อโกง</li>
-                    <li>ดำเนินการที่ก่อให้เกิดความเสียหายต่อ BKK AIR หรือผู้ใช้บริการรายอื่น</li>
+                    <li>กระทำการที่อาจก่อให้เกิดความเสียหายต่อ BKK AIR หรือบุคคลอื่น</li>
                   </ul>
-                  <p className="leading-relaxed text-slate-700">ในกรณีดังกล่าว BKK AIR ไม่จำเป็นต้องคืนเงิน และขอสงวนสิทธิ์ดำเนินการทางกฎหมายหากจำเป็น</p>
-                </section>
+                </PolicySection>
 
-                <section id="governing-law" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">13. กฎหมายที่ใช้บังคับ</h2>
-                  <p className="leading-relaxed text-slate-700">ข้อกำหนดฉบับนี้อยู่ภายใต้และตีความตามกฎหมายแห่งราชอาณาจักรไทย</p>
-                  <p className="leading-relaxed text-slate-700">ข้อพิพาทใด ๆ ที่เกิดขึ้นจากหรือเกี่ยวข้องกับข้อกำหนดฉบับนี้ ให้อยู่ในเขตอำนาจของศาลที่มีอำนาจในราชอาณาจักรไทย</p>
-                </section>
+                <PolicySection id="section-13" number="13" title="กฎหมายที่ใช้บังคับ">
+                  <p>ข้อกำหนดฉบับนี้อยู่ภายใต้และตีความตามกฎหมายแห่งราชอาณาจักรไทย</p>
+                </PolicySection>
 
-                <section id="terms-updates" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">14. การเปลี่ยนแปลงข้อกำหนด</h2>
-                  <p className="leading-relaxed text-slate-700">BKK AIR ขอสงวนสิทธิ์ปรับปรุงข้อกำหนดการใช้บริการได้ทุกเมื่อ โดยจะแจ้งให้ทราบผ่าน:</p>
-                  <ul className="list-disc space-y-2 pl-6 leading-relaxed text-slate-700 marker:text-[#2563EB]">
-                    <li>ประกาศบนเว็บไซต์</li>
-                    <li>อีเมลแจ้งเตือน (สำหรับผู้ที่เคยใช้บริการ)</li>
-                  </ul>
-                  <p className="leading-relaxed text-slate-700">วันที่อัปเดตล่าสุดจะแสดงไว้ที่ด้านบนของหน้านี้เสมอ การใช้บริการต่อไปหลังจากการเปลี่ยนแปลงถือว่าคุณยอมรับข้อกำหนดฉบับใหม่</p>
-                </section>
+                <PolicySection id="section-14" number="14" title="การเปลี่ยนแปลงข้อกำหนด">
+                  <p>
+                    BKK AIR อาจปรับปรุงข้อกำหนดนี้เป็นครั้งคราว โดยวันที่อัปเดตล่าสุดจะแสดงไว้ด้านบนของหน้านี้เสมอ
+                    การใช้บริการต่อไปหลังจากมีการเปลี่ยนแปลงถือว่าผู้ใช้บริการยอมรับข้อกำหนดฉบับใหม่
+                  </p>
+                </PolicySection>
 
-                <section id="contact" className="scroll-mt-28 space-y-4 border-t border-slate-200 pt-8">
-                  <h2 className="text-2xl font-black text-slate-900">15. ติดต่อเรา</h2>
-                  <p className="leading-relaxed text-slate-700">หากมีข้อสงสัยเกี่ยวกับข้อกำหนดการใช้บริการฉบับนี้ ติดต่อเราได้ที่:</p>
-                  <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-5 text-slate-800">
-                    <p className="text-lg font-black text-slate-900">BKK AIR</p>
-                    <p className="mt-2 leading-relaxed">อีเมล: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
-                    <p className="leading-relaxed">อีเมลด้านความเป็นส่วนตัว: <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
-                    <p className="leading-relaxed">เว็บไซต์: <a href="https://bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">https://bkkair.com</a></p>
-                    <p className="leading-relaxed">Official LINE OA: <a href="https://line.me/R/ti/p/@823lateh" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">@823lateh</a></p>
-                    <p className="leading-relaxed">เวลาทำการ: Monday-Saturday 09:00-18:00 (Thailand Time)</p>
-                    <p className="leading-relaxed">ที่ตั้ง: Bangkok, Thailand (Thailand-based operations)</p>
-                    <p className="leading-relaxed text-sm text-slate-600">Business verification requests: กรุณาติดต่อ <a href="mailto:info@bkkair.com" className="font-bold text-[#2563EB] underline decoration-blue-200 underline-offset-4">info@bkkair.com</a></p>
+                <PolicySection id="section-15" number="15" title="ติดต่อเรา" tone="indigo">
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                      <span className="mb-1 block text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                        ติดต่อเรื่องบริการและเอกสาร
+                      </span>
+                      <p className="text-xl font-black tracking-wide text-white">info@bkkair.com</p>
+                      <p className="mt-1 text-xs leading-relaxed text-slate-400">
+                        สำหรับคำถามเกี่ยวกับคำขอ การส่งเอกสาร การแก้ไขไฟล์ และการประสานงานทั่วไป
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                      <span className="mb-1 block text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                        สิทธิ์ความเป็นส่วนตัวและ PDPA
+                      </span>
+                      <p className="text-xl font-black tracking-wide text-white">privacy@bkkair.com</p>
+                      <p className="mt-1 text-xs leading-relaxed text-slate-400">
+                        สำหรับคำขอลบข้อมูล ขอสำเนาข้อมูล หรือข้อซักถามด้านการคุ้มครองข้อมูลส่วนบุคคล
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-600">อ่านเพิ่มเติมเกี่ยวกับข้อมูลส่วนบุคคลได้ที่ <Link href="/privacy-policy" className="font-bold text-[#2563EB]">นโยบายความเป็นส่วนตัว</Link></p>
+                  <div className="border-t border-slate-800 pt-4 text-sm text-slate-400">
+                    <p><strong className="text-white">Official LINE OA:</strong> @823lateh</p>
+                    <p><strong className="text-white">Business Hours:</strong> Monday-Saturday 09:00-18:00 (Thailand Time)</p>
+                    <p>
+                      อ่านเพิ่มเติมเกี่ยวกับข้อมูลส่วนบุคคลได้ที่{" "}
+                      <Link href="/privacy-policy" className="font-bold text-blue-400 hover:underline">
+                        นโยบายความเป็นส่วนตัว
+                      </Link>
+                    </p>
+                  </div>
+                </PolicySection>
+
+                <section
+                  id="section-16"
+                  className="policy-section scroll-mt-28 rounded-3xl border border-emerald-500/20 bg-emerald-950/25 p-6 shadow-xl sm:p-8"
+                >
+                  <div className="mb-5 flex items-start justify-between gap-4">
+                    <h2 className="flex items-center text-xl font-black text-white sm:text-2xl">
+                      <span className="mr-3 flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20 text-sm font-black text-emerald-400">
+                        16
+                      </span>
+                      สรุปสั้น ๆ (Plain Summary)
+                    </h2>
+                    <button
+                      type="button"
+                      className="copy-section-link shrink-0 rounded-lg border border-slate-700 bg-slate-800 p-2 text-slate-500 transition hover:border-blue-500 hover:text-white"
+                      data-section-id="section-16"
+                      aria-label="Copy link to summary"
+                    >
+                      <Copy className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <SummaryCard title="เราคือผู้จัดเตรียมเอกสารข้อมูลจำลอง" tone="emerald">
+                      เอกสารใบจองบินและโรงแรมเป็นไฟล์ PDF เพื่อสนับสนุนการพิจารณาคำขอวีซ่า ไม่ใช่ตั๋วจริงที่เดินทางได้ทันที
+                    </SummaryCard>
+                    <SummaryCard title="ไม่มีส่วนร่วมหรือเป็นตัวแทนสถานทูต" tone="indigo">
+                      BKK AIR ทำงานอิสระ ดุลยพินิจการออกหรือปฏิเสธวีซ่าเป็นของเจ้าหน้าที่กงสุลหรือหน่วยงานปลายทางเท่านั้น
+                    </SummaryCard>
+                    <SummaryCard title="นโยบายยกเลิกและคืนเงินที่ชัดเจน" tone="amber">
+                      ขอคืนเงินได้เต็มจำนวนหากทีมงานยังไม่ได้เริ่มดำเนินการ และหากจัดส่งงานแล้วจะไม่สามารถขอคืนเงินได้
+                    </SummaryCard>
+                    <SummaryCard title="จำกัดวงเงินความรับผิดชอบ">
+                      ความรับผิดใด ๆ ที่เกิดจากความล่าช้าหรือความผิดพลาดของเรา จำกัดไม่เกินมูลค่าจริงที่คุณชำระ
+                    </SummaryCard>
+                  </div>
                 </section>
-              </section>
 
-              <section id="compliance-disclaimer" className="scroll-mt-28 space-y-4 rounded-3xl border border-slate-300 bg-slate-900 p-6 text-slate-100 sm:p-8">
-                <h2 className="text-2xl font-black text-white">Page-Wide Compliance Disclaimer</h2>
-                <blockquote className="rounded-2xl border border-slate-600 bg-slate-800 p-4 leading-relaxed">
-                  BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น
-                  เราไม่ใช่ตัวแทนวีซ่า ไม่มีความสัมพันธ์พิเศษกับสถานทูต และไม่รับประกันการอนุมัติวีซ่า
-                  การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลในทุกกรณี
-                </blockquote>
-                <blockquote className="rounded-2xl border border-amber-400/50 bg-amber-100 p-4 leading-relaxed text-slate-900">
-                  ข้อกำหนดการใช้บริการฉบับนี้มีผลใช้บังคับกับการใช้บริการทั้งหมดบนเว็บไซต์ BKK AIR
-                  และมีการปรับปรุงตามการเปลี่ยนแปลงของบริการและกฎหมายที่เกี่ยวข้องเป็นระยะ
-                </blockquote>
-              </section>
-            </main>
-
-            <aside className="hidden lg:block">
-              <div className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">On This Page</p>
-                <ul className="mt-3 space-y-1 text-sm">
-                  {tableOfContents.map((item) => (
-                    <li key={`desktop-${item.id}`}>
-                      <a href={`#${item.id}`} className="block rounded-lg px-2 py-1.5 font-semibold text-slate-700 transition hover:bg-[#F8FAFC] hover:text-[#2563EB]">
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                <section
+                  id="section-17"
+                  className="policy-section scroll-mt-28 space-y-4 rounded-2xl border border-slate-800 bg-slate-900/60 p-6 sm:p-8"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500/20 text-sm font-black text-indigo-400">
+                      17
+                    </span>
+                    <h2 className="text-xl font-black text-white sm:text-2xl">Compliance Note</h2>
+                  </div>
+                  <div className="rounded-xl border border-slate-800 bg-slate-950/50 p-4 text-sm leading-relaxed text-slate-300">
+                    ข้อกำหนดการใช้บริการฉบับนี้ใช้ครอบคลุมการใช้งานทั้งหมดบนแพลตฟอร์มเว็บไซต์และบริการที่เกี่ยวข้องของ BKK AIR
+                    และอาจมีการปรับปรุงเปลี่ยนแปลงตามกฎหมายหรือบริการที่เกี่ยวข้อง
+                  </div>
+                  <div className="rounded-xl border border-amber-900/30 bg-amber-950/25 p-4 text-sm leading-relaxed text-amber-300">
+                    BKK AIR ดำเนินงานในฐานะผู้ช่วยจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น
+                    ไม่มีบทบาท ดุลยพินิจ หรือส่วนร่วมรับผิดชอบเกี่ยวกับการพิจารณาของสถานทูต
+                    หน่วยงานรัฐ หรือด่านตรวจคนเข้าเมือง
+                  </div>
+                </section>
               </div>
-            </aside>
+            </div>
+
+            <div id="quickSummaryContainer" className="hidden lg:col-span-9">
+              <div className="relative overflow-hidden rounded-3xl border border-indigo-500/20 bg-gradient-to-br from-slate-900 via-indigo-950/20 to-slate-900 p-6 shadow-2xl sm:p-8">
+                <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-blue-500/10 blur-2xl" />
+                <div className="relative z-10">
+                  <div className="mb-5 flex items-center gap-3">
+                    <span className="rounded-xl bg-blue-500/20 p-2.5 text-blue-400">
+                      <FileText className="h-6 w-6" />
+                    </span>
+                    <div>
+                      <h2 className="text-xl font-black text-white sm:text-2xl">
+                        สิ่งสำคัญที่ควรรู้ก่อนเลือกใช้บริการ (TL;DR)
+                      </h2>
+                      <p className="text-xs text-slate-400 sm:text-sm">
+                        สรุปใจความสำคัญของเงื่อนไขการใช้บริการ BKK AIR ในหน้านี้
+                      </p>
+                    </div>
+                  </div>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <SummaryCard title="ขอบเขตงานบริการ" tone="emerald">
+                      เราดูแลผลิต จัดเตรียม และจัดส่งไฟล์ PDF แสดงข้อมูลจำลองการบิน การเดินทาง และข้อมูลโรงแรมเพื่อสนับสนุนคำร้องขอวีซ่า
+                    </SummaryCard>
+                    <SummaryCard title="เอกสารไม่ใช่ตั๋วจริง" tone="indigo">
+                      ตั๋วโดยสารเครื่องบินหรือที่พักทั้งหมดเป็นข้อมูลแบบจำลอง ไม่ได้ออกสิทธิ์จริงในสายการบินหรือห้องพักโรงแรม
+                    </SummaryCard>
+                    <SummaryCard title="ไม่การันตีผลวีซ่า">
+                      ดุลยพินิจในการออกวีซ่าเป็นความรับผิดชอบของสถานทูตหรือหน่วยงานตรวจคนเข้าเมือง ทางเราไม่มีสิทธิ์รับประกันผล
+                    </SummaryCard>
+                    <SummaryCard title="ข้อมูลต้องตรงกับพาสปอร์ต" tone="amber">
+                      ผู้ใช้บริการต้องตรวจสอบชื่อ วันเดินทาง และรายละเอียดเมืองให้ตรงกับหนังสือเดินทางก่อนส่งคำขอ
+                    </SummaryCard>
+                  </div>
+                  <div className="mt-6 space-y-2 rounded-2xl border border-slate-800 bg-slate-900/60 p-5 text-xs leading-relaxed text-slate-400 sm:text-sm">
+                    <p>
+                      <strong className="text-white">นโยบายคืนเงิน:</strong>{" "}
+                      ยินดีคืนเงินครบ 100% หากทีมงานยังไม่ได้เริ่มดำเนินการ แต่หากไฟล์ PDF
+                      ได้ถูกจัดสร้างเสร็จหรือส่งออกแล้ว จะไม่สามารถขอคืนเงินได้
+                    </p>
+                    <p>
+                      <strong className="text-white">ติดต่อสอบถามเพิ่มเติม:</strong>{" "}
+                      <a href="mailto:info@bkkair.com" className="font-bold text-blue-400 hover:underline">
+                        info@bkkair.com
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </main>
+
+        <button
+          id="backToTop"
+          type="button"
+          className="pointer-events-none fixed bottom-6 right-6 z-50 translate-y-4 rounded-full border border-slate-700 bg-slate-800 p-3 text-white opacity-0 shadow-2xl transition hover:bg-slate-700"
+          aria-label="Back to top"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
+
+        <div
+          id="toastNotification"
+          className="fixed right-6 top-20 z-50 translate-x-80 rounded-xl border border-emerald-500/50 bg-emerald-600/95 px-5 py-3 text-sm font-bold text-white opacity-0 shadow-xl transition"
+        >
+          <span className="inline-flex items-center gap-2">
+            <Sparkles className="h-4 w-4" />
+            คัดลอกลิงก์สำเร็จแล้ว
+          </span>
         </div>
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (() => {
+                const full = document.getElementById("fullPolicyContainer");
+                const summary = document.getElementById("quickSummaryContainer");
+                const searchBox = document.getElementById("termsSearchBox");
+                const searchInput = document.getElementById("termsSearchInput");
+                const searchNotice = document.getElementById("searchNotice");
+                const sidebar = document.getElementById("sidebar-nav");
+                const btnFull = document.getElementById("btnViewFull");
+                const btnSummary = document.getElementById("btnViewSummary");
+                const backToTop = document.getElementById("backToTop");
+                const toast = document.getElementById("toastNotification");
+                const navLinks = Array.from(document.querySelectorAll(".toc-link"));
+
+                const fullActive = "terms-view-button rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-blue-500/20";
+                const inactive = "terms-view-button rounded-xl px-5 py-2.5 text-sm font-black text-slate-400 transition hover:text-white";
+
+                const setMode = (mode) => {
+                  const isFull = mode === "full";
+                  full?.classList.toggle("hidden", !isFull);
+                  summary?.classList.toggle("hidden", isFull);
+                  searchBox?.classList.toggle("hidden", !isFull);
+                  sidebar?.classList.toggle("lg:block", isFull);
+                  sidebar?.classList.toggle("lg:hidden", !isFull);
+                  if (btnFull) btnFull.className = isFull ? fullActive : inactive;
+                  if (btnSummary) btnSummary.className = isFull ? inactive : fullActive;
+                  if (!isFull) {
+                    searchInput.value = "";
+                    document.querySelectorAll(".policy-section").forEach((section) => {
+                      section.style.display = "";
+                    });
+                    searchNotice?.classList.add("hidden");
+                  }
+                };
+
+                document.querySelectorAll(".terms-view-button").forEach((button) => {
+                  button.addEventListener("click", () => setMode(button.getAttribute("data-view-target")));
+                });
+
+                const showToast = () => {
+                  if (!toast) return;
+                  toast.classList.remove("translate-x-80", "opacity-0");
+                  toast.classList.add("translate-x-0", "opacity-100");
+                  window.setTimeout(() => {
+                    toast.classList.remove("translate-x-0", "opacity-100");
+                    toast.classList.add("translate-x-80", "opacity-0");
+                  }, 2200);
+                };
+
+                document.querySelectorAll(".copy-section-link").forEach((button) => {
+                  button.addEventListener("click", async () => {
+                    const id = button.getAttribute("data-section-id");
+                    const url = window.location.href.split("#")[0] + "#" + id;
+                    try {
+                      await navigator.clipboard.writeText(url);
+                    } catch {
+                      const input = document.createElement("input");
+                      input.value = url;
+                      document.body.appendChild(input);
+                      input.select();
+                      document.execCommand("copy");
+                      input.remove();
+                    }
+                    showToast();
+                  });
+                });
+
+                searchInput?.addEventListener("input", () => {
+                  const query = searchInput.value.trim().toLowerCase();
+                  const hasQuery = Boolean(query);
+                  document.querySelectorAll(".policy-section").forEach((section) => {
+                    const match = section.textContent.toLowerCase().includes(query);
+                    section.style.display = !hasQuery || match ? "" : "none";
+                  });
+                  searchNotice?.classList.toggle("hidden", !hasQuery);
+                });
+
+                backToTop?.addEventListener("click", () => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+
+                window.addEventListener("scroll", () => {
+                  if (backToTop) {
+                    const visible = window.scrollY > 300;
+                    backToTop.classList.toggle("opacity-0", !visible);
+                    backToTop.classList.toggle("translate-y-4", !visible);
+                    backToTop.classList.toggle("pointer-events-none", !visible);
+                  }
+
+                  let activeId = "";
+                  document.querySelectorAll(".policy-section").forEach((section) => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 160 && rect.bottom >= 160) {
+                      activeId = section.id;
+                    }
+                  });
+
+                  if (activeId) {
+                    navLinks.forEach((link) => {
+                      const active = link.getAttribute("href") === "#" + activeId;
+                      link.classList.toggle("border-blue-500", active);
+                      link.classList.toggle("bg-blue-500/10", active);
+                      link.classList.toggle("text-blue-400", active);
+                      link.classList.toggle("border-transparent", !active);
+                      link.classList.toggle("text-slate-400", !active);
+                    });
+                  }
+                }, { passive: true });
+              })();
+            `,
+          }}
+        />
       </article>
     </MarketingShell>
   );
 }
-

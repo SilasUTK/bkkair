@@ -58,18 +58,19 @@ export default function SeoTrustSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2.5 rounded-full border border-blue-100/70 bg-white/85 p-1.5 pr-5 text-sm font-semibold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-              <Shield className="h-4 w-4" aria-hidden="true" />
-            </span>
-            <span>ความปลอดภัยและความโปร่งใส</span>
+          <div className="mx-auto mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/90 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
+            <Shield className="h-4 w-4 text-orange-500" aria-hidden="true" />
+            <span className="text-xs uppercase tracking-widest text-slate-500">ความปลอดภัยและความโปร่งใส</span>
           </div>
 
-          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl lg:text-5xl">
-            ปลอดภัย โปร่งใส เชื่อถือได้
+          <h2 className="mx-auto max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+            ปลอดภัย โปร่งใส{" "}
+            <span className="whitespace-nowrap bg-gradient-to-r from-blue-700 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
+              เชื่อถือได้
+            </span>
           </h2>
 
-          <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
             เราออกแบบทุกขั้นตอนโดยคำนึงถึงความปลอดภัยของข้อมูลคุณเป็นอันดับแรก
           </p>
         </div>

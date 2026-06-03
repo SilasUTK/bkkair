@@ -12,16 +12,19 @@ export default function Testimonials() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-            <MessageSquareHeart className="h-4 w-4 text-yellow-500" aria-hidden="true" />
+          <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/90 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
+            <MessageSquareHeart className="h-4 w-4 text-orange-500" aria-hidden="true" />
             <span className="uppercase tracking-widest text-slate-500 text-xs">Customer Feedback Transparency</span>
           </div>
           
-          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
-            ลูกค้าพูดถึงเรา
+          <h2 className="mx-auto max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+            เสียงจากลูกค้าที่ใช้บริการ{" "}
+            <span className="whitespace-nowrap bg-gradient-to-r from-blue-700 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
+              BKK AIR
+            </span>
           </h2>
           
-          <p className="mt-6 text-lg font-medium leading-relaxed text-slate-600">
+          <p className="mx-auto mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
             รีวิวจากนักเดินทางจริงที่ใช้บริการ BKK AIR
           </p>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   CalendarDays,
@@ -16,9 +17,9 @@ import {
 type Status = "idle" | "loading" | "success" | "error";
 
 const fieldClassName =
-  "h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-medium text-slate-700 placeholder:text-slate-400 transition focus:border-orange-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-100";
+  "h-11 w-full rounded-xl border border-white/15 bg-slate-900/80 px-4 text-sm font-semibold text-white placeholder:text-slate-500 transition focus:border-orange-400 focus:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20";
 
-const labelClassName = "mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500";
+const labelClassName = "mb-1.5 flex items-center gap-1.5 text-xs font-bold text-slate-300";
 
 function getTodayString() {
   const now = new Date();
@@ -138,7 +139,7 @@ export default function HeroForm() {
         <div>
           <label htmlFor="hero-travel-date" className={labelClassName}>
             <CalendarDays className="h-3.5 w-3.5 text-orange-500" />
-            วันที่เดินทาง *
+            วันที่เดินทาง (โดยประมาณ) *
           </label>
           <input id="hero-travel-date" name="travel_date" type="date" required min={today} className={fieldClassName} />
         </div>
@@ -157,7 +158,6 @@ export default function HeroForm() {
             className={fieldClassName}
             onChange={() => setContactError("")}
           />
-          <p className="mt-1.5 text-[11px] leading-relaxed text-slate-500">กรุณาตรวจสอบให้ถูกต้อง ทีมงานจะใช้ช่องทางนี้เพื่อติดต่อกลับ</p>
         </div>
 
         <div>
@@ -171,7 +171,7 @@ export default function HeroForm() {
             type="text"
             required
             placeholder="กรอกข้อมูลติดต่ออีกครั้ง"
-            className={`${fieldClassName} ${contactError ? "border-red-500 focus:border-red-500 focus:ring-red-100" : ""}`}
+            className={`${fieldClassName} ${contactError ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""}`}
             onChange={() => setContactError("")}
           />
           {contactError && (
@@ -184,23 +184,43 @@ export default function HeroForm() {
       </div>
 
       {status === "success" && (
-        <div className="flex items-start gap-2.5 rounded-xl border border-emerald-100 bg-emerald-50 p-3 text-sm font-medium text-emerald-800">
+        <div className="flex items-start gap-2.5 rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-3 text-sm font-medium text-emerald-200">
           <CheckCircle className="mt-0.5 h-5 w-5 shrink-0" />
           <span>ส่งข้อมูลเรียบร้อยแล้ว ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง หากเป็นเคสเร่งด่วน กรุณาติดต่อ LINE OA: @823lateh</span>
         </div>
       )}
 
       {status === "error" && (
-        <div className="flex items-start gap-2.5 rounded-xl border border-red-100 bg-red-50 p-3 text-sm font-medium text-red-700">
+        <div className="flex items-start gap-2.5 rounded-xl border border-red-500/25 bg-red-500/10 p-3 text-sm font-medium text-red-200">
           <CircleAlert className="mt-0.5 h-5 w-5 shrink-0" />
           <span>เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง หรือติดต่อเราทาง LINE</span>
         </div>
       )}
 
+      <label htmlFor="hero-accept-terms" className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs font-medium leading-relaxed text-slate-300">
+        <input
+          id="hero-accept-terms"
+          name="accept_terms"
+          type="checkbox"
+          required
+          className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-slate-900 text-orange-500 focus:ring-2 focus:ring-orange-500/30"
+        />
+        <span>
+          ฉันยอมรับ{" "}
+          <Link href="/terms" className="font-bold text-orange-300 underline decoration-orange-300/40 underline-offset-2 hover:text-orange-200">
+            ข้อกำหนดการใช้บริการ
+          </Link>{" "}
+          และ{" "}
+          <Link href="/privacy-policy" className="font-bold text-orange-300 underline decoration-orange-300/40 underline-offset-2 hover:text-orange-200">
+            นโยบายความเป็นส่วนตัว
+          </Link>
+        </span>
+      </label>
+
       <button
         type="submit"
         disabled={status === "loading" || status === "success"}
-        className="group mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-800 px-5 text-sm font-bold text-white shadow-lg transition hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-65"
+        className="group mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-5 text-sm font-extrabold text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-65"
       >
         {status === "loading" ? (
           <>
@@ -209,17 +229,11 @@ export default function HeroForm() {
           </>
         ) : (
           <>
-            สั่งเอกสารเลย →
+            ส่งคำขอเอกสาร
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </>
         )}
       </button>
-      <p className="text-center text-xs font-semibold leading-relaxed text-slate-500">
-        ส่งภายใน 24 ชั่วโมง · ตรวจสอบโดยทีมงาน · ปลอดภัย 100%
-      </p>
-      <p className="text-center text-[11px] leading-relaxed text-slate-400">
-        *BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนเท่านั้น การอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุล
-      </p>
     </form>
   );
 }

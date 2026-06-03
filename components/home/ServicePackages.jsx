@@ -323,16 +323,19 @@ export default function ServicePackages() {
         
         {/* Header */}
         <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-2 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-            <Package className="h-4 w-4 text-emerald-500" />
-            แพ็กเกจบริการ
+          <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/90 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
+            <Package className="h-4 w-4 text-orange-500" aria-hidden="true" />
+            <span className="text-xs uppercase tracking-widest text-slate-500">แพ็กเกจบริการ</span>
           </div>
 
-          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
-            แพ็กเกจบริการของเรา
+          <h2 className="mx-auto max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+            เลือกแพ็กเกจเอกสารที่{" "}
+            <span className="whitespace-nowrap bg-gradient-to-r from-blue-700 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
+              เหมาะกับคุณ
+            </span>
           </h2>
 
-          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
             เลือกเอกสารที่คุณต้องการ หรือสั่งแบบครบชุดในราคาพิเศษ
           </p>
           <p className="mt-3 text-sm font-bold text-slate-400">

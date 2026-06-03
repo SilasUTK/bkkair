@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock, LockKeyhole, Mail, MapPin, MessageCircle } from "lucide-react";
+import { Clock, Instagram, LockKeyhole, Mail, MapPin, MessageCircle, Music2 } from "lucide-react";
 import Logo from "./Logo.jsx";
 
 const servicesLinks = [
@@ -48,18 +48,24 @@ export default function Footer({ onNavigate }) {
   return (
     <footer
       id="contact"
-      className="relative mt-12 overflow-hidden rounded-t-[3rem] bg-primary-navy pb-9 pt-12 font-sans text-slate-300 shadow-2xl sm:rounded-t-[4rem] md:pb-10 md:pt-14"
+      className="relative mt-12 overflow-hidden rounded-t-[3rem] bg-primary-navy pb-7 pt-10 font-sans text-slate-300 shadow-2xl sm:rounded-t-[4rem] md:pb-8 md:pt-12"
     >
-      {/* Background decorations */}
+      {/* Background image and dark overlays */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-45"
+          style={{ backgroundImage: "url('/images/background/footer-bangkok-night.png')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/95 via-primary-navy/88 to-slate-950/96" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-950/25" />
         <div className="absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-primary-dark opacity-20 blur-[100px]" />
-        <div className="absolute -right-20 bottom-0 h-[400px] w-[400px] rounded-full bg-accent-orange opacity-10 blur-[80px]" />
+        <div className="absolute -right-20 bottom-0 h-[400px] w-[400px] rounded-full bg-accent-orange opacity-15 blur-[80px]" />
         <div className="absolute right-10 top-20 h-40 w-40 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.45)_2px,transparent_0)] bg-[length:20px_20px] opacity-10"></div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         {/* Main Grid */}
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.15fr_0.85fr_0.85fr_1fr] lg:gap-10">
           <section aria-label="BKK AIR">
             <Logo variant="footer" />
             <p className="mt-4 text-sm font-medium leading-relaxed text-slate-400">
@@ -71,14 +77,23 @@ export default function Footer({ onNavigate }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Official LINE OA @823lateh"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#00B900]"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.08] text-slate-300 transition hover:border-white/35 hover:bg-white/15 hover:text-white"
               >
-                <span className="text-xs font-black">LINE</span>
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
               </a>
+              <span
+                aria-label="Instagram"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.08] text-slate-300"
+              >
+                <Instagram className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span
+                aria-label="TikTok"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.08] text-slate-300"
+              >
+                <Music2 className="h-4 w-4" aria-hidden="true" />
+              </span>
             </div>
-            <p className="mt-3 text-xs font-semibold text-slate-500">
-              Official public channel: LINE OA
-            </p>
           </section>
 
           <nav aria-label="บริการของเรา">
@@ -127,15 +142,9 @@ export default function Footer({ onNavigate }) {
                 </a>
               </li>
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
-                <Mail className="h-5 w-5 shrink-0 text-blue-300" />
-                <p>
-                  Privacy: <a href="mailto:info@bkkair.com" className="font-semibold text-white transition-colors hover:text-blue-200">info@bkkair.com</a>
-                </p>
-              </li>
-              <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
                 <Clock className="h-5 w-5 shrink-0 text-amber-400" />
                 <p>
-                  Monday–Saturday <span className="font-semibold text-white">09:00–18:00 (Thailand Time)</span>
+                  Monday–Saturday <span className="font-semibold text-white">09:00–18:00</span>
                 </p>
               </li>
               <li className="flex items-center gap-3 text-slate-400 transition-colors hover:text-white">
@@ -143,22 +152,11 @@ export default function Footer({ onNavigate }) {
                 <p>Bangkok, Thailand</p>
               </li>
             </ul>
-            <div className="mt-4 rounded-xl border border-slate-700 bg-white/5 px-3 py-2 text-xs leading-relaxed text-slate-400">
-              BKK AIR operates as a Thailand-based travel support service.
-              For business verification requests, please contact <a href="mailto:info@bkkair.com" className="font-semibold text-white hover:text-blue-200">info@bkkair.com</a>.
-            </div>
           </section>
         </div>
 
-        {/* ── Legal Disclaimer ── */}
-        <div className="mt-10 rounded-2xl border border-slate-800 bg-white/5 px-6 py-4">
-          <p className="text-center text-xs leading-relaxed text-slate-500">
-            BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น เราไม่ใช่ตัวแทนวีซ่า ไม่มีความสัมพันธ์กับสถานทูต และไม่รับประกันผลการอนุมัติวีซ่า การตัดสินใจอนุมัติวีซ่าเป็นอำนาจของสถานทูตหรือสถานกงสุลทุกกรณี
-          </p>
-        </div>
-
         {/* ── Bottom Bar ── */}
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-sm font-medium text-slate-500 md:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm font-medium text-slate-400 md:flex-row">
           <p>© 2026 BKK AIR สงวนลิขสิทธิ์ทุกประการ</p>
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             {legalLinks.map((link) => (

@@ -58,15 +58,18 @@ export default function FAQSection() {
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 lg:px-8">
           <div className="mx-auto mb-12 text-center md:mb-16">
-          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/85 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-            <MessageCircleQuestion className="h-4 w-4 text-blue-600" aria-hidden="true" />
+          <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/90 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
+            <MessageCircleQuestion className="h-4 w-4 text-orange-500" aria-hidden="true" />
             <span className="uppercase tracking-widest text-slate-500 text-xs">คำถามที่พบบ่อย</span>
           </div>
           
-          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl">
-            มีคำถาม? <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-orange to-orange-400">ทีมงานพร้อมอธิบาย</span>
+          <h2 className="mx-auto max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+            มีคำถาม?{" "}
+            <span className="whitespace-nowrap bg-gradient-to-r from-blue-700 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
+              ทีมงานพร้อมอธิบาย
+            </span>
           </h2>
-          <p className="mt-6 text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
             รวมคำตอบเกี่ยวกับการเตรียมเอกสารยื่นวีซ่า เช่น flight reservation และ hotel reservation พร้อมข้อจำกัดสำคัญของบริการ
           </p>
         </div>

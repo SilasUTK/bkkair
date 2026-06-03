@@ -37,11 +37,19 @@ export default function WorkflowTimeline() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mb-10 max-w-3xl lg:mb-12">
-          <p className="text-sm font-black uppercase tracking-[0.28em] text-orange-500">Workflow</p>
-          <h2 className="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-5xl">
-            สั่งเอกสารง่าย ๆ แค่ 4 ขั้นตอน
+          <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-blue-100/70 bg-white/90 px-4 py-1.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
+            <ClipboardCheck className="h-4 w-4 text-orange-500" aria-hidden="true" />
+            <span className="text-xs uppercase tracking-widest text-slate-500">
+              ขั้นตอนการทำงาน
+            </span>
+          </div>
+          <h2 className="max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+            สั่งเอกสารง่าย ๆ แค่{" "}
+            <span className="whitespace-nowrap bg-gradient-to-r from-blue-700 via-sky-500 to-cyan-400 bg-clip-text text-transparent">
+              4 ขั้นตอน
+            </span>
           </h2>
-          <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
             ไม่ต้องซับซ้อน ไม่ต้องไปที่ไหน ทำได้จากบ้าน
           </p>
         </div>
