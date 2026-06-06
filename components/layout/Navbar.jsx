@@ -3,36 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FileCheck, Home, MessageCircle, Tags } from "lucide-react";
 import Logo from "./Logo.jsx";
 
-const serviceDropdown = [
-  { label: "บริการทั้งหมด", href: "/#services" },
-  { label: "ทำไมต้องเลือก BKK AIR", href: "/#why-choose-us" },
-  { label: "ขั้นตอนการสั่งซื้อ", href: "/#workflow" },
-  { label: "ประเทศที่ให้บริการ", href: "/#countries" },
-];
-
-const countryDropdown = [
-  { label: "ประเทศที่รองรับทั้งหมด", href: "/#countries" },
-  { label: "สอบถามประเทศอื่น", href: "/contact" },
-];
-
-const mainLinks = [
-  { label: "แพ็กเกจและราคา", href: "/packages", match: ["/packages"] },
-  { label: "คำถามที่พบบ่อย", href: "/faq", match: ["/faq"] },
-  { label: "สอบถามผ่าน LINE", href: "/contact", match: ["/contact"] },
+const navLinks = [
+  { label: "หน้าแรก", href: "/", match: ["/"], icon: Home },
+  { label: "บริการ", href: "/#services", icon: FileCheck },
+  { label: "แพ็กเกจ", href: "/packages", match: ["/packages"], icon: Tags },
+  { label: "ติดต่อ", href: "/contact", match: ["/contact"], icon: MessageCircle },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
-  const [mobileCountryOpen, setMobileCountryOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     function onScroll() {
-      setIsScrolled(window.scrollY > 12);
+      setIsScrolled(window.scrollY > 96);
     }
 
     onScroll();
@@ -43,7 +31,7 @@ export default function Navbar() {
   useEffect(() => {
     function onResize() {
       if (window.innerWidth >= 1024) {
-        closeMobileMenu();
+        setMobileOpen(false);
       }
     }
 
@@ -55,7 +43,7 @@ export default function Navbar() {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
 
     function onKeyDown(event) {
-      if (event.key === "Escape") closeMobileMenu();
+      if (event.key === "Escape") setMobileOpen(false);
     }
 
     window.addEventListener("keydown", onKeyDown);
@@ -67,8 +55,6 @@ export default function Navbar() {
 
   function closeMobileMenu() {
     setMobileOpen(false);
-    setMobileServiceOpen(false);
-    setMobileCountryOpen(false);
   }
 
   function isActive(link) {
@@ -78,142 +64,111 @@ export default function Navbar() {
   return (
     <header
       data-navbar="primary"
-      className={`fixed inset-x-0 top-0 z-[90] w-full font-sans transition duration-300 ${
+      className={`fixed inset-x-0 top-0 z-[90] w-full border-b font-sans transition-[background-color,color,border-color,box-shadow] duration-[250ms] ease-in-out ${
         isScrolled
-          ? "border-b border-white/10 bg-slate-950/90 shadow-[0_16px_42px_rgba(2,6,23,0.4)] backdrop-blur-xl"
-          : "bg-gradient-to-b from-slate-950/70 to-slate-950/10 backdrop-blur-sm"
+          ? "border-slate-900/[0.08] bg-white/[0.86] text-slate-950 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+          : "border-white/[0.08] bg-[rgba(7,13,31,0.50)] text-white backdrop-blur-xl"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center gap-3 px-5 sm:px-8 lg:h-[92px] lg:px-12">
-        <Logo variant="navbar" className="shrink-0 focus:ring-orange-400 focus:ring-offset-0" />
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center px-5 sm:px-8 lg:h-20 lg:px-12">
+        <Logo variant="navbar" className="shrink-0 focus:ring-[#FFB347] focus:ring-offset-0" />
 
-        <nav data-desktop-nav className="ml-auto hidden items-center gap-1 lg:flex" aria-label="Main navigation">
-          <DesktopDropdown title="บริการของเรา" links={serviceDropdown} onLinkClick={closeMobileMenu} />
-          <DesktopDropdown title="ประเทศที่รองรับ" links={countryDropdown} onLinkClick={closeMobileMenu} />
-
-          {mainLinks.map((link) => (
-            <Link
+        <nav data-desktop-nav className="ml-auto hidden items-center gap-8 lg:flex" aria-label="Main navigation">
+          {navLinks.map((link) => (
+            <NavLink
               key={link.label}
               href={link.href}
+              active={isActive(link)}
+              scrolled={isScrolled}
+              icon={link.icon}
               onClick={closeMobileMenu}
-              aria-current={isActive(link) ? "page" : undefined}
-              className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
-                isActive(link)
-                  ? "bg-white/10 text-orange-300"
-                  : "text-white/90 hover:bg-white/10 hover:text-orange-300"
-              }`}
             >
               {link.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 
-        <Link
-          data-desktop-cta
-          href="/order"
-          className="ml-3 hidden h-11 items-center gap-2 rounded-full bg-orange-500 px-6 text-sm font-bold text-white shadow-lg shadow-orange-950/25 transition hover:bg-orange-400 lg:inline-flex"
-        >
-          สั่งเลย
-          <ArrowRightIcon className="h-4 w-4" />
-        </Link>
-
-        <Link
-          href="/order"
-          onClick={closeMobileMenu}
-          className="ml-auto inline-flex h-10 items-center rounded-full bg-orange-500 px-3.5 text-xs font-bold text-white shadow-lg sm:px-4 lg:hidden"
-        >
-          ส่งคำขอ
-        </Link>
         <button
           data-mobile-toggle
           type="button"
           onClick={() => setMobileOpen((open) => !open)}
           aria-expanded={mobileOpen}
           aria-label="เปิดเมนู"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white backdrop-blur-sm lg:hidden"
+          className={`ml-auto inline-flex h-11 w-11 items-center justify-center rounded-xl border shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md transition-[background-color,color,border-color] duration-[250ms] ease-in-out lg:hidden ${
+            isScrolled
+              ? "border-slate-900/10 bg-slate-950/[0.04] text-slate-950 hover:border-slate-900/20 hover:bg-slate-950/[0.07]"
+              : "border-white/15 bg-white/[0.06] text-white/90 hover:border-white/25 hover:bg-white/[0.09]"
+          }`}
         >
-          {mobileOpen ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+          {mobileOpen ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
         </button>
       </div>
 
-      <div data-mobile-panel className={`overflow-hidden bg-slate-950/95 backdrop-blur-xl transition-all lg:hidden ${mobileOpen ? "max-h-[calc(100vh-5rem)] border-t border-white/10 opacity-100" : "max-h-0 opacity-0"}`}>
-        <nav className="max-h-[calc(100vh-5rem)] overflow-y-auto px-5 py-5" aria-label="Mobile navigation">
-          <MobileDropdown title="บริการของเรา" open={mobileServiceOpen} onToggle={() => setMobileServiceOpen((open) => !open)} links={serviceDropdown} onLinkClick={closeMobileMenu} />
-          <MobileDropdown title="ประเทศที่รองรับ" open={mobileCountryOpen} onToggle={() => setMobileCountryOpen((open) => !open)} links={countryDropdown} onLinkClick={closeMobileMenu} />
-
-          {mainLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={closeMobileMenu}
-              aria-current={isActive(link) ? "page" : undefined}
-              className={`block rounded-xl px-4 py-3.5 text-base font-semibold ${
-                isActive(link) ? "bg-white/10 text-orange-300" : "text-white/90 hover:bg-white/10"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-
-          <Link
-            href="/order"
-            onClick={closeMobileMenu}
-            className="mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-orange-500 text-sm font-bold text-white"
-          >
-            สั่งเลย
-            <ArrowRightIcon className="h-4 w-4" />
-          </Link>
+      <div
+        data-mobile-panel
+        className={`overflow-hidden border-t backdrop-blur-xl transition-all lg:hidden ${
+          isScrolled ? "border-slate-900/10 bg-white/[0.92]" : "border-white/10 bg-slate-950/94"
+        } ${
+          mobileOpen ? "max-h-[calc(100vh-4.75rem)] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4 sm:px-8" aria-label="Mobile navigation">
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={closeMobileMenu}
+                aria-current={isActive(link) ? "page" : undefined}
+                className={`group relative inline-flex items-center gap-2 rounded-lg px-2 py-3 text-[15px] font-semibold transition-colors duration-[250ms] ease-in-out ${
+                  isScrolled
+                    ? isActive(link)
+                      ? "text-[#F97316]"
+                      : "text-[#102033] hover:text-[#2563EB]"
+                    : isActive(link)
+                      ? "text-[#FFB347]"
+                      : "text-white/[0.82] hover:text-[#4DB8FF]"
+                }`}
+              >
+                <Icon className="h-[18px] w-[18px] shrink-0 stroke-[2] transition-transform duration-[250ms] ease-in-out group-hover:-translate-y-0.5" aria-hidden="true" />
+                <span>{link.label}</span>
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </header>
   );
 }
 
-function DesktopDropdown({ title, links, onLinkClick }) {
+function NavLink({ href, active, scrolled, icon: Icon, onClick, children }) {
   return (
-    <div className="group relative">
-      <button type="button" className="flex items-center gap-1 rounded-xl px-4 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 hover:text-orange-300">
-        {title}
-        <DropdownIcon className="h-4 w-4" />
-      </button>
-      <div className="pointer-events-none absolute left-1/2 top-full mt-2 w-60 -translate-x-1/2 translate-y-1 rounded-2xl border border-white/10 bg-slate-900/95 p-2 opacity-0 shadow-2xl backdrop-blur transition group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
-        {links.map((link) => (
-          <Link
-            key={link.label}
-            href={link.href}
-            onClick={onLinkClick}
-            className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-100 transition hover:bg-white/10 hover:text-orange-300"
-          >
-            {link.label}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MobileDropdown({ title, open, onToggle, links, onLinkClick }) {
-  return (
-    <div>
-      <button type="button" onClick={onToggle} className="flex w-full items-center justify-between rounded-xl px-4 py-3.5 text-base font-semibold text-white/90 hover:bg-white/10">
-        {title}
-        <DropdownIcon className={`h-4 w-4 transition ${open ? "rotate-180 text-orange-400" : ""}`} />
-      </button>
-      {open && (
-        <div className="mb-2 ml-4 border-l border-white/10 pl-3">
-          {links.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={onLinkClick}
-              className="block rounded-xl px-4 py-3 text-sm text-slate-200 hover:bg-white/10 hover:text-orange-300"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
+    <Link
+      href={href}
+      onClick={onClick}
+      aria-current={active ? "page" : undefined}
+      className={`group relative inline-flex items-center gap-[7px] py-2 text-[15px] font-semibold transition-[color,text-shadow] duration-[250ms] ease-in-out ${
+        scrolled
+          ? active
+            ? "text-[#F97316]"
+            : "text-[#102033] hover:text-[#2563EB]"
+          : active
+            ? "text-[#FFB347]"
+            : "text-white/[0.86] hover:text-[#4DB8FF] hover:[text-shadow:0_0_14px_rgba(77,184,255,0.24)]"
+      }`}
+    >
+      <Icon className="h-4 w-4 shrink-0 stroke-[2] transition-transform duration-[250ms] ease-in-out group-hover:-translate-y-0.5" aria-hidden="true" />
+      <span>{children}</span>
+      <span
+        className={`absolute inset-x-0 -bottom-0.5 h-px origin-center rounded-full bg-gradient-to-r from-transparent ${
+          scrolled ? "via-[#F97316] shadow-[0_0_12px_rgba(249,115,22,0.3)]" : "via-[#FFB347] shadow-[0_0_12px_rgba(255,179,71,0.55)]"
+        } to-transparent opacity-0 transition duration-300 group-hover:opacity-100 ${
+          active ? "opacity-100" : ""
+        }`}
+        aria-hidden="true"
+      />
+    </Link>
   );
 }
 
@@ -223,12 +178,4 @@ function MenuIcon({ className = "" }) {
 
 function CloseIcon({ className = "" }) {
   return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" d="M6 6l12 12M18 6 6 18" /></svg>;
-}
-
-function DropdownIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M5.2 7.7a.75.75 0 0 1 1.06 0L10 11.44l3.74-3.74a.75.75 0 1 1 1.06 1.06l-4.27 4.27a.75.75 0 0 1-1.06 0L5.2 8.76a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" /></svg>;
-}
-
-function ArrowRightIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M13 5l7 7-7 7" /></svg>;
 }

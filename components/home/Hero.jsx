@@ -52,9 +52,13 @@ export default function Hero({ goToCheck }) {
             </div>
 
             <h1 className="text-[2.55rem] font-extrabold leading-[1.13] tracking-tight text-white sm:text-5xl lg:text-[3.55rem] xl:text-[4rem]">
-              เอกสารยื่น
-              <span className="bg-gradient-to-r from-orange-300 via-orange-500 to-amber-300 bg-clip-text text-transparent">วีซ่า</span>
-              <span className="block bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent">พร้อมส่งภายใน</span>
+              เอกสารยื่น{" "}
+              <span className="relative isolate inline-block text-[#FF8A1F] drop-shadow-[0_0_24px_rgba(255,138,31,0.45)] after:absolute after:-bottom-1.5 after:-left-1 after:-right-1.5 after:-z-10 after:h-2.5 after:rotate-[-2.5deg] after:rounded-full after:bg-[linear-gradient(90deg,rgba(255,122,24,0.15),rgba(255,184,77,0.9),rgba(255,122,24,0.25))] after:blur-[0.2px]">
+                วีซ่า
+              </span>
+              <span className="block bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent">
+                พร้อมส่งภายใน
+              </span>
               <span className="block">24 ชั่วโมง</span>
             </h1>
 
@@ -63,25 +67,26 @@ export default function Hero({ goToCheck }) {
               ใบจองตั๋วเครื่องบิน ใบจองโรงแรม และแผนการเดินทาง
             </p>
 
-            <ul className="mt-9 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" aria-label="จุดเด่น BKK AIR">
+            <ul className="mt-9 grid max-w-2xl grid-cols-2 gap-3 lg:grid-cols-3" aria-label="จุดเด่น BKK AIR">
               {benefits.map((benefit) => {
                 const Icon = benefit.icon;
                 return (
-                  <li key={benefit.label} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-center text-xs font-bold text-slate-200 backdrop-blur-sm sm:text-sm">
-                    <Icon className="h-4 w-4 text-orange-400" />
+                  <li key={benefit.label} className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.06] px-3.5 py-2 text-left text-[12px] font-semibold leading-tight text-slate-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[18px] sm:px-4 sm:text-sm">
+                    <span className="h-5 w-[3px] shrink-0 rounded-full bg-gradient-to-b from-[#FFB347] to-[#FF7A18] shadow-[0_0_12px_rgba(255,138,31,0.35)]" aria-hidden="true" />
+                    <Icon className="h-3.5 w-3.5 shrink-0 text-[#FFB347] sm:h-4 sm:w-4" />
                     <span>{benefit.label}</span>
                   </li>
                 );
               })}
             </ul>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#hero-request-form" className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-orange-500 px-7 text-sm font-extrabold text-white shadow-lg shadow-orange-500/25 transition hover:bg-orange-400">
-                สั่งเอกสารเลย
-                <ArrowRightIcon className="h-4 w-4" />
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a href="#hero-request-form" className="group inline-flex h-14 items-center justify-center gap-2 rounded-[20px] border border-white/[0.18] bg-[linear-gradient(135deg,#FF7A18_0%,#FF9A2E_48%,#FFB347_100%)] px-7 text-[16px] font-extrabold text-white shadow-[0_18px_36px_rgba(255,122,24,0.28),inset_0_1px_0_rgba(255,255,255,0.28)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_46px_rgba(255,122,24,0.42),inset_0_1px_0_rgba(255,255,255,0.38)] sm:text-[17px]">
+                ส่งเอกสาร
+                <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
-              <a href="#packages" className="inline-flex h-14 items-center justify-center rounded-full border border-white/25 bg-white/[0.04] px-7 text-sm font-extrabold text-white backdrop-blur-sm transition hover:border-orange-300 hover:text-orange-200">
-                ดูแพ็กเกจและราคา
+              <a href="#packages" className="inline-flex h-14 items-center justify-center rounded-[20px] border border-white/[0.18] bg-white/[0.07] px-7 text-[16px] font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-[#FFB347]/55 hover:bg-white/[0.1] hover:text-[#FFE1B3] sm:text-[17px]">
+                ดูราคา
               </a>
             </div>
           </div>
@@ -100,8 +105,8 @@ export default function Hero({ goToCheck }) {
                   <ShieldIcon className="h-4 w-4 text-emerald-500" />
                   ข้อมูลของคุณปลอดภัยและเป็นความลับ
                 </p>
-                <button type="button" onClick={goToCheck} className="mt-2 inline-flex items-center gap-1 font-semibold text-slate-500 transition hover:text-orange-500">
-                  มีรหัสอ้างอิงอยู่แล้ว? ตรวจสอบสถานะ
+                <button type="button" onClick={goToCheck} className="group mt-2 inline-flex items-center gap-1 font-semibold text-slate-500 transition hover:text-orange-400">
+                  มีรหัสแล้ว? ตรวจสถานะ
                   <ArrowRightIcon className="h-3.5 w-3.5" />
                 </button>
               </div>

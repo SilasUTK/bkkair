@@ -11,6 +11,9 @@ import {
   FileText,
   MapPinned,
   Layers3,
+  ChevronLeft,
+  ChevronRight,
+  Info,
 } from "lucide-react";
 
 const cardVisuals = {
@@ -262,6 +265,9 @@ const packages = [
   },
 ];
 
+const packageDisclaimer =
+  "เอกสารนี้ใช้สำหรับสนับสนุนการยื่นวีซ่าเท่านั้น ไม่ใช่ตั๋วหรือการจองจริง ราคาต่อคน และผลวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูต";
+
 export default function ServicePackages() {
   const scrollRef = useRef(null);
   const dragRef = useRef({
@@ -271,11 +277,11 @@ export default function ServicePackages() {
   });
 
   const scrollLeft = () => {
-    scrollRef.current?.scrollBy({ left: -380, behavior: "smooth" });
+    scrollRef.current?.scrollBy({ left: -280, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    scrollRef.current?.scrollBy({ left: 380, behavior: "smooth" });
+    scrollRef.current?.scrollBy({ left: 280, behavior: "smooth" });
   };
 
   const handlePointerDown = (event) => {
@@ -319,7 +325,7 @@ export default function ServicePackages() {
         <div className="absolute -right-40 top-0 h-[400px] w-[400px] rounded-full bg-blue-50 blur-[80px]" />
         <div className="absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-orange-50 blur-[80px]" />
       </div>
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
@@ -338,38 +344,34 @@ export default function ServicePackages() {
           <p className="mx-auto mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
             เลือกเอกสารที่คุณต้องการ หรือสั่งแบบครบชุดในราคาพิเศษ
           </p>
-          <p className="mt-3 text-sm font-bold text-slate-400">
-            เลื่อนซ้าย–ขวา หรือกดลูกศรเพื่อดูแพ็กเกจทั้งหมด
-          </p>
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={scrollLeft}
-              aria-label="เลื่อนไปทางซ้าย"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-xl font-black text-slate-800 shadow-[0_12px_30px_rgba(15,23,42,0.10)] transition hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600 hover:shadow-[0_16px_36px_rgba(37,99,235,0.14)]"
-            >
-              ←
-            </button>
-            <button
-              type="button"
-              onClick={scrollRight}
-              aria-label="เลื่อนไปทางขวา"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-xl font-black text-slate-800 shadow-[0_12px_30px_rgba(15,23,42,0.10)] transition hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-600 hover:shadow-[0_16px_36px_rgba(249,115,22,0.16)]"
-            >
-              →
-            </button>
-          </div>
         </div>
 
         {/* Cards */}
         <div className="relative">
+          <button
+            type="button"
+            onClick={scrollLeft}
+            aria-label="เลื่อนไปทางซ้าย"
+            className="absolute left-1 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/80 bg-white/85 text-slate-800 shadow-[0_14px_34px_rgba(15,23,42,0.16)] backdrop-blur-md transition hover:scale-105 hover:border-blue-100 hover:bg-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200 sm:left-2 sm:h-11 sm:w-11 lg:left-3"
+          >
+            <ChevronLeft className="h-5 w-5" strokeWidth={2.4} />
+          </button>
+          <button
+            type="button"
+            onClick={scrollRight}
+            aria-label="เลื่อนไปทางขวา"
+            className="absolute right-1 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/80 bg-white/85 text-slate-800 shadow-[0_14px_34px_rgba(15,23,42,0.16)] backdrop-blur-md transition hover:scale-105 hover:border-orange-100 hover:bg-white hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-200 sm:right-2 sm:h-11 sm:w-11 lg:right-3"
+          >
+            <ChevronRight className="h-5 w-5" strokeWidth={2.4} />
+          </button>
+
           <div
             ref={scrollRef}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="no-scrollbar flex cursor-grab snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth scroll-px-6 px-6 pb-8 pt-6 active:cursor-grabbing lg:scroll-px-10 lg:px-10"
+            className="no-scrollbar flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth scroll-px-8 px-8 pb-8 pt-5 active:cursor-grabbing md:scroll-px-10 md:px-10 lg:gap-4 lg:scroll-px-12 lg:px-12"
           >
             {packages.map((pkg) => {
               const Icon = pkg.icon;
@@ -378,7 +380,7 @@ export default function ServicePackages() {
               return (
                 <article
                   key={pkg.id}
-                  className={`relative isolate flex min-h-full w-[300px] shrink-0 snap-start flex-col overflow-hidden rounded-3xl bg-white transition-all duration-300 sm:w-[340px] lg:w-[360px] ${
+                  className={`relative isolate flex min-h-full basis-[calc(100vw_-_5.5rem)] shrink-0 snap-start flex-col overflow-hidden rounded-3xl bg-white transition-all duration-300 sm:basis-[20rem] md:basis-[calc((100%_-_1rem)_/_2)] lg:basis-[calc((100%_-_3rem)_/_4)] xl:basis-[calc((100%_-_4rem)_/_5)] ${
                     pkg.popular
                       ? `border-2 ${pkg.theme.border} shadow-[0_28px_80px_rgba(255,87,34,0.24)]`
                       : "border border-slate-200 shadow-xl shadow-slate-200/70 hover:-translate-y-1 hover:shadow-[0_22px_56px_rgba(15,23,42,0.13)]"
@@ -388,49 +390,49 @@ export default function ServicePackages() {
                     <div className="pointer-events-none absolute inset-0 -z-10 rounded-[1.7rem] bg-orange-300/30 blur-2xl" />
                   )}
 
-                  <div className={`relative h-40 overflow-hidden bg-gradient-to-br ${visual.gradient}`}>
+                  <div className={`relative h-36 overflow-hidden bg-gradient-to-br lg:h-[8.5rem] ${visual.gradient}`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.28),transparent_28%),radial-gradient(circle_at_80%_25%,rgba(255,255,255,0.16),transparent_26%)]" />
-                    <div className="absolute -bottom-8 -right-8 h-28 w-28 rounded-full bg-white/15 blur-xl" />
-                    <div className={`absolute left-5 top-5 h-20 w-20 rounded-3xl ${visual.accent} backdrop-blur`} />
-                    <div className="absolute right-5 top-5 rounded-full border border-white/25 bg-white/15 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white/90 backdrop-blur">
+                    <div className="absolute -bottom-8 -right-8 h-24 w-24 rounded-full bg-white/15 blur-xl" />
+                    <div className={`absolute left-4 top-4 h-16 w-16 rounded-3xl ${visual.accent} backdrop-blur`} />
+                    <div className="absolute right-4 top-4 max-w-[8rem] rounded-full border border-white/25 bg-white/15 px-2.5 py-1 text-[9px] font-black uppercase tracking-widest text-white/90 backdrop-blur">
                       {pkg.subtitle}
                     </div>
 
                     {pkg.popular && (
-                      <div className="absolute left-5 top-5 rounded-full border border-white/30 bg-white px-4 py-1.5 text-[10px] font-black uppercase tracking-wider text-orange-700 shadow-[0_10px_28px_rgba(124,45,18,0.22)]">
+                      <div className="absolute left-4 top-4 rounded-full border border-white/30 bg-white px-3 py-1.5 text-[9px] font-black uppercase tracking-wider text-orange-700 shadow-[0_10px_28px_rgba(124,45,18,0.22)]">
                         Recommended
                       </div>
                     )}
 
-                    <div className="absolute bottom-5 left-5 right-5">
-                      <div className={`mb-4 h-px w-full border-t ${visual.line}`} />
-                      <div className="flex items-end justify-between gap-4">
-                        <div className="max-w-[210px]">
-                          <h3 className="text-2xl font-black leading-tight text-white">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className={`mb-3 h-px w-full border-t ${visual.line}`} />
+                      <div className="flex items-end justify-between gap-3">
+                        <div className="max-w-[11.5rem]">
+                          <h3 className="text-xl font-black leading-tight text-white lg:text-[1.18rem] xl:text-[1.08rem]">
                             {pkg.name}
                           </h3>
                         </div>
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/25 bg-white text-slate-900 shadow-[0_14px_34px_rgba(15,23,42,0.20)]">
-                          <Icon className={`h-7 w-7 ${pkg.theme.color}`} strokeWidth={2} />
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/25 bg-white text-slate-900 shadow-[0_14px_34px_rgba(15,23,42,0.20)]">
+                          <Icon className={`h-6 w-6 ${pkg.theme.color}`} strokeWidth={2} />
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex flex-1 flex-col bg-white px-6 pb-6 pt-6 md:px-7 md:pb-7">
-                    <p className="min-h-[48px] text-sm leading-relaxed text-slate-500">
+                  <div className="flex flex-1 flex-col bg-white px-5 pb-5 pt-5">
+                    <p className="min-h-[44px] text-[13px] leading-relaxed text-slate-500">
                       {pkg.description}
                     </p>
                     {pkg.tag && (
-                      <p className="mt-3 inline-flex w-fit rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-black text-slate-600">
+                      <p className="mt-3 inline-flex w-fit rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-black text-slate-600">
                         {pkg.tag}
                       </p>
                     )}
                     <PriceBlock pkg={pkg} />
 
-                    <ul className="mt-6 space-y-3">
+                    <ul className="mt-5 space-y-2.5">
                       {pkg.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
+                        <li key={idx} className="flex items-start gap-2.5">
                           {feature.included ? (
                             <div
                               className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white ${pkg.theme.checkIcon}`}
@@ -447,7 +449,7 @@ export default function ServicePackages() {
                           )}
 
                           <span
-                            className={`text-sm leading-relaxed ${
+                            className={`text-[13px] leading-relaxed ${
                               feature.included
                                 ? "text-slate-700"
                                 : "text-slate-400 line-through"
@@ -464,10 +466,14 @@ export default function ServicePackages() {
                       ทีมงานแจ้งเวลาส่งหลังตรวจคำขอ
                     </div>
 
-                    <div className="mt-auto pt-6">
+                    <div className="mt-auto pt-5">
+                      <p className="mb-4 flex items-start gap-2 text-[11px] font-medium leading-relaxed text-slate-500">
+                        <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-400" aria-hidden="true" />
+                        <span>{packageDisclaimer}</span>
+                      </p>
                       <button
                         onClick={() => goToOrder(pkg.orderLink)}
-                        className={`w-full rounded-2xl py-3.5 text-sm font-bold transition-all duration-300 ${pkg.theme.btnClass}`}
+                        className={`w-full rounded-2xl py-3 text-sm font-bold transition-all duration-300 ${pkg.theme.btnClass}`}
                       >
                         ส่งคำขอ
                       </button>
@@ -482,20 +488,6 @@ export default function ServicePackages() {
           <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-10 bg-gradient-to-r from-bg-light to-transparent sm:w-14" />
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-10 bg-gradient-to-l from-bg-light to-transparent sm:w-14" />
         </div>
-
-        {/* Footer */}
-        <div className="mt-14 rounded-3xl border border-blue-100/70 bg-white/85 px-6 py-6 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-          <p className="text-sm font-semibold leading-relaxed text-slate-600">
-            *เอกสารทั้งหมดเป็นเอกสารสนับสนุนการยื่นวีซ่าเท่านั้น ไม่ใช่การจองตั๋วหรือโรงแรมจริง และไม่มีผลผูกพันทางธุรกิจ
-          </p>
-          <p className="mt-3 text-sm font-semibold leading-relaxed text-slate-600">
-            ราคาเป็นราคาต่อคน ยกเว้นประกันการเดินทางที่ขึ้นอยู่กับแผนและระยะเวลาการเดินทาง
-          </p>
-          <p className="mt-3 text-sm font-semibold leading-relaxed text-slate-600">
-            BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น เอกสารเหล่านี้ไม่ใช่ตั๋วจริงหรือการจองจริง
-            และการอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุลเท่านั้น
-          </p>
-        </div>
       </div>
     </section>
   );
@@ -507,17 +499,17 @@ function PriceBlock({ pkg, inverse = false }) {
   const saveClass = inverse ? "bg-white/15 text-white" : "bg-orange-50 text-orange-700";
 
   return (
-    <div className="mt-5">
+    <div className="mt-4">
       {pkg.originalPrice && (
         <div className={`text-xs font-bold line-through ${mutedClass}`}>{pkg.originalPrice}</div>
       )}
       <div className="flex items-end justify-center gap-2">
         {pkg.pricePrefix && <span className={`pb-1 text-xs font-bold ${mutedClass}`}>{pkg.pricePrefix}</span>}
-        <span className={`text-4xl font-black tracking-tight ${priceClass}`}>{pkg.price}</span>
+        <span className={`text-3xl font-black tracking-tight ${priceClass}`}>{pkg.price}</span>
       </div>
       <div className={`mt-1 text-xs font-bold ${mutedClass}`}>{pkg.unit}</div>
       {pkg.save && (
-        <div className={`mx-auto mt-3 inline-flex rounded-full px-3 py-1 text-xs font-black ${saveClass}`}>
+        <div className={`mx-auto mt-2 inline-flex rounded-full px-2.5 py-1 text-[11px] font-black ${saveClass}`}>
           ประหยัด {pkg.save}
         </div>
       )}

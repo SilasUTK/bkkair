@@ -220,7 +220,7 @@ export default function HeroForm() {
       <button
         type="submit"
         disabled={status === "loading" || status === "success"}
-        className="group mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-5 text-sm font-extrabold text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-65"
+        className="group mt-2 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-[18px] border border-white/[0.18] bg-[linear-gradient(135deg,#FF7A18_0%,#FF9A2E_48%,#FFB347_100%)] px-5 py-3.5 text-[16px] font-extrabold text-white shadow-[0_18px_36px_rgba(255,122,24,0.26),inset_0_1px_0_rgba(255,255,255,0.28)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_46px_rgba(255,122,24,0.4),inset_0_1px_0_rgba(255,255,255,0.38)] disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-65"
       >
         {status === "loading" ? (
           <>
@@ -229,8 +229,8 @@ export default function HeroForm() {
           </>
         ) : (
           <>
-            ส่งคำขอเอกสาร
-            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            ส่งคำขอ
+            <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </>
         )}
       </button>
