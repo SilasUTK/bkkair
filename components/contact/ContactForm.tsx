@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 import { useRef, useState } from "react";
 import { FileUp, Send, ShieldCheck, UserRound } from "lucide-react";
-import { apiUrl } from "../../lib/apiBase";
 
 const inquiryTypes = [
   "สอบถามแพ็กเกจ",
@@ -92,7 +91,7 @@ export default function ContactForm() {
         payload.append("attachment", attachment);
       }
 
-      const response = await fetch(apiUrl("/api/contact"), {
+      const response = await fetch("/api/contact", {
         method: "POST",
         body: payload,
       });
