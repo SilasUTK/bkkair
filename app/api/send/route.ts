@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import nodemailer from "nodemailer";
 
 const RECIPIENT_EMAIL = "info@bkkair.com";
+const CONSENT_ERROR_MESSAGE =
+  "กรุณายอมรับข้อกำหนดการใช้บริการและนโยบายความเป็นส่วนตัวก่อนส่งคำขอ";
 
 function sanitize(value: unknown, maxLength = 1000): string {
   if (typeof value !== "string") return "";
@@ -114,6 +116,7 @@ export async function POST(request: NextRequest) {
     const fullName = sanitize(body.full_name);
     const contactDetail = sanitize(body.contact_detail);
     const travelDate = sanitize(body.travel_date, 20);
+    const consentAccepted = body.consentAccepted === true;
     const data = {
       form_source: formSource,
       destination,
@@ -127,6 +130,10 @@ export async function POST(request: NextRequest) {
 
     if (formSource !== "Homepage Lead Form") {
       return NextResponse.json({ ok: false, success: false, error: "ไม่รู้จักประเภทฟอร์ม" }, { status: 400 });
+    }
+
+    if (!consentAccepted) {
+      return NextResponse.json({ ok: false, success: false, error: CONSENT_ERROR_MESSAGE }, { status: 400 });
     }
 
     if (!destination || !fullName || !contactDetail || !travelDate) {

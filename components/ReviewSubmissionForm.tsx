@@ -34,6 +34,15 @@ export default function ReviewSubmissionForm() {
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const isReviewReady = Boolean(
+    form.nicknameOrInitials.trim() &&
+    form.destinationCountry.trim() &&
+    form.serviceUsed.trim() &&
+    form.rating &&
+    form.reviewText.trim().length >= 20 &&
+    form.consentPublish &&
+    form.consentNoGuarantee,
+  );
 
   function updateField(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
     const { name, value, type } = event.target;
@@ -203,7 +212,7 @@ export default function ReviewSubmissionForm() {
 
       <button
         type="submit"
-        disabled={submitting}
+        disabled={submitting || !isReviewReady}
         className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-accent-orange px-6 py-3 text-sm font-black text-white shadow-[0_16px_38px_rgba(255,87,34,0.28)] transition hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
       >
         <Send className="h-4 w-4" aria-hidden="true" />
