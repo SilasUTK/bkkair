@@ -57,7 +57,7 @@ const cardVisuals = {
 const packages = [
   {
     id: "flight",
-    subtitle: "Flight Reservation Document",
+    subtitle: "FLIGHT",
     name: "ใบจองตั๋วเครื่องบิน",
     tag: "ใช้ได้กับทุกประเทศ",
     price: "฿500",
@@ -86,7 +86,7 @@ const packages = [
 
   {
     id: "hotel",
-    subtitle: "Hotel Reservation Document",
+    subtitle: "HOTEL",
     name: "ใบจองโรงแรม",
     tag: "ยอดนิยม",
     price: "฿500",
@@ -115,7 +115,7 @@ const packages = [
 
   {
     id: "itinerary",
-    subtitle: "Travel Itinerary",
+    subtitle: "ITINERARY",
     name: "แผนการเดินทาง",
     tag: "แนะนำสำหรับ Schengen",
     price: "฿700",
@@ -144,7 +144,7 @@ const packages = [
 
   {
     id: "flight-hotel",
-    subtitle: "Flight + Hotel Bundle",
+    subtitle: "FLIGHT + HOTEL",
     name: "ใบจองตั๋ว + ใบจองโรงแรม",
     originalPrice: "฿1,000",
     price: "฿800",
@@ -174,7 +174,7 @@ const packages = [
 
   {
     id: "bundle3",
-    subtitle: "Flight + Hotel + Itinerary",
+    subtitle: "COMPLETE",
     name: "ใบจองตั๋ว + โรงแรม + แผนการเดินทาง",
     originalPrice: "฿1,700",
     price: "฿1,500",
@@ -204,7 +204,7 @@ const packages = [
 
   {
     id: "complete",
-    subtitle: "Complete Document Package",
+    subtitle: "RECOMMENDED",
     name: "ชุดเอกสารครบชุด",
     tag: "ประหยัดที่สุด",
     originalPrice: "฿4,200",
@@ -237,7 +237,7 @@ const packages = [
 
   {
     id: "insurance",
-    subtitle: "MSIG Travel Insurance",
+    subtitle: "INSURANCE",
     name: "ประกันการเดินทาง MSIG",
     pricePrefix: "เริ่มต้น",
     price: "฿190",
@@ -316,6 +316,23 @@ export default function ServicePackages() {
     window.location.href = orderLink;
   }
 
+  function goToPackageDetails(packageId) {
+    const detailId = `package-detail-${packageId}`;
+    const detailSection = document.getElementById(detailId);
+
+    if (detailSection) {
+      detailSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    window.history.pushState(null, "", `#${detailId}`);
+    window.dispatchEvent(
+      new CustomEvent("bkkair:package-learn-more", {
+        detail: { packageId, targetId: detailId },
+      })
+    );
+  }
+
   return (
     <section
       id="packages"
@@ -371,7 +388,7 @@ export default function ServicePackages() {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="no-scrollbar flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth scroll-px-8 px-8 pb-8 pt-5 active:cursor-grabbing md:scroll-px-10 md:px-10 lg:gap-4 lg:scroll-px-12 lg:px-12"
+            className="no-scrollbar flex cursor-grab snap-x snap-mandatory items-stretch gap-4 overflow-x-auto scroll-smooth scroll-px-8 px-8 pb-6 pt-5 active:cursor-grabbing md:scroll-px-10 md:px-10 lg:gap-4 lg:scroll-px-12 lg:px-12"
           >
             {packages.map((pkg) => {
               const Icon = pkg.icon;
@@ -390,47 +407,57 @@ export default function ServicePackages() {
                     <div className="pointer-events-none absolute inset-0 -z-10 rounded-[1.7rem] bg-orange-300/30 blur-2xl" />
                   )}
 
-                  <div className={`relative h-36 overflow-hidden bg-gradient-to-br lg:h-[8.5rem] ${visual.gradient}`}>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.28),transparent_28%),radial-gradient(circle_at_80%_25%,rgba(255,255,255,0.16),transparent_26%)]" />
-                    <div className="absolute -bottom-8 -right-8 h-24 w-24 rounded-full bg-white/15 blur-xl" />
-                    <div className={`absolute left-4 top-4 h-16 w-16 rounded-3xl ${visual.accent} backdrop-blur`} />
-                    <div className="absolute right-4 top-4 max-w-[8rem] rounded-full border border-white/25 bg-white/15 px-2.5 py-1 text-[9px] font-black uppercase tracking-widest text-white/90 backdrop-blur">
-                      {pkg.subtitle}
-                    </div>
+                  <div className={`relative h-[148px] overflow-hidden bg-gradient-to-br ${visual.gradient}`}>
+                    <div className="pointer-events-none absolute inset-0 opacity-70 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.22),transparent_28%),radial-gradient(circle_at_85%_20%,rgba(255,255,255,0.12),transparent_24%)]" />
+                    <div className="pointer-events-none absolute -bottom-8 -right-8 h-24 w-24 rounded-full bg-white/12 blur-xl" />
+                    <div className={`pointer-events-none absolute left-4 top-4 h-14 w-14 rounded-3xl ${visual.accent} opacity-80 backdrop-blur`} />
 
-                    {pkg.popular && (
-                      <div className="absolute left-4 top-4 rounded-full border border-white/30 bg-white px-3 py-1.5 text-[9px] font-black uppercase tracking-wider text-orange-700 shadow-[0_10px_28px_rgba(124,45,18,0.22)]">
-                        Recommended
+                    <div className="relative z-10 flex h-full flex-col justify-between p-4">
+                      <div className="flex min-w-0 items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          {pkg.popular && (
+                            <div className="mb-1.5 inline-flex max-w-full rounded-full border border-white/30 bg-white px-2.5 py-1 text-[9px] font-black uppercase tracking-wider text-orange-700 shadow-[0_10px_28px_rgba(124,45,18,0.18)]">
+                              Recommended
+                            </div>
+                          )}
+                        </div>
+                        <div className="max-w-[8.5rem] truncate whitespace-nowrap rounded-full border border-white/25 bg-white/15 px-2.5 py-1 text-[9px] font-black uppercase tracking-widest text-white/90 backdrop-blur">
+                          {pkg.subtitle}
+                        </div>
                       </div>
-                    )}
 
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className={`mb-3 h-px w-full border-t ${visual.line}`} />
-                      <div className="flex items-end justify-between gap-3">
-                        <div className="max-w-[11.5rem]">
-                          <h3 className="text-xl font-black leading-tight text-white lg:text-[1.18rem] xl:text-[1.08rem]">
+                      <div>
+                        <div className={`mb-3 h-px w-full border-t ${visual.line} opacity-70`} />
+                        <div className="relative min-h-[3.25rem] pr-16">
+                          <h3 className="line-clamp-2 text-xl font-black leading-tight text-white lg:text-[1.14rem] xl:text-[1.04rem]">
                             {pkg.name}
                           </h3>
-                        </div>
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/25 bg-white text-slate-900 shadow-[0_14px_34px_rgba(15,23,42,0.20)]">
-                          <Icon className={`h-6 w-6 ${pkg.theme.color}`} strokeWidth={2} />
+                          <div className="absolute bottom-0 right-0 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/25 bg-white text-slate-900 shadow-[0_14px_34px_rgba(15,23,42,0.20)] sm:h-12 sm:w-12">
+                            <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${pkg.theme.color}`} strokeWidth={2} />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex flex-1 flex-col bg-white px-5 pb-5 pt-5">
-                    <p className="min-h-[44px] text-[13px] leading-relaxed text-slate-500">
-                      {pkg.description}
-                    </p>
-                    {pkg.tag && (
-                      <p className="mt-3 inline-flex w-fit rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-black text-slate-600">
-                        {pkg.tag}
+                  <div className="flex flex-1 flex-col bg-white px-5 pb-4 pt-5">
+                    <div className="flex flex-col">
+                      <p className="min-h-[4.75rem] text-[13px] leading-relaxed text-slate-500 md:min-h-[5.5rem]">
+                        {pkg.description}
                       </p>
-                    )}
-                    <PriceBlock pkg={pkg} />
 
-                    <ul className="mt-5 space-y-2.5">
+                      <div className="mt-3 flex min-h-[1.625rem] items-start">
+                        {pkg.tag && (
+                          <p className="inline-flex w-fit rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-black text-slate-600">
+                            {pkg.tag}
+                          </p>
+                        )}
+                      </div>
+
+                      <PriceBlock pkg={pkg} />
+                    </div>
+
+                    <ul className="mt-4 space-y-1.5">
                       {pkg.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-2.5">
                           {feature.included ? (
@@ -449,7 +476,7 @@ export default function ServicePackages() {
                           )}
 
                           <span
-                            className={`text-[13px] leading-relaxed ${
+                            className={`text-[12.5px] leading-relaxed ${
                               feature.included
                                 ? "text-slate-700"
                                 : "text-slate-400 line-through"
@@ -461,22 +488,34 @@ export default function ServicePackages() {
                       ))}
                     </ul>
 
-                    <div className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-600">
+                    <div className="mt-3 inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-600">
                       <Clock className={`h-3.5 w-3.5 ${pkg.theme.checkIcon}`} />
                       ทีมงานแจ้งเวลาส่งหลังตรวจคำขอ
                     </div>
 
-                    <div className="mt-auto pt-5">
-                      <p className="mb-4 flex items-start gap-2 text-[11px] font-medium leading-relaxed text-slate-500">
+                    <div className="mt-auto pt-3">
+                      <p className="mb-3 flex items-start gap-2 text-[10.5px] font-medium leading-relaxed text-slate-500">
                         <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-400" aria-hidden="true" />
                         <span>{packageDisclaimer}</span>
                       </p>
-                      <button
-                        onClick={() => goToOrder(pkg.orderLink)}
-                        className={`w-full rounded-2xl py-3 text-sm font-bold transition-all duration-300 ${pkg.theme.btnClass}`}
-                      >
-                        ส่งคำขอ
-                      </button>
+                      <div className="space-y-2">
+                        <button
+                          type="button"
+                          onClick={() => goToPackageDetails(pkg.id)}
+                          onPointerDown={(event) => event.stopPropagation()}
+                          className="w-full rounded-2xl border border-slate-200 bg-white py-2.5 text-sm font-black text-slate-600 transition-all duration-300 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                        >
+                          Learn More
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => goToOrder(pkg.orderLink)}
+                          onPointerDown={(event) => event.stopPropagation()}
+                          className={`w-full rounded-2xl py-3 text-sm font-bold transition-all duration-300 ${pkg.theme.btnClass}`}
+                        >
+                          จองตอนนี้เลย
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -499,20 +538,24 @@ function PriceBlock({ pkg, inverse = false }) {
   const saveClass = inverse ? "bg-white/15 text-white" : "bg-orange-50 text-orange-700";
 
   return (
-    <div className="mt-4">
-      {pkg.originalPrice && (
-        <div className={`text-xs font-bold line-through ${mutedClass}`}>{pkg.originalPrice}</div>
-      )}
+    <div className="mt-4 text-center">
+      <div className="min-h-[1rem]">
+        {pkg.originalPrice && (
+          <div className={`text-xs font-bold line-through ${mutedClass}`}>{pkg.originalPrice}</div>
+        )}
+      </div>
       <div className="flex items-end justify-center gap-2">
         {pkg.pricePrefix && <span className={`pb-1 text-xs font-bold ${mutedClass}`}>{pkg.pricePrefix}</span>}
         <span className={`text-3xl font-black tracking-tight ${priceClass}`}>{pkg.price}</span>
       </div>
       <div className={`mt-1 text-xs font-bold ${mutedClass}`}>{pkg.unit}</div>
-      {pkg.save && (
-        <div className={`mx-auto mt-2 inline-flex rounded-full px-2.5 py-1 text-[11px] font-black ${saveClass}`}>
-          ประหยัด {pkg.save}
-        </div>
-      )}
+      <div className="mt-2 min-h-[1.5rem]">
+        {pkg.save && (
+          <div className={`mx-auto inline-flex rounded-full px-2.5 py-1 text-[11px] font-black ${saveClass}`}>
+            ประหยัด {pkg.save}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

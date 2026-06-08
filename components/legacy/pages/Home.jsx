@@ -3,10 +3,8 @@ import WhyChooseUs from "../../home/WhyChooseUs";
 import WorkflowTimeline from "../../home/WorkflowTimeline";
 import ServicePackages from "../../home/ServicePackages";
 import SupportedCountriesSection from "../../home/SupportedCountriesSection";
-import SeoTrustSection from "../../home/SeoTrustSection";
 import Testimonials from "../../home/Testimonials";
 import FAQSection from "../../home/FAQSection";
-import FinalCtaSection from "../../home/FinalCtaSection";
 
 export default function HomePage(props) {
   return (
@@ -28,17 +26,11 @@ export default function HomePage(props) {
       {/* SECTION 5: SUPPORTED COUNTRIES */}
       <SupportedCountriesSection />
 
-      {/* SECTION 6: TRUST & SECURITY */}
-      <SeoTrustSection />
-
-      {/* SECTION 7: TESTIMONIALS */}
+      {/* SECTION 6: TESTIMONIALS */}
       <Testimonials />
 
-      {/* SECTION 8: FAQ */}
+      {/* SECTION 7: FAQ */}
       <FAQSection />
-
-      {/* SECTION 9: FINAL CTA */}
-      <FinalCtaSection />
     </>
   );
 }
