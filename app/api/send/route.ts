@@ -1,7 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-const RECIPIENT_EMAIL = "info@bkkair.com";
 const CONSENT_ERROR_MESSAGE =
   "กรุณายอมรับข้อกำหนดการใช้บริการและนโยบายความเป็นส่วนตัวก่อนส่งคำขอ";
 
@@ -80,26 +79,16 @@ function buildEmailHtml(data: Record<string, string>) {
     </html>`;
 }
 
-function createTransporter() {
-  const port = Number(process.env.SMTP_PORT || 587);
-  const secure =
-    typeof process.env.SMTP_SECURE === "string"
-      ? process.env.SMTP_SECURE.toLowerCase() === "true"
-      : port === 465;
+function getEmailConfig() {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.EMAIL_FROM;
+  const to = process.env.EMAIL_TO;
 
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port,
-    secure,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-}
+  if (!apiKey || !from || !to) {
+    return null;
+  }
 
-function hasSmtpConfig() {
-  return Boolean(process.env.SMTP_HOST && process.env.SMTP_PORT && process.env.SMTP_USER && process.env.SMTP_PASS);
+  return { apiKey, from, to };
 }
 
 export async function POST(request: NextRequest) {
@@ -144,35 +133,52 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false, success: false, error: "วันที่เดินทางต้องไม่ย้อนหลัง" }, { status: 400 });
     }
 
-    if (!hasSmtpConfig()) {
-      console.error("[api/send] SMTP error: missing SMTP configuration", {
-        SMTP_HOST: Boolean(process.env.SMTP_HOST),
-        SMTP_PORT: Boolean(process.env.SMTP_PORT),
-        SMTP_USER: Boolean(process.env.SMTP_USER),
-        SMTP_PASS: Boolean(process.env.SMTP_PASS),
-        SMTP_FROM: Boolean(process.env.SMTP_FROM),
+    const emailConfig = getEmailConfig();
+    if (!emailConfig) {
+      console.error("[api/send] Resend error: missing email configuration", {
+        RESEND_API_KEY: Boolean(process.env.RESEND_API_KEY),
+        EMAIL_FROM: Boolean(process.env.EMAIL_FROM),
+        EMAIL_TO: Boolean(process.env.EMAIL_TO),
       });
-      return NextResponse.json({ ok: false, success: false, error: "SMTP_CONFIG_MISSING" }, { status: 500 });
+      return NextResponse.json(
+        { ok: false, success: false, error: "ยังไม่สามารถส่งอีเมลได้ กรุณาติดต่อทีมงานทาง LINE @823lateh" },
+        { status: 500 },
+      );
     }
 
     try {
-      console.log("[api/send] SMTP sending started");
-      const transporter = createTransporter();
-      const from = process.env.SMTP_FROM || process.env.SMTP_USER;
-      const info = await transporter.sendMail({
-        from,
-        to: RECIPIENT_EMAIL,
+      console.log("[api/send] Resend sending started");
+      const resend = new Resend(emailConfig.apiKey);
+      const info = await resend.emails.send({
+        from: emailConfig.from,
+        to: emailConfig.to,
         replyTo: isValidReplyTo(contactDetail) ? contactDetail : undefined,
         subject: "New BKK AIR Homepage Lead Form",
         html: buildEmailHtml(data),
         text: buildEmailText(data),
       });
 
-      console.log("[api/send] SMTP success with messageId:", info.messageId);
-      return NextResponse.json({ ok: true, success: true, message: "Email sent", messageId: info.messageId });
+      if (info.error) {
+        console.error("[api/send] Resend error:", info.error);
+        return NextResponse.json(
+          { ok: false, success: false, error: "ส่งข้อมูลไม่สำเร็จ กรุณาลองใหม่อีกครั้ง" },
+          { status: 500 },
+        );
+      }
+
+      console.log("[api/send] Resend success with emailId:", info.data?.id);
+      return NextResponse.json({
+        ok: true,
+        success: true,
+        message: "ส่งข้อมูลเรียบร้อยแล้ว ทีมงานจะติดต่อกลับโดยเร็วที่สุด",
+        messageId: info.data?.id,
+      });
     } catch (emailError) {
-      console.error("[api/send] SMTP error with full error message:", emailError);
-      return NextResponse.json({ ok: false, success: false, error: "EMAIL_SEND_FAILED" }, { status: 500 });
+      console.error("[api/send] Resend error with full error message:", emailError);
+      return NextResponse.json(
+        { ok: false, success: false, error: "ส่งข้อมูลไม่สำเร็จ กรุณาลองใหม่อีกครั้ง" },
+        { status: 500 },
+      );
     }
   } catch (error) {
     console.error("[api/send] error:", error);
