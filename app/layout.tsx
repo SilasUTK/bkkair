@@ -85,45 +85,6 @@ const serviceJsonLd = {
     "บริการจองตั๋วเครื่องบินยื่นวีซ่าและใบจองโรงแรมขอวีซ่าแบบส่งคำขอให้เจ้าหน้าที่ตรวจสอบก่อนดำเนินการ",
 };
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "BKK AIR คืออะไร ให้บริการอะไร?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "BKK AIR คือบริการจัดเตรียมเอกสารสนับสนุนวีซ่า — เช่น ใบจองตั๋วเครื่องบิน ใบจองโรงแรม แผนการเดินทาง และประกันการเดินทาง ในรูปแบบ PDF สำหรับประกอบแฟ้มเอกสาร เราไม่ใช่ตัวแทนวีซ่า ไม่ออกตั๋วจริงหรือยืนยันโรงแรมจริง และไม่มีส่วนในการตัดสินผลวีซ่า",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "เอกสารที่ได้รับสามารถใช้ยื่นสถานทูตได้จริงไหม?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "เอกสารทุกชิ้นจัดทำเป็นเอกสารสนับสนุนตามข้อมูลการเดินทางที่ลูกค้าแจ้ง และผ่านการตรวจสอบจากทีมงานจริงก่อนส่ง อย่างไรก็ตาม การยอมรับเอกสารและการอนุมัติวีซ่าขึ้นอยู่กับดุลยพินิจของสถานทูตหรือสถานกงสุลในแต่ละกรณี",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "BKK AIR มีส่วนต่อผลการอนุมัติวีซ่าไหม?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "ไม่มีครับ/ค่ะ BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนเท่านั้น การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุลในทุกกรณี และเราไม่มีความสัมพันธ์พิเศษกับสถานทูตใด ๆ",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "จะได้รับเอกสารภายในกี่ชั่วโมง?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "แพ็กเกจมาตรฐานส่งภายใน 24 ชั่วโมงหลังชำระเงิน สำหรับแพ็กเกจ Express จะได้รับเร็วกว่านั้น",
-      },
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -135,10 +96,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
 
         {children}
