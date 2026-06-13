@@ -100,11 +100,24 @@ export default function Hero({ goToCheck }) {
 
               <HeroForm />
 
-              <div className="mt-4 text-center text-[11px] leading-relaxed text-slate-400">
-                <p className="flex items-center justify-center gap-1.5 font-medium text-slate-300">
-                  <ShieldIcon className="h-4 w-4 text-emerald-500" />
-                  ข้อมูลของคุณปลอดภัยและเป็นความลับ
-                </p>
+              <div className="mt-4 rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.08] p-3 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                <div className="flex items-start gap-2.5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-400/12 text-emerald-300 ring-1 ring-emerald-300/25">
+                    <ShieldIcon className="h-[18px] w-[18px]" />
+                  </span>
+                  <div>
+                    <p className="flex items-center gap-1.5 text-sm font-extrabold text-emerald-100">
+                      ข้อมูลของคุณปลอดภัยและเป็นความลับ
+                      <CheckBadgeIcon className="h-4 w-4 text-emerald-300" />
+                    </p>
+                    <p className="mt-1 text-[11px] font-medium leading-relaxed text-emerald-50/85">
+                      เราใช้ข้อมูลเฉพาะเพื่อจัดเตรียมเอกสารและติดต่อกลับเท่านั้น
+                    </p>
+                    <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-slate-400">
+                      ไม่เปิดเผยข้อมูลให้บุคคลภายนอกโดยไม่จำเป็น
+                    </p>
+                  </div>
+                </div>
                 <button type="button" onClick={goToCheck} className="group mt-2 inline-flex items-center gap-1 font-semibold text-slate-500 transition hover:text-orange-400">
                   มีรหัสแล้ว? ตรวจสถานะ
                   <ArrowRightIcon className="h-3.5 w-3.5" />

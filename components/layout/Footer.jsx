@@ -151,6 +151,12 @@ export default function Footer({ onNavigate }) {
                 <MapPin className="h-5 w-5 shrink-0 text-accent-orange" />
                 <p>Bangkok, Thailand</p>
               </li>
+              <li className="flex items-start gap-3 text-slate-400 transition-colors hover:text-white">
+                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-blue-300" />
+                <p>
+                  ประเทศที่รองรับ: <span className="font-semibold text-white">Schengen, UK, USA, Canada, Australia, Japan</span>
+                </p>
+              </li>
             </ul>
           </section>
         </div>

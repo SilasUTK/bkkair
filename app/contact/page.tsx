@@ -3,14 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  CheckCircle2,
   Clock,
   FileCheck2,
-  Languages,
+  Globe2,
   Mail,
   MessageCircle,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import ContactForm from "../../components/contact/ContactForm";
 import MarketingShell from "../../components/marketing/MarketingShell";
@@ -20,32 +18,11 @@ export const metadata: Metadata = {
   description: "ติดต่อทีมงาน BKK AIR ผ่าน LINE OA และ Email เพื่อสอบถามเอกสารยื่นวีซ่า แพ็กเกจบริการ และการตรวจสอบข้อมูลธุรกิจ",
 };
 
-const trustCards = [
-  {
-    title: "Reviewed by real staff",
-    text: "ทุกคำขอมีทีมงานตรวจสอบรายละเอียด ไม่ใช่ระบบตอบกลับอัตโนมัติ",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Embassy-support specialists",
-    text: "ช่วยดูเอกสารสนับสนุนสถานทูต เช่น flight reservation, hotel booking และ itinerary",
-    icon: FileCheck2,
-  },
-  {
-    title: "Fast business-hour response",
-    text: "LINE OA คือช่องทางที่เร็วที่สุดในเวลาทำการ Monday-Saturday 09:00-18:00",
-    icon: Clock,
-  },
-  {
-    title: "Thai & English support",
-    text: "สื่อสารได้ทั้งภาษาไทยและอังกฤษสำหรับเคสเอกสารหลายประเทศ",
-    icon: Languages,
-  },
-  {
-    title: "Privacy-focused handling",
-    text: "ข้อมูลของคุณใช้เพื่อประเมินคำขอและประสานงานเท่าที่จำเป็น",
-    icon: Sparkles,
-  },
+const trustPills = [
+  { label: "ส่งงานภายใน 24 ชั่วโมง", icon: Clock },
+  { label: "รองรับ Schengen, UK, USA, Canada, Australia และ Japan", icon: Globe2 },
+  { label: "ตรวจสอบโดยทีมงานจริง", icon: ShieldCheck },
+  { label: "ตอบกลับภายในเวลาทำการ", icon: MessageCircle },
 ];
 
 const workflowSteps = [
@@ -55,53 +32,102 @@ const workflowSteps = [
   { title: "ส่งเอกสาร", text: "ดำเนินงานและส่งไฟล์ตามข้อตกลง", icon: Mail },
 ];
 
-const miniFaq = [
+const contactFaq = [
   {
-    q: "ต้องชำระเงินก่อนส่งคำถามหรือไม่?",
-    a: "ไม่ต้อง คุณสามารถส่งคำถามเพื่อให้ทีมงานประเมินเบื้องต้นได้ก่อน",
+    q: "ใช้เอกสารสำหรับประเทศใดได้บ้าง?",
+    a: "เอกสารสามารถใช้ประกอบคำขอวีซ่าสำหรับประเทศยอดนิยม เช่น Schengen, UK, USA, Canada, Australia, Japan, South Korea และประเทศอื่น ๆ ตามรายละเอียดที่ทีมงานประเมิน",
   },
   {
-    q: "ทีมงานตอบกลับภายในกี่ชั่วโมง?",
-    a: "โดยทั่วไปคำถามส่วนใหญ่ตอบกลับภายใน 1-3 ชั่วโมงในเวลาทำการ",
+    q: "ใช้เวลาจัดทำกี่ชั่วโมง?",
+    a: "โดยทั่วไปเอกสารสามารถจัดทำและส่งเป็นไฟล์ PDF ได้ภายใน 24 ชั่วโมง หลังทีมงานได้รับข้อมูลครบถ้วนและยืนยันรายละเอียดเรียบร้อยแล้ว",
   },
   {
-    q: "ต้องเตรียมข้อมูลอะไรบ้างเมื่อสอบถาม?",
-    a: "แนะนำให้แจ้งประเทศปลายทาง วันที่เดินทาง และประเภทเอกสารที่ต้องการ เพื่อให้ทีมงานช่วยได้เร็วขึ้น",
+    q: "สามารถแก้ไขข้อมูลได้หรือไม่?",
+    a: "สามารถแจ้งทีมงานเพื่อแก้ไขข้อมูลได้ตามขอบเขตงานและช่วงเวลาที่ตกลง ก่อนส่งเอกสารฉบับสุดท้าย",
   },
   {
-    q: "BKK AIR ช่วยเตรียมเอกสารยื่นวีซ่าอย่างไร?",
-    a: "BKK AIR ให้บริการเฉพาะการจัดเตรียมเอกสารสนับสนุนวีซ่าเท่านั้น การอนุมัติวีซ่าเป็นดุลยพินิจของสถานทูตหรือสถานกงสุล",
+    q: "ได้รับเอกสารทางช่องทางใด?",
+    a: "ทีมงานส่งเอกสารเป็นไฟล์ PDF ผ่านช่องทางที่คุณสะดวก เช่น LINE หรือ Email",
+  },
+  {
+    q: "ต้องชำระเงินก่อนหรือไม่?",
+    a: "คุณสามารถส่งฟอร์มเพื่อให้ทีมงานประเมินเบื้องต้นก่อนได้ รายละเอียดการชำระเงินจะแจ้งหลังทีมงานตรวจสอบข้อมูลและยืนยันบริการที่เหมาะสม",
+  },
+  {
+    q: "สามารถใช้ยื่นวีซ่า Schengen ได้หรือไม่?",
+    a: "สามารถใช้เป็นเอกสารสนับสนุนสำหรับการยื่นวีซ่า Schengen ได้ โดยเอกสารจะอ้างอิงข้อมูลการเดินทางที่ลูกค้าแจ้งและทีมงานตรวจสอบแล้ว",
+  },
+  {
+    q: "หากข้อมูลผิดต้องทำอย่างไร?",
+    a: "แจ้งทีมงานทันทีผ่าน LINE หรือ Email พร้อมระบุข้อมูลที่ต้องการแก้ไข ทีมงานจะตรวจสอบและแจ้งขอบเขตการแก้ไขให้ทราบ",
+  },
+  {
+    q: "เอกสารมีอายุการใช้งานหรือไม่?",
+    a: "เอกสารควรใช้ให้สอดคล้องกับวันที่เดินทางและช่วงเวลายื่นวีซ่าที่แจ้งไว้ หากแผนเดินทางเปลี่ยนควรแจ้งทีมงานเพื่อประเมินการอัปเดตเอกสาร",
+  },
+  {
+    q: "รองรับวีซ่าประเภทใดบ้าง?",
+    a: "รองรับเอกสารสนับสนุนสำหรับวีซ่าท่องเที่ยว เยี่ยมเยียน ธุรกิจ และวีซ่าอื่น ๆ ที่ต้องใช้ข้อมูลการเดินทางหรือที่พักประกอบการยื่น",
+  },
+  {
+    q: "สามารถติดต่อทีมงานได้ทางไหน?",
+    a: "ติดต่อได้ผ่าน LINE OA @823lateh หรือ Email info@bkkair.com โดย LINE OA เป็นช่องทางที่เร็วที่สุดในเวลาทำการ",
+  },
+  {
+    q: "มีการรับประกันวีซ่าหรือไม่?",
+    a: "ไม่มีการรับประกันผลวีซ่า BKK AIR ให้บริการเฉพาะเอกสารสนับสนุนการยื่นวีซ่าเท่านั้น การอนุมัติวีซ่าขึ้นอยู่กับสถานทูตหรือสถานกงสุลแต่เพียงผู้เดียว",
   },
 ];
+
+const contactImage = "/images/background/contact-airport-counter.png";
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: contactFaq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
 
 export default function ContactPage() {
   return (
     <MarketingShell>
-      <section className="relative isolate overflow-hidden bg-slate-950 px-6 py-20 text-white md:py-24 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      <section className="relative isolate overflow-hidden bg-slate-950 px-6 py-8 text-white md:py-10 lg:px-8">
         <Image
-          src="/images/background/hero-bg.jpg"
+          src={contactImage}
           alt=""
           fill
           priority
           sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover opacity-55"
+          className="absolute inset-0 -z-20 object-cover object-[52%_44%]"
         />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(115deg,rgba(11,18,32,0.96)_0%,rgba(11,18,32,0.82)_44%,rgba(11,18,32,0.48)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#F8FAFC] to-transparent" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(115deg,rgba(7,17,31,0.92)_0%,rgba(7,17,31,0.78)_48%,rgba(7,17,31,0.74)_100%)]" />
+        <div className="absolute -right-24 top-8 -z-10 h-72 w-72 rounded-full bg-orange-500/20 blur-[90px]" />
+        <div className="absolute left-1/2 top-0 -z-10 h-64 w-64 rounded-full bg-blue-500/15 blur-[90px]" />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-16 bg-gradient-to-t from-[#07111f] to-transparent" />
 
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-orange-200 backdrop-blur">
+            <p className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-orange-200 backdrop-blur">
               CONTACT BKK AIR
             </p>
-            <h1 className="mt-6 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
               ติดต่อทีมงาน BKK AIR
             </h1>
-            <p className="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-slate-200 sm:text-xl">
-              ทีมงานพร้อมช่วยเหลือเรื่องเอกสารวีซ่า
-              และเอกสารสนับสนุนสถานทูตอย่างมืออาชีพ
+            <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-200 sm:text-lg">
+              ส่งข้อมูลเบื้องต้นให้ทีมงานตรวจสอบ เราจะติดต่อกลับเพื่อแนะนำเอกสารสนับสนุนวีซ่าที่เหมาะกับประเทศปลายทางของคุณ
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a
                 href="https://line.me/R/ti/p/@823lateh"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-accent-orange px-6 text-sm font-black text-white shadow-[0_18px_50px_rgba(249,115,22,0.35)] transition hover:-translate-y-0.5 hover:bg-accent-hover"
@@ -110,10 +136,10 @@ export default function ContactPage() {
                 LINE OA
               </a>
               <Link
-                href="/order"
+                href="#contact-form"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-6 text-sm font-black text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/15"
               >
-                ส่งคำขอ
+                ส่งฟอร์มติดต่อ
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
@@ -121,91 +147,110 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-[#F8FAFC] px-6 py-12 md:py-16 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.46fr)_minmax(0,0.54fr)] lg:gap-10">
-          <aside className="space-y-5">
-            <div className="relative min-h-[320px] overflow-hidden rounded-3xl bg-slate-950 shadow-[0_26px_80px_rgba(15,23,42,0.18)] md:min-h-[460px]">
+      <section className="bg-[#07111f] px-6 pb-12 pt-8 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:items-start">
+          <aside className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.05] text-white shadow-[0_24px_80px_rgba(2,6,23,0.28)] backdrop-blur-xl">
+            <div className="relative min-h-[300px] overflow-hidden rounded-b-[1.5rem] bg-slate-950 sm:min-h-[360px] lg:min-h-[420px]">
               <Image
-                src="/images/background/hero-bg.jpg"
-                alt="BKK AIR visa and embassy support"
+                src={contactImage}
+                alt="BKK AIR premium airport counter visa support service"
                 fill
-                sizes="(max-width: 1024px) 100vw, 46vw"
-                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="object-cover object-[48%_48%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/15 bg-white/10 p-5 text-white shadow-2xl backdrop-blur-md">
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-orange-200">Visa Concierge Desk</p>
-                <p className="mt-2 text-xl font-black leading-snug">เริ่มจากการคุยกับทีมงานจริง</p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-200">
-                  ส่งข้อมูลเบื้องต้น ทีมงานจะช่วยประเมินเอกสารที่เหมาะกับประเทศปลายทางและแผนเดินทางของคุณ
-                </p>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/18 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/14 bg-slate-950/52 p-4 shadow-2xl backdrop-blur-xl">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-orange-300">Premium Travel Concierge</p>
+                <p className="mt-1 text-sm font-semibold text-slate-200">Airport counter service mood for BKK AIR customers</p>
               </div>
             </div>
-
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              {trustCards.map((card) => {
-                const Icon = card.icon;
-                return (
-                  <div
-                    key={card.title}
-                    className="group rounded-2xl border border-white bg-white/85 p-4 shadow-[0_14px_40px_rgba(15,23,42,0.06)] backdrop-blur transition hover:-translate-y-0.5 hover:border-orange-200 hover:shadow-[0_20px_50px_rgba(249,115,22,0.12)]"
-                  >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-orange-300 transition group-hover:bg-accent-orange group-hover:text-white">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </div>
-                    <h2 className="text-sm font-black text-slate-950">{card.title}</h2>
-                    <p className="mt-1 text-xs font-medium leading-relaxed text-slate-600">{card.text}</p>
-                  </div>
-                );
-              })}
+            <div className="p-5 sm:p-6">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-300">
+              ทำไมลูกค้าถึงเลือก BKK AIR
+            </p>
+            <h2 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">
+              ทีมงานจริง ดูแลเอกสารจริง และสื่อสารชัดเจน
+            </h2>
+            <p className="mt-3 text-sm font-medium leading-relaxed text-slate-300">
+              BKK AIR เป็นบริการจัดเตรียมเอกสารสนับสนุนวีซ่า ลูกค้าจะได้รับการติดต่อจากทีมงานก่อนเริ่มดำเนินงานทุกครั้ง
+            </p>
+            <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+              <p className="text-sm font-black text-white">BKK AIR provides support documents only.</p>
+              <p className="mt-2 text-xs font-semibold leading-relaxed text-slate-300">
+                ไม่มีการออกตั๋วจริงอัตโนมัติ และไม่มีการรับประกันผลวีซ่า การอนุมัติขึ้นอยู่กับสถานทูตหรือสถานกงสุล
+              </p>
+            </div>
             </div>
           </aside>
 
-          <ContactForm />
+          <div id="contact-form">
+            <div className="mb-4 flex flex-wrap gap-2 rounded-[1.6rem] border border-white/10 bg-white/[0.06] p-3 shadow-[0_18px_52px_rgba(2,6,23,0.18)] backdrop-blur-xl">
+              {trustPills.map((pill) => {
+                const Icon = pill.icon;
+                return (
+                  <span
+                    key={pill.label}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/45 px-3 py-2 text-xs font-bold leading-tight text-slate-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                  >
+                    <Icon className="h-3.5 w-3.5 shrink-0 text-orange-300" aria-hidden="true" />
+                    {pill.label}
+                  </span>
+                );
+              })}
+            </div>
+            <ContactForm />
+          </div>
         </div>
 
-        <div className="mx-auto mt-10 max-w-7xl rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_20px_70px_rgba(15,23,42,0.06)] sm:p-8">
+        <div className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-white/10 bg-white/[0.06] p-5 text-white shadow-[0_24px_80px_rgba(2,6,23,0.22)] backdrop-blur-xl sm:p-6">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#2563EB]">After Submit</p>
-              <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">
-                หลังส่งฟอร์มแล้วจะเกิดอะไรขึ้น?
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-300">After Submit</p>
+              <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
+                หลังส่งฟอร์มแล้วจะเกิดอะไรขึ้น
               </h2>
             </div>
-            <p className="max-w-xl text-sm font-medium leading-relaxed text-slate-500">
-              ทุกขั้นตอนเป็นการตรวจสอบโดยทีมงานจริง เพื่อให้คำแนะนำและเอกสารสอดคล้องกับปลายทางของคุณ
+            <p className="max-w-xl text-sm font-medium leading-relaxed text-slate-300">
+              ทุกขั้นตอนเป็นการตรวจสอบโดยทีมงานจริง เพื่อให้คำแนะนำสอดคล้องกับประเทศปลายทางและข้อมูลของคุณ
             </p>
           </div>
 
-          <ol className="relative mt-7 grid gap-4 md:grid-cols-4">
-            <div className="pointer-events-none absolute left-8 right-8 top-8 hidden h-px bg-gradient-to-r from-blue-100 via-orange-200 to-blue-100 md:block" />
+          <ol className="relative mt-6 grid gap-4 md:grid-cols-4">
+            <div className="pointer-events-none absolute left-[7%] right-[7%] top-8 hidden h-[2px] bg-gradient-to-r from-blue-400/25 via-orange-300/80 to-blue-400/25 md:block" />
             {workflowSteps.map((step, index) => {
               const Icon = step.icon;
               return (
-                <li key={step.title} className="relative rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-[0_18px_44px_rgba(37,99,235,0.10)]">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-lg shadow-slate-200">
+                <li
+                  key={step.title}
+                  className="relative rounded-2xl border border-white/10 bg-slate-950/48 p-4 transition hover:-translate-y-0.5 hover:border-orange-300/45 hover:shadow-[0_18px_44px_rgba(249,115,22,0.12)]"
+                >
+                  <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-slate-950 shadow-[0_0_0_6px_rgba(7,17,31,0.92),0_16px_34px_rgba(2,6,23,0.22)]">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <p className="mt-5 text-xs font-black uppercase tracking-widest text-orange-600">Step {index + 1}</p>
-                  <h3 className="mt-1 text-lg font-black text-slate-950">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{step.text}</p>
+                  <p className="mt-4 text-xs font-black uppercase tracking-widest text-orange-300">STEP {index + 1}</p>
+                  <h3 className="mt-1 text-base font-black text-white">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300">{step.text}</p>
                 </li>
               );
             })}
           </ol>
         </div>
 
-        <div className="mx-auto mt-8 max-w-7xl rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_20px_70px_rgba(15,23,42,0.05)] sm:p-8">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#2563EB]">Quick Answers</p>
-          <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">คำถามด่วนที่พบบ่อย</h2>
-          <div className="mt-5 grid gap-3 md:grid-cols-2">
-            {miniFaq.map((item) => (
-              <details key={item.q} className="group rounded-2xl border border-slate-100 bg-[#F8FAFC] p-5 transition hover:border-orange-200">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-black text-slate-950">
+        <div className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-white/10 bg-white/[0.06] p-5 text-white shadow-[0_24px_80px_rgba(2,6,23,0.18)] backdrop-blur-xl sm:p-6">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-300">FAQ</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
+            คำถามที่พบบ่อยเกี่ยวกับการใช้บริการ
+          </h2>
+          <div className="mt-5 divide-y divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/35">
+            {contactFaq.map((item, index) => (
+              <details key={item.q} open={index === 0} className="group">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 text-sm font-black text-white transition hover:bg-white/[0.04] sm:px-5">
                   {item.q}
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-orange-600 transition group-open:rotate-45">+</span>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/10 text-orange-300 transition group-open:rotate-45">
+                    +
+                  </span>
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.a}</p>
+                <p className="px-4 pb-4 text-sm font-medium leading-relaxed text-slate-300 sm:px-5">{item.a}</p>
               </details>
             ))}
           </div>

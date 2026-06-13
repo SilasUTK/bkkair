@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   ArrowRight,
   CalendarDays,
@@ -12,9 +11,11 @@ import {
   Phone,
   Plane,
   User,
+  X,
 } from "lucide-react";
 
 type Status = "idle" | "loading" | "success" | "error";
+type LegalModal = "terms" | "privacy" | null;
 
 const fieldClassName =
   "h-11 w-full rounded-xl border border-white/15 bg-slate-900/80 px-4 text-sm font-semibold text-white placeholder:text-slate-500 transition focus:border-orange-400 focus:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20";
@@ -22,7 +23,30 @@ const fieldClassName =
 const labelClassName = "mb-1.5 flex items-center gap-1.5 text-xs font-bold text-slate-300";
 
 const CONSENT_ERROR_MESSAGE =
+  "กรุณายอมรับข้อกำหนดการใช้บริการและนโยบายความเป็นส่วนตัว";
+const API_CONSENT_ERROR_MESSAGE =
   "กรุณายอมรับข้อกำหนดการใช้บริการและนโยบายความเป็นส่วนตัวก่อนส่งคำขอ";
+
+const legalContent = {
+  terms: {
+    title: "ข้อกำหนดการใช้บริการ",
+    href: "/terms",
+    summary: [
+      "BKK AIR ให้บริการจัดเตรียมเอกสารสนับสนุนการยื่นวีซ่า เช่น ใบจองตั๋วเครื่องบิน ใบจองโรงแรม และแผนการเดินทาง ตามข้อมูลที่ลูกค้าแจ้ง",
+      "บริการนี้ไม่ใช่การออกตั๋วจริงอัตโนมัติ ไม่ใช่ตัวแทนสถานทูต และไม่สามารถรับประกันผลการอนุมัติวีซ่าได้",
+      "ลูกค้าต้องตรวจสอบข้อมูลที่ส่งให้ถูกต้อง และแจ้งทีมงานทันทีหากต้องการแก้ไขก่อนจัดทำเอกสารฉบับสุดท้าย",
+    ],
+  },
+  privacy: {
+    title: "นโยบายความเป็นส่วนตัว",
+    href: "/privacy-policy",
+    summary: [
+      "เราเก็บและใช้ข้อมูลเท่าที่จำเป็นเพื่อประเมินคำขอ จัดเตรียมเอกสาร และติดต่อกลับผ่านช่องทางที่ลูกค้าให้ไว้",
+      "ข้อมูลส่วนบุคคลจะไม่ถูกเปิดเผยให้บุคคลภายนอกโดยไม่จำเป็น ยกเว้นกรณีที่เกี่ยวข้องกับการให้บริการหรือเป็นไปตามกฎหมาย",
+      "ลูกค้าสามารถติดต่อทีมงานเพื่อสอบถาม แก้ไข หรือใช้สิทธิ์ด้านข้อมูลส่วนบุคคลได้ผ่านช่องทางติดต่อของ BKK AIR",
+    ],
+  },
+};
 
 function getTodayString() {
   const now = new Date();
@@ -36,10 +60,25 @@ export default function HeroForm() {
   const [consentAccepted, setConsentAccepted] = useState(false);
   const [consentError, setConsentError] = useState("");
   const [isFormReady, setIsFormReady] = useState(false);
+  const [legalModal, setLegalModal] = useState<LegalModal>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const consentRef = useRef<HTMLInputElement>(null);
-  const consentBoxRef = useRef<HTMLLabelElement>(null);
+  const consentBoxRef = useRef<HTMLDivElement>(null);
   const today = getTodayString();
+  const activeLegalContent = legalModal ? legalContent[legalModal] : null;
+
+  useEffect(() => {
+    if (!legalModal) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setLegalModal(null);
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [legalModal]);
 
   function getFormReady(form: HTMLFormElement | null) {
     if (!form) return false;
@@ -150,7 +189,7 @@ export default function HeroForm() {
         formRef.current?.reset();
       } else {
         const responseError = typeof result.error === "string" ? result.error : typeof result.message === "string" ? result.message : "";
-        if (responseError === CONSENT_ERROR_MESSAGE) {
+        if (responseError === CONSENT_ERROR_MESSAGE || responseError === API_CONSENT_ERROR_MESSAGE) {
           setStatus("idle");
           focusConsentError();
           refreshFormReady();
@@ -289,9 +328,8 @@ export default function HeroForm() {
         </div>
       )}
 
-      <label
+      <div
         ref={consentBoxRef}
-        htmlFor="hero-accept-terms"
         className={`flex items-start gap-3 rounded-xl border bg-white/[0.03] p-3 text-xs font-medium leading-relaxed text-slate-300 transition ${
           consentError ? "border-red-400/80 shadow-[0_0_0_3px_rgba(248,113,113,0.16)]" : "border-white/10"
         }`}
@@ -314,16 +352,26 @@ export default function HeroForm() {
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-slate-900 text-orange-500 focus:ring-2 focus:ring-orange-500/30"
         />
         <span>
-          ฉันยอมรับ{" "}
-          <Link href="/terms" className="font-bold text-orange-300 underline decoration-orange-300/40 underline-offset-2 hover:text-orange-200">
+          <label htmlFor="hero-accept-terms" className="cursor-pointer">
+            ฉันยอมรับ{" "}
+          </label>
+          <button
+            type="button"
+            onClick={() => setLegalModal("terms")}
+            className="font-bold text-orange-300 underline decoration-orange-300/40 underline-offset-2 transition hover:text-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-400/40"
+          >
             ข้อกำหนดการใช้บริการ
-          </Link>{" "}
+          </button>{" "}
           และ{" "}
-          <Link href="/privacy-policy" className="font-bold text-orange-300 underline decoration-orange-300/40 underline-offset-2 hover:text-orange-200">
+          <button
+            type="button"
+            onClick={() => setLegalModal("privacy")}
+            className="font-bold text-orange-300 underline decoration-orange-300/40 underline-offset-2 transition hover:text-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-400/40"
+          >
             นโยบายความเป็นส่วนตัว
-          </Link>
+          </button>
         </span>
-      </label>
+      </div>
       {consentError && (
         <p id="hero-accept-terms-error" className="-mt-1 flex items-start gap-1.5 text-xs font-bold text-red-300">
           <CircleAlert className="mt-0.5 h-3.5 w-3.5 shrink-0" />
@@ -350,6 +398,71 @@ export default function HeroForm() {
           )}
         </button>
       </div>
+
+      {activeLegalContent && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/78 px-4 py-6 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="hero-legal-modal-title"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setLegalModal(null);
+            }
+          }}
+        >
+          <div className="relative max-h-[86vh] w-full max-w-2xl overflow-hidden rounded-[1.75rem] border border-white/12 bg-slate-950 text-white shadow-[0_28px_90px_rgba(0,0,0,0.55)]">
+            <div className="flex items-start justify-between gap-4 border-b border-white/10 bg-white/[0.04] px-5 py-4">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-300">BKK AIR Legal</p>
+                <h2 id="hero-legal-modal-title" className="mt-1 text-xl font-black tracking-tight sm:text-2xl">
+                  {activeLegalContent.title}
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setLegalModal(null)}
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-slate-200 transition hover:bg-white/[0.12] hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-400/40"
+                aria-label="ปิดหน้าต่าง"
+              >
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div className="max-h-[calc(86vh-92px)] overflow-y-auto px-5 py-5">
+              <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm font-semibold leading-relaxed text-emerald-100">
+                เอกสารและข้อมูลของคุณจะถูกใช้เพื่อการให้บริการ BKK AIR เท่านั้น และการพิจารณาวีซ่ายังคงขึ้นอยู่กับสถานทูตหรือสถานกงสุล
+              </div>
+
+              <div className="mt-4 space-y-3">
+                {activeLegalContent.summary.map((item) => (
+                  <p key={item} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm font-medium leading-relaxed text-slate-200">
+                    {item}
+                  </p>
+                ))}
+              </div>
+
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <a
+                  href={activeLegalContent.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-white px-5 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-orange-100"
+                >
+                  อ่านฉบับเต็ม
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setLegalModal(null)}
+                  className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-white/12 bg-white/[0.06] px-5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/[0.1]"
+                >
+                  ปิดและกรอกฟอร์มต่อ
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </form>
   );
 }
