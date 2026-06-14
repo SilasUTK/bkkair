@@ -1,7 +1,10 @@
 import { Prompt, Sarabun } from "next/font/google";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import AnalyticsPageView from "../components/AnalyticsPageView";
 import CookieConsent from "../components/CookieConsent";
+import GlobalClickTracking from "../components/GlobalClickTracking";
 import "./globals.css";
 
 const prompt = Prompt({
@@ -100,6 +103,10 @@ export default function RootLayout({
 
         {children}
 
+        <Suspense fallback={null}>
+          <AnalyticsPageView />
+        </Suspense>
+        <GlobalClickTracking />
         <CookieConsent />
         <GoogleAnalytics gaId="G-DF00B3N74J" />
       </body>

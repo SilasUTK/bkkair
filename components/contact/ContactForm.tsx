@@ -2,7 +2,9 @@
 
 import type { ReactNode } from "react";
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { CheckCircle2, FileUp, Send, ShieldCheck } from "lucide-react";
+import { event as trackEvent } from "../../lib/gtag";
 
 const inquiryTypes = [
   "สอบถามแพ็กเกจ",
@@ -16,7 +18,9 @@ const inquiryTypes = [
 ];
 
 export default function ContactForm() {
+  const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const hasTrackedFormStart = useRef(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -49,6 +53,15 @@ export default function ContactForm() {
     setAttachment(file);
     setSuccessMessage("");
     setErrorMessage("");
+  }
+
+  function trackFormStart() {
+    if (hasTrackedFormStart.current) return;
+    hasTrackedFormStart.current = true;
+    trackEvent("form_start", {
+      form_name: "contact_form",
+      form_source: "Contact Form",
+    });
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -102,6 +115,10 @@ export default function ContactForm() {
         throw new Error(result?.message || "Unable to send message");
       }
 
+      trackEvent("form_submit_success", {
+        form_name: "contact_form",
+        form_source: "Contact Form",
+      });
       setSuccessMessage(result.message || "ส่งข้อความเรียบร้อยแล้ว ทีมงานจะติดต่อกลับโดยเร็วที่สุด");
 
       setFormData({
@@ -116,6 +133,8 @@ export default function ContactForm() {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
+
+      router.push("/thank-you");
     } catch (error) {
       setErrorMessage(error instanceof Error && error.message !== "Unable to send message"
         ? error.message
@@ -128,6 +147,8 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      onFocusCapture={trackFormStart}
+      onClickCapture={trackFormStart}
       className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white p-4 shadow-[0_28px_90px_rgba(2,6,23,0.25)] sm:p-5 lg:p-6"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-orange-50 via-blue-50/50 to-transparent" />

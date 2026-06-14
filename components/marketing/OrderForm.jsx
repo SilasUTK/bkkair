@@ -1,9 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Send, CheckCircle2, ShieldCheck } from "lucide-react";
 import { createBooking } from "../legacy/services/api.js";
 import { countries, packages } from "./content";
+import { event as trackEvent } from "../../lib/gtag";
 
 function getTomorrowDate() {
   const date = new Date();
@@ -13,7 +15,9 @@ function getTomorrowDate() {
 }
 
 export default function OrderForm({ initialPackage = "", initialCountry = "" }) {
+  const router = useRouter();
   const tomorrow = useMemo(() => getTomorrowDate(), []);
+  const hasTrackedFormStart = useRef(false);
   const [form, setForm] = useState({
     package: initialPackage || "standard",
     name: "",
@@ -35,6 +39,15 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
     setForm((current) => ({ ...current, [name]: value }));
   }
 
+  function trackFormStart() {
+    if (hasTrackedFormStart.current) return;
+    hasTrackedFormStart.current = true;
+    trackEvent("form_start", {
+      form_name: "order_request_form",
+      form_source: "Order Form",
+    });
+  }
+
   async function submitOrder(event) {
     event.preventDefault();
 
@@ -43,6 +56,7 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
     if (!form.contact.trim()) return setError("กรุณาระบุช่องทางติดต่อ");
     if (!form.destination.trim()) return setError("กรุณาระบุประเทศปลายทาง");
     if (!form.departureDate.trim()) return setError("กรุณาระบุวันเดินทาง");
+    if (form.departureDate < tomorrow) return setError("วันเดินทางต้องเป็นวันพรุ่งนี้เป็นต้นไป");
 
     const passengerCount = Number(form.passengerCount || 1);
     if (passengerCount < 1 || passengerCount > 8) return setError("จำนวนผู้เดินทางต้องอยู่ระหว่าง 1-8 คน");
@@ -64,6 +78,11 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
         passengerCount,
         notes: form.details,
       });
+      trackEvent("form_submit_success", {
+        form_name: "order_request_form",
+        form_source: "Order Form",
+        package: form.package,
+      });
       setSubmitted(true);
       setForm((current) => ({
         ...current,
@@ -71,6 +90,7 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
         contact: "",
         details: "",
       }));
+      router.push("/thank-you");
     } catch (requestError) {
       setError(requestError.message || "ไม่สามารถส่งคำขอได้ กรุณาลองใหม่อีกครั้ง");
     } finally {
@@ -79,7 +99,12 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
   }
 
   return (
-    <form onSubmit={submitOrder} className="rounded-[2rem] bg-white p-6 shadow-xl shadow-slate-200/60 sm:p-8">
+    <form
+      onSubmit={submitOrder}
+      onFocusCapture={trackFormStart}
+      onClickCapture={trackFormStart}
+      className="rounded-[2rem] bg-white p-6 shadow-xl shadow-slate-200/60 sm:p-8"
+    >
       <div className="grid gap-5 md:grid-cols-2">
         <label className="block">
           <span className="text-xs font-black uppercase tracking-wide text-slate-500">Package</span>
@@ -161,4 +186,3 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
     </form>
   );
 }
-

@@ -15,6 +15,7 @@ import {
   ChevronRight,
   Info,
 } from "lucide-react";
+import { event as trackEvent } from "../../lib/gtag";
 
 const cardVisuals = {
   flight: {
@@ -312,8 +313,15 @@ export default function ServicePackages() {
     slider.releasePointerCapture?.(event.pointerId);
   };
 
-  function goToOrder(orderLink) {
-    window.location.href = orderLink;
+  function goToOrder(pkg) {
+    if (pkg.orderLink.startsWith("/order?package=")) {
+      trackEvent("package_select", {
+        package: pkg.id,
+        location: "home_service_packages",
+      });
+    }
+
+    window.location.href = pkg.orderLink;
   }
 
   function goToPackageDetails(packageId) {
@@ -509,7 +517,7 @@ export default function ServicePackages() {
                         </button>
                         <button
                           type="button"
-                          onClick={() => goToOrder(pkg.orderLink)}
+                          onClick={() => goToOrder(pkg)}
                           onPointerDown={(event) => event.stopPropagation()}
                           className={`w-full rounded-2xl py-3 text-sm font-bold transition-all duration-300 ${pkg.theme.btnClass}`}
                         >

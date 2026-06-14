@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import {
   ArrowRight,
   CalendarDays,
@@ -13,6 +14,7 @@ import {
   User,
   X,
 } from "lucide-react";
+import { event as trackEvent } from "../lib/gtag";
 
 type Status = "idle" | "loading" | "success" | "error";
 type LegalModal = "terms" | "privacy" | null;
@@ -55,6 +57,7 @@ function getTodayString() {
 }
 
 export default function HeroForm() {
+  const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [contactError, setContactError] = useState("");
   const [consentAccepted, setConsentAccepted] = useState(false);
@@ -62,6 +65,7 @@ export default function HeroForm() {
   const [isFormReady, setIsFormReady] = useState(false);
   const [legalModal, setLegalModal] = useState<LegalModal>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const hasTrackedFormStart = useRef(false);
   const consentRef = useRef<HTMLInputElement>(null);
   const consentBoxRef = useRef<HTMLDivElement>(null);
   const today = getTodayString();
@@ -116,6 +120,15 @@ export default function HeroForm() {
     if (!consentAccepted && getRequiredFieldsReady(formRef.current)) {
       focusConsentError();
     }
+  }
+
+  function trackFormStart() {
+    if (hasTrackedFormStart.current) return;
+    hasTrackedFormStart.current = true;
+    trackEvent("form_start", {
+      form_name: "homepage_hero_request",
+      form_source: "Homepage Lead Form",
+    });
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -182,11 +195,16 @@ export default function HeroForm() {
       const result = await response.json().catch(() => ({}));
 
       if (response.ok && (result.ok || result.success)) {
+        trackEvent("form_submit_success", {
+          form_name: "homepage_hero_request",
+          form_source: "Homepage Lead Form",
+        });
         setStatus("success");
         setConsentAccepted(false);
         setConsentError("");
         setIsFormReady(false);
         formRef.current?.reset();
+        router.push("/thank-you");
       } else {
         const responseError = typeof result.error === "string" ? result.error : typeof result.message === "string" ? result.message : "";
         if (responseError === CONSENT_ERROR_MESSAGE || responseError === API_CONSENT_ERROR_MESSAGE) {
@@ -208,6 +226,8 @@ export default function HeroForm() {
       onSubmit={handleSubmit}
       onInput={refreshFormReady}
       onChange={refreshFormReady}
+      onFocusCapture={trackFormStart}
+      onClickCapture={trackFormStart}
       noValidate
       className="space-y-2.5"
     >
