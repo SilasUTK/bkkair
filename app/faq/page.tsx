@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, MessageCircleQuestion } from "lucide-react";
 import MarketingShell from "../../components/marketing/MarketingShell";
-import JsonLd from "../../components/marketing/JsonLd";
 import FAQAccordion from "../../components/FAQAccordion";
-import { createFaqJsonLd, faqItems, faqTopicPages } from "../../lib/faqs";
+import { faqItems, faqTopicPages } from "../../lib/faqs";
 
 export const metadata: Metadata = {
   title: "คำถามที่พบบ่อยเกี่ยวกับเอกสารยื่นวีซ่า | BKK AIR",
@@ -23,7 +22,6 @@ export const metadata: Metadata = {
 export default function FaqPage() {
   return (
     <MarketingShell>
-      <JsonLd data={createFaqJsonLd(faqItems)} />
       <section className="relative overflow-hidden bg-[#F8FAFC] px-6 py-16 md:py-24 lg:px-8">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-28 top-20 h-72 w-72 rounded-full bg-blue-100/70 blur-3xl" />
@@ -33,15 +31,21 @@ export default function FaqPage() {
         <div className="relative mx-auto max-w-5xl">
           <div className="text-center">
             <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/90 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-slate-500 shadow-[0_10px_30px_rgba(15,23,42,0.06)] backdrop-blur">
-              <MessageCircleQuestion className="h-4 w-4 text-orange-500" aria-hidden="true" />
+              <MessageCircleQuestion
+                className="h-4 w-4 text-orange-500"
+                aria-hidden="true"
+              />
               FAQ
             </div>
+
             <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
               คำถามที่พบบ่อยเกี่ยวกับเอกสารยื่นวีซ่า
             </h1>
+
             <p className="mx-auto mt-5 max-w-3xl text-lg font-medium leading-relaxed text-slate-600">
-              รวมคำตอบเรื่องใบจองตั๋วเครื่องบินสำหรับยื่นวีซ่า ใบจองโรงแรมสำหรับยื่นวีซ่า
-              แผนการเดินทางสำหรับยื่นวีซ่า และแพ็กเกจ Visa Support Documents Thailand ของ BKK AIR
+              รวมคำตอบเรื่องใบจองตั๋วเครื่องบินสำหรับยื่นวีซ่า
+              ใบจองโรงแรมสำหรับยื่นวีซ่า แผนการเดินทางสำหรับยื่นวีซ่า
+              และแพ็กเกจ Visa Support Documents Thailand ของ BKK AIR
             </p>
           </div>
 
@@ -62,11 +66,16 @@ export default function FaqPage() {
           </div>
 
           <div className="mt-10 rounded-[2rem] border border-orange-100 bg-white p-6 text-center shadow-lg shadow-slate-200/50 md:p-8">
-            <h2 className="text-2xl font-black text-slate-950">ต้องการให้ทีมงานช่วยจัดเตรียมเอกสารยื่นวีซ่า?</h2>
+            <h2 className="text-2xl font-black text-slate-950">
+              ต้องการให้ทีมงานช่วยจัดเตรียมเอกสารยื่นวีซ่า?
+            </h2>
+
             <p className="mx-auto mt-3 max-w-2xl text-base font-medium leading-relaxed text-slate-600">
-              ส่งคำขอให้ทีมงานตรวจสอบข้อมูลก่อนดำเนินการ เราให้บริการจัดเตรียมเอกสารสนับสนุนเท่านั้น
+              ส่งคำขอให้ทีมงานตรวจสอบข้อมูลก่อนดำเนินการ
+              เราให้บริการจัดเตรียมเอกสารสนับสนุนเท่านั้น
               ไม่ใช่ตัวแทนวีซ่าและไม่รับประกันผลการพิจารณา
             </p>
+
             <Link
               href="/order"
               className="mt-6 inline-flex items-center justify-center gap-2 rounded-2xl bg-accent-orange px-6 py-3 text-sm font-black text-white shadow-[0_14px_34px_rgba(255,87,34,0.28)] transition hover:bg-accent-hover"
