@@ -9,12 +9,14 @@ import { resetAllMocks } from '../mocks'
 
 // Mock the dependencies
 jest.mock('../../services/db', () => ({
+  __esModule: true,
   default: {
     query: jest.fn(),
   },
 }))
 
 jest.mock('../../services/email.service', () => ({
+  __esModule: true,
   sendHeroRequestEmail: jest.fn().mockResolvedValue({ id: 'email-123' }),
 }))
 
@@ -76,10 +78,11 @@ describe('Quick Request API Endpoint (/api/requests)', () => {
           },
         })
       } catch (error: any) {
+        console.error('requests.integration.test route error:', error)
         return res.status(500).json({
           success: false,
           message: 'Server error',
-          error: error.message,
+          error: error?.message || String(error),
         })
       }
     })

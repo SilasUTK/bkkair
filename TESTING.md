@@ -5,11 +5,12 @@ This guide explains how to run tests, write new tests, and understand the testin
 ## Quick Start
 
 ### Run All Tests
+
 ```bash
 # Backend tests
 npm test --prefix backend
 
-# Frontend tests  
+# Frontend tests
 npm test
 
 # Both (from root)
@@ -17,6 +18,7 @@ npm run test:all
 ```
 
 ### Run Tests in Watch Mode
+
 ```bash
 # Backend
 npm run test:watch --prefix backend
@@ -26,6 +28,7 @@ npm run test:watch
 ```
 
 ### Generate Coverage Reports
+
 ```bash
 # Backend
 npm run test:coverage --prefix backend
@@ -38,8 +41,8 @@ npm run test:coverage
 
 ### Backend Testing
 
-**Framework**: Jest + ts-jest + Supertest  
-**Environment**: Node.js  
+**Framework**: Jest + ts-jest + Supertest
+**Environment**: Node.js
 **Location**: `backend/src/__tests__/`
 
 #### Test Suites
@@ -91,8 +94,8 @@ describe('Feature Name', () => {
 
 ### Frontend Testing
 
-**Framework**: Jest + React Testing Library  
-**Environment**: jsdom (DOM simulation)  
+**Framework**: Jest + React Testing Library
+**Environment**: jsdom (DOM simulation)
 **Location**: `__tests__/components/`
 
 #### Test Suites
@@ -117,7 +120,7 @@ describe('Component Name', () => {
   it('should handle user input', async () => {
     const user = userEvent.setup()
     render(<Component />)
-    
+
     await user.type(screen.getByRole('textbox'), 'input')
     expect(screen.getByRole('textbox')).toHaveValue('input')
   })
@@ -129,11 +132,13 @@ describe('Component Name', () => {
 Current coverage status:
 
 ### Backend
+
 - **Validators**: 100% (all schemas tested)
 - **API Integration**: Core endpoints validated
 - **Total**: 55 tests passing
 
 ### Frontend
+
 - **Components**: HeroForm component fully tested
 - **Total**: 73 tests passing
 
@@ -170,10 +175,10 @@ describe('Component', () => {
   it('should handle form submission', async () => {
     const mockSubmit = jest.fn()
     render(<Form onSubmit={mockSubmit} />)
-    
+
     const button = screen.getByRole('button', { name: /submit/i })
     await userEvent.click(button)
-    
+
     expect(mockSubmit).toHaveBeenCalled()
   })
 })
@@ -199,16 +204,19 @@ it('should send email', async () => {
 ## Configuration Files
 
 ### Backend Jest Config
+
 - **File**: `backend/jest.config.js`
 - **Environment**: node
 - **Transform**: ts-jest for TypeScript support
 
 ### Frontend Jest Config
+
 - **File**: `jest.config.js`
 - **Environment**: jsdom (DOM simulation)
 - **Presets**: next/jest for Next.js support
 
 ### TypeScript Config
+
 - **Backend**: `backend/tsconfig.json` (includes jest types)
 - **Frontend**: `tsconfig.json`
 
@@ -251,6 +259,7 @@ mockFormData.validContactForm
 ## Adding New Tests
 
 ### 1. Create Test File
+
 ```bash
 # Backend
 backend/src/__tests__/features/new-feature.test.ts
@@ -260,15 +269,18 @@ __tests__/components/NewComponent.test.tsx
 ```
 
 ### 2. Write Test Cases
+
 Follow the existing test patterns in the codebase.
 
 ### 3. Run Tests
+
 ```bash
 npm test
 npm test:watch
 ```
 
 ### 4. Check Coverage
+
 ```bash
 npm test:coverage
 ```
@@ -278,16 +290,19 @@ Aim for >80% coverage on new code.
 ## Debugging Tests
 
 ### Run Single Test File
+
 ```bash
 npm test -- schemas.test.ts
 ```
 
 ### Run Single Test Suite
+
 ```bash
 npm test -- --testNamePattern="should accept valid data"
 ```
 
 ### Debug Mode
+
 ```bash
 node --inspect-brk node_modules/.bin/jest --runInBand
 ```
@@ -295,6 +310,7 @@ node --inspect-brk node_modules/.bin/jest --runInBand
 Then open `chrome://inspect` in Chrome DevTools.
 
 ### Verbose Output
+
 ```bash
 npm test -- --verbose
 ```
@@ -302,6 +318,7 @@ npm test -- --verbose
 ## Continuous Integration
 
 Tests run automatically on:
+
 - Pull requests (via GitHub Actions)
 - Commits to main branch
 - Manual trigger via GitHub workflow
@@ -311,29 +328,33 @@ See `.github/workflows/test.yml` for CI configuration.
 ## Best Practices
 
 1. **Test Names**: Use descriptive names that explain what's being tested
+
    ```typescript
    it('should reject email without @ symbol', () => {})
    ```
 
 2. **Arrange-Act-Assert**: Structure tests clearly
+
    ```typescript
    // Arrange
    const input = 'test@example.com'
-   
+
    // Act
    const result = validateEmail(input)
-   
+
    // Assert
    expect(result).toBe(true)
    ```
 
 3. **Mock External Dependencies**: Prevent side effects
+
    ```typescript
    jest.mock('../../services/db')
    jest.mock('../../services/email')
    ```
 
 4. **Test Edge Cases**: Not just happy paths
+
    ```typescript
    // Valid case
    // Empty case
@@ -342,6 +363,7 @@ See `.github/workflows/test.yml` for CI configuration.
    ```
 
 5. **Keep Tests Independent**: No interdependencies between tests
+
    ```typescript
    beforeEach(() => {
      jest.clearAllMocks()

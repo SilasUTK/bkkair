@@ -1,8 +1,8 @@
 # Security & Performance Implementation Checklist
 
-**Status**: Implementation Phase  
-**Date Started**: 2026-06-20  
-**Deadline**: 2026-07-04  
+**Status**: Implementation Phase
+**Date Started**: 2026-06-20
+**Deadline**: 2026-07-04
 
 ---
 
@@ -11,6 +11,7 @@
 ### Phase 1: Validation & Sanitization (✅ COMPLETE)
 
 - [x] Install Zod package
+
   ```bash
   npm install zod --prefix backend
   ```
@@ -55,11 +56,13 @@
 ### Phase 2: Frontend Security Setup
 
 - [ ] Add honeypot field to HeroForm
+
   ```jsx
   <input type="hidden" name="website" value="" />
   ```
 
 - [ ] Add honeypot field to ContactForm
+
   ```jsx
   <input type="hidden" name="website" value="" />
   ```
@@ -131,6 +134,7 @@
 ### Security Testing
 
 - [ ] Rate limiting test
+
   ```bash
   # Submit 6 requests in 30 seconds
   for i in {1..6}; do
@@ -143,6 +147,7 @@
   ```
 
 - [ ] Input validation test
+
   ```bash
   # Try missing required field
   curl -X POST http://localhost:5001/api/requests \
@@ -152,6 +157,7 @@
   ```
 
 - [ ] XSS prevention test
+
   ```bash
   # Try HTML injection
   curl -X POST http://localhost:5001/api/requests \
@@ -161,6 +167,7 @@
   ```
 
 - [ ] Honeypot test
+
   ```bash
   # Submit with website field filled (bot)
   curl -X POST http://localhost:5001/api/contact \
@@ -216,6 +223,7 @@
 ### Pre-deployment (Before uploading to production)
 
 - [ ] All tests pass locally
+
   ```bash
   npm run dev:api &
   npm run dev
@@ -243,12 +251,14 @@
 ### Deployment Steps
 
 1. **Commit code to Git**
+
    ```bash
    git add .
    git commit -m "chore: security hardening and image optimization"
    ```
 
 2. **Push to GitHub**
+
    ```bash
    git push origin main
    ```
@@ -259,6 +269,7 @@
    - Check `/api/health` endpoint
 
 4. **Post-deployment verification**
+
    ```bash
    # Test production endpoints
    curl https://bkkair.com/api/health
@@ -275,6 +286,7 @@
 ## 📊 Success Metrics
 
 ### Security Improvements
+
 | Metric | Before | Target | Status |
 |--------|--------|--------|--------|
 | Input validation | None | 100% | ✅ |
@@ -284,6 +296,7 @@
 | OWASP coverage | 50% | 90% | ✅ |
 
 ### Performance Improvements
+
 | Metric | Current | Target | Status |
 |--------|---------|--------|--------|
 | Mobile LCP | 64 | 85+ | 🔄 |
@@ -298,6 +311,7 @@
 If issues occur after deployment:
 
 1. **Quick rollback** (if auto-deploy active)
+
    ```bash
    git revert HEAD
    git push origin main
@@ -305,6 +319,7 @@ If issues occur after deployment:
    ```
 
 2. **Manual rollback** (SSH to Hostinger)
+
    ```bash
    cd /path/to/app
    git checkout previous-commit-hash
@@ -313,6 +328,7 @@ If issues occur after deployment:
    ```
 
 3. **Check status**
+
    ```bash
    curl https://bkkair.com/api/health
    ```
@@ -333,6 +349,7 @@ If issues occur after deployment:
 If you encounter issues:
 
 1. **Check server logs**
+
    ```bash
    npm run pm2:logs
    ```

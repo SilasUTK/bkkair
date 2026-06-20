@@ -3,6 +3,7 @@
 ## ✅ What's Been Implemented
 
 ### Backend Security (✅ Complete)
+
 - **Zod Validation**: Type-safe schema validation for all API requests
 - **Input Sanitization**: Removes HTML/XSS injection attempts
 - **Rate Limiting**: Protects endpoints from brute force and abuse
@@ -10,6 +11,7 @@
 - **Request Size Limits**: Prevents large payload attacks
 
 ### Next.js Image Optimization (✅ Complete)
+
 - **Auto-optimization**: WebP/AVIF format delivery
 - **Lazy loading**: Below-the-fold images load on scroll
 - **Priority loading**: Hero image preloaded for LCP
@@ -37,7 +39,7 @@ curl -X POST http://localhost:5001/api/requests \
     "travelDate": "2026-07-15"
   }'
 
-# Expected response:
+# Expected response
 # {"success": true, "message": "Request received", "data": {...}}
 
 # Test rate limiting (submit 6 times in 30 seconds)
@@ -61,8 +63,8 @@ curl -X POST http://localhost:5001/api/requests \
   -H "Content-Type: application/json" \
   -d '{"name": "Test"}'
 
-# Response:
-# {"success": false, "message": "Validation failed", 
+# Response
+# {"success": false, "message": "Validation failed",
 #  "errors": [{"field": "contact", "message": "Contact must be at least 7 characters"}]}
 
 # Invalid email
@@ -70,7 +72,7 @@ curl -X POST http://localhost:5001/api/contact \
   -H "Content-Type: application/json" \
   -d '{"full_name": "Test", "email": "invalid-email", "contact_detail": "test@test.com", "destination": "Thailand"}'
 
-# Response:
+# Response
 # {"success": false, "message": "Validation failed",
 #  "errors": [{"field": "email", "message": "Invalid email format"}]}
 ```
@@ -87,7 +89,7 @@ curl -X POST http://localhost:5001/api/requests \
     "destination": "Thailand"
   }'
 
-# Script tags are removed: 
+# Script tags are removed
 # Name saved as: "alert(\"xss\")"
 ```
 
@@ -100,12 +102,12 @@ npm run dev
 # Open http://localhost:3000 in Chrome
 # Open Chrome DevTools: F12
 
-# Check Lighthouse:
+# Check Lighthouse
 # 1. Go to Lighthouse tab
 # 2. Click "Generate report"
 # 3. Check LCP score (should show significant improvement)
 
-# Check Network:
+# Check Network
 # 1. Go to Network tab
 # 2. Filter by "img"
 # 3. Verify images load with WebP format
@@ -114,7 +116,7 @@ npm run dev
 
 ### 5. **Check PageSpeed Insights Improvement**
 
-```
+```text
 BEFORE Implementation:
 - Mobile LCP: 64
 - Mobile Score: ~64
@@ -129,7 +131,8 @@ EXPECTED AFTER:
 ## 📁 Files Created/Modified
 
 ### New Files Created
-```
+
+```text
 backend/src/validators/schemas.ts          ← Zod validation schemas
 backend/src/middleware/validateRequest.ts  ← Validation middleware
 backend/src/middleware/rateLimiters.ts     ← Rate limit configurations
@@ -139,7 +142,8 @@ IMPLEMENTATION_CHECKLIST.md                ← Phase-by-phase checklist
 ```
 
 ### Modified Files
-```
+
+```text
 backend/src/server.ts                      ← Added security middleware
 backend/src/routes/request.routes.ts       ← Added validation
 backend/src/routes/contact.routes.ts       ← Added validation
@@ -154,36 +158,41 @@ backend/package.json                       ← Added Zod
 ## 🔐 Security Features Active Now
 
 ### Form Submissions
-✅ All form inputs are validated against Zod schemas  
-✅ HTML/XSS attempts are sanitized  
-✅ Bot submissions are detected with honeypot  
-✅ Rate limiting prevents spam (5 req per 30s)  
+
+✅ All form inputs are validated against Zod schemas
+✅ HTML/XSS attempts are sanitized
+✅ Bot submissions are detected with honeypot
+✅ Rate limiting prevents spam (5 req per 30s)
 
 ### Admin API
-✅ Login limited to 5 attempts per 15 minutes  
-✅ Admin endpoints limited to 100 req per minute  
-✅ All input sanitized before database insertion  
+
+✅ Login limited to 5 attempts per 15 minutes
+✅ Admin endpoints limited to 100 req per minute
+✅ All input sanitized before database insertion
 
 ### Data Protection
-✅ Request payloads limited to 10KB  
-✅ CORS only allows whitelisted domains  
-✅ No sensitive data in error messages  
+
+✅ Request payloads limited to 10KB
+✅ CORS only allows whitelisted domains
+✅ No sensitive data in error messages
 
 ---
 
 ## ⚡ Performance Features Active Now
 
 ### Image Delivery
-✅ Hero image (priority): Preloaded, quality 78  
-✅ Country cards: Lazy loading, quality 70  
-✅ WebP/AVIF: Auto-delivered to modern browsers  
-✅ Responsive sizing: Device-optimized delivery  
+
+✅ Hero image (priority): Preloaded, quality 78
+✅ Country cards: Lazy loading, quality 70
+✅ WebP/AVIF: Auto-delivered to modern browsers
+✅ Responsive sizing: Device-optimized delivery
 
 ### Expected Improvements
-✅ Mobile LCP: 64 → 88-92 (24-28 point increase)  
-✅ Image size: 40-50% reduction with WebP  
-✅ Page load: 30-40% faster  
-✅ Lighthouse score: 64 → 85+  
+
+✅ Mobile LCP: 64 → 88-92 (24-28 point increase)
+✅ Image size: 40-50% reduction with WebP
+✅ Page load: 30-40% faster
+✅ Lighthouse score: 64 → 85+
 
 ---
 
@@ -206,12 +215,14 @@ Before deploying to production, verify:
 ## 📊 Metrics to Track
 
 ### Security Metrics
+
 - Form submission validation errors per day
 - Rate limit hits per IP
 - Failed login attempts
 - Bot submission attempts (honeypot)
 
 ### Performance Metrics
+
 - Mobile LCP (target: < 2.5s)
 - Desktop LCP (target: < 1.2s)
 - Image load time (should improve ~40%)
@@ -222,12 +233,14 @@ Before deploying to production, verify:
 ## 🚀 Deployment
 
 ### Auto-deployment (via GitHub)
+
 1. Commit changes: `git commit -am "feat: security and performance optimization"`
 2. Push to GitHub: `git push origin main`
 3. Hostinger auto-deploys within 1-2 minutes
 4. Monitor `/api/health` endpoint
 
 ### Manual deployment verification
+
 ```bash
 # Check backend health
 curl https://bkkair.com/api/health
@@ -243,20 +256,25 @@ curl https://bkkair.com/api/health
 ## 🐛 Troubleshooting
 
 ### "Too many requests" error
-**Issue**: Getting 429 responses on all requests  
+
+**Issue**: Getting 429 responses on all requests
 **Solution**: Rate limits are working correctly. Wait 30 seconds and try again.
 
 ### Images not loading
-**Issue**: Images show 404 or broken  
+
+**Issue**: Images show 404 or broken
 **Solution**: Verify image files exist in `/public/images/` and paths are correct
 
 ### Validation errors not showing
-**Issue**: Form doesn't show error messages  
+
+**Issue**: Form doesn't show error messages
 **Solution**: Update frontend forms to display validation errors from API response
 
 ### PageSpeed score didn't improve
-**Issue**: LCP still above 2.5s  
+
+**Issue**: LCP still above 2.5s
 **Solution**:
+
 1. Verify WebP images are being served (check Network tab)
 2. Optimize actual image files with TinyPNG
 3. Check lazy loading is working (scroll to see images load)
@@ -320,6 +338,7 @@ Read these for detailed information:
    - Hero image should load with priority
 
 4. **Use curl for API testing**:
+
    ```bash
    # Save response to file
    curl -X POST http://localhost:5001/api/requests \
@@ -332,6 +351,7 @@ Read these for detailed information:
 ## 🎉 Summary
 
 You now have:
+
 - ✅ Backend security with input validation and rate limiting
 - ✅ Frontend performance optimization with image optimization
 - ✅ Complete documentation of all changes
@@ -339,6 +359,7 @@ You now have:
 - ✅ Security best practices implemented
 
 Expected impact:
+
 - **Security**: 90%+ OWASP coverage, prevents common attacks
 - **Performance**: 30-40% faster, Mobile LCP 64 → 88-92
 

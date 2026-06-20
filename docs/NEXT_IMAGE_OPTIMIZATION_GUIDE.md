@@ -1,6 +1,7 @@
 # Next.js Image Optimization Best Practices Guide
 
 ## Overview
+
 Your current LCP (Largest Contentful Paint) is 64 on mobile. Next.js Image optimization can improve this to 85-90+ by implementing these proven techniques.
 
 ---
@@ -8,6 +9,7 @@ Your current LCP (Largest Contentful Paint) is 64 on mobile. Next.js Image optim
 ## 1. **Image Component Best Practices**
 
 ### ✅ DO: Use next/image for all static images
+
 ```jsx
 import Image from "next/image";
 
@@ -24,6 +26,7 @@ import Image from "next/image";
 ```
 
 ### ❌ DON'T: Use img or backgroundImage for critical images
+
 ```jsx
 // ❌ Avoid - unoptimized images
 <img src="/hero-bg.jpg" alt="..." />
@@ -35,6 +38,7 @@ import Image from "next/image";
 ## 2. **Priority & Loading Strategies**
 
 ### Priority Image (Perceived LCP)
+
 ```jsx
 <Image
   src="/images/background/hero-bg.jpg"
@@ -48,11 +52,13 @@ import Image from "next/image";
 ```
 
 **When to use `priority`:**
+
 - Above-the-fold images (hero, first section)
 - Images loaded immediately on page view
 - Typically 1-2 images per page
 
 ### Lazy-Loaded Images (Below-the-fold)
+
 ```jsx
 <Image
   src="/images/countries/uk.jpg"
@@ -70,6 +76,7 @@ import Image from "next/image";
 ## 3. **Image Sizing & srcset**
 
 ### The `sizes` Attribute (Critical for LCP)
+
 Tells browser which image size to load at different viewport widths.
 
 ```jsx
@@ -91,16 +98,19 @@ Tells browser which image size to load at different viewport widths.
 ### Example for Different Component Types
 
 **Hero Section (Full Width)**
+
 ```jsx
 sizes="100vw"
 ```
 
 **Card Grid (3 columns on desktop)**
+
 ```jsx
 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) calc(100vw / 3), 400px"
 ```
 
 **Thumbnail (Fixed size)**
+
 ```jsx
 sizes="(max-width: 640px) 200px, 300px"
 ```
@@ -110,7 +120,9 @@ sizes="(max-width: 640px) 200px, 300px"
 ## 4. **Image Formats & Quality Settings**
 
 ### Modern Format Optimization (WebP, AVIF)
+
 Already configured in `next.config.js`:
+
 ```javascript
 images: {
   formats: ['image/avif', 'image/webp']
@@ -118,6 +130,7 @@ images: {
 ```
 
 The browser automatically receives:
+
 - **AVIF** (Safari 16+): Best compression
 - **WebP** (Chrome, Edge): Good compression
 - **JPG** (fallback): All browsers
@@ -147,17 +160,20 @@ The browser automatically receives:
 ## 5. **Optimizing Background Images**
 
 ### ❌ OLD: CSS background-image (Blocks rendering)
+
 ```jsx
 <div style={{ backgroundImage: `url(${country.image})` }} />
 ```
 
 **Problems:**
+
 - Not optimized by Next.js
 - Blocks CSS parsing and rendering
 - Impacts LCP (adds 200-500ms)
 - Harder to load different sizes
 
 ### ✅ NEW: Picture + Image element
+
 ```jsx
 <picture className="absolute inset-0">
   <source srcSet="/images/countries/uk.webp" type="image/webp" />
@@ -173,6 +189,7 @@ The browser automatically receives:
 ```
 
 Or using CSS with Image overlay:
+
 ```jsx
 <div className="relative overflow-hidden">
   <Image
@@ -193,6 +210,7 @@ Or using CSS with Image overlay:
 ## 6. **Responsive Image Example (Countries Section)**
 
 ### Before (Unoptimized)
+
 ```jsx
 {country.image && (
   <div
@@ -203,6 +221,7 @@ Or using CSS with Image overlay:
 ```
 
 ### After (Optimized)
+
 ```jsx
 {country.image && (
   <div className="absolute inset-0 overflow-hidden">
@@ -224,6 +243,7 @@ Or using CSS with Image overlay:
 ## 7. **Local Image Imports (Preferred)**
 
 ### ✅ Best: Static imports for known images
+
 ```jsx
 import heroBackground from "@/public/images/background/hero-bg.jpg";
 
@@ -236,6 +256,7 @@ import heroBackground from "@/public/images/background/hero-bg.jpg";
 ```
 
 **Advantages:**
+
 - Build-time validation (errors if file missing)
 - Automatic width/height detection
 - Better optimization opportunities
@@ -246,17 +267,20 @@ import heroBackground from "@/public/images/background/hero-bg.jpg";
 ## 8. **Testing & Performance Monitoring**
 
 ### Google PageSpeed Insights
+
 1. Go to [pagespeed.web.dev](https://pagespeed.web.dev)
 2. Test your homepage
 3. Look for "Largest Contentful Paint" (LCP)
 4. Target: < 2.5 seconds (green)
 
 ### Chrome DevTools Lighthouse
-```
+
+```bash
 Ctrl+Shift+J → Lighthouse → Generate report
 ```
 
 ### Core Web Vitals
+
 - **LCP** (Largest Contentful Paint): < 2.5s ✅
 - **FID** (First Input Delay): < 100ms
 - **CLS** (Cumulative Layout Shift): < 0.1
@@ -266,6 +290,7 @@ Ctrl+Shift+J → Lighthouse → Generate report
 ## 9. **Image Preloading for Speed**
 
 ### Link preload (for non-priority images)
+
 ```jsx
 // In app/layout.tsx
 import Link from "next/link";
@@ -296,6 +321,7 @@ import Link from "next/link";
 | Country flag | < 10KB | PNG/SVG |
 
 ### Optimization Tool
+
 Use [TinyPNG](https://tinypng.com) or [Squoosh](https://squoosh.app) to optimize before adding to project.
 
 ---
@@ -318,6 +344,7 @@ Use [TinyPNG](https://tinypng.com) or [Squoosh](https://squoosh.app) to optimize
 ## 12. **Performance Impact Expected**
 
 With these optimizations applied:
+
 - **LCP improvement**: 64 → 88-92 (typical)
 - **Page load time**: ~30-40% faster
 - **Bandwidth saved**: 40-50% with WebP/AVIF

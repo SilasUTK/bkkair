@@ -1,7 +1,9 @@
 # Backend Security Hardening Implementation Guide
 
 ## Overview
-This guide documents the security hardening implemented for the BKK AIR backend API. These measures protect against common OWASP vulnerabilities and abuse patterns.
+
+This guide documents the security hardening implemented for the BKK AIR backend API.
+These measures protect against common OWASP vulnerabilities and abuse patterns.
 
 ---
 
@@ -9,7 +11,8 @@ This guide documents the security hardening implemented for the BKK AIR backend 
 
 ### 1. **Request Validation with Zod**
 
-#### What it does:
+#### What it does for validation
+
 - Validates all form submissions against strict schemas
 - Prevents injection attacks (SQL, XSS, NoSQL)
 - Ensures data type safety
@@ -17,26 +20,33 @@ This guide documents the security hardening implemented for the BKK AIR backend 
 
 #### Location: `backend/src/validators/schemas.ts`
 
-#### Key Schemas:
+#### Key Schemas
+
 - `quickRequestSchema` - Hero form submissions
 - `contactFormSchema` - Contact page forms
 - `bookingSchema` - Full booking data
 - `loginSchema` - Admin authentication
 - `quotationSchema` - Quotation management
 
-#### Usage:
+#### Example usage
+
 ```typescript
 import { validateRequest } from "../middleware/validateRequest";
 import { quickRequestSchema } from "../validators/schemas";
 
-router.post("/", validateRequest(quickRequestSchema), createRequest);
+router.post(
+  "/",
+  validateRequest(quickRequestSchema),
+  createRequest
+);
 ```
 
 ---
 
 ### 2. **Input Sanitization**
 
-#### What it does:
+#### What it does for sanitization
+
 - Removes HTML tags from all string inputs
 - Prevents XSS (Cross-Site Scripting) attacks
 - Trims and limits string length
@@ -44,15 +54,17 @@ router.post("/", validateRequest(quickRequestSchema), createRequest);
 
 #### Location: `backend/src/middleware/validateRequest.ts`
 
-#### Sanitization Rules:
-```
+#### Sanitization Rules
+
+```text
 - Remove HTML tags: <script>, <iframe>, etc.
 - Trim whitespace
 - Maximum 1000 characters per field
 - Special character escaping for HTML output
 ```
 
-#### Example:
+#### Example
+
 ```typescript
 Input:  "<script>alert('xss')</script>hello"
 Output: "alert('xss')hello"
@@ -62,7 +74,8 @@ Output: "alert('xss')hello"
 
 ### 3. **Rate Limiting**
 
-#### What it does:
+#### What it does for rate limiting
+
 - Limits requests per IP address
 - Prevents brute force attacks
 - Stops spam form submissions
@@ -70,10 +83,10 @@ Output: "alert('xss')hello"
 
 #### Location: `backend/src/middleware/rateLimiters.ts`
 
-#### Rate Limit Rules:
+#### Rate Limit Rules
 
 | Endpoint | Limit | Window | Purpose |
-|----------|-------|--------|---------|
+| ---------- | ------- | -------- | --------- |
 | `/api/bookings` | 5 req | 30 sec | Form submission |
 | `/api/requests` | 5 req | 30 sec | Quick request |
 | `/api/contact` | 5 req | 30 sec | Contact form |
@@ -81,7 +94,8 @@ Output: "alert('xss')hello"
 | `/api/admin/*` | 100 req | 60 sec | Admin API (auth) |
 | `/api/health` | unlimited | - | Health check |
 
-#### Usage in Routes:
+#### Usage in Routes
+
 ```typescript
 import { formSubmissionLimiter } from "../middleware/rateLimiters";
 
@@ -92,12 +106,14 @@ router.post("/", formSubmissionLimiter, createRequest);
 
 ### 4. **Honeypot Protection**
 
-#### What it does:
+#### What it does for honeypot protection
+
 - Detects automated bot form submissions
 - Silently rejects (appears successful to bot)
 - Uses hidden form field called `website`
 
-#### Usage:
+#### Usage
+
 ```html
 <!-- In frontend form (hidden from users) -->
 <input type="hidden" name="website" value="" />
@@ -109,18 +125,20 @@ The field should be empty for real users. If it has any value, the submission is
 
 ### 5. **CORS Configuration**
 
-#### What it does:
+#### What it does for CORS
+
 - Restricts API access to allowed domains only
 - Prevents cross-origin attacks
 - Only allows credentials from trusted sources
 
-#### Configuration:
+#### Configuration details
+
 ```typescript
 const allowedOrigins = [
   clientOrigin,              // Production domain
-  "http://localhost:3000",   // Local development
-  "http://localhost:5173",   // Vite dev
-  "http://localhost:5174"    // Alternative dev
+  "http://localhost:3000", // Local development
+  "http://localhost:5173", // Vite dev
+  "http://localhost:5174", // Alternative dev
 ];
 
 app.use(cors({ origin: allowedOrigins, credentials: true }));
@@ -130,12 +148,14 @@ app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 ### 6. **Request Size Limits**
 
-#### What it does:
+#### What it does for request size limits
+
 - Prevents large payload attacks
 - Limits JSON payload to 10KB
 - Blocks zip bombs and decompression attacks
 
-#### Configuration:
+#### Configuration
+
 ```typescript
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ limit: "10kb", extended: true }));
@@ -145,12 +165,14 @@ app.use(express.urlencoded({ limit: "10kb", extended: true }));
 
 ### 7. **Email Validation**
 
-#### What it does:
+#### What it does for email validation
+
 - Validates email format before sending
 - Prevents invalid email delivery
 - Protects from email enumeration
 
-#### Schema:
+#### Schema
+
 ```typescript
 const emailSchema = z.string().email("Invalid email format").trim().toLowerCase();
 ```
@@ -160,7 +182,7 @@ const emailSchema = z.string().email("Invalid email format").trim().toLowerCase(
 ## 🔒 OWASP Top 10 Coverage
 
 | Vulnerability | Status | Implementation |
-|---|---|---|
+| --- | --- | --- |
 | A01:2021 - Injection | ✅ Protected | Input validation + sanitization |
 | A02:2021 - Broken Auth | ✅ Protected | JWT middleware (admin) |
 | A03:2021 - Sensitive Data | ✅ Protected | HTTPS + no secrets in logs |
@@ -177,6 +199,7 @@ const emailSchema = z.string().email("Invalid email format").trim().toLowerCase(
 ## 🧪 Testing the Security Implementation
 
 ### 1. **Test Rate Limiting**
+
 ```bash
 # Should succeed (1st request)
 curl -X POST http://localhost:5001/api/requests \
@@ -184,10 +207,12 @@ curl -X POST http://localhost:5001/api/requests \
   -d '{"name": "Test", "contact": "test@example.com", "destination": "Thailand"}'
 
 # Should fail (6th request within 30 seconds)
-# Response: 429 Too Many Requests
+# Response
+# 429 Too Many Requests
 ```
 
 ### 2. **Test Input Validation**
+
 ```bash
 # Missing required field
 curl -X POST http://localhost:5001/api/requests \
@@ -199,10 +224,12 @@ curl -X POST http://localhost:5001/api/requests \
 curl -X POST http://localhost:5001/api/contact \
   -H "Content-Type: application/json" \
   -d '{"email": "invalid-email", ...}'
-# Response: 400 Invalid email format
+# Response
+# 400 Invalid email format
 ```
 
 ### 3. **Test XSS Prevention**
+
 ```bash
 curl -X POST http://localhost:5001/api/requests \
   -H "Content-Type: application/json" \
@@ -211,6 +238,7 @@ curl -X POST http://localhost:5001/api/requests \
 ```
 
 ### 4. **Test Honeypot**
+
 ```bash
 curl -X POST http://localhost:5001/api/contact \
   -H "Content-Type: application/json" \
@@ -223,6 +251,7 @@ curl -X POST http://localhost:5001/api/contact \
 ## 📋 Configuration Checklist
 
 ### Backend Setup
+
 - [ ] Install Zod: `npm install zod`
 - [ ] Review `backend/src/validators/schemas.ts`
 - [ ] Review `backend/src/middleware/validateRequest.ts`
@@ -232,11 +261,13 @@ curl -X POST http://localhost:5001/api/contact \
 - [ ] Test all API endpoints
 
 ### Frontend Setup
+
 - [ ] Add honeypot field to all forms (hidden input name="website")
 - [ ] Test form validation messages display correctly
 - [ ] Verify error feedback is user-friendly
 
 ### Deployment Setup
+
 - [ ] Set `CLIENT_ORIGIN` env var to production domain
 - [ ] Update CORS allowed origins for production
 - [ ] Test CORS on deployed server
@@ -247,6 +278,7 @@ curl -X POST http://localhost:5001/api/contact \
 ## 🔧 Advanced Configuration
 
 ### Redis-backed Rate Limiting (Production)
+
 For distributed systems with multiple servers:
 
 ```bash
@@ -273,6 +305,7 @@ export const redisLimiter = rateLimit({
 ```
 
 ### CSRF Token Protection (Optional Enhancement)
+
 For extra security on state-changing operations:
 
 ```bash
@@ -305,6 +338,7 @@ npm install csrf
 If you suspect a security issue:
 
 1. **Check server logs**
+
    ```bash
    npm run pm2:logs
    ```
@@ -325,8 +359,7 @@ If you suspect a security issue:
 
 ## 📞 Security Resources
 
-- **Zod Documentation**: https://zod.dev
-- **OWASP Top 10**: https://owasp.org/www-project-top-ten/
-- **Express Security**: https://expressjs.com/en/advanced/best-practice-security.html
-- **Rate Limiting Guide**: https://github.com/nfriedly/express-rate-limit
-
+- **Zod Documentation**: [https://zod.dev](https://zod.dev)
+- **OWASP Top 10**: [https://owasp.org/www-project-top-ten/](https://owasp.org/www-project-top-ten/)
+- **Express Security**: [https://expressjs.com/en/advanced/best-practice-security.html](https://expressjs.com/en/advanced/best-practice-security.html)
+- **Rate Limiting Guide**: [https://github.com/nfriedly/express-rate-limit](https://github.com/nfriedly/express-rate-limit)
