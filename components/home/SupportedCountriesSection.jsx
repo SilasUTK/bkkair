@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight, Globe2 } from "lucide-react";
 
 const supportedCountries = [
@@ -201,11 +202,17 @@ export default function SupportedCountriesSection() {
                   }`}
                 >
                   {country.image && (
-                    <div
-                      className="absolute inset-0 bg-cover bg-center opacity-70"
-                      style={{ backgroundImage: `url(${country.image})` }}
-                      aria-hidden="true"
-                    />
+                    <div className="absolute inset-0 overflow-hidden bg-slate-900">
+                      <Image
+                        src={country.image}
+                        alt={`${country.name} background`}
+                        fill
+                        className="object-cover object-center"
+                        quality={70}
+                        loading="lazy"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
                   )}
                   <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,rgba(7,17,31,0.91),rgba(11,27,51,0.82)_58%,rgba(7,17,31,0.92))]" aria-hidden="true" />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(56,189,248,0.18),transparent_32%),radial-gradient(circle_at_85%_85%,rgba(59,130,246,0.14),transparent_36%)]" aria-hidden="true" />

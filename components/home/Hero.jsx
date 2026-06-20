@@ -33,9 +33,10 @@ export default function Hero({ goToCheck }) {
     <section id="hero" className="relative flex min-h-screen w-full items-center overflow-hidden bg-slate-950 pb-14 pt-28 font-sans sm:pb-16 sm:pt-32 lg:pt-28">
       <Image
         src="/images/background/hero-bg.jpg"
-        alt=""
+        alt="Visa document processing illustration"
         fill
         priority
+        quality={78}
         sizes="100vw"
         className="absolute inset-0 object-cover object-center"
       />
