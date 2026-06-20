@@ -83,7 +83,7 @@ export type QuotationInput = z.infer<typeof quotationSchema>;
 
 // Payment Info Schema
 export const paymentSchema = z.object({
-  paymentStatus: z.enum(["pending", "approved", "rejected"]),
+  paymentStatus: z.enum(["none", "pending_verification", "approved", "rejected"]),
   paymentRejectReason: z.string().max(500).optional(),
 });
 
@@ -91,7 +91,7 @@ export type PaymentInput = z.infer<typeof paymentSchema>;
 
 // Status Update Schema
 export const statusUpdateSchema = z.object({
-  status: z.enum(["new", "contacted", "processing", "completed", "cancelled"]),
+  status: z.enum(["new", "quoted", "payment_pending", "paid", "processing", "completed", "cancelled"]),
 });
 
 export type StatusUpdateInput = z.infer<typeof statusUpdateSchema>;

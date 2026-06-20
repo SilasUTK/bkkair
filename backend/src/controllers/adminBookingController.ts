@@ -9,6 +9,7 @@ import {
   normalizePaymentStatus,
   normalizeWorkflowStatus,
 } from "../services/bookingWorkflow.js";
+import { saveDocumentFile, getDocumentFile, deleteDocumentFile, listDocumentFiles } from "../services/fileStorage.js";
 
 const staffMembers = ["Siam", "Admin", "Sales Team", "Ticketing Team", "Visa Support"];
 
@@ -344,5 +345,87 @@ export async function updateAdminBookingFollowUp(req: Request, res: Response) {
   } catch (error) {
     console.error("Admin update follow-up error:", error);
     return res.status(500).json({ error: "Unable to update follow-up date" });
+  }
+}
+
+export async function uploadAdminBookingDocument(req: Request, res: Response) {
+  try {
+    const booking = await getBookingByIdentifier(readParam(req.params.id));
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const { filename, buffer } = req.file;
+    const savedPath = await saveDocumentFile(booking.bookingCode, filename, buffer);
+
+    return res.json({
+      message: "Document uploaded successfully",
+      filename: filename,
+      path: savedPath,
+    });
+  } catch (error) {
+    console.error("Admin upload document error:", error);
+    return res.status(500).json({ error: "Unable to upload document" });
+  }
+}
+
+export async function downloadAdminBookingDocument(req: Request, res: Response) {
+  try {
+    const booking = await getBookingByIdentifier(readParam(req.params.id));
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    const { filename } = req.query;
+    if (!filename || typeof filename !== "string") {
+      return res.status(400).json({ error: "Filename is required" });
+    }
+
+    const buffer = await getDocumentFile(booking.bookingCode, filename);
+    res.setHeader("Content-Type", "application/octet-stream");
+    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+    res.send(buffer);
+  } catch (error) {
+    console.error("Admin download document error:", error);
+    return res.status(500).json({ error: "Unable to download document" });
+  }
+}
+
+export async function listAdminBookingDocuments(req: Request, res: Response) {
+  try {
+    const booking = await getBookingByIdentifier(readParam(req.params.id));
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    const files = await listDocumentFiles(booking.bookingCode);
+    return res.json({ files });
+  } catch (error) {
+    console.error("Admin list documents error:", error);
+    return res.status(500).json({ error: "Unable to list documents" });
+  }
+}
+
+export async function deleteAdminBookingDocument(req: Request, res: Response) {
+  try {
+    const booking = await getBookingByIdentifier(readParam(req.params.id));
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    const { filename } = req.query;
+    if (!filename || typeof filename !== "string") {
+      return res.status(400).json({ error: "Filename is required" });
+    }
+
+    await deleteDocumentFile(booking.bookingCode, filename);
+    return res.json({ message: "Document deleted successfully" });
+  } catch (error) {
+    console.error("Admin delete document error:", error);
+    return res.status(500).json({ error: "Unable to delete document" });
   }
 }

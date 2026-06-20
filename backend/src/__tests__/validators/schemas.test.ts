@@ -348,7 +348,7 @@ describe('Zod Validation Schemas', () => {
 
   describe('statusUpdateSchema', () => {
     it('should validate status enum', () => {
-      const validStatuses = ['new', 'contacted', 'processing', 'completed', 'cancelled'];
+      const validStatuses = ['new', 'quoted', 'payment_pending', 'paid', 'processing', 'completed', 'cancelled'];
 
       validStatuses.forEach((status) => {
         const result = statusUpdateSchema.safeParse({ status });

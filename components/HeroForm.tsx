@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { event as trackEvent } from "../lib/gtag";
+import { createBooking } from "./legacy/services/api";
 
 type Status = "idle" | "loading" | "success" | "error";
 type LegalModal = "terms" | "privacy" | null;
@@ -175,47 +176,54 @@ export default function HeroForm() {
     setConsentError("");
     setStatus("loading");
 
-    const data: Record<string, string | boolean> = {
-      form_source: "Homepage Lead Form",
-      website: (form.elements.namedItem("website") as HTMLInputElement)?.value ?? "",
-      destination: (form.elements.namedItem("destination") as HTMLSelectElement)?.value ?? "",
-      visa_type: (form.elements.namedItem("visa_type") as HTMLSelectElement)?.value ?? "",
-      full_name: (form.elements.namedItem("full_name") as HTMLInputElement)?.value.trim() ?? "",
-      contact_detail: contact,
-      travel_date: travelDate,
-      consentAccepted: true,
-    };
-
     try {
-      const response = await fetch("/api/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json().catch(() => ({}));
+      const destination = (form.elements.namedItem("destination") as HTMLSelectElement)?.value ?? "";
+      const origin = (form.elements.namedItem("origin") as HTMLSelectElement)?.value ?? "";
+      const visaType = (form.elements.namedItem("visa_type") as HTMLSelectElement)?.value ?? "";
+      const fullName = (form.elements.namedItem("full_name") as HTMLInputElement)?.value.trim() ?? "";
 
-      if (response.ok && (result.ok || result.success)) {
-        trackEvent("form_submit_success", {
-          form_name: "homepage_hero_request",
-          form_source: "Homepage Lead Form",
-        });
-        setStatus("success");
-        setConsentAccepted(false);
-        setConsentError("");
-        setIsFormReady(false);
-        formRef.current?.reset();
-        router.push("/thank-you");
+      // Intelligently split contact field into email/phone/LINE
+      let email = "";
+      let phone = "";
+      let lineId = "";
+      
+      const contactValue = contact.trim();
+      if (contactValue.includes("@")) {
+        email = contactValue;
+      } else if (contactValue.startsWith("0") && contactValue.length >= 9) {
+        phone = contactValue;
+      } else if (!contactValue.includes("@") && !contactValue.startsWith("0")) {
+        lineId = contactValue;
       } else {
-        const responseError = typeof result.error === "string" ? result.error : typeof result.message === "string" ? result.message : "";
-        if (responseError === CONSENT_ERROR_MESSAGE || responseError === API_CONSENT_ERROR_MESSAGE) {
-          setStatus("idle");
-          focusConsentError();
-          refreshFormReady();
-          return;
-        }
-        setStatus("error");
+        phone = contactValue;
       }
-    } catch {
+
+      // Submit directly to booking API with database persistence
+      await createBooking({
+        name: fullName,
+        phone,
+        email,
+        lineId,
+        origin,
+        destination,
+        visaCountry: destination,
+        serviceType: visaType || "ท่องเที่ยว",
+        departureDate: travelDate,
+        passengerCount: 1,
+      });
+
+      trackEvent("form_submit_success", {
+        form_name: "homepage_hero_request",
+        form_source: "Homepage Lead Form",
+      });
+      setStatus("success");
+      setConsentAccepted(false);
+      setConsentError("");
+      setIsFormReady(false);
+      formRef.current?.reset();
+      router.push("/thank-you");
+    } catch (error) {
+      console.error("[HeroForm] submission error:", error);
       setStatus("error");
     }
   }
@@ -255,6 +263,23 @@ export default function HeroForm() {
             <option value="Singapore">Singapore (สิงคโปร์)</option>
             <option value="Hong Kong">Hong Kong (ฮ่องกง)</option>
             <option value="Taiwan">Taiwan (ไต้หวัน)</option>
+            <option value="Other">Other (อื่นๆ)</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="hero-origin" className={labelClassName}>
+            <Plane className="h-3.5 w-3.5 text-orange-500" />
+            เมืองต้นทาง *
+          </label>
+          <select id="hero-origin" name="origin" required defaultValue="" className={`${fieldClassName} cursor-pointer`}>
+            <option value="" disabled>
+              เลือกเมืองต้นทาง
+            </option>
+            <option value="Bangkok">Bangkok (กรุงเทพ)</option>
+            <option value="Chiang Mai">Chiang Mai (เชียงใหม่)</option>
+            <option value="Phuket">Phuket (ภูเก็ต)</option>
+            <option value="Pattaya">Pattaya (พัทยา)</option>
             <option value="Other">Other (อื่นๆ)</option>
           </select>
         </div>

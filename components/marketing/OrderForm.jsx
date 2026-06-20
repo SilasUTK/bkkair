@@ -21,10 +21,15 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
   const [form, setForm] = useState({
     package: initialPackage || "standard",
     name: "",
-    contact: "",
+    phone: "",
+    email: "",
+    lineId: "",
+    origin: "",
     destination: initialCountry || "",
     serviceType: "ท่องเที่ยว / ส่วนตัว",
+    cabinClass: "economy",
     departureDate: "",
+    returnDate: "",
     passengerCount: "1",
     details: "",
   });
@@ -53,10 +58,12 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
 
     if (!form.package) return setError("กรุณาเลือกแพ็กเกจ");
     if (!form.name.trim()) return setError("กรุณาระบุชื่อ-นามสกุล");
-    if (!form.contact.trim()) return setError("กรุณาระบุช่องทางติดต่อ");
+    if (!form.phone.trim() && !form.email.trim() && !form.lineId.trim()) return setError("กรุณาระบุเบอร์โทร อีเมล หรือ LINE ID");
+    if (!form.origin.trim()) return setError("กรุณาระบุเมืองต้นทาง");
     if (!form.destination.trim()) return setError("กรุณาระบุประเทศปลายทาง");
     if (!form.departureDate.trim()) return setError("กรุณาระบุวันเดินทาง");
     if (form.departureDate < tomorrow) return setError("วันเดินทางต้องเป็นวันพรุ่งนี้เป็นต้นไป");
+    if (form.returnDate && form.returnDate <= form.departureDate) return setError("วันกลับต้องอยู่หลังวันเดินทาง");
 
     const passengerCount = Number(form.passengerCount || 1);
     if (passengerCount < 1 || passengerCount > 8) return setError("จำนวนผู้เดินทางต้องอยู่ระหว่าง 1-8 คน");
@@ -68,15 +75,17 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
       const selectedPackage = packages.find((pkg) => pkg.slug === form.package);
       await createBooking({
         name: form.name.trim(),
-        phone: form.contact.trim(),
-        email: "",
-        lineId: "",
+        phone: form.phone.trim() || "",
+        email: form.email.trim() || "",
+        lineId: form.lineId.trim() || "",
+        origin: form.origin.trim(),
         destination: form.destination,
         visaCountry: form.destination,
         serviceType: `${selectedPackage?.name || form.package} - ${form.serviceType}`,
+        cabinClass: form.cabinClass,
         departureDate: form.departureDate,
+        returnDate: form.returnDate || "",
         passengerCount,
-        notes: form.details,
       });
       trackEvent("form_submit_success", {
         form_name: "order_request_form",
@@ -87,7 +96,9 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
       setForm((current) => ({
         ...current,
         name: "",
-        contact: "",
+        phone: "",
+        email: "",
+        lineId: "",
         details: "",
       }));
       router.push("/thank-you");
@@ -120,10 +131,25 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
           <input name="name" value={form.name} onChange={updateForm} required placeholder="ระบุชื่อของคุณ" className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 font-medium text-slate-700 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none" />
         </label>
 
-        <label className="block md:col-span-2">
-          <span className="text-xs font-black uppercase tracking-wide text-slate-500">ช่องทางติดต่อ</span>
-          <input name="contact" value={form.contact} onChange={updateForm} required placeholder="เบอร์โทร / อีเมล / LINE ID" className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 font-medium text-slate-700 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none" />
-          <p className="mt-1.5 text-xs font-medium text-slate-500">กรอกช่องทางที่สะดวกให้ทีมงานติดต่อกลับ</p>
+        <label className="block">
+          <span className="text-xs font-black uppercase tracking-wide text-slate-500">เบอร์โทร</span>
+          <input name="phone" value={form.phone} onChange={updateForm} placeholder="เบอร์โทร (ไม่บังคับ)" className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 font-medium text-slate-700 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none" />
+        </label>
+
+        <label className="block">
+          <span className="text-xs font-black uppercase tracking-wide text-slate-500">อีเมล</span>
+          <input name="email" type="email" value={form.email} onChange={updateForm} placeholder="อีเมล (ไม่บังคับ)" className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 font-medium text-slate-700 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none" />
+        </label>
+
+        <label className="block">
+          <span className="text-xs font-black uppercase tracking-wide text-slate-500">LINE ID</span>
+          <input name="lineId" value={form.lineId} onChange={updateForm} placeholder="LINE ID (ไม่บังคับ)" className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 font-medium text-slate-700 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none" />
+          <p className="mt-1.5 text-xs font-medium text-slate-500">กรอกอย่างน้อยหนึ่งช่องทางให้ทีมงานติดต่อกลับ</p>
+        </label>
+
+        <label className="block">
+          <span className="text-xs font-black uppercase tracking-wide text-slate-500">เมืองต้นทาง</span>
+          <input name="origin" value={form.origin} onChange={updateForm} required placeholder="เช่น กรุงเทพ / อื่นๆ" className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 font-medium text-slate-700 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none" />
         </label>
 
         <label className="block">
@@ -147,8 +173,23 @@ export default function OrderForm({ initialPackage = "", initialCountry = "" }) 
         </label>
 
         <label className="block">
+          <span className="text-xs font-black uppercase tracking-wide text-slate-500">ชั้นที่นั่ง</span>
+          <select name="cabinClass" value={form.cabinClass} onChange={updateForm} required className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 font-medium text-slate-700 focus:border-blue-500 focus:bg-white focus:outline-none">
+            <option value="economy">Economy (ชั้นประหยัด)</option>
+            <option value="premium-economy">Premium Economy (ชั้นประหยัดพรีเมี่ยม)</option>
+            <option value="business">Business (ชั้นธุรกิจ)</option>
+            <option value="first">First (ชั้นหนึ่ง)</option>
+          </select>
+        </label>
+
+        <label className="block">
           <span className="text-xs font-black uppercase tracking-wide text-slate-500">วันเดินทาง</span>
           <input name="departureDate" type="date" min={tomorrow} value={form.departureDate} onChange={updateForm} required className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 font-medium text-slate-700 focus:border-blue-500 focus:bg-white focus:outline-none" />
+        </label>
+
+        <label className="block">
+          <span className="text-xs font-black uppercase tracking-wide text-slate-500">วันกลับ (ไม่บังคับ)</span>
+          <input name="returnDate" type="date" min={form.departureDate || tomorrow} value={form.returnDate} onChange={updateForm} className="mt-2 block w-full rounded-xl border-2 border-slate-100 bg-slate-50 px-4 py-3.5 font-medium text-slate-700 focus:border-blue-500 focus:bg-white focus:outline-none" />
         </label>
 
         <label className="block">

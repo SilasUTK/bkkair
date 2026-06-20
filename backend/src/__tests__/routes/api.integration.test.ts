@@ -162,7 +162,7 @@ describe('API Integration Tests - Validation Layer', () => {
 
   describe('Status Update Validation', () => {
     it('should accept valid status values', () => {
-      const validStatuses = ['new', 'contacted', 'processing', 'completed', 'cancelled']
+      const validStatuses = ['new', 'quoted', 'payment_pending', 'paid', 'processing', 'completed', 'cancelled']
 
       validStatuses.forEach(status => {
         const result = statusUpdateSchema.safeParse({ status })
